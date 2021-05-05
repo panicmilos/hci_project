@@ -66,7 +66,8 @@
     <Compile Include="Services\Contracts\IDummyService.cs" />
     <Compile Include="Services\Implementations\DummyService.cs" />
     <Compile Include="Theme\DummyClass.cs" />
-    <Compile Include="Utility\DummyClass.cs" />
+    <Compile Include="Utility\ObservableEntity.cs" />
+    <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\DummyClass.cs" />
     <Page Include="MainWindow.xaml">
