@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Organizator_Proslava"
         mc:Ignorable="d"
+        DataContext="{Binding Path=MainViewModel, Source={StaticResource ServiceLocator}}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Width="200" Height="100" Background="Green" TextAlignment="Center">Hello World!</TextBlock>
+        <Label Width="200" Height="100" Background="Green" Content="{Binding Path=SomeText}"></Label>
     </Grid>
 </Window>
