@@ -2,11 +2,7 @@
 
 namespace Organizator_Proslava.Model
 {
-    /// <summary>
-    /// This class exists only so that this folder will be pushed on git.
-    /// Remove this class when this folder have at least one real class.
-    /// </summary>
-    public class DummyClass : ObservableEntity
+    public class User : BaseObservableEntity
     {
         private string _name;
         public string Name { get => _name; set => OnPropertyChanged(ref _name, value); }
