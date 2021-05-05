@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\DummyClass.cs" />
+    <Compile Include="Images\DummyClass.cs" />
+    <Compile Include="Model\DummyClass.cs" />
+    <Compile Include="Services\Contracts\DummyClass.cs" />
+    <Compile Include="Services\Implementations\DummyClass.cs" />
+    <Compile Include="Theme\DummyClass.cs" />
+    <Compile Include="Utility\DummyClass.cs" />
+    <Compile Include="ViewModel\DummyClass.cs" />
+    <Compile Include="View\DummyClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,5 +103,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
