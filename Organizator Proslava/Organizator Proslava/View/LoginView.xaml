@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Background="{StaticResource SidebarGradient}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*" />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="0.9*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1">
+                <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
+                <TextBox Text="{Binding User.Name}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
+                <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
+                <TextBox Text="{Binding User.Surname}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
+
+                <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Command="{Binding Login}" CommandParameter="{Binding User}" Content="Prijavi se" Width="80" Height="25" Style="{StaticResource RoundButton}" Background="{StaticResource PowderBlue}" Foreground="White" />
+                    <Button Command="{Binding Register}" Grid.Row="2" Content="Napravi nalog" Width="85" Height="25" Style="{StaticResource RoundButton}" Background="{StaticResource PowderBlue}" Foreground="White" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Canvas Grid.Column="0" Background="{StaticResource Cararra}">
+            <Ellipse Width="30" Height="30" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="32" Canvas.Top="21" />
+            <Ellipse Width="19" Height="20" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="368" Canvas.Top="47" />
+            <Ellipse Width="40" Height="39" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="286" Canvas.Top="123" />
+            <Ellipse Width="19" Height="20" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="437" Canvas.Top="223" />
+            <Ellipse Width="11" Height="11" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="152" Canvas.Top="257" />
+            <Ellipse Width="4" Height="4" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="219" Canvas.Top="356" />
+            <Ellipse Width="60" Height="60" Fill="{StaticResource Neptune}" Opacity="0.2" Canvas.Left="56" Canvas.Top="160" />
+            <Ellipse Width="20" Height="20" Fill="{StaticResource Neptune}" Opacity="0.7" Canvas.Left="286" Canvas.Top="248" />
+            <Ellipse Width="20" Height="20" Fill="{StaticResource Neptune}" Opacity="1" Canvas.Left="393" Canvas.Top="340" />
+            <Ellipse Width="60" Height="60" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="-21" Canvas.Top="375" />
+            <Ellipse Width="29" Height="28" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="488" Canvas.Top="41" />
+        </Canvas>
+
+        <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="ORGANIZATOR PROSLAVA" Foreground="{StaticResource Ming}" FontSize="26" FontFamily="Helvetica" FontWeight="DemiBold" />
+            <Border Width="350" Height="3" Background="{StaticResource Ming}" Opacity="0.5" />
+            <TextBlock Margin="0, 10, 0, 0" Text="Vaš najbolji prijatelj prilikom pravljenja proslava." Foreground="{StaticResource Ming}" FontSize="16" FontFamily="Helvetica" />
+        </StackPanel>
+    </Grid>
+</UserControl>
