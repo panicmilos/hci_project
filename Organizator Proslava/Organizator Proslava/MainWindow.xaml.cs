@@ -24,5 +24,15 @@ namespace Organizator_Proslava
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged()
+        {
+
+        }
+
+        private void TextBox_TextChanged_1()
+        {
+
+        }
     }
 }

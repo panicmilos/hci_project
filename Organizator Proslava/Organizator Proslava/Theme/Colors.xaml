@@ -18,4 +18,17 @@
     <!-- Red -->
     <SolidColorBrush x:Key="Flirtatious" Color="#fed330" />
     <SolidColorBrush x:Key="NycTaxi" Color="#f7b731" />
+
+    <!-- Second pallete -->
+    <SolidColorBrush x:Key="Ming" Color="#388087" />
+    <SolidColorBrush x:Key="Neptune" Color="#6FB3B8" />
+    <SolidColorBrush x:Key="PowderBlue" Color="#BADFE7" />
+    <SolidColorBrush x:Key="Padua" Color="#C2EDCE" />
+    <SolidColorBrush x:Key="Cararra" Color="#F6F6F2" />
+
+    <LinearGradientBrush x:Key="SidebarGradient">
+        <GradientStop Color="#BADFE7" Offset="0.0" />
+        <GradientStop Color="#6FB3B8" Offset="0.4" />
+        <GradientStop Color="#388087" Offset="1" />
+    </LinearGradientBrush>
 </ResourceDictionary>

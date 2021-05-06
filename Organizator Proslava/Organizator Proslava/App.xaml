@@ -8,6 +8,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Colors.xaml" />
+                <ResourceDictionary Source="Theme/LabelStyles.xaml" />
+                <ResourceDictionary Source="Theme/RoundButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
