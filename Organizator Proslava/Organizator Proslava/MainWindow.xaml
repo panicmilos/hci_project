@@ -4,14 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Organizator_Proslava"
+        xmlns:ninject="clr-namespace:Organizator_Proslava.Ninject"
         mc:Ignorable="d"
-        DataContext="{Binding Path=MainViewModel, Source={StaticResource ServiceLocator}}"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ninject:ServiceLocator x:Key="ServiceLocator" />
+    </Window.Resources>
+
+    <Window.DataContext>
+        <Binding Path="MainViewModel" Source="{StaticResource ServiceLocator}" />
+    </Window.DataContext>
+
     <Grid>
-        <Label Width="200" Height="100" Background="Green" Content="{Binding Path=SomeText}"></Label>
-        <TextBox Text="{Binding Path=User.Name, UpdateSourceTrigger=PropertyChanged}" Margin="283,316,358,66" ></TextBox>
-        <TextBox Text="{Binding Path=User.Surname}" Margin="454,316,187,66" ></TextBox>
-        <Button Content="Log" Command="{Binding _log}" CommandParameter="{Binding User}" HorizontalAlignment="Left" Margin="283,372,0,0" VerticalAlignment="Top" Width="74" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*" />
+            <ColumnDefinition Width="21*" />
+        </Grid.ColumnDefinitions>
+        <Label Width="200" Height="100" Background="Green" Content="{Binding Path=SomeText}" Margin="296,160,23.5,159"></Label>
+        <TextBox Text="{Binding Path=User.Name, UpdateSourceTrigger=PropertyChanged}" Margin="283,316,85.5,66" ></TextBox>
+        <TextBox Text="{Binding Path=User.Surname}" Margin="454,316,187,66" Grid.ColumnSpan="2" ></TextBox>
+        <Button Content="Log" Command="{Binding _log}" CommandParameter="{Binding User}" HorizontalAlignment="Left" Margin="283,372,0,0" VerticalAlignment="Top" Width="74" Background="{StaticResource Emerald}" />
         <Button Content="Save" Command="{Binding _save}" CommandParameter="{Binding User}" HorizontalAlignment="Left" Margin="386,372,0,0" VerticalAlignment="Top" Width="74" />
     </Grid>
 </Window>

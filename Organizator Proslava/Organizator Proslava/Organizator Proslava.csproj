@@ -166,7 +166,6 @@
     <Compile Include="Ninject\ServiceModule.cs" />
     <Compile Include="Services\Contracts\IDummyService.cs" />
     <Compile Include="Services\Implementations\DummyService.cs" />
-    <Compile Include="Theme\DummyClass.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -183,6 +182,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Theme\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

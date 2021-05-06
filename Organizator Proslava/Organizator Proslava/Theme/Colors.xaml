@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Green -->
+    <SolidColorBrush x:Key="Emerald" Color="#2ecc71" />
+    <SolidColorBrush x:Key="Turquoise" Color="#1abc9c" />
+    <SolidColorBrush x:Key="GreenSea" Color="#16a085" />
+    <SolidColorBrush x:Key="Nephritis" Color="#27ae60" />
+
+    <!-- Orange -->
+    <SolidColorBrush x:Key="OrangeHibiscus" Color="#fd9644" />
+    <SolidColorBrush x:Key="BeniukonBronze" Color="#fa8231" />
+
+    <!-- Red -->
+    <SolidColorBrush x:Key="Alizarin" Color="#e74c3c" />
+    <SolidColorBrush x:Key="Pomegranate" Color="#c0392b" />
+
+    <!-- Red -->
+    <SolidColorBrush x:Key="Flirtatious" Color="#fed330" />
+    <SolidColorBrush x:Key="NycTaxi" Color="#f7b731" />
+</ResourceDictionary>
