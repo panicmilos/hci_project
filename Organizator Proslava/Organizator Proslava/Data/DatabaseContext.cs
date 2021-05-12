@@ -5,7 +5,13 @@ namespace Organizator_Proslava.Data
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<BaseUser> BaseUsers { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Collaborator> Collaborators { get; set; }
+        public DbSet<IndividualCollaborator> IndividualCollaborators { get; set; }
+        public DbSet<LegalCollaborator> LegalCollaborators { get; set; }
+        public DbSet<Organizer> Organizers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

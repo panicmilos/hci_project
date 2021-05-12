@@ -152,14 +152,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\DatabaseContext.cs" />
-    <Compile Include="Data\DummyClass.cs" />
     <Compile Include="Migrations\20210505184344_initial database.cs" />
     <Compile Include="Migrations\20210505184344_initial database.designer.cs">
       <DependentUpon>20210505184344_initial database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
+    <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\BaseObservableEntity.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\IndividualCollaborator.cs" />
+    <Compile Include="Model\LegalCollaborator.cs" />
+    <Compile Include="Model\Organizer.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\BaseUser.cs" />
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />

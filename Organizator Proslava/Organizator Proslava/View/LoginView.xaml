@@ -21,9 +21,9 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding User.Name}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
+                <TextBox Text="{Binding User.UserName}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding User.Surname}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
+                <TextBox Text="{Binding User.Password}" Height="auto" Margin="10, 0, 10, 0" Foreground="White" Background="Transparent" BorderThickness="0, 0, 0, 2" BorderBrush="{StaticResource Ming}" />
 
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Command="{Binding Login}" CommandParameter="{Binding User}" Content="Prijavi se" Width="80" Height="25" Style="{StaticResource RoundButton}" Background="{StaticResource PowderBlue}" Foreground="White" />

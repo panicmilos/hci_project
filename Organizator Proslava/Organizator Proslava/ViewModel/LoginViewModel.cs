@@ -7,14 +7,14 @@ namespace Organizator_Proslava.ViewModel
 {
     public class LoginViewModel
     {
-        public User User { get; set; }
+        public BaseUser User { get; set; }
         public ICommand Login { get; set; }
         public ICommand Register { get; set; }
 
         public LoginViewModel()
         {
-            User = new User();
-            Login = new RelayCommand<User>(u => Trace.WriteLine(u.Name));
+            User = new BaseUser();
+            Login = new RelayCommand<BaseUser>(u => Trace.WriteLine(u.UserName));
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
         }
     }
