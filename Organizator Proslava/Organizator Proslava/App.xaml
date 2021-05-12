@@ -7,10 +7,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/ButtonStyles.xaml" />
                 <ResourceDictionary Source="Theme/Colors.xaml" />
                 <ResourceDictionary Source="Theme/LabelStyles.xaml" />
-                <ResourceDictionary Source="Theme/RoundButton.xaml" />
                 <ResourceDictionary Source="Theme/DataTemplates.xaml" />
+                <ResourceDictionary Source="Theme/TextBoxStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

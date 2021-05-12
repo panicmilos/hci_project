@@ -5,10 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Organizator_Proslava.View"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" Background="Red">
+             d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel>
-        <TextBlock FontSize="60" Text="Registration goes here" Margin="102,20,54,20" Foreground="Wheat" />
-        <TextBlock FontSize="60" Text="{Binding Milos}" Margin="102,20,54,20" Foreground="Wheat" />
-    </StackPanel>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:Background Grid.ColumnSpan="3" Grid.RowSpan="4" />
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.9*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.9*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="IMEEE" Style="{StaticResource registerFormTextBox}" />
+
+                <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="Prezime" Style="{StaticResource registerFormTextBox}" />
+            </Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>

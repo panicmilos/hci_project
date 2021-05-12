@@ -6,4 +6,11 @@
         <Setter Property="FontFamily" Value="Helvetica" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
+
+    <Style x:Key="registerPageLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="{StaticResource Ming}" />
+        <Setter Property="FontFamily" Value="Helvetica" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
 </ResourceDictionary>
