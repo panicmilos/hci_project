@@ -13,7 +13,8 @@
     <Style x:Key="registerFormTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Height" Value="auto" />
         <Setter Property="Margin" Value="10, 0, 10, 0" />
-        <Setter Property="Foreground" Value="{StaticResource Neptune}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="{StaticResource Ming}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
         <Setter Property="BorderBrush" Value="{StaticResource Ming}" />

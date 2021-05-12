@@ -10,7 +10,7 @@
         <Canvas Background="{StaticResource Cararra}">
             <Ellipse Width="30" Height="30" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="32" Canvas.Top="21" />
             <Ellipse Width="19" Height="20" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="368" Canvas.Top="47" />
-            <Ellipse Width="40" Height="39" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="286" Canvas.Top="123" />
+            <Ellipse Width="40" Height="39" Fill="{StaticResource Ming}" Opacity="0.2" Canvas.Left="286" Canvas.Top="123" />
             <Ellipse Width="19" Height="20" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="437" Canvas.Top="223" />
             <Ellipse Width="11" Height="11" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="152" Canvas.Top="257" />
             <Ellipse Width="4" Height="4" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="219" Canvas.Top="356" />
