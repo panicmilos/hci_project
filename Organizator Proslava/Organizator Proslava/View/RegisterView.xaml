@@ -21,7 +21,7 @@
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.5*" />
         </Grid.RowDefinitions>
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="6" Opacity="0.45" />
@@ -40,16 +40,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="Ime" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.FirstName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="Prezime" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Client.LastName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label  Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="Broj telefona" Style="{StaticResource registerFormTextBox}" />
+            <TextBox Text="{Binding Path=Client.PhoneNumber, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
@@ -66,10 +66,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="Korisničko ime" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.UserName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="Mail Adresa" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Client.MailAddress, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -87,11 +87,15 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="Šifra" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.Password, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
                 <TextBox Grid.Column="2" Grid.Row="1" Text="Ponovljena Šifra" Style="{StaticResource registerFormTextBox}" />
             </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right">
+            <Button Content="Napravi nalog" Command="{Binding Path=Register}" CommandParameter="{Binding Path=Client}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,29 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Organizator_Proslava.Utility;
-using System;
+﻿using Organizator_Proslava.Utility;
 
 namespace Organizator_Proslava.ViewModel
 {
     public class MainViewModel : ObservableEntity
     {
-        public String SomeText { get; set; }
-
-        private DbContext _context;
-
         private object _currentViewModel;
         public object CurrentViewModel { get => _currentViewModel; set => OnPropertyChanged(ref _currentViewModel, value); }
 
         public LoginViewModel Lvm { get; set; }
         public RegisterViewModel Rvm { get; set; }
 
-        public MainViewModel(DbContext context)
+        public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm)
         {
-            _context = context;
-
-            Lvm = new LoginViewModel();
-            Rvm = new RegisterViewModel();
+            Lvm = lvm;
+            Rvm = rvm;
 
             CurrentViewModel = Lvm;
+            EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
         }
     }

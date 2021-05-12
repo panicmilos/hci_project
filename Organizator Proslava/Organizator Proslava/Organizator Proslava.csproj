@@ -156,6 +156,10 @@
     <Compile Include="Migrations\20210505184344_initial database.designer.cs">
       <DependentUpon>20210505184344_initial database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210512181515_added user domain classes.cs" />
+    <Compile Include="Migrations\20210512181515_added user domain classes.designer.cs">
+      <DependentUpon>20210512181515_added user domain classes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\BaseObservableEntity.cs" />
@@ -169,8 +173,12 @@
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
-    <Compile Include="Services\Contracts\IDummyService.cs" />
-    <Compile Include="Services\Implementations\DummyService.cs" />
+    <Compile Include="Services\Contracts\IClientService.cs" />
+    <Compile Include="Services\Contracts\ICrudService.cs" />
+    <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\Implementations\ClientService.cs" />
+    <Compile Include="Services\Implementations\CrudService.cs" />
+    <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />

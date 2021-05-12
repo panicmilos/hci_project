@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Organizator_Proslava.Data;
 using Organizator_Proslava.Services.Contracts;
-using Organizator_Proslava.Theme;
+using Organizator_Proslava.Services.Implementations;
+using Organizator_Proslava.ViewModel;
 
 namespace Organizator_Proslava.Ninject
 {
@@ -10,9 +10,14 @@ namespace Organizator_Proslava.Ninject
     {
         public override void Load()
         {
-            Bind<IDummyService>().To<DummyService>();
+            Bind(typeof(ICrudService<>)).To(typeof(CrudService<>));
+            Bind(typeof(IUserService<>)).To(typeof(UserService<>));
+            Bind(typeof(IClientService)).To(typeof(ClientService));
 
-            Bind<DbContext>().To<DatabaseContext>();
+            Bind<DatabaseContext>().To<DatabaseContext>();
+
+            Bind<LoginViewModel>().To<LoginViewModel>();
+            Bind<RegisterViewModel>().To<RegisterViewModel>();
         }
     }
 }
