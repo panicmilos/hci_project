@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:Organizator_Proslava.ViewModel"
-                    xmlns:v="clr-namespace:Organizator_Proslava.View">
+                    xmlns:v="clr-namespace:Organizator_Proslava.View"
+                    xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
+                    xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -9,5 +11,13 @@
 
     <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
         <v:RegisterView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
+        <alert:AlertDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
+        <option:OptionDialogView />
     </DataTemplate>
 </ResourceDictionary>

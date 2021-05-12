@@ -94,7 +94,8 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right">
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Nazad" Command="{Binding Path=Back}" CommandParameter="{Binding Path=Client}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             <Button Content="Napravi nalog" Command="{Binding Path=Register}" CommandParameter="{Binding Path=Client}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>

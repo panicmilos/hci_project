@@ -152,6 +152,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\DatabaseContext.cs" />
+    <Compile Include="Dialogs\Alert\AlertDialogView.xaml.cs">
+      <DependentUpon>AlertDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Alert\AlertDialogViewModel.cs" />
+    <Compile Include="Dialogs\DialogResults.cs" />
+    <Compile Include="Dialogs\Option\OptionDialogView.xaml.cs">
+      <DependentUpon>OptionDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Option\OptionDialogViewModel.cs" />
+    <Compile Include="Dialogs\Service\DialogService.cs" />
+    <Compile Include="Dialogs\Service\DialogViewModelBase.cs" />
+    <Compile Include="Dialogs\Service\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Service\IDialogService.cs" />
+    <Compile Include="Dialogs\Service\IDialogWindow.cs" />
     <Compile Include="Migrations\20210505184344_initial database.cs" />
     <Compile Include="Migrations\20210505184344_initial database.designer.cs">
       <DependentUpon>20210505184344_initial database.cs</DependentUpon>
@@ -194,6 +210,18 @@
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\Alert\AlertDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Option\OptionDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Service\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
