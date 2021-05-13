@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Map.MapDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Map" xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+             mc:Ignorable="d"
+             Height="500" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <controls:AutoCompleteBox
+                    x:Name="addresses"
+                    Height="25"
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="16"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    Width="400"
+                    Text="{Binding Path=InputedAddress, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=WholeAddresses}" FilterMode="Custom">
+                </controls:AutoCompleteBox>
+
+                <Button Content="Pronađi"
+                        Command="{Binding Search}"
+                        CommandParameter="{Binding ElementName=map}"
+                        Style="{StaticResource mapDialogButton}"
+                        Background="{StaticResource Ming}"
+                        Margin="-5" />
+            </StackPanel>
+            <TextBlock Text="{Binding Path=ErrorMessage}"
+                       Foreground="{StaticResource Ming}"
+                       FontFamily="Helvetica"
+                       FontSize="16" />
+        </StackPanel>
+
+        <local:MapControl Grid.Row="1" x:Name="map" />
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Nazad"
+                    Command="{Binding Path=Back}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+
+            <Button Content="Izaberi"
+                    Command="{Binding Path=Choose}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -12,11 +12,23 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#7eb4ea" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="loginPageButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="mapDialogButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="White" />
     </Style>
 </ResourceDictionary>

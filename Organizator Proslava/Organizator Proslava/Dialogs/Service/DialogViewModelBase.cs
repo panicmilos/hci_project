@@ -1,6 +1,8 @@
-﻿namespace Organizator_Proslava.Dialogs.Service
+﻿using Organizator_Proslava.Utility;
+
+namespace Organizator_Proslava.Dialogs.Service
 {
-    public abstract class DialogViewModelBase<T>
+    public abstract class DialogViewModelBase<T> : ObservableEntity
     {
         public string Title { get; set; }
         public string Message { get; set; }

@@ -12,5 +12,14 @@
 
             return viewModel.DialogResult;
         }
+
+        public T OpenDialog<T>(IDialogWindow window, DialogViewModelBase<T> viewModel)
+        {
+            window.DataContext = viewModel;
+
+            window.ShowDialog();
+
+            return viewModel.DialogResult;
+        }
     }
 }

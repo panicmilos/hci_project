@@ -3,7 +3,8 @@
                     xmlns:vm="clr-namespace:Organizator_Proslava.ViewModel"
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
-                    xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option">
+                    xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
+                    xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -19,5 +20,9 @@
 
     <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
         <option:OptionDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type map:MapDialogViewModel}">
+        <map:MapDialogView />
     </DataTemplate>
 </ResourceDictionary>
