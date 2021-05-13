@@ -9,16 +9,18 @@ namespace Organizator_Proslava.ViewModel
 
         public LoginViewModel Lvm { get; set; }
         public RegisterViewModel Rvm { get; set; }
+        public SpaceViewModel Svm { get; set; }
 
-        public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm)
+        public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm, SpaceViewModel svm)
         {
             Lvm = lvm;
             Rvm = rvm;
+            Svm = svm;
 
             CurrentViewModel = Lvm;
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
-            EventBus.RegisterHandler("Space", () => CurrentViewModel = new SpaceViewModel()); // Delete later
+            EventBus.RegisterHandler("Space", () => CurrentViewModel = Svm); // Delete later
         }
     }
 }

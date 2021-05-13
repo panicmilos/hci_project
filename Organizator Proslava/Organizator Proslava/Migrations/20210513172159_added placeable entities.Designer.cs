@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210513172159_added placeable entities")]
+    partial class addedplaceableentities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,36 +86,10 @@ namespace Organizator_Proslava.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("BaseUser");
                 });
 
-            modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("NumberOfGuests")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CelebrationHalls");
-                });
-
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("CelebrationHallId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -126,18 +102,16 @@ namespace Organizator_Proslava.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<double>("PositionX")
-                        .HasColumnType("double");
+                    b.Property<int>("PositionX")
+                        .HasColumnType("int");
 
-                    b.Property<double>("PositionY")
-                        .HasColumnType("double");
+                    b.Property<int>("PositionY")
+                        .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CelebrationHallId");
 
                     b.ToTable("PlaceableEntities");
 
@@ -261,13 +235,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasBaseType("Organizator_Proslava.Model.CelebrationHalls.DinningTable");
 
                     b.HasDiscriminator().HasValue("TableFor6");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity", b =>
-                {
-                    b.HasOne("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", null)
-                        .WithMany("PlaceableEntities")
-                        .HasForeignKey("CelebrationHallId");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborator", b =>

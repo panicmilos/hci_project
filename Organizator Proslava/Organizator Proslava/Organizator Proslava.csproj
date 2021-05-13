@@ -226,12 +226,29 @@
     <Compile Include="Migrations\20210513081434_added address class.designer.cs">
       <DependentUpon>20210513081434_added address class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210513172159_added placeable entities.cs" />
+    <Compile Include="Migrations\20210513172159_added placeable entities.designer.cs">
+      <DependentUpon>20210513172159_added placeable entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210513182348_added celebration hall.cs" />
+    <Compile Include="Migrations\20210513182348_added celebration hall.designer.cs">
+      <DependentUpon>20210513182348_added celebration hall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\BaseObservableEntity.cs" />
+    <Compile Include="Model\CelebrationHalls\CelebrationHall.cs" />
+    <Compile Include="Model\CelebrationHalls\DinningTable.cs" />
+    <Compile Include="Model\CelebrationHalls\Music.cs" />
+    <Compile Include="Model\CelebrationHalls\PlaceableEntity.cs" />
+    <Compile Include="Model\CelebrationHalls\PlaceableEntityType.cs" />
+    <Compile Include="Model\CelebrationHalls\ServingTable.cs" />
+    <Compile Include="Model\CelebrationHalls\TableFor18.cs" />
+    <Compile Include="Model\CelebrationHalls\TableFor6.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\DTO\AddPlaceableEntityDTO.cs" />
     <Compile Include="Model\IndividualCollaborator.cs" />
     <Compile Include="Model\LegalCollaborator.cs" />
     <Compile Include="Model\Organizer.cs" />

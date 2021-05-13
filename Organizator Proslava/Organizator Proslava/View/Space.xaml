@@ -7,19 +7,30 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Canvas x:Name="MainCanvas"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <local:Background Grid.RowSpan="2" />
+
+        <Canvas Grid.Row="0" x:Name="MainCanvas"
                 Background="{StaticResource Cararra}"
                 PreviewMouseMove="MainCanvas_PreviewMouseMove"
                 PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
             <Canvas.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Elipse" Click="Elipse_click" />
-                    <MenuItem Header="6 people" Click="Image_click" />
-                    <MenuItem Header="18 people" Click="Image2_click" />
-                    <MenuItem Header="Music" Click="Image3_click" />
-                    <MenuItem Header="Empty" Click="Image4_click" />
+                    <MenuItem Header="Table for 6" Click="People6_Click" />
+                    <MenuItem Header="Table for 18" Click="People18_Click" />
+                    <MenuItem Header="Music" Click="Music_Click" />
+                    <MenuItem Header="Serving table" Click="Empty_Click" />
                 </ContextMenu>
             </Canvas.ContextMenu>
         </Canvas>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            <Button Content="Sačuvaj" Command="{Binding Path=Save}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.CelebrationHalls;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace Organizator_Proslava.Data
 {
     public class DatabaseContext : DbContext
     {
+        // Users
+
         public DbSet<BaseUser> BaseUsers { get; set; }
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -14,6 +17,16 @@ namespace Organizator_Proslava.Data
         public DbSet<IndividualCollaborator> IndividualCollaborators { get; set; }
         public DbSet<LegalCollaborator> LegalCollaborators { get; set; }
         public DbSet<Organizer> Organizers { get; set; }
+
+        // Placeable entities
+
+        public DbSet<CelebrationHall> CelebrationHalls { get; set; }
+        public DbSet<PlaceableEntity> PlaceableEntities { get; set; }
+        public DbSet<DinningTable> DinningTables { get; set; }
+        public DbSet<TableFor6> TablesFor6 { get; set; }
+        public DbSet<TableFor18> TablesFor18 { get; set; }
+        public DbSet<Music> Musics { get; set; }
+        public DbSet<ServingTable> ServingTables { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
