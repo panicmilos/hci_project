@@ -18,6 +18,7 @@ namespace Organizator_Proslava.ViewModel
             CurrentViewModel = Lvm;
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
+            EventBus.RegisterHandler("Space", () => CurrentViewModel = new SpaceViewModel()); // Delete later
         }
     }
 }

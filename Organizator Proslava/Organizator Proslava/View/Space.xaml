@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.Space"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Canvas x:Name="MainCanvas"
+                Background="{StaticResource Cararra}"
+                PreviewMouseMove="MainCanvas_PreviewMouseMove"
+                PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Elipse" Click="Elipse_click" />
+                    <MenuItem Header="6 people" Click="Image_click" />
+                    <MenuItem Header="18 people" Click="Image2_click" />
+                    <MenuItem Header="Music" Click="Image3_click" />
+                    <MenuItem Header="Empty" Click="Image4_click" />
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
+    </Grid>
+</UserControl>

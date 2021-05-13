@@ -252,6 +252,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
     </Compile>
@@ -260,6 +261,9 @@
     </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Space.xaml.cs">
+      <DependentUpon>Space.xaml</DependentUpon>
     </Compile>
     <Page Include="Dialogs\Alert\AlertDialogView.xaml">
       <SubType>Designer</SubType>
@@ -329,6 +333,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Space.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -359,6 +367,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6people.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18people.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\music.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
