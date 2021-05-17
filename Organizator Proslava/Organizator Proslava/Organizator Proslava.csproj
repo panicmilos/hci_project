@@ -211,9 +211,6 @@
     </Compile>
     <Compile Include="Dialogs\Service\IDialogService.cs" />
     <Compile Include="Dialogs\Service\IDialogWindow.cs" />
-    <Compile Include="Dialogs\Service\LargeDialogWindow.xaml.cs">
-      <DependentUpon>LargeDialogWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\20210505184344_initial database.cs" />
     <Compile Include="Migrations\20210505184344_initial database.designer.cs">
       <DependentUpon>20210505184344_initial database.cs</DependentUpon>
@@ -303,10 +300,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Service\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\Service\LargeDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

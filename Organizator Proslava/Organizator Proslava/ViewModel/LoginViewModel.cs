@@ -25,7 +25,7 @@ namespace Organizator_Proslava.ViewModel
 
             Map = new RelayCommand(() =>
             {
-                var result = new DialogService().OpenDialog(new LargeDialogWindow(), new MapDialogViewModel("Odaberi lokaciju"));
+                var result = new DialogService().OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
                 var choosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
                 new DialogService().OpenDialog(new AlertDialogViewModel("Izabrao si", choosen));
             }); // Delete Later

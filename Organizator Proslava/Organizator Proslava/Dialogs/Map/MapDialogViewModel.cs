@@ -37,7 +37,7 @@ namespace Organizator_Proslava.Dialogs.Map
         public ICommand Back { get; set; }
 
         public MapDialogViewModel(string title) :
-            base(title)
+            base(title, 560, 500)
         {
             Search = new RelayCommand<MapControl>(SearchAddressesAsync);
             WholeAddresses = new ObservableCollection<string>();
