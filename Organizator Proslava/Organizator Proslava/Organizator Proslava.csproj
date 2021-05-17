@@ -234,6 +234,10 @@
     <Compile Include="Migrations\20210513182348_added celebration hall.designer.cs">
       <DependentUpon>20210513182348_added celebration hall.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210516150559_test.cs" />
+    <Compile Include="Migrations\20210516150559_test.designer.cs">
+      <DependentUpon>20210516150559_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />

@@ -65,7 +65,7 @@ namespace Organizator_Proslava.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _18people {
             get {
-                object obj = ResourceManager.GetObject("_18people", resourceCulture);
+                object obj = ResourceManager.GetObject("18people", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

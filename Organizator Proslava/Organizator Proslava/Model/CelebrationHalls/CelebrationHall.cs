@@ -12,7 +12,7 @@ namespace Organizator_Proslava.Model.CelebrationHalls
 
         private List<PlaceableEntity> _placeableEntities { get; set; }
 
-        public List<PlaceableEntity> PlaceableEntities
+        public virtual List<PlaceableEntity> PlaceableEntities
         {
             get { return _placeableEntities; }
             set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); }

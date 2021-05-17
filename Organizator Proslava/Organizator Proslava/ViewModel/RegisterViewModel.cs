@@ -29,7 +29,7 @@ namespace Organizator_Proslava.ViewModel
                 var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da napravite nalog?"));
                 if (optionDialogResult == DialogResults.Yes)
                 {
-                    //_clientService.Create(c);
+                    _clientService.Create(c);
                     EventBus.FireEvent("BackToLogin");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
                 }
