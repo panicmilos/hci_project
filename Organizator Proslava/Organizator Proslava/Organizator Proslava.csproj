@@ -267,12 +267,16 @@
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\ImageSelectViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImageSelectView.xaml.cs">
+      <DependentUpon>ImageSelectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -339,6 +343,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ImageSelectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +409,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

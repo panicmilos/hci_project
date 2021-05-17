@@ -15,6 +15,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Register { get; set; }
         public ICommand Map { get; set; }
         public ICommand Space { get; set; }
+        public ICommand Isvm { get; set; }
 
         public LoginViewModel()
         {
@@ -22,6 +23,7 @@ namespace Organizator_Proslava.ViewModel
             Login = new RelayCommand<BaseUser>(u => Trace.WriteLine(u.UserName));
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
             Space = new RelayCommand(() => EventBus.FireEvent("Space")); // Delete Later
+            Isvm = new RelayCommand(() => EventBus.FireEvent("Isvm")); // Delete Later
 
             Map = new RelayCommand(() =>
             {
