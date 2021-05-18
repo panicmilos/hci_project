@@ -43,7 +43,7 @@
                 <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource PaintedButton}">
+                            <Button Style="{StaticResource SmallPaintedButton}">
                                 <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png"/>
                             </Button>
                         </DataTemplate>
@@ -52,7 +52,7 @@
                 <DataGridTemplateColumn Header="Otkaži" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource PaintedButton}"
+                            <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:OrganizerHomeView}}}">
                                 <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png"/>
                             </Button>

@@ -21,6 +21,10 @@
     <DataTemplate DataType="{x:Type vm:OrganizerHomeViewModel}">
         <v:OrganizerHomeView />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:AdminHomeViewModel}">
+        <v:AdminHomeView />
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:SpaceViewModel}">
         <v:Space />

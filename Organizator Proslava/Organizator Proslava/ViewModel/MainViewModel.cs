@@ -12,17 +12,21 @@ namespace Organizator_Proslava.ViewModel
         public SpaceViewModel Svm { get; set; }
         public ClientHomeViewModel Chvm { get; set; }
         public OrganizerHomeViewModel Ohvm { get; set; }
+        
+        public AdminHomeViewModel Ahvm { get; set; }
 
-        public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm, SpaceViewModel svm, ClientHomeViewModel chvm
-            , OrganizerHomeViewModel ohvm)
+        public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm, SpaceViewModel svm
+            , ClientHomeViewModel chvm, OrganizerHomeViewModel ohvm, AdminHomeViewModel ahvm)
         {
             Lvm = lvm;
             Rvm = rvm;
             Svm = svm;
             Chvm = chvm;
             Ohvm = ohvm;
+            Ahvm = ahvm;
 
             CurrentViewModel = Lvm;
+            EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
             EventBus.RegisterHandler("OrganizerLogin", () => CurrentViewModel = Ohvm);
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);

@@ -267,12 +267,16 @@
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\AdminHomeViewModel.cs" />
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
+    <Compile Include="View\AdminHomeView.xaml.cs">
+      <DependentUpon>AdminHomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
     </Compile>
@@ -351,6 +355,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AdminHomeView.xaml" />
     <Page Include="View\Background.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
