@@ -24,6 +24,8 @@ namespace Organizator_Proslava.Utility
 
         public static void FireEvent(string eventName)
         {
+            if (!_eventHandlers.ContainsKey(eventName)) return;
+            
             foreach (var handler in _eventHandlers[eventName])
             {
                 handler.Invoke();
