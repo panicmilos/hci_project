@@ -311,6 +311,7 @@
     </Compile>
     <Compile Include="View\ClientHomeView.xaml.cs">
       <DependentUpon>ClientHomeView.xaml</DependentUpon>
+   </Compile>
     <Compile Include="View\ImageSelectView.xaml.cs">
       <DependentUpon>ImageSelectView.xaml</DependentUpon>
     </Compile>
@@ -404,6 +405,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientHomeView.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="View\ImageSelectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

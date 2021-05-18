@@ -13,13 +13,13 @@ namespace Organizator_Proslava.ViewModel
         public SpaceViewModel Svm { get; set; }
         public ClientHomeViewModel Chvm { get; set; }
         public OrganizerHomeViewModel Ohvm { get; set; }
-        
+
         public AdminHomeViewModel Ahvm { get; set; }
         public ImageSelectViewModel Isvm { get; set; }
         public CollaboratorFormViewModel Cfvm { get; set; }
 
         public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm, SpaceViewModel svm
-            , ClientHomeViewModel chvm, OrganizerHomeViewModel ohvm, AdminHomeViewModel ahvm, ImageSelectViewModel isvm)
+            , ClientHomeViewModel chvm, OrganizerHomeViewModel ohvm, AdminHomeViewModel ahvm, ImageSelectViewModel isvm, CollaboratorFormViewModel cfvm)
         {
             Lvm = lvm;
             Rvm = rvm;
