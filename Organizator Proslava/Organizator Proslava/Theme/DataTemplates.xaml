@@ -30,6 +30,10 @@
         <v:Space />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:ImageSelectViewModel}">
+        <v:ImageSelectView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
         <alert:AlertDialogView />
     </DataTemplate>

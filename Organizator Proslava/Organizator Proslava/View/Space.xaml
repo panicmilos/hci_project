@@ -14,22 +14,42 @@
 
         <local:Background Grid.RowSpan="2" />
 
-        <Canvas Grid.Row="0" x:Name="MainCanvas"
-                Background="{StaticResource Cararra}"
-                PreviewMouseMove="MainCanvas_PreviewMouseMove"
-                PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
-            <Canvas.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Table for 6" Click="People6_Click" />
-                    <MenuItem Header="Table for 18" Click="People18_Click" />
-                    <MenuItem Header="Music" Click="Music_Click" />
-                    <MenuItem Header="Serving table" Click="Empty_Click" />
-                </ContextMenu>
-            </Canvas.ContextMenu>
-        </Canvas>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" x:Name="CanvasBorder" BorderBrush="{StaticResource Ming}" BorderThickness="1">
+                <Canvas x:Name="MainCanvas"
+                        Background="{StaticResource Cararra}"
+                        PreviewMouseMove="MainCanvas_PreviewMouseMove"
+                        PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
+                    <Canvas.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Add table for 6" Click="People6_Click" />
+                            <MenuItem Header="Add table for 18" Click="People18_Click" />
+                            <MenuItem Header="Add serving table" Click="Empty_Click" />
+                            <MenuItem Header="Add music" Click="Music_Click" />
+                        </ContextMenu>
+                    </Canvas.ContextMenu>
+                </Canvas>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="1">
+                <Canvas>
+                    <StackPanel Background="{StaticResource Cararra}">
+                        <Image Width="130" Height="80" Margin="5, 5, 5, 5"  Source="pack://siteoforigin:,,,/Resources/6people.png" PreviewMouseLeftButtonUp="People6_Click" />
+                        <Image Width="130" Height="80" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/18people.png" PreviewMouseLeftButtonUp="People18_Click" />
+                        <Image Width="130" Height="80" Margin="0, 5, 0, 5" Source="pack://siteoforigin:,,,/Resources/music.png" PreviewMouseLeftButtonUp="Music_Click" />
+                        <Image Width="130" Height="80" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/empty.png" PreviewMouseLeftButtonUp="Empty_Click" />
+                    </StackPanel>
+                </Canvas>
+            </Border>
+        </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            <Button Content="Učitaj neki" Command="{Binding Path=Load}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             <Button Content="Sačuvaj" Command="{Binding Path=Save}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>

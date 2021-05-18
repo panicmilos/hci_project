@@ -1,7 +1,12 @@
-﻿namespace Organizator_Proslava.Model.CelebrationHalls
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Organizator_Proslava.Model.CelebrationHalls
 {
     public class PlaceableEntity : BaseObservableEntity
     {
+        [NotMapped]
+        public virtual string ImageName { get; }
+
         private double _positionX;
         public double PositionX { get => _positionX; set => OnPropertyChanged(ref _positionX, value); }
 

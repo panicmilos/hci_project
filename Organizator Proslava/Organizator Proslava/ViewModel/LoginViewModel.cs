@@ -18,6 +18,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Register { get; set; }
         public ICommand Map { get; set; }
         public ICommand Space { get; set; }
+        public ICommand Isvm { get; set; }
 
         public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
         {
@@ -64,12 +65,14 @@ namespace Organizator_Proslava.ViewModel
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
             Space = new RelayCommand(() => EventBus.FireEvent("Space")); // Delete Later
+            Isvm = new RelayCommand(() => EventBus.FireEvent("Isvm")); // Delete Later
 
             Map = new RelayCommand(() =>
             {
                 var result = new DialogService().OpenDialog(new LargeDialogWindow(), new MapDialogViewModel("Odaberi lokaciju"));
                 var chosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
                 new DialogService().OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
+
             }); // Delete Later
         }
     }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Organizator_Proslava.Dialogs.Service
+namespace Organizator_Proslava.View
 {
     /// <summary>
-    /// Interaction logic for LargeDialogWindow.xaml
+    /// Interaction logic for ImageSelectView.xaml
     /// </summary>
-    public partial class LargeDialogWindow : Window, IDialogWindow
+    public partial class ImageSelectView : UserControl
     {
-        public LargeDialogWindow()
+        public ImageSelectView()
         {
             InitializeComponent();
         }

@@ -37,6 +37,7 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Space}" Content="Space" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Isvm}" Content="Isvm" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </StackPanel>
         </Grid>
 

@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Service"
         xmlns:v="clr-namespace:Organizator_Proslava.View"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="160" Width="360"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Height="{Binding WindowHeight, Mode=TwoWay}"
+        Width="{Binding WindowWidth, Mode=TwoWay}"
+        Title="{Binding Title}" >
     <Grid>
         <v:Background Opacity="0.3" Margin="-66,-173,-482,-168" />
-        <ContentControl x:Name="ContentPresenter" Content="{Binding}" />
+        <ContentControl Width="{Binding ContentWidth, Mode=TwoWay}"
+                        Height="{Binding ContentHeight, Mode=TwoWay}"
+                        x:Name="ContentPresenter" Content="{Binding}" />
     </Grid>
 </Window>

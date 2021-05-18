@@ -1,8 +1,11 @@
-﻿using Organizator_Proslava.ViewModel;
+﻿using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -21,30 +24,91 @@ namespace Organizator_Proslava.View
             InitializeComponent();
 
             _images = new List<Image>();
+
+            EventBus.RegisterHandler("ShowPlaceableEntities", (entities) =>
+            {
+                var placebleEntities = entities as List<PlaceableEntity>;
+                foreach (var placeableEntity in placebleEntities)
+                {
+                    var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
+                    AddBindings(placeableEntity, image);
+                }
+            });
         }
 
         private void People6_Click(object sender, RoutedEventArgs e)
         {
             var image = AddImageToCanvas(sender, e, "6people.png");
-            spaceViewModel.AddTableFor6.Execute(image);
+            var tableFor6 = new TableFor6
+            {
+                Type = PlaceableEntityType.TableFor6,
+                PositionX = Canvas.GetLeft(image),
+                PositionY = Canvas.GetTop(image)
+            };
+
+            AddBindings(tableFor6, image);
+            spaceViewModel.Add.Execute(tableFor6);
         }
 
         private void People18_Click(object sender, RoutedEventArgs e)
         {
             var image = AddImageToCanvas(sender, e, "18people.png");
-            spaceViewModel.AddTableFor18.Execute(image);
+            var tableFor18 = new TableFor18
+            {
+                Type = PlaceableEntityType.TableFor18,
+                PositionX = Canvas.GetLeft(image),
+                PositionY = Canvas.GetTop(image)
+            };
+
+            AddBindings(tableFor18, image);
+            spaceViewModel.Add.Execute(tableFor18);
         }
 
         private void Music_Click(object sender, RoutedEventArgs e)
         {
             var image = AddImageToCanvas(sender, e, "music.png");
-            spaceViewModel.AddMusic.Execute(image);
+            var music = new Music
+            {
+                Type = PlaceableEntityType.Music,
+                PositionX = Canvas.GetLeft(image),
+                PositionY = Canvas.GetTop(image)
+            };
+
+            AddBindings(music, image);
+            spaceViewModel.Add.Execute(music);
         }
 
         private void Empty_Click(object sender, RoutedEventArgs e)
         {
             var image = AddImageToCanvas(sender, e, "empty.png");
-            spaceViewModel.AddServingTable.Execute(image);
+            var servingTable = new ServingTable
+            {
+                Type = PlaceableEntityType.Empty,
+                PositionX = Canvas.GetLeft(image),
+                PositionY = Canvas.GetTop(image)
+            };
+
+            AddBindings(servingTable, image);
+            spaceViewModel.Add.Execute(servingTable);
+        }
+
+        private void AddBindings(PlaceableEntity placeableEntity, Image image)
+        {
+            Binding positionX = new Binding
+            {
+                Source = placeableEntity,
+                Path = new PropertyPath("PositionX"),
+                Mode = BindingMode.TwoWay
+            };
+            image.SetBinding(Canvas.LeftProperty, positionX);
+
+            Binding positionY = new Binding
+            {
+                Source = placeableEntity,
+                Path = new PropertyPath("PositionY"),
+                Mode = BindingMode.TwoWay
+            };
+            image.SetBinding(Canvas.TopProperty, positionY);
         }
 
         private Image AddImageToCanvas(object sender, RoutedEventArgs e, string imageName)
@@ -83,6 +147,8 @@ namespace Organizator_Proslava.View
             return image;
         }
 
+        #region DragAndDrop
+
         private UIElement dragObject = null;
         private Point offset;
 
@@ -110,5 +176,7 @@ namespace Organizator_Proslava.View
         {
             dragObject = null;
         }
+
+        #endregion DragAndDrop
     }
 }

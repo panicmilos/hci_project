@@ -14,9 +14,10 @@ namespace Organizator_Proslava.ViewModel
         public OrganizerHomeViewModel Ohvm { get; set; }
         
         public AdminHomeViewModel Ahvm { get; set; }
+        public ImageSelectViewModel Isvm { get; set; }
 
         public MainViewModel(LoginViewModel lvm, RegisterViewModel rvm, SpaceViewModel svm
-            , ClientHomeViewModel chvm, OrganizerHomeViewModel ohvm, AdminHomeViewModel ahvm)
+            , ClientHomeViewModel chvm, OrganizerHomeViewModel ohvm, AdminHomeViewModel ahvm, ImageSelectViewModel isvm)
         {
             Lvm = lvm;
             Rvm = rvm;
@@ -24,6 +25,7 @@ namespace Organizator_Proslava.ViewModel
             Chvm = chvm;
             Ohvm = ohvm;
             Ahvm = ahvm;
+            Isvm = isvm;
 
             CurrentViewModel = Lvm;
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
@@ -32,6 +34,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
             EventBus.RegisterHandler("Space", () => CurrentViewModel = Svm); // Delete later
+            EventBus.RegisterHandler("Isvm", () => CurrentViewModel = isvm); // Delete Later
         }
     }
 }
