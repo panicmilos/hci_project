@@ -61,6 +61,14 @@
         <cdcollaborators:CollaboratorServiceDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcollaborators:DinningTableDialogViewModel}">
+        <cdcollaborators:DinningTableDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:NonDinningTableDialogViewModel}">
+        <cdcollaborators:NonDinningTableDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
         <alert:AlertDialogView />
     </DataTemplate>

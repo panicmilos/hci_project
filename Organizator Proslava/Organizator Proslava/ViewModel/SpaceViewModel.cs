@@ -28,7 +28,7 @@ namespace Organizator_Proslava.ViewModel
             {
                 foreach (var table in PlaceableEntities)
                 {
-                    Trace.WriteLine($"{table.PositionX} {table.PositionY}");
+                    Trace.WriteLine($"{table.PositionX} {table.PositionY} {table.Movable}");
                 }
 
                 context.Add(new CelebrationHall
@@ -38,7 +38,7 @@ namespace Organizator_Proslava.ViewModel
                     PlaceableEntities = PlaceableEntities
                 });
 
-                context.SaveChanges();
+                //context.SaveChanges();
             });
 
             Load = new RelayCommand(() =>
@@ -64,7 +64,6 @@ namespace Organizator_Proslava.ViewModel
         public void RemoveEntity(int entityNo)
         {
             PlaceableEntities.RemoveAt(entityNo);
-            Trace.WriteLine(PlaceableEntities.Count);
         }
     }
 }

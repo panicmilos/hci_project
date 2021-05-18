@@ -15,5 +15,8 @@ namespace Organizator_Proslava.Model.CelebrationHalls
 
         private PlaceableEntityType _type;
         public PlaceableEntityType Type { get => _type; set => OnPropertyChanged(ref _type, value); }
+
+        private bool _movable = true;
+        public bool Movable { get => _movable; set => OnPropertyChanged(ref _movable, value); }
     }
 }

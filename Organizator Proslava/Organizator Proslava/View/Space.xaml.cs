@@ -1,4 +1,6 @@
-﻿using Organizator_Proslava.Model.CelebrationHalls;
+﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
+using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel;
 using System;
@@ -19,11 +21,16 @@ namespace Organizator_Proslava.View
         private SpaceViewModel spaceViewModel { get => DataContext as SpaceViewModel; }
         private IList<Image> _images;
 
+        private IDialogService _dialogService;
+        private Dictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
+
         public Space()
         {
             InitializeComponent();
 
+            _dialogService = new DialogService();
             _images = new List<Image>();
+            _imageWithPlaceableEntities = new Dictionary<UIElement, PlaceableEntity>();
 
             EventBus.RegisterHandler("ShowPlaceableEntities", (entities) =>
             {
@@ -32,63 +39,100 @@ namespace Organizator_Proslava.View
                 {
                     var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
                     AddBindings(placeableEntity, image);
+                    _imageWithPlaceableEntities.Add(image, placeableEntity);
                 }
             });
         }
 
         private void People6_Click(object sender, RoutedEventArgs e)
         {
-            var image = AddImageToCanvas(sender, e, "6people.png");
-            var tableFor6 = new TableFor6
+            if (dragObject != null)
             {
-                Type = PlaceableEntityType.TableFor6,
-                PositionX = Canvas.GetLeft(image),
-                PositionY = Canvas.GetTop(image)
-            };
+                return;
+            }
+
+            var tableFor6 = _dialogService.OpenDialog(new DinningTableDialogViewModel(new TableFor6(), false));
+            if (tableFor6 == null)
+            {
+                return;
+            }
+
+            var image = AddImageToCanvas(sender, e, "6people.png");
+            tableFor6.Type = PlaceableEntityType.TableFor6;
+            tableFor6.PositionX = Canvas.GetLeft(image);
+            tableFor6.PositionY = Canvas.GetTop(image);
 
             AddBindings(tableFor6, image);
+            _imageWithPlaceableEntities.Add(image, tableFor6);
             spaceViewModel.Add.Execute(tableFor6);
         }
 
         private void People18_Click(object sender, RoutedEventArgs e)
         {
-            var image = AddImageToCanvas(sender, e, "18people.png");
-            var tableFor18 = new TableFor18
+            if (dragObject != null)
             {
-                Type = PlaceableEntityType.TableFor18,
-                PositionX = Canvas.GetLeft(image),
-                PositionY = Canvas.GetTop(image)
-            };
+                return;
+            }
+
+            var tableFor18 = _dialogService.OpenDialog(new DinningTableDialogViewModel(new TableFor18(), false));
+            if (tableFor18 == null)
+            {
+                return;
+            }
+
+            var image = AddImageToCanvas(sender, e, "18people.png");
+            tableFor18.Type = PlaceableEntityType.TableFor18;
+            tableFor18.PositionX = Canvas.GetLeft(image);
+            tableFor18.PositionY = Canvas.GetTop(image);
 
             AddBindings(tableFor18, image);
+            _imageWithPlaceableEntities.Add(image, tableFor18);
             spaceViewModel.Add.Execute(tableFor18);
         }
 
         private void Music_Click(object sender, RoutedEventArgs e)
         {
-            var image = AddImageToCanvas(sender, e, "music.png");
-            var music = new Music
+            if (dragObject != null)
             {
-                Type = PlaceableEntityType.Music,
-                PositionX = Canvas.GetLeft(image),
-                PositionY = Canvas.GetTop(image)
-            };
+                return;
+            }
+
+            var music = _dialogService.OpenDialog(new NonDinningTableDialogViewModel(new Music(), false));
+            if (music == null)
+            {
+                return;
+            }
+
+            var image = AddImageToCanvas(sender, e, "music.png");
+            music.Type = PlaceableEntityType.Music;
+            music.PositionX = Canvas.GetLeft(image);
+            music.PositionY = Canvas.GetTop(image);
 
             AddBindings(music, image);
+            _imageWithPlaceableEntities.Add(image, music);
             spaceViewModel.Add.Execute(music);
         }
 
         private void Empty_Click(object sender, RoutedEventArgs e)
         {
-            var image = AddImageToCanvas(sender, e, "empty.png");
-            var servingTable = new ServingTable
+            if (dragObject != null)
             {
-                Type = PlaceableEntityType.Empty,
-                PositionX = Canvas.GetLeft(image),
-                PositionY = Canvas.GetTop(image)
-            };
+                return;
+            }
+
+            var servingTable = _dialogService.OpenDialog(new NonDinningTableDialogViewModel(new ServingTable(), false));
+            if (servingTable == null)
+            {
+                return;
+            }
+
+            var image = AddImageToCanvas(sender, e, "empty.png");
+            servingTable.Type = PlaceableEntityType.Empty;
+            servingTable.PositionX = Canvas.GetLeft(image);
+            servingTable.PositionY = Canvas.GetTop(image);
 
             AddBindings(servingTable, image);
+            _imageWithPlaceableEntities.Add(image, servingTable);
             spaceViewModel.Add.Execute(servingTable);
         }
 
@@ -124,7 +168,46 @@ namespace Organizator_Proslava.View
             Canvas.SetLeft(image, (MainCanvas.ActualWidth / 2) - (image.Width / 2));
             Canvas.SetTop(image, (MainCanvas.ActualHeight / 2) - (image.Height / 2));
 
+            AddContextMenu(image);
+            _images.Add(image);
+            MainCanvas.Children.Add(image);
+
+            return image;
+        }
+
+        private void AddContextMenu(Image image)
+        {
             var contextMenu = new ContextMenu();
+            var editMenuItem = new MenuItem()
+            {
+                Header = "Izmeni"
+            };
+
+            editMenuItem.Click += (object editSender, RoutedEventArgs editE) =>
+            {
+                if (_imageWithPlaceableEntities[image] is DinningTable dinningTable)
+                {
+                    var dinningTableCopy = dinningTable.Copy();
+                    var editedDinningTable = _dialogService.OpenDialog(new DinningTableDialogViewModel(dinningTableCopy, true));
+                    if (editedDinningTable != null)
+                    {
+                        dinningTable.Movable = editedDinningTable.Movable;
+                        dinningTable.Seats = editedDinningTable.Seats;
+                    }
+                }
+                else
+                {
+                    var nonDinngingTable = _imageWithPlaceableEntities[image];
+
+                    var nonDinngingTableCopy = nonDinngingTable.Copy();
+                    var editedNonDinngingTableCopy = _dialogService.OpenDialog(new NonDinningTableDialogViewModel(nonDinngingTableCopy, true));
+                    if (editedNonDinngingTableCopy != null)
+                    {
+                        nonDinngingTable.Movable = editedNonDinngingTableCopy.Movable;
+                    }
+                }
+            };
+
             var deleteMenuItem = new MenuItem()
             {
                 Header = "Ukloni",
@@ -135,16 +218,13 @@ namespace Organizator_Proslava.View
                 var index = _images.IndexOf(image);
                 _images.RemoveAt(index);
                 spaceViewModel.Remove.Execute(index);
+                _imageWithPlaceableEntities.Remove(image);
                 MainCanvas.Children.Remove(image);
             };
 
+            contextMenu.Items.Add(editMenuItem);
             contextMenu.Items.Add(deleteMenuItem);
             image.ContextMenu = contextMenu;
-
-            _images.Add(image);
-            MainCanvas.Children.Add(image);
-
-            return image;
         }
 
         #region DragAndDrop
@@ -154,6 +234,14 @@ namespace Organizator_Proslava.View
 
         private void Ellipse_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity))
+            {
+                if (!placeableEntity.Movable)
+                {
+                    return;
+                }
+            }
+
             dragObject = sender as UIElement;
             offset = e.GetPosition(MainCanvas);
             offset.Y -= Canvas.GetTop(dragObject);

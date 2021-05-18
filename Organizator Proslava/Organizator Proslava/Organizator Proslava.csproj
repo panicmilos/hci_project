@@ -187,6 +187,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\YesNoConverter.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Dialogs\Alert\AlertDialogView.xaml.cs">
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
@@ -196,6 +197,14 @@
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogView.xaml.cs">
+      <DependentUpon>DinningTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\NonDinningTableDialogView.xaml.cs">
+      <DependentUpon>NonDinningTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\NonDinningTableDialogViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -344,11 +353,23 @@
     <Compile Include="View\Space.xaml.cs">
       <DependentUpon>Space.xaml</DependentUpon>
     </Compile>
+    <Page Include="Converters\ConvertersDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\Alert\AlertDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\DinningTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\NonDinningTableDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,8 +26,8 @@
                         PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
                     <Canvas.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Add table for 6" Click="People6_Click" />
-                            <MenuItem Header="Add table for 18" Click="People18_Click" />
+                            <MenuItem Header="Add small table" Click="People6_Click" />
+                            <MenuItem Header="Add large table" Click="People18_Click" />
                             <MenuItem Header="Add serving table" Click="Empty_Click" />
                             <MenuItem Header="Add music" Click="Music_Click" />
                         </ContextMenu>
