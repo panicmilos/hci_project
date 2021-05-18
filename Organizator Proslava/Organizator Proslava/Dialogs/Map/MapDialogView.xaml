@@ -7,8 +7,8 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*" />
-            <RowDefinition Height="11*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="10.5*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -33,7 +33,7 @@
                         CommandParameter="{Binding ElementName=map}"
                         Style="{StaticResource mapDialogButton}"
                         Background="{StaticResource Ming}"
-                        Margin="-5" />
+                        Margin="-5, 1, 0, 0" />
             </StackPanel>
             <TextBlock Text="{Binding Path=ErrorMessage}"
                        Foreground="{StaticResource Ming}"

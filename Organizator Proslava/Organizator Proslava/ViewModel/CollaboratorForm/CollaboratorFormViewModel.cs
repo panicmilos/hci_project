@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Utility;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
@@ -23,6 +24,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         private void RegisterHandlerToEventBus()
         {
+            EventBus.RegisterHandler("BackToSelectCollaboratorType", () => Switch(Sctvm));
             EventBus.RegisterHandler("IndividualSelected", () => Switch(Icivm));
             EventBus.RegisterHandler("LegalSelected", () => Switch(Lcivm));
         }
