@@ -168,6 +168,7 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -235,6 +236,14 @@
     <Compile Include="Migrations\20210516150559_test.designer.cs">
       <DependentUpon>20210516150559_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210518173054_Added cellebration type.cs" />
+    <Compile Include="Migrations\20210518173054_Added cellebration type.designer.cs">
+      <DependentUpon>20210518173054_Added cellebration type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210518173335_Added cellebration type acctually now.cs" />
+    <Compile Include="Migrations\20210518173335_Added cellebration type acctually now.designer.cs">
+      <DependentUpon>20210518173335_Added cellebration type acctually now.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -247,6 +256,7 @@
     <Compile Include="Model\CelebrationHalls\ServingTable.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor18.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor6.cs" />
+    <Compile Include="Model\Cellebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\DTO\AddPlaceableEntityDTO.cs" />
@@ -265,8 +275,13 @@
     <Compile Include="Services\Implementations\CrudService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\EventBus.cs" />
+    <Compile Include="Utility\NavigabileModelView.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\IndividualCollaboratorInformationsViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\LegalCollaboratorInformationsViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\SelectCollaboratorTypeViewModal.cs" />
     <Compile Include="ViewModel\ImageSelectViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -274,6 +289,18 @@
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
+      <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorForm\IndividualCollaboratorInformationsView.xaml.cs">
+      <DependentUpon>IndividualCollaboratorInformationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorForm\LegalCollaboratorInformationsView.xaml.cs">
+      <DependentUpon>LegalCollaboratorInformationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorForm\SelectCollaboratorTypeView.xaml.cs">
+      <DependentUpon>SelectCollaboratorTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ImageSelectView.xaml.cs">
       <DependentUpon>ImageSelectView.xaml</DependentUpon>
@@ -340,6 +367,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Background.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorForm\IndividualCollaboratorInformationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorForm\LegalCollaboratorInformationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorForm\SelectCollaboratorTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -414,6 +457,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\placeholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\individualColaborator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\legalCollaborator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.Model.Cellebrations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,6 +28,10 @@ namespace Organizator_Proslava.Data
         public DbSet<TableFor18> TablesFor18 { get; set; }
         public DbSet<Music> Musics { get; set; }
         public DbSet<ServingTable> ServingTables { get; set; }
+
+        // Cellebrations
+
+        public DbSet<CellebrationType> CellebrationTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

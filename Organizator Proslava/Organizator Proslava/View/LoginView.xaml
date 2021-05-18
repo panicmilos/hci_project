@@ -34,11 +34,12 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <WrapPanel Grid.Row="2"  HorizontalAlignment="Center">
                 <Button Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Space}" Content="Space" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Isvm}" Content="Isvm" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            </StackPanel>
+                <Button Command="{Binding Cfvm}" Content="Cfvm" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            </WrapPanel>
         </Grid>
 
         <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center">

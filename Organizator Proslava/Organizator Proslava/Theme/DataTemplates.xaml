@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:Organizator_Proslava.ViewModel"
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
+                    xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
+                    xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
+
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map">
@@ -20,6 +23,22 @@
 
     <DataTemplate DataType="{x:Type vm:ImageSelectViewModel}">
         <v:ImageSelectView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:CollaboratorFormViewModel}">
+        <cfv:CollaboratorFormView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:SelectCollaboratorTypeViewModal}">
+        <cfv:SelectCollaboratorTypeView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:IndividualCollaboratorInformationsViewModel}">
+        <cfv:IndividualCollaboratorInformationsView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:LegalCollaboratorInformationsViewModel}">
+        <cfv:LegalCollaboratorInformationsView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
