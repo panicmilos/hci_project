@@ -13,4 +13,12 @@
         <Setter Property="FontFamily" Value="Helvetica" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
+    
+    <Style x:Key="TableTitleLabel" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="Helvetica" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
 </ResourceDictionary>

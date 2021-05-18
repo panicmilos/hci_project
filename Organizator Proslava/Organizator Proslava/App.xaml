@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Theme/Colors.xaml" />
                 <ResourceDictionary Source="Theme/LabelStyles.xaml" />
                 <ResourceDictionary Source="Theme/DataTemplates.xaml" />
+                <ResourceDictionary Source="Theme/DataGridStyles.xaml" />
                 <ResourceDictionary Source="Theme/TextBoxStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

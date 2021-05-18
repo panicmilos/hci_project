@@ -248,6 +248,7 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\BaseObservableEntity.cs" />
+    <Compile Include="Model\Celebration.cs" />
     <Compile Include="Model\CelebrationHalls\CelebrationHall.cs" />
     <Compile Include="Model\CelebrationHalls\DinningTable.cs" />
     <Compile Include="Model\CelebrationHalls\Music.cs" />
@@ -282,11 +283,17 @@
     <Compile Include="ViewModel\CollaboratorForm\IndividualCollaboratorInformationsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\LegalCollaboratorInformationsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\SelectCollaboratorTypeViewModal.cs" />
+    <Compile Include="ViewModel\AdminHomeViewModel.cs" />
+    <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\ImageSelectViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
+    <Compile Include="View\AdminHomeView.xaml.cs">
+      <DependentUpon>AdminHomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
     </Compile>
@@ -302,11 +309,16 @@
     <Compile Include="View\CollaboratorForm\SelectCollaboratorTypeView.xaml.cs">
       <DependentUpon>SelectCollaboratorTypeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ClientHomeView.xaml.cs">
+      <DependentUpon>ClientHomeView.xaml</DependentUpon>
     <Compile Include="View\ImageSelectView.xaml.cs">
       <DependentUpon>ImageSelectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrganizerHomeView.xaml.cs">
+      <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
@@ -362,10 +374,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Theme\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AdminHomeView.xaml" />
     <Page Include="View\Background.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,11 +403,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ClientHomeView.xaml">
     <Page Include="View\ImageSelectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizerHomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
