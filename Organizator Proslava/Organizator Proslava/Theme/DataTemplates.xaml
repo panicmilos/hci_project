@@ -13,6 +13,18 @@
     <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
         <v:RegisterView />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:ClientHomeViewModel}">
+        <v:ClientHomeView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:OrganizerHomeViewModel}">
+        <v:OrganizerHomeView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:AdminHomeViewModel}">
+        <v:AdminHomeView />
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:SpaceViewModel}">
         <v:Space />
