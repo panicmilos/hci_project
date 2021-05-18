@@ -14,6 +14,7 @@ namespace Organizator_Proslava.Ninject
             Bind(typeof(ICrudService<>)).To(typeof(CrudService<>));
             Bind(typeof(IUserService<>)).To(typeof(UserService<>));
             Bind(typeof(IClientService)).To(typeof(ClientService));
+            Bind(typeof(ICelebrationTypeService)).To(typeof(CelebrationTypeService));
             Bind(typeof(IDialogService)).To(typeof(DialogService));
 
             Bind<DatabaseContext>().To<DatabaseContext>();

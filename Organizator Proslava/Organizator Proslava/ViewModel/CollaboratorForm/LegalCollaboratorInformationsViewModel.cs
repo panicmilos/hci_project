@@ -1,6 +1,7 @@
 ﻿using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
 using System.Windows.Input;
 
@@ -30,7 +31,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 Collaborator.Address = address;
             });
 
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorServices"));
+            Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorServicesFromLegal"));
         }
     }
 }

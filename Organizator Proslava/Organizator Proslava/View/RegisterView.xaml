@@ -48,7 +48,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <Label  Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
+            <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
             <TextBox Text="{Binding Path=Client.PhoneNumber, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
         </StackPanel>
 

@@ -4,7 +4,7 @@
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
-
+                    xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map">
@@ -16,15 +16,15 @@
     <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
         <v:RegisterView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:ClientHomeViewModel}">
         <v:ClientHomeView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:OrganizerHomeViewModel}">
         <v:OrganizerHomeView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:AdminHomeViewModel}">
         <v:AdminHomeView />
     </DataTemplate>
@@ -51,6 +51,14 @@
 
     <DataTemplate DataType="{x:Type cfvm:LegalCollaboratorInformationsViewModel}">
         <cfv:LegalCollaboratorInformationsView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:CollaboratorServicesViewModel}">
+        <cfv:CollaboratorServicesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceDialogViewModel}">
+        <cdcollaborators:CollaboratorServiceDialogView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">

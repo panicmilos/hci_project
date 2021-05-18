@@ -2,6 +2,7 @@
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Cellebrations;
+using Organizator_Proslava.Model.Collaborators;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,9 +15,6 @@ namespace Organizator_Proslava.Data
         public DbSet<BaseUser> BaseUsers { get; set; }
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Collaborator> Collaborators { get; set; }
-        public DbSet<IndividualCollaborator> IndividualCollaborators { get; set; }
-        public DbSet<LegalCollaborator> LegalCollaborators { get; set; }
         public DbSet<Organizer> Organizers { get; set; }
 
         // Placeable entities
@@ -32,6 +30,14 @@ namespace Organizator_Proslava.Data
         // Cellebrations
 
         public DbSet<CellebrationType> CellebrationTypes { get; set; }
+
+        // Collaborators
+
+        public DbSet<Collaborator> Collaborators { get; set; }
+        public DbSet<IndividualCollaborator> IndividualCollaborators { get; set; }
+        public DbSet<LegalCollaborator> LegalCollaborators { get; set; }
+        public DbSet<CollaboratorServiceBook> CollaboratorServiceBooks { get; set; }
+        public DbSet<CollaboratorService> CollaboratorServices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,4 +1,4 @@
-﻿namespace Organizator_Proslava.Model
+﻿namespace Organizator_Proslava.Model.Collaborators
 {
     public class LegalCollaborator : Collaborator
     {

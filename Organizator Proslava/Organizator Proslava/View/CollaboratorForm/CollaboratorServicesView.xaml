@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.CollaboratorForm.CollaboratorServicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View.CollaboratorForm" xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="3.8*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.7*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="Vrsta usluge" Style="{StaticResource registerPageLabel}" />
+            <controls:AutoCompleteBox
+                    Height="25"
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="16"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    Text="{Binding Path=CollaboratorServiceBook.Type, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
+                    Margin="10, 0, 10, 0">
+            </controls:AutoCompleteBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label Content="Kratak opis" Style="{StaticResource registerPageLabel}" />
+            <TextBox Background="{StaticResource Cararra}"  Text="{Binding Path=CollaboratorServiceBook.Description, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+        </StackPanel>
+
+        <DataGrid
+            Grid.Column="1"
+            Grid.Row="3"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            AutoGenerateColumns="False"
+            SelectionMode="Single"
+            IsReadOnly="True"
+            ItemsSource="{Binding Path=Services}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Naziv usluge"
+                    Width="2*"
+                    Binding="{Binding Path=Name}"
+                    CellStyle="{StaticResource DataGridTextCell}">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Cena"
+                    Width="*"
+                    Binding="{Binding Path=Price}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="Jedinica"
+                    Width="*"
+                    Binding="{Binding Path=Unit}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTemplateColumn Header="Izmeni" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:CollaboratorServicesView}}}"
+                                CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Obriši" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource AncestorType={x:Type local:CollaboratorServicesView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
+            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</UserControl>
