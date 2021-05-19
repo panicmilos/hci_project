@@ -261,6 +261,10 @@
     <Compile Include="Migrations\20210518194218_added service book for collaborator.designer.cs">
       <DependentUpon>20210518194218_added service book for collaborator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210519002642_added some new attributes to collaborators.cs" />
+    <Compile Include="Migrations\20210519002642_added some new attributes to collaborators.designer.cs">
+      <DependentUpon>20210519002642_added some new attributes to collaborators.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -302,6 +306,7 @@
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorServicesViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\IndividualCollaboratorInformationsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\LegalCollaboratorInformationsViewModel.cs" />
@@ -322,6 +327,9 @@
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorForm\CollaboratorHallsView.xaml.cs">
+      <DependentUpon>CollaboratorHallsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorServicesView.xaml.cs">
       <DependentUpon>CollaboratorServicesView.xaml</DependentUpon>
@@ -431,6 +439,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorForm\CollaboratorHallsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

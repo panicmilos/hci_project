@@ -57,6 +57,10 @@
         <cfv:CollaboratorServicesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cfvm:CollaboratorHallsViewModel}">
+        <cfv:CollaboratorHallsView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceDialogViewModel}">
         <cdcollaborators:CollaboratorServiceDialogView />
     </DataTemplate>

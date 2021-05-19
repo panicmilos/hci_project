@@ -7,14 +7,44 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="18*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="2.5*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="14*" />
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
-        <local:Background Grid.RowSpan="2" />
+        <local:Background Grid.ColumnSpan="3" Grid.RowSpan="5" />
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.9*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.9*" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="1" Grid.Row="0" Content="Naziv prostora" Style="{StaticResource spaceFormLabel}" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Hall.Name, Mode=TwoWay}" Style="{StaticResource spaceFormTextBox}" />
+
+            <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljeno osoba" Style="{StaticResource spaceFormLabel}" />
+            <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Hall.NumberOfGuests, Mode=TwoWay}" Style="{StaticResource spaceFormTextBox}" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8*" />
                 <ColumnDefinition Width="2*" />
@@ -36,18 +66,18 @@
             </Border>
 
             <Border Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="1">
-                <Canvas>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Background="{StaticResource Cararra}">
-                        <Image Width="130" Height="80" Margin="5, 5, 5, 5"  Source="pack://siteoforigin:,,,/Resources/6people.png" PreviewMouseLeftButtonUp="People6_Click" />
-                        <Image Width="130" Height="80" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/18people.png" PreviewMouseLeftButtonUp="People18_Click" />
-                        <Image Width="130" Height="80" Margin="0, 5, 0, 5" Source="pack://siteoforigin:,,,/Resources/music.png" PreviewMouseLeftButtonUp="Music_Click" />
-                        <Image Width="130" Height="80" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/empty.png" PreviewMouseLeftButtonUp="Empty_Click" />
+                        <Image Width="125" Height="70" Margin="5, 5, 5, 5"  Source="pack://siteoforigin:,,,/Resources/6people.png" PreviewMouseLeftButtonUp="People6_Click" />
+                        <Image Width="125" Height="70" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/18people.png" PreviewMouseLeftButtonUp="People18_Click" />
+                        <Image Width="115" Height="50" Margin="0, 5, 0, 5" Source="pack://siteoforigin:,,,/Resources/music.png" PreviewMouseLeftButtonUp="Music_Click" />
+                        <Image Width="110" Height="70" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/empty.png" PreviewMouseLeftButtonUp="Empty_Click" />
                     </StackPanel>
-                </Canvas>
+                </ScrollViewer>
             </Border>
         </Grid>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             <Button Content="Učitaj neki" Command="{Binding Path=Load}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             <Button Content="Sačuvaj" Command="{Binding Path=Save}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />

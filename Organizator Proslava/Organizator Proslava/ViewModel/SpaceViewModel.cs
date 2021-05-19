@@ -10,7 +10,7 @@ namespace Organizator_Proslava.ViewModel
 {
     public class SpaceViewModel
     {
-        public List<PlaceableEntity> PlaceableEntities { get; set; }
+        public CelebrationHall Hall { get; set; }
         public ICommand Add { get; set; }
         public ICommand Remove { get; set; }
 
@@ -20,23 +20,18 @@ namespace Organizator_Proslava.ViewModel
 
         public SpaceViewModel(DatabaseContext context)
         {
-            PlaceableEntities = new List<PlaceableEntity>();
+            Hall = new CelebrationHall();
             Add = new RelayCommand<PlaceableEntity>(AddEntity);
             Remove = new RelayCommand<int>(RemoveEntity);
 
             Save = new RelayCommand(() =>
             {
-                foreach (var table in PlaceableEntities)
+                foreach (var table in Hall.PlaceableEntities)
                 {
                     Trace.WriteLine($"{table.PositionX} {table.PositionY} {table.Movable}");
                 }
 
-                context.Add(new CelebrationHall
-                {
-                    Name = "Test",
-                    NumberOfGuests = 5,
-                    PlaceableEntities = PlaceableEntities
-                });
+                context.Add(Hall);
 
                 //context.SaveChanges();
             });
@@ -50,7 +45,7 @@ namespace Organizator_Proslava.ViewModel
                 }
 
                 EventBus.FireEvent("ShowPlaceableEntities", entities);
-                PlaceableEntities.AddRange(entities);
+                Hall.PlaceableEntities.AddRange(entities);
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
@@ -58,12 +53,12 @@ namespace Organizator_Proslava.ViewModel
 
         public void AddEntity(PlaceableEntity placeableEntity)
         {
-            PlaceableEntities.Add(placeableEntity);
+            Hall.PlaceableEntities.Add(placeableEntity);
         }
 
         public void RemoveEntity(int entityNo)
         {
-            PlaceableEntities.RemoveAt(entityNo);
+            Hall.PlaceableEntities.RemoveAt(entityNo);
         }
     }
 }

@@ -8,17 +8,20 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public IndividualCollaboratorInformationsViewModel Icivm { get; set; }
         public LegalCollaboratorInformationsViewModel Lcivm { get; set; }
         public CollaboratorServicesViewModel Csvm { get; set; }
+        public CollaboratorHallsViewModel Chvm { get; set; }
 
         public CollaboratorFormViewModel(
             SelectCollaboratorTypeViewModal sctvm,
             IndividualCollaboratorInformationsViewModel icivm,
             LegalCollaboratorInformationsViewModel lcivm,
-            CollaboratorServicesViewModel csvm)
+            CollaboratorServicesViewModel csvm,
+            CollaboratorHallsViewModel chvm)
         {
             Sctvm = sctvm;
             Icivm = icivm;
             Lcivm = lcivm;
             Csvm = csvm;
+            Chvm = chvm;
             Switch(sctvm);
 
             RegisterHandlerToEventBus();
@@ -42,6 +45,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                     Switch(Icivm);
                 }
             });
+            EventBus.RegisterHandler("NextToCollaboratorHalls", () => Switch(Chvm));
+            EventBus.RegisterHandler("BackToCollaboratorServices", () => Switch(Csvm));
         }
     }
 }

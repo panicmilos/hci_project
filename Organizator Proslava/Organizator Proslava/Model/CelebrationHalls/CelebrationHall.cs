@@ -17,5 +17,10 @@ namespace Organizator_Proslava.Model.CelebrationHalls
             get { return _placeableEntities; }
             set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); }
         }
+
+        public CelebrationHall()
+        {
+            PlaceableEntities = new List<PlaceableEntity>();
+        }
     }
 }

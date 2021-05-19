@@ -1,4 +1,7 @@
-﻿namespace Organizator_Proslava.Model.Collaborators
+﻿using Organizator_Proslava.Model.CelebrationHalls;
+using System.Collections.Generic;
+
+namespace Organizator_Proslava.Model.Collaborators
 {
     public class Collaborator : BaseUser
     {
@@ -10,5 +13,8 @@
 
         private CollaboratorServiceBook _collaboratorServiceBook;
         public CollaboratorServiceBook CollaboratorServiceBook { get => _collaboratorServiceBook; set => OnPropertyChanged(ref _collaboratorServiceBook, value); }
+
+        private List<CelebrationHall> _celebrationHalls;
+        public List<CelebrationHall> CelebrationHalls { get { return _celebrationHalls; } set { _celebrationHalls = value; OnPropertyChanged("CelebrationHalls"); } }
     }
 }
