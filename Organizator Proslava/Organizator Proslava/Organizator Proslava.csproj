@@ -312,13 +312,13 @@
     <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorServicesViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\IndividualCollaboratorInformationsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\LegalCollaboratorInformationsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\SelectCollaboratorTypeViewModal.cs" />
     <Compile Include="ViewModel\AdminHomeViewModel.cs" />
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
-    <Compile Include="ViewModel\ImageSelectViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
@@ -336,6 +336,9 @@
     <Compile Include="View\CollaboratorForm\CollaboratorHallsView.xaml.cs">
       <DependentUpon>CollaboratorHallsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CollaboratorForm\CollaboratorImagesView.xaml.cs">
+      <DependentUpon>CollaboratorImagesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorServicesView.xaml.cs">
       <DependentUpon>CollaboratorServicesView.xaml</DependentUpon>
     </Compile>
@@ -350,9 +353,6 @@
     </Compile>
     <Compile Include="View\ClientHomeView.xaml.cs">
       <DependentUpon>ClientHomeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ImageSelectView.xaml.cs">
-      <DependentUpon>ImageSelectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -455,6 +455,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CollaboratorForm\CollaboratorImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorServicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -472,10 +476,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientHomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ImageSelectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

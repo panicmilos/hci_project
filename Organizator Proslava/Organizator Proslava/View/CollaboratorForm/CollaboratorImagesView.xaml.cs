@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Organizator_Proslava.View
+namespace Organizator_Proslava.View.CollaboratorForm
 {
     /// <summary>
-    /// Interaction logic for ImageSelectView.xaml
+    /// Interaction logic for CollaboratorImagesView.xaml
     /// </summary>
-    public partial class ImageSelectView : UserControl
+    public partial class CollaboratorImagesView : UserControl
     {
-        public ImageSelectView()
+        public CollaboratorImagesView()
         {
             InitializeComponent();
         }

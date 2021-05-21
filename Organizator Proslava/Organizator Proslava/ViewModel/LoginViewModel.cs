@@ -68,7 +68,6 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            Isvm = new RelayCommand(() => EventBus.FireEvent("Isvm")); // Delete Later
             Cfvm = new RelayCommand(() => EventBus.FireEvent("Cfvm")); // Delete Later
 
             Map = new RelayCommand(() =>

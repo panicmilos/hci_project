@@ -3,9 +3,9 @@ using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace Organizator_Proslava.ViewModel
+namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
-    public class ImageSelectViewModel : ObservableEntity
+    public class CollaboratorImagesViewModel : ObservableEntity
     {
         private const string ImagePlaceholderFileName = @"pack://siteoforigin:,,,/Resources/placeholder.png";
 
@@ -20,11 +20,17 @@ namespace Organizator_Proslava.ViewModel
         public ICommand ChangeMainImage { get; set; }
         public ICommand DeleteImage { get; set; }
 
-        public ImageSelectViewModel()
+        public ICommand Back { get; set; }
+        public ICommand Next { get; set; }
+
+        public CollaboratorImagesViewModel()
         {
             AddImage = new RelayCommand(AddImageHandler);
             ChangeMainImage = new RelayCommand<string>(file => MainImage = file);
             DeleteImage = new RelayCommand<string>(DeleteImageHandler);
+
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorServices"));
+            Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorHalls"));
         }
 
         private void AddImageHandler()

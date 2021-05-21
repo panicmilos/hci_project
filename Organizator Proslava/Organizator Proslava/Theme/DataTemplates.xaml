@@ -33,10 +33,6 @@
         <v:Space />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:ImageSelectViewModel}">
-        <v:ImageSelectView />
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type cfvm:CollaboratorFormViewModel}">
         <cfv:CollaboratorFormView />
     </DataTemplate>
@@ -55,6 +51,10 @@
 
     <DataTemplate DataType="{x:Type cfvm:CollaboratorServicesViewModel}">
         <cfv:CollaboratorServicesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cfvm:CollaboratorImagesViewModel}">
+        <cfv:CollaboratorImagesView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type cfvm:CollaboratorHallsViewModel}">

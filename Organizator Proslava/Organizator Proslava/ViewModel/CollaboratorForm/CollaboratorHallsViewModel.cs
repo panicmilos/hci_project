@@ -80,7 +80,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 }
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorServices"));
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorImages"));
         }
     }
 }

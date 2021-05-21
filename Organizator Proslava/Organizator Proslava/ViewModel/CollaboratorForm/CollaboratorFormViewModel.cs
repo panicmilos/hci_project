@@ -8,6 +8,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public IndividualCollaboratorInformationsViewModel Icivm { get; set; }
         public LegalCollaboratorInformationsViewModel Lcivm { get; set; }
         public CollaboratorServicesViewModel Csvm { get; set; }
+        public CollaboratorImagesViewModel Civm { get; set; }
         public CollaboratorHallsViewModel Chvm { get; set; }
 
         public CollaboratorFormViewModel(
@@ -15,12 +16,14 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             IndividualCollaboratorInformationsViewModel icivm,
             LegalCollaboratorInformationsViewModel lcivm,
             CollaboratorServicesViewModel csvm,
+            CollaboratorImagesViewModel civm,
             CollaboratorHallsViewModel chvm)
         {
             Sctvm = sctvm;
             Icivm = icivm;
             Lcivm = lcivm;
             Csvm = csvm;
+            Civm = civm;
             Chvm = chvm;
             Switch(sctvm);
 
@@ -45,8 +48,10 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                     Switch(Icivm);
                 }
             });
-            EventBus.RegisterHandler("NextToCollaboratorHalls", () => Switch(Chvm));
             EventBus.RegisterHandler("BackToCollaboratorServices", () => Switch(Csvm));
+            EventBus.RegisterHandler("NextToCollaboratorImages", () => Switch(Civm));
+            EventBus.RegisterHandler("BackToCollaboratorImages", () => Switch(Civm));
+            EventBus.RegisterHandler("NextToCollaboratorHalls", () => Switch(Chvm));
         }
     }
 }
