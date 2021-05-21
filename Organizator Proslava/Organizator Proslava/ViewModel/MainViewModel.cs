@@ -36,6 +36,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
             EventBus.RegisterHandler("Cfvm", () => CurrentViewModel = cfvm); // Delete Later
             EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
+            EventBus.RegisterHandler("Colabs", () => CurrentViewModel = new CollaboratorsTableViewModel()); // Delete Later
         }
     }
 }

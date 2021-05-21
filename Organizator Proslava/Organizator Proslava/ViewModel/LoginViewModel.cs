@@ -20,6 +20,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Isvm { get; set; }
         public ICommand Cfvm { get; set; }
         public ICommand DEMO { get; set; }
+        public ICommand Colabs { get; set; }
 
         public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
         {
@@ -71,6 +72,8 @@ namespace Organizator_Proslava.ViewModel
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
             Cfvm = new RelayCommand(() => EventBus.FireEvent("Cfvm")); // Delete Later
             DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
+            Colabs = new RelayCommand(() => EventBus.FireEvent("Colabs")); // Delete Later
+
             Map = new RelayCommand(() =>
             {
                 var result = new DialogService().OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));

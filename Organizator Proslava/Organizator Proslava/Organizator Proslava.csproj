@@ -319,6 +319,7 @@
     <Compile Include="ViewModel\CollaboratorForm\SelectCollaboratorTypeViewModal.cs" />
     <Compile Include="ViewModel\AdminHomeViewModel.cs" />
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
+    <Compile Include="ViewModel\CollaboratorsTableViewModel.cs" />
     <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -354,6 +355,9 @@
     </Compile>
     <Compile Include="View\ClientHomeView.xaml.cs">
       <DependentUpon>ClientHomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CollaboratorsTableView.xaml.cs">
+      <DependentUpon>CollaboratorsTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DemoForm\DemoView.xaml.cs">
       <DependentUpon>DemoView.xaml</DependentUpon>
@@ -480,6 +484,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientHomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollaboratorsTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

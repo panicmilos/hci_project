@@ -35,6 +35,10 @@
         <v:Space />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:CollaboratorsTableViewModel}">
+        <v:CollaboratorsTableView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type cfvm:CollaboratorFormViewModel}">
         <cfv:CollaboratorFormView />
     </DataTemplate>
