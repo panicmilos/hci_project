@@ -31,7 +31,7 @@
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="White" />
     </Style>
-    
+
     <Style TargetType="Button" x:Key="SmallPaintedButton">
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
@@ -45,7 +45,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="Button" x:Key="PaintedButton">
         <Setter Property="Template">
             <Setter.Value>
@@ -57,5 +57,36 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="{x:Type RadioButton}" x:Key="DemoFunctionalityButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              Background="{TemplateBinding Background}">
+
+                            <TextBlock Text="{TemplateBinding Property=Content}"
+                                       VerticalAlignment="Center"
+                                       Margin="50, 0, 0, 0" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style.Setters>
+
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#BADFE7" />
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#BADFE7" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

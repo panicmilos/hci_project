@@ -1,5 +1,6 @@
 ﻿using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
+using Organizator_Proslava.ViewModel.DemoForm;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -34,6 +35,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
             EventBus.RegisterHandler("Cfvm", () => CurrentViewModel = cfvm); // Delete Later
+            EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
         }
     }
 }

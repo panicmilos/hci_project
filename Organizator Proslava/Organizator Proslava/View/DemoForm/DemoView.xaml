@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.DemoForm.DemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View.DemoForm"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="7*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Background="{StaticResource SidebarGradient}" VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding Path=Functionalities}" SelectedItem="{Binding SelectedVideo, Mode=TwoWay}" Background="Transparent">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding}"
+                                         GroupName="Functionalities"
+                                         Height="50"
+                                         Foreground="White"
+                                         FontSize="16"
+                                         Style="{StaticResource DemoFunctionalityButton}"
+                                         Command="{Binding Path=DataContext.PlayVideo, RelativeSource={RelativeSource AncestorType={x:Type local:DemoView}}}"
+                                         CommandParameter="{Binding}">
+                            <RadioButton.IsChecked>
+                                <Binding Path="IsSelected"
+                                         RelativeSource="{RelativeSource AncestorType=ListBoxItem}"
+                                         Mode="TwoWay" />
+                            </RadioButton.IsChecked>
+                        </RadioButton>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <TextBlock Grid.Column="1" Text="{Binding SelectedVideo}" FontSize="42" Foreground="{StaticResource Ming}" />
+    </Grid>
+</UserControl>

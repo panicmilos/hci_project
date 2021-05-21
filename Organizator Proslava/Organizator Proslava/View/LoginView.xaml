@@ -37,6 +37,7 @@
             <WrapPanel Grid.Row="2"  HorizontalAlignment="Center">
                 <Button Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Cfvm}" Content="Cfvm" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding DEMO}" Content="DEMO" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </WrapPanel>
         </Grid>
 
