@@ -7,23 +7,15 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="9*" />
-            <ColumnDefinition Width="0.5*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*" />
             <RowDefinition Height="2.5*" />
             <RowDefinition Height="0.3*" />
             <RowDefinition Height="14*" />
-            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="0.5*" />
         </Grid.RowDefinitions>
 
-        <local:Background Grid.ColumnSpan="3" Grid.RowSpan="5" />
-
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.2*" />
                 <ColumnDefinition Width="0.9*" />
@@ -76,11 +68,5 @@
                 </ScrollViewer>
             </Border>
         </Grid>
-
-        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            <Button Content="Učitaj neki" Command="{Binding Path=Load}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            <Button Content="Sačuvaj" Command="{Binding Path=Save}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
     </Grid>
 </UserControl>

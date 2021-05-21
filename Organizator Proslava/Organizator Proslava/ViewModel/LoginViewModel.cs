@@ -17,7 +17,6 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Login { get; set; }
         public ICommand Register { get; set; }
         public ICommand Map { get; set; }
-        public ICommand Space { get; set; }
         public ICommand Isvm { get; set; }
         public ICommand Cfvm { get; set; }
 
@@ -69,7 +68,6 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            Space = new RelayCommand(() => EventBus.FireEvent("Space")); // Delete Later
             Isvm = new RelayCommand(() => EventBus.FireEvent("Isvm")); // Delete Later
             Cfvm = new RelayCommand(() => EventBus.FireEvent("Cfvm")); // Delete Later
 

@@ -32,16 +32,13 @@ namespace Organizator_Proslava.View
             _images = new List<Image>();
             _imageWithPlaceableEntities = new Dictionary<UIElement, PlaceableEntity>();
 
-            EventBus.RegisterHandler("ShowPlaceableEntities", (entities) =>
+            foreach (var placeableEntity in GlobalStore.ReadObject<List<PlaceableEntity>>("placeableEntities"))
             {
-                var placebleEntities = entities as List<PlaceableEntity>;
-                foreach (var placeableEntity in placebleEntities)
-                {
-                    var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
-                    AddBindings(placeableEntity, image);
-                    _imageWithPlaceableEntities.Add(image, placeableEntity);
-                }
-            });
+                var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
+                AddBindings(placeableEntity, image);
+                _imageWithPlaceableEntities.Add(image, placeableEntity);
+            }
+            GlobalStore.RemoveObject("placeableEntities");
         }
 
         private void People6_Click(object sender, RoutedEventArgs e)

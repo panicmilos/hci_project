@@ -205,6 +205,10 @@
       <DependentUpon>NonDinningTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\NonDinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingView.xaml.cs">
+      <DependentUpon>SpaceModelingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -302,6 +306,7 @@
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\Extensions.cs" />
     <Compile Include="Utility\EventBus.cs" />
+    <Compile Include="Utility\GlobalStore.cs" />
     <Compile Include="Utility\NavigabileModelView.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
@@ -378,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\NonDinningTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\SpaceModelingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

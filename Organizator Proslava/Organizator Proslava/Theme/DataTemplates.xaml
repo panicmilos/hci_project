@@ -73,6 +73,10 @@
         <cdcollaborators:NonDinningTableDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcollaborators:SpaceModelingViewModel}">
+        <cdcollaborators:SpaceModelingView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
         <alert:AlertDialogView />
     </DataTemplate>

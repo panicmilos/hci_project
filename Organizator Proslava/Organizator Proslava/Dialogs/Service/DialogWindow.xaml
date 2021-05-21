@@ -9,9 +9,9 @@
         WindowStartupLocation="CenterScreen"
         Height="{Binding WindowHeight, Mode=TwoWay}"
         Width="{Binding WindowWidth, Mode=TwoWay}"
-        Title="{Binding Title}" >
+        Title="{Binding Title}">
     <Grid>
-        <v:Background Opacity="0.3" Margin="-66,-173,-482,-168" />
+        <v:Background Opacity="0.3" />
         <ContentControl Width="{Binding ContentWidth, Mode=TwoWay}"
                         Height="{Binding ContentHeight, Mode=TwoWay}"
                         x:Name="ContentPresenter" Content="{Binding}" />

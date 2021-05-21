@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Organizator_Proslava.View"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Canvas Background="{StaticResource Cararra}">
             <Ellipse Width="30" Height="30" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="32" Canvas.Top="21" />
@@ -60,6 +60,52 @@
                         <ScaleTransform />
                         <SkewTransform />
                         <RotateTransform Angle="25.443" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Polygon Points="0,0 70,60 0,160" Stroke="{StaticResource Ming}" Fill="Transparent" Canvas.Left="-16" Canvas.Top="422" RenderTransformOrigin="0.5,0.5" Height="188" Width="78">
+                <Polygon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="256.915" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Polygon.RenderTransform>
+            </Polygon>
+            <Polygon Points="0,0 50,30 0,90" Stroke="{StaticResource Ming}" Fill="Transparent" Canvas.Left="190" Canvas.Top="13" RenderTransformOrigin="0.5,0.5" Height="99" Width="81">
+                <Polygon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-56.949" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Polygon.RenderTransform>
+            </Polygon>
+            <Ellipse Width="60" Height="60" Fill="{StaticResource Neptune}" Opacity="0.2" Canvas.Left="266" Canvas.Top="406" />
+            <Ellipse Width="40" Height="39" Fill="{StaticResource Ming}" Opacity="0.2" Canvas.Left="488" Canvas.Top="480" />
+            <Ellipse Width="29" Height="28" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="194" Canvas.Top="509" />
+            <Rectangle Width="56" Height="24" Fill="Transparent" Stroke="{StaticResource Neptune}" Canvas.Left="638" Canvas.Top="544" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="25.443" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Ellipse Width="12" Height="11" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="420" Canvas.Top="455" />
+            <Ellipse Width="29" Height="28" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="657" Canvas.Top="455" />
+            <Ellipse Width="30" Height="30" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="266" Canvas.Top="585" />
+            <Rectangle Width="35" Height="35" Fill="Transparent" Stroke="{StaticResource Ming}" Canvas.Left="400" Canvas.Top="528" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-24.826" />
                         <TranslateTransform />
                     </TransformGroup>
                 </Rectangle.RenderTransform>
