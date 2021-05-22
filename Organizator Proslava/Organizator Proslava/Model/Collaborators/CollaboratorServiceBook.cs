@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model.Collaborators
 {
@@ -16,6 +17,14 @@ namespace Organizator_Proslava.Model.Collaborators
         {
             get { return _services; }
             set { _services = value; OnPropertyChanged("Services"); }
+        }
+
+        public Guid CollaboratorId { get; set; }
+        public Collaborator Collaborator { get; set; }
+
+        public CollaboratorServiceBook()
+        {
+            Services = new List<CollaboratorService>();
         }
     }
 }

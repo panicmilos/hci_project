@@ -57,8 +57,8 @@
     <Reference Include="GMap.NET.WindowsPresentation, Version=2.0.2.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.WinPresentation.2.0.2\lib\net46\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
@@ -158,16 +158,25 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -229,45 +238,9 @@
     </Compile>
     <Compile Include="Dialogs\Service\IDialogService.cs" />
     <Compile Include="Dialogs\Service\IDialogWindow.cs" />
-    <Compile Include="Migrations\20210505184344_initial database.cs" />
-    <Compile Include="Migrations\20210505184344_initial database.designer.cs">
-      <DependentUpon>20210505184344_initial database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210512181515_added user domain classes.cs" />
-    <Compile Include="Migrations\20210512181515_added user domain classes.designer.cs">
-      <DependentUpon>20210512181515_added user domain classes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210513081434_added address class.cs" />
-    <Compile Include="Migrations\20210513081434_added address class.designer.cs">
-      <DependentUpon>20210513081434_added address class.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210513172159_added placeable entities.cs" />
-    <Compile Include="Migrations\20210513172159_added placeable entities.designer.cs">
-      <DependentUpon>20210513172159_added placeable entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210513182348_added celebration hall.cs" />
-    <Compile Include="Migrations\20210513182348_added celebration hall.designer.cs">
-      <DependentUpon>20210513182348_added celebration hall.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210516150559_test.cs" />
-    <Compile Include="Migrations\20210516150559_test.designer.cs">
-      <DependentUpon>20210516150559_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210518173054_Added cellebration type.cs" />
-    <Compile Include="Migrations\20210518173054_Added cellebration type.designer.cs">
-      <DependentUpon>20210518173054_Added cellebration type.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210518173335_Added cellebration type acctually now.cs" />
-    <Compile Include="Migrations\20210518173335_Added cellebration type acctually now.designer.cs">
-      <DependentUpon>20210518173335_Added cellebration type acctually now.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210518194218_added service book for collaborator.cs" />
-    <Compile Include="Migrations\20210518194218_added service book for collaborator.designer.cs">
-      <DependentUpon>20210518194218_added service book for collaborator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210519002642_added some new attributes to collaborators.cs" />
-    <Compile Include="Migrations\20210519002642_added some new attributes to collaborators.designer.cs">
-      <DependentUpon>20210519002642_added some new attributes to collaborators.cs</DependentUpon>
+    <Compile Include="Migrations\20210522001901_new initial migrations.cs" />
+    <Compile Include="Migrations\20210522001901_new initial migrations.designer.cs">
+      <DependentUpon>20210522001901_new initial migrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
@@ -579,6 +552,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

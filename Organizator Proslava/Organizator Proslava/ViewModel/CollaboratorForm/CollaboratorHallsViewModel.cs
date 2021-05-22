@@ -15,14 +15,14 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
     public class CollaboratorHallsViewModel : ObservableEntity
     {
         private List<CelebrationHall> _cellbrationHalls;
-        public List<CelebrationHall> CollaboratorServiceBook { get => _cellbrationHalls; set => OnPropertyChanged(ref _cellbrationHalls, value); }
+        public List<CelebrationHall> CelebrationHalls { get => _cellbrationHalls; set => OnPropertyChanged(ref _cellbrationHalls, value); }
 
         public ObservableCollection<CelebrationHall> Halls { get; set; }
 
         private IDialogService _dialogService;
 
         public ICommand Back { get; set; }
-        public ICommand Next { get; set; }
+        public ICommand Save { get; set; }
 
         public ICommand Add { get; set; }
         public ICommand Edit { get; set; }
@@ -32,7 +32,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         {
             _dialogService = dialogService;
 
-            CollaboratorServiceBook = new List<CelebrationHall>()
+            CelebrationHalls = new List<CelebrationHall>()
             {
                 new CelebrationHall
                 {
@@ -54,7 +54,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 if (hall != null)
                 {
                     Halls.Add(hall);
-                    CollaboratorServiceBook.Add(hall);
+                    CelebrationHalls.Add(hall);
                 }
             });
 
@@ -76,11 +76,18 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovu salu?")) == DialogResults.Yes)
                 {
                     Halls.Remove(hall);
-                    CollaboratorServiceBook.Remove(hall);
+                    CelebrationHalls.Remove(hall);
                 }
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorImages"));
+            Save = new RelayCommand(() =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
+                {
+                    EventBus.FireEvent("SaveCollaborator");
+                }
+            });
         }
     }
 }

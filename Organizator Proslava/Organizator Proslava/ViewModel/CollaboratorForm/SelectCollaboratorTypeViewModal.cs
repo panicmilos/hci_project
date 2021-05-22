@@ -11,7 +11,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         public SelectCollaboratorTypeViewModal()
         {
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
 
             IndividualSelected = new RelayCommand(() => EventBus.FireEvent("IndividualSelected"));
 

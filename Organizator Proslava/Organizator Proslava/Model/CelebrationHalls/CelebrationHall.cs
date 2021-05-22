@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Organizator_Proslava.Model.Collaborators;
+using System;
+using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model.CelebrationHalls
 {
@@ -17,6 +19,9 @@ namespace Organizator_Proslava.Model.CelebrationHalls
             get { return _placeableEntities; }
             set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); }
         }
+
+        public Guid CollaboratorId { get; set; }
+        public Collaborator Collaborator { get; set; }
 
         public CelebrationHall()
         {

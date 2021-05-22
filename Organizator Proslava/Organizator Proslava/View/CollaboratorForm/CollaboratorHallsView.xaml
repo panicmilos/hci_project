@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Organizator_Proslava.View.CollaboratorForm.CollaboratorHallsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
@@ -22,7 +22,6 @@
             <RowDefinition Height="0.7*" />
         </Grid.RowDefinitions>
 
-
         <DataGrid
             Grid.Column="1"
             Grid.Row="1"
@@ -32,7 +31,7 @@
             SelectionMode="Single"
             IsReadOnly="True"
             ItemsSource="{Binding Path=Halls}">
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                 Header="Naziv sale"
@@ -76,7 +75,7 @@
 
         <Grid Grid.Column="1" Grid.Row="4">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Sačuvaj" Command="{Binding Path=Save}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
     </Grid>
 </UserControl>

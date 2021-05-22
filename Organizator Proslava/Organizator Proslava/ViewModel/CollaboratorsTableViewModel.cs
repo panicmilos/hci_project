@@ -1,4 +1,7 @@
-﻿using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Data;
+using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Option;
+using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
@@ -23,10 +26,14 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
 
+        private DatabaseContext _context;
         private IDialogService _dialogService;
 
-        public CollaboratorsTableViewModel()
+        public CollaboratorsTableViewModel(DatabaseContext context, IDialogService dialogService)
         {
+            _context = context;
+            _dialogService = dialogService;
+
             Collaborators = new ObservableCollection<Collaborator>()
             {
                 new IndividualCollaborator {
@@ -61,6 +68,7 @@ namespace Organizator_Proslava.ViewModel
                     Role = Role.Collaborator
                 }
             };
+            _context.Collaborators.ToList().ForEach(c => Collaborators.Add(c));
 
             Add = new RelayCommand(() =>
             {
@@ -86,11 +94,12 @@ namespace Organizator_Proslava.ViewModel
 
             Remove = new RelayCommand<Collaborator>(collaborator =>
             {
-                //if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovu uslugu?")) == DialogResults.Yes)
-                //{
-                //    Services.Remove(service);
-                //    CollaboratorServiceBook.Services.Remove(service);
-                //}
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
+                {
+                    Collaborators.Remove(collaborator);
+                    _context.Remove(collaborator);
+                    _context.SaveChanges();
+                }
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));

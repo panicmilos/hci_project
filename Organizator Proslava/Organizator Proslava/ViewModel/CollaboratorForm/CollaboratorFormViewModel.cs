@@ -1,4 +1,7 @@
-﻿using Organizator_Proslava.Utility;
+﻿using Organizator_Proslava.Data;
+using Organizator_Proslava.Utility;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
@@ -11,13 +14,17 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public CollaboratorImagesViewModel Civm { get; set; }
         public CollaboratorHallsViewModel Chvm { get; set; }
 
+        private string _selectedCollaboratorType;
+        private DatabaseContext _context;
+
         public CollaboratorFormViewModel(
             SelectCollaboratorTypeViewModal sctvm,
             IndividualCollaboratorInformationsViewModel icivm,
             LegalCollaboratorInformationsViewModel lcivm,
             CollaboratorServicesViewModel csvm,
             CollaboratorImagesViewModel civm,
-            CollaboratorHallsViewModel chvm)
+            CollaboratorHallsViewModel chvm,
+            DatabaseContext context)
         {
             Sctvm = sctvm;
             Icivm = icivm;
@@ -25,6 +32,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Csvm = csvm;
             Civm = civm;
             Chvm = chvm;
+            _context = context;
+
             Switch(sctvm);
 
             RegisterHandlerToEventBus();
@@ -35,8 +44,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             EventBus.RegisterHandler("BackToSelectCollaboratorType", () => Switch(Sctvm));
             EventBus.RegisterHandler("IndividualSelected", () => Switch(Icivm));
             EventBus.RegisterHandler("LegalSelected", () => Switch(Lcivm));
-            EventBus.RegisterHandler("NextToCollaboratorServicesFromLegal", () => { Csvm.CameFrom = "Legal"; Switch(Csvm); });
-            EventBus.RegisterHandler("NextToCollaboratorServicesFromIndividual", () => { Csvm.CameFrom = "Individual"; Switch(Csvm); });
+            EventBus.RegisterHandler("NextToCollaboratorServicesFromLegal", () => { _selectedCollaboratorType = "Legal"; Csvm.CameFrom = "Legal"; Switch(Csvm); });
+            EventBus.RegisterHandler("NextToCollaboratorServicesFromIndividual", () => { _selectedCollaboratorType = "Individual"; Csvm.CameFrom = "Individual"; Switch(Csvm); });
             EventBus.RegisterHandler("BackToCollaboratorInformations", type =>
             {
                 if (type.ToString() == "Legal")
@@ -52,6 +61,19 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             EventBus.RegisterHandler("NextToCollaboratorImages", () => Switch(Civm));
             EventBus.RegisterHandler("BackToCollaboratorImages", () => Switch(Civm));
             EventBus.RegisterHandler("NextToCollaboratorHalls", () => Switch(Chvm));
+            EventBus.RegisterHandler("SaveCollaborator", SaveCollaborator);
+        }
+
+        private void SaveCollaborator()
+        {
+            var collaborator = _selectedCollaboratorType == "Legal" ? Lcivm.Collaborator : Icivm.Collaborator;
+            collaborator.CollaboratorServiceBook = Csvm.CollaboratorServiceBook;
+            collaborator.Images = Civm.Images.ToList();
+            collaborator.CelebrationHalls = Chvm.CelebrationHalls;
+
+            _context.Add(collaborator);
+            _context.SaveChanges();
+            EventBus.FireEvent("BackToCollaboratorsTable");
         }
     }
 }

@@ -1,8 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Cellebrations;
 using Organizator_Proslava.Model.Collaborators;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,30 +50,13 @@ namespace Organizator_Proslava.Data
             optionsBuilder.UseMySql(connectionString, b => b.MigrationsAssembly("Organizator Proslava"));
         }
 
-        public override int SaveChanges()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            UpdateSoftDeleteStatuses();
-            return base.SaveChanges();
-        }
-
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            UpdateSoftDeleteStatuses();
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
-        private void UpdateSoftDeleteStatuses()
-        {
-            foreach (var entry in ChangeTracker.Entries())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.CurrentValues["IsActive"] = false;
-                        break;
-                }
-            }
+            modelBuilder.Entity<Collaborator>().Property(c => c.Images)
+                .HasConversion(
+                    list => JsonSerializer.Serialize(list, default),
+                    list => JsonSerializer.Deserialize<List<string>>(list, default)
+                );
         }
     }
 }

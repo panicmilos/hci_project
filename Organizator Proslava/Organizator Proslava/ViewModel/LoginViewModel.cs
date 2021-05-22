@@ -72,7 +72,7 @@ namespace Organizator_Proslava.ViewModel
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
             Cfvm = new RelayCommand(() => EventBus.FireEvent("Cfvm")); // Delete Later
             DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
-            Colabs = new RelayCommand(() => EventBus.FireEvent("Colabs")); // Delete Later
+            Colabs = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorsTable")); // Delete Later
 
             Map = new RelayCommand(() =>
             {

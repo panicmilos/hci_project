@@ -90,7 +90,7 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CollaboratorId")
+                    b.Property<Guid>("CollaboratorId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -178,7 +178,7 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CollaboratorServiceBookId")
+                    b.Property<Guid>("CollaboratorServiceBookId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -209,6 +209,9 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("CollaboratorId")
+                        .HasColumnType("char(36)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -222,6 +225,9 @@ namespace Organizator_Proslava.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CollaboratorId")
+                        .IsUnique();
 
                     b.ToTable("CollaboratorServiceBooks");
                 });
@@ -250,16 +256,14 @@ namespace Organizator_Proslava.Migrations
                     b.Property<Guid?>("AddressId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CollaboratorServiceBookId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("Images")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("Collaborator_PhoneNumber")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("CollaboratorServiceBookId");
 
                     b.HasDiscriminator().HasValue("Collaborator");
                 });
@@ -355,9 +359,11 @@ namespace Organizator_Proslava.Migrations
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", null)
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
                         .WithMany("CelebrationHalls")
-                        .HasForeignKey("CollaboratorId");
+                        .HasForeignKey("CollaboratorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity", b =>
@@ -369,9 +375,20 @@ namespace Organizator_Proslava.Migrations
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.CollaboratorService", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", null)
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", "CollaboratorServiceBook")
                         .WithMany("Services")
-                        .HasForeignKey("CollaboratorServiceBookId");
+                        .HasForeignKey("CollaboratorServiceBookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
+                        .WithOne("CollaboratorServiceBook")
+                        .HasForeignKey("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", "CollaboratorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.Collaborator", b =>
@@ -379,10 +396,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasOne("Organizator_Proslava.Model.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
-
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", "CollaboratorServiceBook")
-                        .WithMany()
-                        .HasForeignKey("CollaboratorServiceBookId");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Organizer", b =>
