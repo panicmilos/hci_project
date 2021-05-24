@@ -39,6 +39,10 @@
         <v:CollaboratorsTableView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:CreateOrganizerViewModel}">
+        <v:CreateOrganizerView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type cfvm:CollaboratorFormViewModel}">
         <cfv:CollaboratorFormView />
     </DataTemplate>
@@ -98,4 +102,5 @@
     <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
         <dfv:DemoView />
     </DataTemplate>
+
 </ResourceDictionary>

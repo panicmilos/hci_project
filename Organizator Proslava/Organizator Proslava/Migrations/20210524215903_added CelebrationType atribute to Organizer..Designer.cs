@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210524215903_added CelebrationType atribute to Organizer.")]
+    partial class addedCelebrationTypeatributetoOrganizer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,7 +278,7 @@ namespace Organizator_Proslava.Migrations
                         .HasColumnName("Organizer_AddressId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CellebrationTypeId")
+                    b.Property<Guid?>("CelebrationTypeId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("JMBG")
@@ -293,7 +295,7 @@ namespace Organizator_Proslava.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("CellebrationTypeId");
+                    b.HasIndex("CelebrationTypeId");
 
                     b.HasDiscriminator().HasValue("Organizer");
                 });
@@ -409,9 +411,9 @@ namespace Organizator_Proslava.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CellebrationType")
+                    b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CelebrationType")
                         .WithMany()
-                        .HasForeignKey("CellebrationTypeId");
+                        .HasForeignKey("CelebrationTypeId");
                 });
 #pragma warning restore 612, 618
         }
