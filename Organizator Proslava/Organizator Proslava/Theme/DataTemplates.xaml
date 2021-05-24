@@ -104,4 +104,8 @@
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestFormViewModel}">
         <crfv:CelebrationRequestFormView />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:CelebrationRequestInfoViewModel}">
+        <crfv:CelebrationRequestInfoView />
+    </DataTemplate>
 </ResourceDictionary>

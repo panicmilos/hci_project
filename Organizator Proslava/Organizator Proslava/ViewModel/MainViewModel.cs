@@ -41,7 +41,7 @@ namespace Organizator_Proslava.ViewModel
             Ctvm = ctvm;
             Crfvm = crfvm;
 
-            CurrentViewModel = Lvm;
+            CurrentViewModel = Crfvm;
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
             EventBus.RegisterHandler("OrganizerLogin", () => CurrentViewModel = Ohvm);
