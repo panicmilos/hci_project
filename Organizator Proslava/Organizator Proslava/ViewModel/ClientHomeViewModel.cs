@@ -13,6 +13,7 @@ namespace Organizator_Proslava.ViewModel
     {
         public ICommand Cancel { get; set; }
         public ICommand Back { get; set; }
+        public ICommand Add { get; set; }
         
         public IEnumerable<Celebration> Celebrations { get; set; } = new List<Celebration>
         {
@@ -36,6 +37,7 @@ namespace Organizator_Proslava.ViewModel
                         "Da li ste sigurni da želite da otkažete proslavu?")));
             
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+            Add = new RelayCommand(() => EventBus.FireEvent("NextToCreateCelebrationRequest"));
         }
     }
 }
