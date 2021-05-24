@@ -47,7 +47,7 @@ namespace Organizator_Proslava.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = $"server=bjelicaluka.com;port=3310;database=hci;user=root;password=1234";
-            optionsBuilder.UseMySql(connectionString, b => b.MigrationsAssembly("Organizator Proslava"));
+            optionsBuilder.UseLazyLoadingProxies().UseMySql(connectionString, b => b.MigrationsAssembly("Organizator Proslava"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

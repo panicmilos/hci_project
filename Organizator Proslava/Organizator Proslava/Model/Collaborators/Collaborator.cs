@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model.Collaborators
 {
-    public class Collaborator : BaseUser
+    public abstract class Collaborator : BaseUser, ICloneable<Collaborator>
     {
         private string _phoneNumber;
         public string PhoneNumber { get => _phoneNumber; set => OnPropertyChanged(ref _phoneNumber, value); }
@@ -19,5 +19,7 @@ namespace Organizator_Proslava.Model.Collaborators
 
         private List<string> _images;
         public virtual List<string> Images { get { return _images; } set { _images = value; OnPropertyChanged("Images"); } }
+
+        public abstract Collaborator Clone();
     }
 }

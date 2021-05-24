@@ -12,6 +12,6 @@
         public string PhoneNumber { get => _phoneNumber; set => OnPropertyChanged(ref _phoneNumber, value); }
 
         private Address _address;
-        public Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
+        public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
     }
 }

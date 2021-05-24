@@ -1,5 +1,4 @@
 ﻿using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
 
 namespace Organizator_Proslava.ViewModel
@@ -16,7 +15,6 @@ namespace Organizator_Proslava.ViewModel
         public OrganizerHomeViewModel Ohvm { get; set; }
 
         public AdminHomeViewModel Ahvm { get; set; }
-        public CollaboratorFormViewModel Cfvm { get; set; }
         public CollaboratorsTableViewModel Ctvm { get; set; }
 
         public MainViewModel(
@@ -25,7 +23,6 @@ namespace Organizator_Proslava.ViewModel
             ClientHomeViewModel chvm,
             OrganizerHomeViewModel ohvm,
             AdminHomeViewModel ahvm,
-            CollaboratorFormViewModel cfvm,
             CollaboratorsTableViewModel ctvm)
         {
             Lvm = lvm;
@@ -33,19 +30,19 @@ namespace Organizator_Proslava.ViewModel
             Chvm = chvm;
             Ohvm = ohvm;
             Ahvm = ahvm;
-            Cfvm = cfvm;
             Ctvm = ctvm;
 
             CurrentViewModel = Lvm;
+            EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
+
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
             EventBus.RegisterHandler("OrganizerLogin", () => CurrentViewModel = Ohvm);
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
-            EventBus.RegisterHandler("Cfvm", () => CurrentViewModel = cfvm); // Delete Later
             EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
-            EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
 
+            EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
             EventBus.RegisterHandler("BackToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
         }
     }

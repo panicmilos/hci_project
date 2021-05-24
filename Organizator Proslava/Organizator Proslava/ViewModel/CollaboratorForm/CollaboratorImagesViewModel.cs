@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -70,6 +72,18 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                     MainImage = Images[0];
                 }
             }
+        }
+
+        public void ForAdd()
+        {
+            Images = new ObservableCollection<string>() { ImagePlaceholderFileName };
+            MainImage = ImagePlaceholderFileName;
+        }
+
+        public void ForUpdate(Collaborator collaborator)
+        {
+            Images = new ObservableCollection<string>(collaborator.Images);
+            MainImage = collaborator.Images.Any() ? collaborator.Images[0] : ImagePlaceholderFileName;
         }
     }
 }

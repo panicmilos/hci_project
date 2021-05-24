@@ -16,8 +16,9 @@ namespace Organizator_Proslava.Ninject
             Bind(typeof(IClientService)).To(typeof(ClientService));
             Bind(typeof(ICelebrationTypeService)).To(typeof(CelebrationTypeService));
             Bind(typeof(IDialogService)).To(typeof(DialogService));
+            Bind(typeof(ICollaboratorService)).To(typeof(CollaboratorCrudService));
 
-            Bind<DatabaseContext>().To<DatabaseContext>();
+            Bind<DatabaseContext>().To<DatabaseContext>().InSingletonScope();
 
             Bind<LoginViewModel>().To<LoginViewModel>();
             Bind<RegisterViewModel>().To<RegisterViewModel>();

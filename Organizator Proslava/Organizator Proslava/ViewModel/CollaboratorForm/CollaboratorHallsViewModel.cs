@@ -1,11 +1,10 @@
-﻿using Organizator_Proslava.Data;
-using Organizator_Proslava.Dialogs;
+﻿using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -19,7 +18,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         public ObservableCollection<CelebrationHall> Halls { get; set; }
 
-        private IDialogService _dialogService;
+        private readonly IDialogService _dialogService;
 
         public ICommand Back { get; set; }
         public ICommand Save { get; set; }
@@ -28,24 +27,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
 
-        public CollaboratorHallsViewModel(IDialogService dialogService, DatabaseContext context)
+        public CollaboratorHallsViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
 
-            CelebrationHalls = new List<CelebrationHall>()
-            {
-                new CelebrationHall
-                {
-                    Name = "Sala 1",
-                    NumberOfGuests = 40
-                },
-                new CelebrationHall
-                {
-                    Name = "Sala 2",
-                    NumberOfGuests = 20
-                }
-            };
-
+            CelebrationHalls = new List<CelebrationHall>();
             Halls = new ObservableCollection<CelebrationHall>(_cellbrationHalls);
 
             Add = new RelayCommand(() =>
@@ -60,7 +46,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Edit = new RelayCommand<CelebrationHall>(hall =>
             {
-                var hallCopy = hall.Copy();
+                var hallCopy = hall.Clone();
                 var editedHall = dialogService.OpenDialog(new SpaceModelingViewModel(new SpaceViewModel(hallCopy)));
 
                 if (editedHall != null)
@@ -86,6 +72,32 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
                 {
                     EventBus.FireEvent("SaveCollaborator");
+                }
+            });
+        }
+
+        public void ForAdd()
+        {
+            CelebrationHalls = new List<CelebrationHall>();
+            Halls = new ObservableCollection<CelebrationHall>();
+            Save = new RelayCommand(() =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
+                {
+                    EventBus.FireEvent("AddCollaborator");
+                }
+            });
+        }
+
+        public void ForUpdate(Collaborator collaborator)
+        {
+            CelebrationHalls = collaborator.CelebrationHalls;
+            Halls = new ObservableCollection<CelebrationHall>(collaborator.CelebrationHalls);
+            Save = new RelayCommand(() =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da izmeniti ovog saradnika?")) == DialogResults.Yes)
+                {
+                    EventBus.FireEvent("UpdateCollaborator");
                 }
             });
         }

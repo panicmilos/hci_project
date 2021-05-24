@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Organizator_Proslava.Dialogs.Alert;
+﻿using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
@@ -18,7 +17,6 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Register { get; set; }
         public ICommand Map { get; set; }
         public ICommand Isvm { get; set; }
-        public ICommand Cfvm { get; set; }
         public ICommand DEMO { get; set; }
         public ICommand Colabs { get; set; }
 
@@ -70,7 +68,6 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            Cfvm = new RelayCommand(() => EventBus.FireEvent("Cfvm")); // Delete Later
             DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
             Colabs = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorsTable")); // Delete Later
 

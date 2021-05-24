@@ -10,8 +10,8 @@ namespace Organizator_Proslava.Services.Implementations
 {
     public class CrudService<T> : ICrudService<T> where T : BaseObservableEntity
     {
-        protected readonly DatabaseContext _context;
-        protected readonly DbSet<T> _entities;
+        protected DatabaseContext _context;
+        protected DbSet<T> _entities;
 
         public CrudService(DatabaseContext context)
         {
@@ -27,17 +27,17 @@ namespace Organizator_Proslava.Services.Implementations
             return entity;
         }
 
-        public IEnumerable<T> Read()
+        public virtual IEnumerable<T> Read()
         {
-            return _entities.Where(entity => entity.IsActive);
+            return _entities.ToList();
         }
 
-        public T Read(Guid id)
+        public virtual T Read(Guid id)
         {
-            return _entities.FirstOrDefault(e => e.Id == id && e.IsActive);
+            return _entities.FirstOrDefault(e => e.Id == id);
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             var entityForUpdate = Read(entity.Id);
             if (entityForUpdate != null)
@@ -49,7 +49,7 @@ namespace Organizator_Proslava.Services.Implementations
             return entityForUpdate;
         }
 
-        public T Delete(Guid id)
+        public virtual T Delete(Guid id)
         {
             var entityForDeletion = Read(id);
             if (entityForDeletion != null)
