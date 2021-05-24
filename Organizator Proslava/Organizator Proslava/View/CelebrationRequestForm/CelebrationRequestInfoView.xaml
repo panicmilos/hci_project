@@ -40,14 +40,14 @@
 
                 <TextBox Grid.Column="0"
                          IsReadOnly="True"
-                         Text="{Binding Path=Celebration.Organizer.FullName, Mode=TwoWay}"
+                         Text="{Binding Path=Celebration.Organizer.FullName, Mode=OneWay}"
                          Style="{StaticResource disabledRegisterFormTextBox}"
                          Margin="10, 0, -20, 0" />
 
                 <Button Grid.Column="1"
                         HorizontalAlignment="Right"
                         Content="Izaberi"
-                        Command="{Binding OpenMap}"
+                        Command="{Binding OpenOrganizersDialog}"
                         Style="{StaticResource mapDialogButton}"
                         Background="{StaticResource Ming}" 
                         Margin="0, 2, 0, 0"/>

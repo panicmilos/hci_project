@@ -226,6 +226,10 @@
       <DependentUpon>SpaceModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml.cs">
+      <DependentUpon>ChooseOrganizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -387,6 +391,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml" />
     <Page Include="Dialogs\Map\MapDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

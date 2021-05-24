@@ -108,4 +108,8 @@
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestInfoViewModel}">
         <crfv:CelebrationRequestInfoView />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:ChooseOrganizerViewModel}">
+        <crfv:ChooseOrganizerView />
+    </DataTemplate>
 </ResourceDictionary>
