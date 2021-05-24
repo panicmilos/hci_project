@@ -50,7 +50,8 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("Cfvm", () => CurrentViewModel = cfvm); // Delete Later
             EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
             EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
-            EventBus.RegisterHandler("NextToCreateCelebrationRequest", () => CurrentViewModel = Crfvm); // Delete Later
+            EventBus.RegisterHandler("NextToCreateCelebrationRequest", () => CurrentViewModel = Crfvm);
+            EventBus.RegisterHandler("BackToClientPage", () => CurrentViewModel = Chvm);
 
             EventBus.RegisterHandler("BackToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
         }

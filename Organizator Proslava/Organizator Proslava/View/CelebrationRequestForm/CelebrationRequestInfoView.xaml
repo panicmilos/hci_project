@@ -27,7 +27,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
                 <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
-                <TextBox Text="{Binding Path=Collaborator.LastName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Text="{Binding Path=Celebration.Type, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
         </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="2">
@@ -40,7 +40,7 @@
 
                 <TextBox Grid.Column="0"
                          IsReadOnly="True"
-                         Text="{Binding Path=Collaborator.Address.WholeAddress, Mode=TwoWay}"
+                         Text="{Binding Path=Celebration.Organizer.FullName, Mode=TwoWay}"
                          Style="{StaticResource disabledRegisterFormTextBox}"
                          Margin="10, 0, -20, 0" />
 
@@ -64,7 +64,7 @@
 
                 <TextBox Grid.Column="0"
                          IsReadOnly="True"
-                         Text="{Binding Path=Collaborator.Address.WholeAddress, Mode=TwoWay}"
+                         Text="{Binding Path=Celebration.Address.WholeAddress, Mode=TwoWay}"
                          Style="{StaticResource disabledRegisterFormTextBox}"
                          Margin="10, 0, -20, 0" />
 
@@ -90,8 +90,6 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                
-                
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Datum i vreme od" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit 
@@ -100,7 +98,8 @@
                     CustomPattern="dd.MM.yyyy hh:mm"
                     Pattern="CustomPattern" 
                     DropDownView="Combined" 
-                    x:Name="DateTimeFrom" 
+                    x:Name="DateTimeFrom"
+                    DateTime="{Binding Path=Celebration.DateTimeFrom, Mode=TwoWay}"
                     VerticalAlignment="Center" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
@@ -110,14 +109,15 @@
                     CustomPattern="dd.MM.yyyy hh:mm"
                     Pattern="CustomPattern" 
                     DropDownView="Combined" 
-                    x:Name="DateTimeTo" 
+                    x:Name="DateTimeTo"
+                    DateTime="{Binding Path=Celebration.DateTimeTo, Mode=TwoWay}"
                     VerticalAlignment="Center" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5">
             <Label  Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Collaborator.PhoneNumber, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox Text="{Binding Path=Celebration.ExpectedNumberOfGuests, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
         </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="6">
@@ -140,12 +140,15 @@
                 <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
                 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Collaborator.PersonalId, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Celebration.BudgetFrom, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="1" Content="Do" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Collaborator.JMBG, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Celebration.BudgetTo, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
                 
-                <CheckBox Grid.Column="4" Grid.Row="1">
+                <CheckBox 
+                    Grid.Column="4" 
+                    Grid.Row="1"
+                    IsChecked="{Binding Path=Celebration.IsBudgetFixed, Mode=TwoWay}">
                     <TextBlock Style="{StaticResource RegisterFormTextBlock}">
                         Fiksan
                     </TextBlock>

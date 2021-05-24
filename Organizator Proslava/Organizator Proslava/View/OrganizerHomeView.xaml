@@ -38,7 +38,7 @@
                 <DataGridTextColumn 
                     Header="Datum i vreme" 
                     Width="*" 
-                    Binding="{Binding Path=DateTime}"
+                    Binding="{Binding Path=DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>

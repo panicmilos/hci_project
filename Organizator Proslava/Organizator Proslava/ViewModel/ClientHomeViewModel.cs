@@ -25,7 +25,7 @@ namespace Organizator_Proslava.ViewModel
                     FirstName = "Milan",
                     LastName = "Susic"
                 },
-                DateTime = DateTime.Now
+                DateTimeFrom = DateTime.Now
             }
         };
         
