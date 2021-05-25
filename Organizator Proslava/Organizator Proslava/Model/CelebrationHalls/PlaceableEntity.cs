@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Organizator_Proslava.Model.CelebrationHalls
 {
-    public class PlaceableEntity : BaseObservableEntity
+    public abstract class PlaceableEntity : BaseObservableEntity, ICloneable<PlaceableEntity>
     {
         [NotMapped]
         public virtual string ImageName { get; }
@@ -18,5 +19,9 @@ namespace Organizator_Proslava.Model.CelebrationHalls
 
         private bool _movable = true;
         public bool Movable { get => _movable; set => OnPropertyChanged(ref _movable, value); }
+
+        public Guid CelebrationHallId { get; set; }
+
+        public abstract PlaceableEntity Clone();
     }
 }

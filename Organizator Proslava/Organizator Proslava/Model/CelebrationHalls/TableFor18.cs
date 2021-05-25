@@ -6,5 +6,21 @@ namespace Organizator_Proslava.Model.CelebrationHalls
     {
         [NotMapped]
         public override string ImageName { get => "18people.png"; }
+
+        public override PlaceableEntity Clone()
+        {
+            return new TableFor18
+            {
+                Id = Id,
+                IsActive = IsActive,
+                CreatedAt = CreatedAt,
+                CelebrationHallId = CelebrationHallId,
+                Movable = Movable,
+                PositionX = PositionX,
+                PositionY = PositionY,
+                Seats = Seats,
+                Type = Type
+            };
+        }
     }
 }

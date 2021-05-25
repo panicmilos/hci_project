@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.Input.Toolkit, Version=6.0.90.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetProjects.WpfToolkit.Input.6.0.90\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
     </Reference>
@@ -71,6 +74,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.14.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.14\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Proxies, Version=3.1.14.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Proxies.3.1.14\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Proxies.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.14.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.14\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -142,6 +148,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
@@ -254,6 +261,26 @@
     <Compile Include="Migrations\20210522001901_new initial migrations.designer.cs">
       <DependentUpon>20210522001901_new initial migrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210523224722_added celebrationType to Organizer..cs" />
+    <Compile Include="Migrations\20210523224722_added celebrationType to Organizer..designer.cs">
+      <DependentUpon>20210523224722_added celebrationType to Organizer..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210524215903_added CelebrationType atribute to Organizer..cs" />
+    <Compile Include="Migrations\20210524215903_added CelebrationType atribute to Organizer..designer.cs">
+      <DependentUpon>20210524215903_added CelebrationType atribute to Organizer..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..cs" />
+    <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..designer.cs">
+      <DependentUpon>20210524225011_changed name of atribute in Organizer..cs</DependentUpon>
+     </Compile>
+    <Compile Include="Migrations\20210524174857_test.cs" />
+    <Compile Include="Migrations\20210524174857_test.designer.cs">
+      <DependentUpon>20210524174857_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210524181257_test2.cs" />
+    <Compile Include="Migrations\20210524181257_test2.designer.cs">
+      <DependentUpon>20210524181257_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -275,6 +302,7 @@
     <Compile Include="Model\DTO\AddPlaceableEntityDTO.cs" />
     <Compile Include="Model\Collaborators\IndividualCollaborator.cs" />
     <Compile Include="Model\Collaborators\LegalCollaborator.cs" />
+    <Compile Include="Model\ICloneable.cs" />
     <Compile Include="Model\Organizer.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\BaseUser.cs" />
@@ -283,13 +311,16 @@
     <Compile Include="Ninject\ServiceModule.cs" />
     <Compile Include="Services\Contracts\IClientService.cs" />
     <Compile Include="Services\Contracts\ICelebrationTypeService.cs" />
+    <Compile Include="Services\Contracts\ICollaboratorService.cs" />
     <Compile Include="Services\Contracts\ICrudService.cs" />
+    <Compile Include="Services\Contracts\IOrganizerService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
     <Compile Include="Services\Implementations\ClientService.cs" />
+    <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
     <Compile Include="Services\Implementations\CrudService.cs" />
+    <Compile Include="Services\Implementations\OrganizerService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
-    <Compile Include="Utility\Extensions.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
     <Compile Include="Utility\NavigabileModelView.cs" />
@@ -307,6 +338,7 @@
     <Compile Include="ViewModel\AdminHomeViewModel.cs" />
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorsTableViewModel.cs" />
+    <Compile Include="ViewModel\CreateOrganizerViewModel.cs" />
     <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -354,6 +386,9 @@
     </Compile>
     <Compile Include="View\DemoForm\DemoView.xaml.cs">
       <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateOrganizerView.xaml.cs">
+      <DependentUpon>CreateOrganizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -489,6 +524,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DemoForm\DemoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateOrganizerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

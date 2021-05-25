@@ -18,10 +18,10 @@ namespace Organizator_Proslava.View
     /// </summary>
     public partial class Space : UserControl
     {
-        private SpaceViewModel spaceViewModel { get => DataContext as SpaceViewModel; }
-        private IList<Image> _images;
+        private SpaceViewModel SpaceViewModel { get => DataContext as SpaceViewModel; }
+        private readonly IList<Image> _images;
 
-        private IDialogService _dialogService;
+        private readonly IDialogService _dialogService;
         private Dictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
 
         public Space()
@@ -38,6 +38,7 @@ namespace Organizator_Proslava.View
                 AddBindings(placeableEntity, image);
                 _imageWithPlaceableEntities.Add(image, placeableEntity);
             }
+
             GlobalStore.RemoveObject("placeableEntities");
         }
 
@@ -61,7 +62,7 @@ namespace Organizator_Proslava.View
 
             AddBindings(tableFor6, image);
             _imageWithPlaceableEntities.Add(image, tableFor6);
-            spaceViewModel.Add.Execute(tableFor6);
+            SpaceViewModel.Add.Execute(tableFor6);
         }
 
         private void People18_Click(object sender, RoutedEventArgs e)
@@ -84,7 +85,7 @@ namespace Organizator_Proslava.View
 
             AddBindings(tableFor18, image);
             _imageWithPlaceableEntities.Add(image, tableFor18);
-            spaceViewModel.Add.Execute(tableFor18);
+            SpaceViewModel.Add.Execute(tableFor18);
         }
 
         private void Music_Click(object sender, RoutedEventArgs e)
@@ -107,7 +108,7 @@ namespace Organizator_Proslava.View
 
             AddBindings(music, image);
             _imageWithPlaceableEntities.Add(image, music);
-            spaceViewModel.Add.Execute(music);
+            SpaceViewModel.Add.Execute(music);
         }
 
         private void Empty_Click(object sender, RoutedEventArgs e)
@@ -130,7 +131,7 @@ namespace Organizator_Proslava.View
 
             AddBindings(servingTable, image);
             _imageWithPlaceableEntities.Add(image, servingTable);
-            spaceViewModel.Add.Execute(servingTable);
+            SpaceViewModel.Add.Execute(servingTable);
         }
 
         private void AddBindings(PlaceableEntity placeableEntity, Image image)
@@ -184,7 +185,7 @@ namespace Organizator_Proslava.View
             {
                 if (_imageWithPlaceableEntities[image] is DinningTable dinningTable)
                 {
-                    var dinningTableCopy = dinningTable.Copy();
+                    var dinningTableCopy = dinningTable.Clone() as DinningTable;
                     var editedDinningTable = _dialogService.OpenDialog(new DinningTableDialogViewModel(dinningTableCopy, true));
                     if (editedDinningTable != null)
                     {
@@ -196,7 +197,7 @@ namespace Organizator_Proslava.View
                 {
                     var nonDinngingTable = _imageWithPlaceableEntities[image];
 
-                    var nonDinngingTableCopy = nonDinngingTable.Copy();
+                    var nonDinngingTableCopy = nonDinngingTable.Clone();
                     var editedNonDinngingTableCopy = _dialogService.OpenDialog(new NonDinningTableDialogViewModel(nonDinngingTableCopy, true));
                     if (editedNonDinngingTableCopy != null)
                     {
@@ -214,7 +215,7 @@ namespace Organizator_Proslava.View
             {
                 var index = _images.IndexOf(image);
                 _images.RemoveAt(index);
-                spaceViewModel.Remove.Execute(index);
+                SpaceViewModel.Remove.Execute(index);
                 _imageWithPlaceableEntities.Remove(image);
                 MainCanvas.Children.Remove(image);
             };

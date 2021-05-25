@@ -1,6 +1,9 @@
-﻿using Organizator_Proslava.Data;
+﻿using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -15,7 +18,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public CollaboratorHallsViewModel Chvm { get; set; }
 
         private string _selectedCollaboratorType;
-        private DatabaseContext _context;
+
+        private readonly ICollaboratorService _collaboratorService;
 
         public CollaboratorFormViewModel(
             SelectCollaboratorTypeViewModal sctvm,
@@ -24,7 +28,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             CollaboratorServicesViewModel csvm,
             CollaboratorImagesViewModel civm,
             CollaboratorHallsViewModel chvm,
-            DatabaseContext context)
+            ICollaboratorService collaboratorService)
         {
             Sctvm = sctvm;
             Icivm = icivm;
@@ -32,7 +36,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Csvm = csvm;
             Civm = civm;
             Chvm = chvm;
-            _context = context;
+            _collaboratorService = collaboratorService;
 
             Switch(sctvm);
 
@@ -61,19 +65,88 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             EventBus.RegisterHandler("NextToCollaboratorImages", () => Switch(Civm));
             EventBus.RegisterHandler("BackToCollaboratorImages", () => Switch(Civm));
             EventBus.RegisterHandler("NextToCollaboratorHalls", () => Switch(Chvm));
-            EventBus.RegisterHandler("SaveCollaborator", SaveCollaborator);
+
+            EventBus.RegisterHandler("CollaboratorFormForAdd", ForAdd);
+            EventBus.RegisterHandler("CollaboratorFormForUpdate", collaborator => ForUpdate(collaborator));
+            EventBus.RegisterHandler("AddCollaborator", AddCollaborator);
+            EventBus.RegisterHandler("UpdateCollaborator", UpdateCollaborator);
         }
 
-        private void SaveCollaborator()
+        public void ForAdd()
+        {
+            Switch(Sctvm);
+            Lcivm.ForAdd();
+            Icivm.ForAdd();
+            Csvm.ForAdd();
+            Civm.ForAdd();
+            Chvm.ForAdd();
+        }
+
+        public void ForUpdate(object collaboratorObject)
+        {
+            var collaborator = collaboratorObject as Collaborator;
+
+            var collaboratorCopy = collaborator.Clone();
+
+            if (collaboratorCopy is LegalCollaborator)
+            {
+                Switch(Lcivm);
+            }
+            else
+            {
+                Switch(Icivm);
+            }
+
+            Lcivm.ForUpdate(collaboratorCopy);
+            Icivm.ForUpdate(collaboratorCopy);
+            Csvm.ForUpdate(collaboratorCopy);
+            Civm.ForUpdate(collaboratorCopy);
+            Chvm.ForUpdate(collaboratorCopy);
+        }
+
+        private void AddCollaborator()
+        {
+            var collaborator = CollectCollaboratorInformations();
+            _collaboratorService.Create(collaborator);
+            EventBus.FireEvent("ReloadCollaboratorTable");
+            EventBus.FireEvent("BackToCollaboratorsTable");
+        }
+
+        private void UpdateCollaborator()
+        {
+            var collaborator = CollectCollaboratorInformations();
+            _collaboratorService.Update(collaborator);
+            EventBus.FireEvent("ReloadCollaboratorTable");
+            EventBus.FireEvent("BackToCollaboratorsTable");
+        }
+
+        private Collaborator CollectCollaboratorInformations()
         {
             var collaborator = _selectedCollaboratorType == "Legal" ? Lcivm.Collaborator : Icivm.Collaborator;
             collaborator.CollaboratorServiceBook = Csvm.CollaboratorServiceBook;
-            collaborator.Images = Civm.Images.ToList();
             collaborator.CelebrationHalls = Chvm.CelebrationHalls;
 
-            _context.Add(collaborator);
-            _context.SaveChanges();
-            EventBus.FireEvent("BackToCollaboratorsTable");
+            var newImagePaths = new List<string>();
+            foreach (var imagePath in Civm.Images.ToList())
+            {
+                if (!Directory.Exists(".\\images"))
+                {
+                    Directory.CreateDirectory(".\\images");
+                }
+                if (!imagePath.StartsWith("pack://siteoforigin:,,,"))
+                {
+                    var newImagePath = "./images/" + Guid.NewGuid() + Path.GetExtension(imagePath);
+                    File.Copy(imagePath, newImagePath);
+                    newImagePaths.Add("pack://siteoforigin:,,," + newImagePath.Substring(1));
+                }
+                else
+                {
+                    newImagePaths.Add(imagePath);
+                }
+            }
+            collaborator.Images = newImagePaths;
+
+            return collaborator;
         }
     }
 }
