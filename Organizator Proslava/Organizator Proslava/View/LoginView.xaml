@@ -38,6 +38,7 @@
                 <Button Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding DEMO}" Content="DEMO" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Colabs}" Content="Colabs" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Covm}" Content="New organizer" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </WrapPanel>
         </Grid>
 

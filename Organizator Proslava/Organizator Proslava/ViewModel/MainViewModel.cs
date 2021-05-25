@@ -16,6 +16,7 @@ namespace Organizator_Proslava.ViewModel
 
         public AdminHomeViewModel Ahvm { get; set; }
         public CollaboratorsTableViewModel Ctvm { get; set; }
+        public CreateOrganizerViewModel Covm { get; set; }
 
         public MainViewModel(
             LoginViewModel lvm,
@@ -23,6 +24,8 @@ namespace Organizator_Proslava.ViewModel
             ClientHomeViewModel chvm,
             OrganizerHomeViewModel ohvm,
             AdminHomeViewModel ahvm,
+            CollaboratorsTableViewModel ctvm, 
+            CreateOrganizerViewModel covm,
             CollaboratorsTableViewModel ctvm)
         {
             Lvm = lvm;
@@ -31,6 +34,7 @@ namespace Organizator_Proslava.ViewModel
             Ohvm = ohvm;
             Ahvm = ahvm;
             Ctvm = ctvm;
+            Covm = covm;
 
             CurrentViewModel = Lvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
@@ -44,6 +48,7 @@ namespace Organizator_Proslava.ViewModel
 
             EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
             EventBus.RegisterHandler("BackToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
+            EventBus.RegisterHandler("CreateOrganizer", () => CurrentViewModel = covm); // Delete later
         }
     }
 }

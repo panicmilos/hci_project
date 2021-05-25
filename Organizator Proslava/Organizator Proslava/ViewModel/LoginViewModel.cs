@@ -19,6 +19,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Isvm { get; set; }
         public ICommand DEMO { get; set; }
         public ICommand Colabs { get; set; }
+        public ICommand Covm { get; set; }
 
         public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
         {
@@ -70,6 +71,7 @@ namespace Organizator_Proslava.ViewModel
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
             DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
             Colabs = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorsTable")); // Delete Later
+            Covm = new RelayCommand(() => EventBus.FireEvent("CreateOrganizer")); // Delete later
 
             Map = new RelayCommand(() =>
             {

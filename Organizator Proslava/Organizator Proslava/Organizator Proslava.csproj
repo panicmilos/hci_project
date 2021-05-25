@@ -249,6 +249,18 @@
     <Compile Include="Migrations\20210522001901_new initial migrations.designer.cs">
       <DependentUpon>20210522001901_new initial migrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210523224722_added celebrationType to Organizer..cs" />
+    <Compile Include="Migrations\20210523224722_added celebrationType to Organizer..designer.cs">
+      <DependentUpon>20210523224722_added celebrationType to Organizer..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210524215903_added CelebrationType atribute to Organizer..cs" />
+    <Compile Include="Migrations\20210524215903_added CelebrationType atribute to Organizer..designer.cs">
+      <DependentUpon>20210524215903_added CelebrationType atribute to Organizer..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..cs" />
+    <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..designer.cs">
+      <DependentUpon>20210524225011_changed name of atribute in Organizer..cs</DependentUpon>
+     </Compile>
     <Compile Include="Migrations\20210524174857_test.cs" />
     <Compile Include="Migrations\20210524174857_test.designer.cs">
       <DependentUpon>20210524174857_test.cs</DependentUpon>
@@ -289,11 +301,13 @@
     <Compile Include="Services\Contracts\ICelebrationTypeService.cs" />
     <Compile Include="Services\Contracts\ICollaboratorService.cs" />
     <Compile Include="Services\Contracts\ICrudService.cs" />
+    <Compile Include="Services\Contracts\IOrganizerService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
     <Compile Include="Services\Implementations\ClientService.cs" />
     <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
     <Compile Include="Services\Implementations\CrudService.cs" />
+    <Compile Include="Services\Implementations\OrganizerService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
@@ -310,6 +324,7 @@
     <Compile Include="ViewModel\AdminHomeViewModel.cs" />
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorsTableViewModel.cs" />
+    <Compile Include="ViewModel\CreateOrganizerViewModel.cs" />
     <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -351,6 +366,9 @@
     </Compile>
     <Compile Include="View\DemoForm\DemoView.xaml.cs">
       <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateOrganizerView.xaml.cs">
+      <DependentUpon>CreateOrganizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -482,6 +500,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DemoForm\DemoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateOrganizerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
