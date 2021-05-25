@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:Organizator_Proslava.ViewModel"
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
+                    xmlns:crfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationRequestForm"
+                    xmlns:crfv="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
@@ -102,5 +104,16 @@
     <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
         <dfv:DemoView />
     </DataTemplate>
-
+    
+    <DataTemplate DataType="{x:Type crfvm:CelebrationRequestFormViewModel}">
+        <crfv:CelebrationRequestFormView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:CelebrationRequestInfoViewModel}">
+        <crfv:CelebrationRequestInfoView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:ChooseOrganizerViewModel}">
+        <crfv:ChooseOrganizerView />
+    </DataTemplate>
 </ResourceDictionary>

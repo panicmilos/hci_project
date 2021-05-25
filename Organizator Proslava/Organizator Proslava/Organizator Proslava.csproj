@@ -129,6 +129,14 @@
     <Reference Include="Pomelo.JsonObject, Version=2.2.1.0, Culture=neutral, PublicKeyToken=2cc498582444921b, processorArchitecture=MSIL">
       <HintPath>..\packages\Pomelo.JsonObject.2.2.1\lib\netstandard2.0\Pomelo.JsonObject.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.64, Culture=neutral, PublicKeyToken=632609b4d040f6b4">
+      <HintPath>..\packages\Syncfusion.Licensing.19.1.0.64\lib\net46\Syncfusion.Licensing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Wpf, Version=19.1460.0.64, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.19.1.0.64\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -225,6 +233,10 @@
       <DependentUpon>SpaceModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml.cs">
+      <DependentUpon>ChooseOrganizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -314,6 +326,8 @@
     <Compile Include="Utility\NavigabileModelView.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -336,6 +350,12 @@
     </Compile>
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml.cs">
+      <DependentUpon>CelebrationRequestFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml.cs">
+      <DependentUpon>CelebrationRequestInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
@@ -406,6 +426,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml" />
     <Page Include="Dialogs\Map\MapDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -454,6 +475,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Theme\TextBlockStyles.xaml" />
     <Page Include="Theme\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,6 +485,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
+    <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -591,7 +615,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
