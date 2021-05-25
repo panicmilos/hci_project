@@ -43,10 +43,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.FirstName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.FirstName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.LastName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.LastName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -64,16 +64,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Broj lične karte" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.PersonalId, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.PersonalId, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="JMBG" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.JMBG, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.JMBG, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Organizer.PhoneNumber, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox Text="{Binding Path=Organizer.PhoneNumber, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="4">
@@ -90,7 +90,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.Address.WholeAddress, Mode=OneWayToSource}" Margin="10, 0, -18, 0" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.Address.WholeAddress, Mode=TwoWay}" Margin="10, 0, -18, 0" Style="{StaticResource registerFormTextBox}" />
 
                 <Button Grid.Column="2" Grid.Row="1" Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </Grid>
@@ -110,10 +110,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.UserName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.UserName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.MailAddress, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Organizer.MailAddress, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -131,7 +131,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.Password, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Organizer.Password, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
                 <TextBox Grid.Column="2" Grid.Row="1" Text="Ponovljena Šifra" Style="{StaticResource registerFormTextBox}" />
@@ -148,7 +148,7 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=Organizer.CellebrationType.Name, Mode=TwoWay}"
+                    Text="{Binding Path=celebrationType, Mode=TwoWay}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0">
             </controls:AutoCompleteBox>

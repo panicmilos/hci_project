@@ -7,6 +7,6 @@ namespace Organizator_Proslava.Services.Contracts
     public interface ICelebrationTypeService : ICrudService<CellebrationType>
     {
         IEnumerable<string> ReadNames();
-        CellebrationType GetCelebrationType(string name);
+        CellebrationType ReadByName(string name);
     }
 }

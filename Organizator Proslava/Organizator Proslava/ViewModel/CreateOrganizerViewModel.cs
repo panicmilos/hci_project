@@ -19,6 +19,7 @@ namespace Organizator_Proslava.ViewModel
     public class CreateOrganizerViewModel
     {
         public Organizer Organizer { get; set; }
+        public string celebrationType { get; set; }
         public ICommand Create { get; set; }
         public ICommand Back { get; set; }
         public ICommand Map { get; set; }
@@ -30,7 +31,7 @@ namespace Organizator_Proslava.ViewModel
 
         public CreateOrganizerViewModel(IOrganizerService organizerService, IDialogService dialogService, ICelebrationTypeService celebrationTypeService)
         {
-            Organizer = new Organizer()
+            Organizer = new Organizer
             {
                 Address = new Address(),
                 CellebrationType = new CellebrationType()
@@ -45,13 +46,12 @@ namespace Organizator_Proslava.ViewModel
                 var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da kreirate novog organizatora?"));
                 if (optionDialogResult == Dialogs.DialogResults.Yes)
                 {
-                    string celebrationName = o.CellebrationType.Name;
                     o.Role = Role.Organizer;
-                    //o.CellebrationType = _celebrationTypeService.GetCelebrationType(o.CellebrationType.Name);
+                    //o.CellebrationType = _celebrationTypeService.ReadByName(o.CellebrationType.Name);
                     o.CellebrationType = new CellebrationType
                         {
-                            Name = celebrationName
-                        };
+                            Name = celebrationType
+                    };
                     _organizerService.Create(o);
                     EventBus.FireEvent("BackToLogin");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
@@ -63,9 +63,7 @@ namespace Organizator_Proslava.ViewModel
             Map = new RelayCommand(() =>
             {
                 var result = new DialogService().OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
-                Organizer.Address.WholeAddress = result.WholeAddress;
-                Organizer.Address.Lat = result.Lat;
-                Organizer.Address.Lng = result.Lng;
+                Organizer.Address = result;
                 var chosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
                 new DialogService().OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
             }); // Delete Later

@@ -15,9 +15,9 @@ namespace Organizator_Proslava.Model
         public string PhoneNumber { get => _phoneNumber; set => OnPropertyChanged(ref _phoneNumber, value); }
 
         private Address _address;
-        public Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
+        public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
 
         private CellebrationType _cellebrationType;
-        public CellebrationType CellebrationType { get => _cellebrationType; set => OnPropertyChanged(ref _cellebrationType, value); }
+        public virtual CellebrationType CellebrationType { get => _cellebrationType; set => OnPropertyChanged(ref _cellebrationType, value); }
     }
 }

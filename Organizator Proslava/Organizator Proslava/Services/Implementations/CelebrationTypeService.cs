@@ -15,9 +15,9 @@ namespace Organizator_Proslava.Services.Implementations
         {
         }
 
-        public CellebrationType GetCelebrationType(string name)
+        public CellebrationType ReadByName(string name)
         {
-            var cellebrationType = Read().Where(type => type.Name == name).FirstOrDefault();
+            var cellebrationType = Read().FirstOrDefault(type => type.Name == name);
             return cellebrationType;
         }
 
