@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210524181257_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,9 +278,6 @@ namespace Organizator_Proslava.Migrations
                         .HasColumnName("Organizer_AddressId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CellebrationTypeId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("JMBG")
                         .HasColumnName("Organizer_JMBG")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -292,8 +291,6 @@ namespace Organizator_Proslava.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("CellebrationTypeId");
 
                     b.HasDiscriminator().HasValue("Organizer");
                 });
@@ -410,10 +407,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasOne("Organizator_Proslava.Model.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
-
-                    b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CellebrationType")
-                        .WithMany()
-                        .HasForeignKey("CellebrationTypeId");
                 });
 #pragma warning restore 612, 618
         }

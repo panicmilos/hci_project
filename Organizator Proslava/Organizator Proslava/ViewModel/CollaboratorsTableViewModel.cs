@@ -1,16 +1,11 @@
-﻿using Organizator_Proslava.Data;
-using Organizator_Proslava.Dialogs;
+﻿using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
-using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System;
-using System.Collections.Generic;
+using Organizator_Proslava.ViewModel.CollaboratorForm;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
@@ -26,70 +21,29 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
 
-        private DatabaseContext _context;
-        private IDialogService _dialogService;
+        private readonly CollaboratorFormViewModel _cfvm;
 
-        public CollaboratorsTableViewModel(DatabaseContext context, IDialogService dialogService)
+        private readonly ICollaboratorService _collaboratorService;
+        private readonly IDialogService _dialogService;
+
+        public CollaboratorsTableViewModel(CollaboratorFormViewModel cfvm, ICollaboratorService collaboratorService, IDialogService dialogService)
         {
-            _context = context;
+            _cfvm = cfvm;
+            _collaboratorService = collaboratorService;
             _dialogService = dialogService;
 
-            Collaborators = new ObservableCollection<Collaborator>()
-            {
-                new IndividualCollaborator {
-                    Address = new Address
-                    {
-                        WholeAddress = "NEKA ADRESA",
-                    },
-                    FirstName = "Milos",
-                    LastName = "Panic",
-                    MailAddress = "Panic.milos99@gmail.com",
-                    JMBG = "2506123123123",
-                    PhoneNumber = "012455215125",
-                    Role = Role.Collaborator,
-                    UserName = "PANICKO",
-                    Password = "panic123",
-                    PersonalId = "12412412124"
-                },
-                new LegalCollaborator
-                {
-                    Address = new Address
-                    {
-                        WholeAddress = "Pitaj boga"
-                    },
-                    FirstName = "Luka",
-                    LastName = "Bjelica",
-                    MailAddress = "bjelica.luka.neznmamdalje@gmail.com",
-                    PIB = "214512512515",
-                    IdentificationNumber = "1521616126612",
-                    Password = "1412421214",
-                    UserName = "LUKICABRE",
-                    PhoneNumber = "124125125125",
-                    Role = Role.Collaborator
-                }
-            };
-            _context.Collaborators.ToList().ForEach(c => Collaborators.Add(c));
+            Collaborators = new ObservableCollection<Collaborator>(_collaboratorService.Read());
 
             Add = new RelayCommand(() =>
             {
-                //var service = dialogService.OpenDialog(new CollaboratorServiceDialogViewModel());
-                //if (service != null)
-                //{
-                //    Services.Add(service);
-                //    CollaboratorServiceBook.Services.Add(service);
-                //}
+                EventBus.FireEvent("CollaboratorFormForAdd");
+                EventBus.FireEvent("SwitchMainViewModel", _cfvm);
             });
 
             Edit = new RelayCommand<Collaborator>(collaborator =>
             {
-                //var serviceCopy = service.Copy();
-                //var editedService = dialogService.OpenDialog(new CollaboratorServiceDialogViewModel(serviceCopy));
-                //if (editedService != null)
-                //{
-                //    service.Name = editedService.Name;
-                //    service.Price = editedService.Price;
-                //    service.Unit = editedService.Unit;
-                //}
+                EventBus.FireEvent("CollaboratorFormForUpdate", collaborator);
+                EventBus.FireEvent("SwitchMainViewModel", _cfvm);
             });
 
             Remove = new RelayCommand<Collaborator>(collaborator =>
@@ -97,12 +51,13 @@ namespace Organizator_Proslava.ViewModel
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
                 {
                     Collaborators.Remove(collaborator);
-                    _context.Remove(collaborator);
-                    _context.SaveChanges();
+                    _collaboratorService.Delete(collaborator.Id);
                 }
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+
+            EventBus.RegisterHandler("ReloadCollaboratorTable", () => Collaborators = new ObservableCollection<Collaborator>(_collaboratorService.Read()));
         }
     }
 }
