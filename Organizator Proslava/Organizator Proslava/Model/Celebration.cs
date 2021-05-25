@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model
 {
@@ -8,10 +9,10 @@ namespace Organizator_Proslava.Model
         public string Type { get => _type; set => OnPropertyChanged(ref _type, value); }
         
         private Organizer _organizer;
-        public Organizer Organizer { get => _organizer; set => OnPropertyChanged(ref _organizer, value); }
+        public virtual Organizer Organizer { get => _organizer; set => OnPropertyChanged(ref _organizer, value); }
         
         private Address _address;
-        public Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
+        public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
 
         private DateTime _dateTimeFrom = DateTime.Now;
         public DateTime DateTimeFrom { get => _dateTimeFrom; set => OnPropertyChanged(ref _dateTimeFrom, value); }
@@ -30,12 +31,19 @@ namespace Organizator_Proslava.Model
 
         private bool _isBudgetFixed;
         public bool IsBudgetFixed { get => _isBudgetFixed; set => OnPropertyChanged(ref _isBudgetFixed, value); }
+
+        private IEnumerable<CelebrationDetail> _celebrationDetails;
+        public virtual IEnumerable<CelebrationDetail> CelebrationDetails
+        {
+            get => _celebrationDetails;
+            set => OnPropertyChanged(ref _celebrationDetails, value);
+        }
     }
 
     public class CelebrationDetail : BaseObservableEntity
     {
-        private Celebration _celebration;
-        public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
+        private Guid _celebrationId;
+        public Guid CelebrationId { get => _celebrationId; set => OnPropertyChanged(ref _celebrationId, value); }
 
         private string _title;
         public string Title { get => _title; set => OnPropertyChanged(ref _title, value); }
