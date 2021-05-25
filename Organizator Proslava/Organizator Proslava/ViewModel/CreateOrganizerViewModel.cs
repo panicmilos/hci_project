@@ -33,8 +33,7 @@ namespace Organizator_Proslava.ViewModel
         {
             Organizer = new Organizer
             {
-                Address = new Address(),
-                CellebrationType = new CellebrationType()
+                Address = new Address()
             };
             _organizerService = organizerService;
             _dialogService = dialogService;
@@ -47,11 +46,14 @@ namespace Organizator_Proslava.ViewModel
                 if (optionDialogResult == Dialogs.DialogResults.Yes)
                 {
                     o.Role = Role.Organizer;
-                    //o.CellebrationType = _celebrationTypeService.ReadByName(o.CellebrationType.Name);
-                    o.CellebrationType = new CellebrationType
+                    o.CellebrationType = _celebrationTypeService.ReadByName(celebrationType);
+                    if(o.CellebrationType == null)
+                    {
+                        o.CellebrationType = new CellebrationType
                         {
                             Name = celebrationType
-                    };
+                        };
+                    }
                     _organizerService.Create(o);
                     EventBus.FireEvent("BackToLogin");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
@@ -62,11 +64,9 @@ namespace Organizator_Proslava.ViewModel
 
             Map = new RelayCommand(() =>
             {
-                var result = new DialogService().OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
+                var result = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
                 Organizer.Address = result;
-                var chosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
-                new DialogService().OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
-            }); // Delete Later
+            });
         }
     }
 }
