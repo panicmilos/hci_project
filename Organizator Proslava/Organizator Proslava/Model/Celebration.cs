@@ -30,6 +30,17 @@ namespace Organizator_Proslava.Model
 
         private bool _isBudgetFixed;
         public bool IsBudgetFixed { get => _isBudgetFixed; set => OnPropertyChanged(ref _isBudgetFixed, value); }
+    }
 
+    public class CelebrationDetail : BaseObservableEntity
+    {
+        private Celebration _celebration;
+        public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
+
+        private string _title;
+        public string Title { get => _title; set => OnPropertyChanged(ref _title, value); }
+        
+        private string _content;
+        public string Content { get => _content; set => OnPropertyChanged(ref _content, value); }
     }
 }
