@@ -16,7 +16,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
     {
         public string CameFrom { get; set; }
 
-        private ICelebrationTypeService _celebrationTypeService;
+        private readonly ICelebrationTypeService _celebrationTypeService;
         public ObservableCollection<string> CelebrationTypes { get; set; }
 
         private CollaboratorServiceBook _collaboratorServiceBook;
@@ -24,10 +24,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         public ObservableCollection<CollaboratorService> Services { get; set; }
 
-        private string _inputedCelebrationDescription;
-        public string InputedCelebrationDescription { get => _inputedCelebrationDescription; set => OnPropertyChanged(ref _inputedCelebrationDescription, value); }
-
-        private IDialogService _dialogService;
+        private readonly IDialogService _dialogService;
 
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
@@ -42,23 +39,10 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             _celebrationTypeService = celebrationTypeService;
 
             CelebrationTypes = new ObservableCollection<string>(_celebrationTypeService.ReadNames());
-            CollaboratorServiceBook = new CollaboratorServiceBook();
-            CollaboratorServiceBook.Services = new List<CollaboratorService>()
+            CollaboratorServiceBook = new CollaboratorServiceBook
             {
-                new CollaboratorService
-                {
-                    Name = "Piletina",
-                    Price = 300f,
-                    Unit = "Porcija"
-                },
-                new CollaboratorService
-                {
-                    Name = "Teletina",
-                    Price = 500f,
-                    Unit = "Kila"
-                },
+                Services = new List<CollaboratorService>()
             };
-
             Services = new ObservableCollection<CollaboratorService>(CollaboratorServiceBook.Services);
 
             Add = new RelayCommand(() =>
@@ -73,7 +57,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Edit = new RelayCommand<CollaboratorService>(service =>
             {
-                var serviceCopy = service.Copy();
+                var serviceCopy = service.Clone();
                 var editedService = dialogService.OpenDialog(new CollaboratorServiceDialogViewModel(serviceCopy));
                 if (editedService != null)
                 {
@@ -94,6 +78,18 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorInformations", CameFrom));
             Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorImages"));
+        }
+
+        public void ForAdd()
+        {
+            CollaboratorServiceBook = new CollaboratorServiceBook();
+            Services = new ObservableCollection<CollaboratorService>();
+        }
+
+        public void ForUpdate(Collaborator collaborator)
+        {
+            CollaboratorServiceBook = collaborator.CollaboratorServiceBook;
+            Services = new ObservableCollection<CollaboratorService>(collaborator.CollaboratorServiceBook.Services);
         }
     }
 }

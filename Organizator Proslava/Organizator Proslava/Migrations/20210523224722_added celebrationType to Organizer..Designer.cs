@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210523224722_added celebrationType to Organizer.")]
+    partial class addedcelebrationTypetoOrganizer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,7 +120,7 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CelebrationHallId")
+                    b.Property<Guid?>("CelebrationHallId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -276,7 +278,7 @@ namespace Organizator_Proslava.Migrations
                         .HasColumnName("Organizer_AddressId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CellebrationTypeId")
+                    b.Property<Guid?>("CelebrationTypeId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("JMBG")
@@ -293,7 +295,7 @@ namespace Organizator_Proslava.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("CellebrationTypeId");
+                    b.HasIndex("CelebrationTypeId");
 
                     b.HasDiscriminator().HasValue("Organizer");
                 });
@@ -364,7 +366,7 @@ namespace Organizator_Proslava.Migrations
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", null)
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
                         .WithMany("CelebrationHalls")
                         .HasForeignKey("CollaboratorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -375,14 +377,12 @@ namespace Organizator_Proslava.Migrations
                 {
                     b.HasOne("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", null)
                         .WithMany("PlaceableEntities")
-                        .HasForeignKey("CelebrationHallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CelebrationHallId");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.CollaboratorService", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", null)
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", "CollaboratorServiceBook")
                         .WithMany("Services")
                         .HasForeignKey("CollaboratorServiceBookId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,7 +391,7 @@ namespace Organizator_Proslava.Migrations
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", null)
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
                         .WithOne("CollaboratorServiceBook")
                         .HasForeignKey("Organizator_Proslava.Model.Collaborators.CollaboratorServiceBook", "CollaboratorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -411,9 +411,9 @@ namespace Organizator_Proslava.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CellebrationType")
+                    b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CelebrationType")
                         .WithMany()
-                        .HasForeignKey("CellebrationTypeId");
+                        .HasForeignKey("CelebrationTypeId");
                 });
 #pragma warning restore 612, 618
         }

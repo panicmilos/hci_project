@@ -1,6 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
-using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
 using System.Windows.Input;
@@ -32,6 +31,18 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             });
 
             Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorServicesFromLegal"));
+        }
+
+        public void ForAdd()
+        {
+            Collaborator = new LegalCollaborator();
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToSelectCollaboratorType"));
+        }
+
+        public void ForUpdate(Collaborator collaborator)
+        {
+            Collaborator = collaborator;
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
         }
     }
 }

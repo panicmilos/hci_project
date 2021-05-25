@@ -2,7 +2,7 @@
 
 namespace Organizator_Proslava.Model.Collaborators
 {
-    public class CollaboratorService : BaseObservableEntity
+    public class CollaboratorService : BaseObservableEntity, ICloneable<CollaboratorService>
     {
         private string _name;
         public string Name { get => _name; set => OnPropertyChanged(ref _name, value); }
@@ -14,6 +14,19 @@ namespace Organizator_Proslava.Model.Collaborators
         public string Unit { get => _unit; set => OnPropertyChanged(ref _unit, value); }
 
         public Guid CollaboratorServiceBookId { get; set; }
-        public CollaboratorServiceBook CollaboratorServiceBook { get; set; }
+
+        public CollaboratorService Clone()
+        {
+            return new CollaboratorService
+            {
+                Id = Id,
+                IsActive = IsActive,
+                CreatedAt = CreatedAt,
+                Name = Name,
+                Price = Price,
+                Unit = Unit,
+                CollaboratorServiceBookId = CollaboratorServiceBookId
+            };
+        }
     }
 }
