@@ -272,7 +272,7 @@
     <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..cs" />
     <Compile Include="Migrations\20210524225011_changed name of atribute in Organizer..designer.cs">
       <DependentUpon>20210524225011_changed name of atribute in Organizer..cs</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Migrations\20210524174857_test.cs" />
     <Compile Include="Migrations\20210524174857_test.designer.cs">
       <DependentUpon>20210524174857_test.cs</DependentUpon>
@@ -343,6 +343,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
+    <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
@@ -395,6 +396,9 @@
     </Compile>
     <Compile Include="View\OrganizerHomeView.xaml.cs">
       <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrganizersTableView.xaml.cs">
+      <DependentUpon>OrganizersTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
@@ -536,6 +540,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrganizerHomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizersTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

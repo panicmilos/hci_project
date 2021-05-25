@@ -55,12 +55,13 @@ namespace Organizator_Proslava.ViewModel
                         };
                     }
                     _organizerService.Create(o);
-                    EventBus.FireEvent("BackToLogin");
+                    EventBus.FireEvent("OrganizersTableView");
+                    EventBus.FireEvent("ReloadOrganizerTable");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
                 }
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+            Back = new RelayCommand(() => EventBus.FireEvent("OrganizersTableView"));
 
             Map = new RelayCommand(() =>
             {

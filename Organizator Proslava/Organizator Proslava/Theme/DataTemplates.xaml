@@ -116,4 +116,8 @@
     <DataTemplate DataType="{x:Type crfvm:ChooseOrganizerViewModel}">
         <crfv:ChooseOrganizerView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:OrganziersTableViewModel}">
+        <v:OrganizersTableView />
+    </DataTemplate>
 </ResourceDictionary>
