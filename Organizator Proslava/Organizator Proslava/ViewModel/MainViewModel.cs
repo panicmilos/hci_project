@@ -28,7 +28,6 @@ namespace Organizator_Proslava.ViewModel
             OrganizerHomeViewModel ohvm,
             AdminHomeViewModel ahvm,
             CollaboratorFormViewModel cfvm,
-            CelebrationRequestFormViewModel crfvm,
             CreateOrganizerViewModel covm,
             CollaboratorsTableViewModel ctvm)
         {
@@ -38,7 +37,6 @@ namespace Organizator_Proslava.ViewModel
             Ohvm = ohvm;
             Ahvm = ahvm;
             Ctvm = ctvm;
-            Crfvm = crfvm;
             Covm = covm;
 
             CurrentViewModel = Lvm;
@@ -49,8 +47,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
             EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
-            
-            EventBus.RegisterHandler("NextToCreateCelebrationRequest", () => CurrentViewModel = Crfvm);
+
             EventBus.RegisterHandler("BackToClientPage", () => CurrentViewModel = Chvm);
 
             EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
