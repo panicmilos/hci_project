@@ -24,22 +24,23 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding User.UserName}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox Text="{Binding Path=User.UserName}" Style="{StaticResource loginFormTextBox}" />
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding User.Password}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox Text="{Binding Path=User.Password}" Style="{StaticResource loginFormTextBox}" />
 
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Command="{Binding Login}" CommandParameter="{Binding User}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                    <Button Command="{Binding Register}" Content="Napravi nalog" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
+                    <Button Command="{Binding Path=Login}" CommandParameter="{Binding User}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                    <Button Command="{Binding Path=Register}" Content="Napravi nalog" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
                 </StackPanel>
             </StackPanel>
 
             <WrapPanel Grid.Row="2"  HorizontalAlignment="Center">
-                <Button Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding DEMO}" Content="DEMO" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding Colabs}" Content="Colabs" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding Covm}" Content="New organizer" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding ClientHome}" Content="ClientHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=DEMO}" Content="DEMO" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=Colabs}" Content="Colabs" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=Covm}" Content="New organizer" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=ClientHome}" Content="ClientHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                <Button Command="{Binding Path=OrgHome}" Content="OrgHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </WrapPanel>
         </Grid>
 

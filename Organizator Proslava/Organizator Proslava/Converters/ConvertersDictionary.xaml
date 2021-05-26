@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:Organizator_Proslava.Converters">
 
     <local:YesNoConverter x:Key="YesNoConverter" />
+    <local:ObjectToStringConverter x:Key="ObjectToStringConverter" />
 </ResourceDictionary>
