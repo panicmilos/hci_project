@@ -11,10 +11,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
 
         public ICommand Back { get; set; }
+        public ICommand Details { get; set; }
 
         public RequestLongPreviewViewModel()
         {
             Back = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin"));
+            Details = new RelayCommand(() => EventBus.FireEvent("NextToRequestDetailsForOrganizer"));
         }
     }
 }

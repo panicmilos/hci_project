@@ -44,7 +44,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="RequestPreviewTextBox" BasedOn="{StaticResource registerFormTextBox}" TargetType="{x:Type TextBox}">
+    <Style x:Key="PreviewTextBox" BasedOn="{StaticResource registerFormTextBox}" TargetType="{x:Type TextBox}">
         <Style.Setters>
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="FontSize" Value="16" />
@@ -57,5 +57,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
 </ResourceDictionary>

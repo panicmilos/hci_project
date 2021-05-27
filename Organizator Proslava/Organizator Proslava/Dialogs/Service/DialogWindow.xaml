@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Service"
         xmlns:v="clr-namespace:Organizator_Proslava.View"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
         Height="{Binding WindowHeight, Mode=TwoWay}"
         Width="{Binding WindowWidth, Mode=TwoWay}"
-        Title="{Binding Title}">
+        Title="{Binding Title}"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <v:Background Opacity="0.3" />
         <ContentControl Width="{Binding ContentWidth, Mode=TwoWay}"
