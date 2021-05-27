@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.Model.Collaborators;
+using System;
 
 namespace Organizator_Proslava.Model.CelebrationResponses
 {
@@ -21,5 +23,20 @@ namespace Organizator_Proslava.Model.CelebrationResponses
 
         private string _content;
         public string Content { get => _content; set => OnPropertyChanged(ref _content, value); }
+
+        private CelebrationProposalStatus _status;
+        public CelebrationProposalStatus Status { get => _status; set => OnPropertyChanged(ref _status, value); }
+
+        private Guid _collaboratorId;
+        public Guid CollaboratorId { get => _collaboratorId; set => OnPropertyChanged(ref _collaboratorId, value); }
+
+        private Collaborator _collaborator;
+        public virtual Collaborator Collaborator { get => _collaborator; set => OnPropertyChanged(ref _collaborator, value); }
+
+        private Guid _celebrationHallId;
+        public Guid CelebrationHallId { get => _celebrationHallId; set => OnPropertyChanged(ref _celebrationHallId, value); }
+
+        private CelebrationHall _celebrationHall;
+        public virtual CelebrationHall CelebrationHall { get => _celebrationHall; set => OnPropertyChanged(ref _celebrationHall, value); }
     }
 }

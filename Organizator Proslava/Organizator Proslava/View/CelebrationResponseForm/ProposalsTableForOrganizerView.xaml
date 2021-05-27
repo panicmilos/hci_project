@@ -34,13 +34,18 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
-                    Width="2*"
+                    Width="1.5*"
                     Binding="{Binding Path=Title}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Detalji"
-                    Width="4*"
+                    Width="3.5*"
                     Binding="{Binding Path=Content}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="Status"
+                    Width="1.5*"
+                    Binding="{Binding Path=Status}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTemplateColumn Header="Pregled" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>

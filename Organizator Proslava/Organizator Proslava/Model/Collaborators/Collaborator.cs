@@ -21,5 +21,10 @@ namespace Organizator_Proslava.Model.Collaborators
         public virtual List<string> Images { get { return _images; } set { _images = value; OnPropertyChanged("Images"); } }
 
         public abstract Collaborator Clone();
+
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }

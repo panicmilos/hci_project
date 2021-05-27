@@ -1,13 +1,9 @@
 ﻿using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationResponses;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
@@ -22,16 +18,18 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Back { get; set; }
 
         private readonly IDialogService _dialogService;
+        private readonly ICollaboratorService _collaboratorService;
 
-        public ProposalsTableForOrganizerViewModel(IDialogService dialogService)
+        public ProposalsTableForOrganizerViewModel(ICollaboratorService collaboratorService, IDialogService dialogService)
         {
+            _collaboratorService = collaboratorService;
             _dialogService = dialogService;
 
             Preview = new RelayCommand<CelebrationProposal>(cd => { });
             Comments = new RelayCommand<CelebrationProposal>(cd => { });
             Add = new RelayCommand(() =>
             {
-                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel());
+                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService));
                 if (proposal != null)
                 {
                     CelebrationProposals.Add(proposal);
