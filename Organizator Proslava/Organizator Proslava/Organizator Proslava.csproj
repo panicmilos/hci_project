@@ -286,6 +286,14 @@
     <Compile Include="Migrations\20210524181257_test2.designer.cs">
       <DependentUpon>20210524181257_test2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210527161733_added initial celebration response model.cs" />
+    <Compile Include="Migrations\20210527161733_added initial celebration response model.designer.cs">
+      <DependentUpon>20210527161733_added initial celebration response model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210527162539_updated celebration response model.cs" />
+    <Compile Include="Migrations\20210527162539_updated celebration response model.designer.cs">
+      <DependentUpon>20210527162539_updated celebration response model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -299,6 +307,8 @@
     <Compile Include="Model\CelebrationHalls\ServingTable.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor18.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor6.cs" />
+    <Compile Include="Model\CelebrationResponses\CelebrationProposal.cs" />
+    <Compile Include="Model\CelebrationResponses\CelebrationResponse.cs" />
     <Compile Include="Model\Celebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborators\Collaborator.cs" />
@@ -314,18 +324,21 @@
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
+    <Compile Include="Services\Contracts\ICelebrationResponseService.cs" />
     <Compile Include="Services\Contracts\IClientService.cs" />
     <Compile Include="Services\Contracts\ICelebrationTypeService.cs" />
     <Compile Include="Services\Contracts\ICollaboratorService.cs" />
     <Compile Include="Services\Contracts\ICrudService.cs" />
     <Compile Include="Services\Contracts\IOrganizerService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
     <Compile Include="Services\Implementations\ClientService.cs" />
     <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
     <Compile Include="Services\Implementations\CrudService.cs" />
     <Compile Include="Services\Implementations\OrganizerService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
     <Compile Include="Utility\NavigabileModelView.cs" />

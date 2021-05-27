@@ -27,24 +27,24 @@
                 <DataGridTextColumn
                     Header="Vrsta Proslave"
                     Width="*"
-                    Binding="{Binding Path=Type}"
+                    Binding="{Binding Path=Celebration.Type}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Organizator"
                     Width="*"
-                    Binding="{Binding Path=Organizer.FullName}"
+                    Binding="{Binding Path=Celebration.Organizer.FullName}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Datum i vreme"
                     Width="*"
-                    Binding="{Binding Path=DateTimeFrom}"
+                    Binding="{Binding Path=Celebration.DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:OrganizerHomeView}}}"
-                                    CommandParameter="{Binding}">
+                                    CommandParameter="{Binding Celebration}">
                                 <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
                             </Button>
                         </DataTemplate>

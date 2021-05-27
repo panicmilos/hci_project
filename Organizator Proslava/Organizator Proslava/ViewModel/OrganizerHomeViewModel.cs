@@ -1,6 +1,7 @@
 ﻿using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 using System;
@@ -15,53 +16,56 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Cancel { get; set; }
         public ICommand Back { get; set; }
 
-        public IEnumerable<Celebration> Celebrations { get; set; } = new List<Celebration>
+        public IEnumerable<CelebrationResponse> Celebrations { get; set; } = new List<CelebrationResponse>
         {
-            new Celebration
+            new CelebrationResponse
             {
-                Type = "Rodjendan",
-                Client = new Client
+                Celebration = new Celebration
                 {
-                    FirstName = "Milos", LastName = "Panic"
-                },
-                Organizer = new Organizer
-                {
-                    FirstName = "Milan",
-                    LastName = "Susic"
-                },
-                DateTimeFrom = DateTime.Now,
-                Address = new Address
-                {
-                    WholeAddress = "Neka adresica veca ipak malo 123",
-                    Lat = 56f,
-                    Lng = 24f
-                },
-                IsActive = true,
-                BudgetFrom = 5000,
-                BudgetTo = 10000,
-                IsBudgetFixed = true,
-                CelebrationDetails = new List<CelebrationDetail>()
-                {
-                    new CelebrationDetail
+                    Type = "Rodjendan",
+                    Client = new Client
                     {
-                        Title = "Neki zahtev 1",
-                        Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
+                        FirstName = "Milos", LastName = "Panic"
                     },
+                    Organizer = new Organizer
+                    {
+                        FirstName = "Milan",
+                        LastName = "Susic"
+                    },
+                    DateTimeFrom = DateTime.Now,
+                    Address = new Address
+                    {
+                        WholeAddress = "Neka adresica veca ipak malo 123",
+                        Lat = 56f,
+                        Lng = 24f
+                    },
+                    IsActive = true,
+                    BudgetFrom = 5000,
+                    BudgetTo = 10000,
+                    IsBudgetFixed = true,
+                    CelebrationDetails = new List<CelebrationDetail>()
+                    {
+                        new CelebrationDetail
+                        {
+                            Title = "Neki zahtev 1",
+                            Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
+                        },
 
-                    new CelebrationDetail
-                    {
-                        Title = "Neki zahtev 3",
-                        Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
-                    },
+                        new CelebrationDetail
+                        {
+                            Title = "Neki zahtev 3",
+                            Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
+                        },
 
-                    new CelebrationDetail
-                    {
-                        Title = "Neki zahtev 2",
-                        Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
+                        new CelebrationDetail
+                        {
+                            Title = "Neki zahtev 2",
+                            Content = "kjlasfjkfsajklfsakjjkasfjklasfjklafsjkfasjklasfjklafsjklasfjklajfksljklafs"
+                        },
                     },
-                },
-                DateTimeTo = DateTime.Now.AddDays(2),
-                ExpectedNumberOfGuests = 100
+                    DateTimeTo = DateTime.Now.AddDays(2),
+                    ExpectedNumberOfGuests = 100
+                }
             }
         };
 

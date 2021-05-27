@@ -14,7 +14,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Preview { get; set; }
         public ICommand Back { get; set; }
 
-        private IDialogService _dialogService;
+        private readonly IDialogService _dialogService;
 
         public RequestDetailsTableForOrganizerViewModel(IDialogService dialogService)
         {

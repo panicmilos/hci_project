@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210527161733_added initial celebration response model")]
+    partial class addedinitialcelebrationresponsemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,9 +258,6 @@ namespace Organizator_Proslava.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -557,7 +556,7 @@ namespace Organizator_Proslava.Migrations
                         .IsRequired();
 
                     b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationResponse", "CelebrationResponse")
-                        .WithMany("CelebrationProposals")
+                        .WithMany()
                         .HasForeignKey("CelebrationResponseId");
                 });
 

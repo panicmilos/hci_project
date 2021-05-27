@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Model.Cellebrations;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -35,6 +37,10 @@ namespace Organizator_Proslava.Data
         // Cellebrations
 
         public DbSet<CellebrationType> CellebrationTypes { get; set; }
+        public DbSet<Celebration> Celebrations { get; set; }
+
+        public DbSet<CelebrationResponse> CelebrationResponses { get; set; }
+        public DbSet<CelebrationProposal> CelebrationProposals { get; set; }
 
         // Collaborators
 
