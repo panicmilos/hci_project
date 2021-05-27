@@ -1,13 +1,12 @@
 ﻿using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.RequestResponseFormShared;
 
 namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 {
     public class CelebrationResponseFormViewModel : NavigabileModelView
 
     {
-        private RequestLongPreviewViewModel _rlpvm;
+        private readonly RequestLongPreviewViewModel _rlpvm;
 
         public CelebrationResponseFormViewModel(RequestLongPreviewViewModel rlpvm)
         {

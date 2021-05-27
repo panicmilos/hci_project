@@ -6,7 +6,6 @@
                     xmlns:crfv="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
                     xmlns:crespfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationResponseForm"
                     xmlns:crespfv="clr-namespace:Organizator_Proslava.View.CelebrationResponseForm"
-                    xmlns:rrsvm="clr-namespace:Organizator_Proslava.ViewModel.RequestResponseFormShared"
                     xmlns:rrsv="clr-namespace:Organizator_Proslava.View.RequestResponseFormShared"
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
@@ -125,7 +124,7 @@
         <crespfv:CelebrationResponseFormView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type rrsvm:RequestLongPreviewViewModel}">
-        <rrsv:RequestLongPreviewView />
+    <DataTemplate DataType="{x:Type crespfvm:RequestLongPreviewViewModel}">
+        <crespfv:RequestLongPreviewView />
     </DataTemplate>
 </ResourceDictionary>

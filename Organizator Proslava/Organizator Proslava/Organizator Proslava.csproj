@@ -330,6 +330,7 @@
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\CelebrationResponseFormViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -346,7 +347,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
-    <Compile Include="ViewModel\RequestResponseFormShared\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
       <DependentUpon>AdminHomeView.xaml</DependentUpon>
@@ -362,6 +362,9 @@
     </Compile>
     <Compile Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml.cs">
       <DependentUpon>CelebrationResponseFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml.cs">
+      <DependentUpon>RequestLongPreviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
@@ -405,8 +408,8 @@
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RequestResponseFormShared\RequestLongPreviewView.xaml.cs">
-      <DependentUpon>RequestLongPreviewView.xaml</DependentUpon>
+    <Compile Include="View\RequestResponseFormShared\RequestPreview.xaml.cs">
+      <DependentUpon>RequestPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Space.xaml.cs">
       <DependentUpon>Space.xaml</DependentUpon>
@@ -500,6 +503,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -556,7 +563,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RequestResponseFormShared\RequestLongPreviewView.xaml">
+    <Page Include="View\RequestResponseFormShared\RequestPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -632,7 +639,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\RequestResponseFormShared\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

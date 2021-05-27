@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Organizator_Proslava.View.RequestResponseFormShared
+namespace Organizator_Proslava.View.CelebrationResponseForm
 {
     /// <summary>
     /// Interaction logic for RequestLongPreviewView.xaml

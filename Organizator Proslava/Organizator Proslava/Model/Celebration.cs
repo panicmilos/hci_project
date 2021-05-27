@@ -72,11 +72,11 @@ namespace Organizator_Proslava.Model
 
             if (_dateTimeFrom.Date == _dateTimeTo.Date)
             {
-                builder.Append($"Organizuje se na {_dateTimeTo:d-M-yyyy} od {_dateTimeFrom:H:m} do {_dateTimeTo:H:m}. ");
+                builder.Append($"Organizuje se na {_dateTimeTo:d-M-yyyy} od {_dateTimeFrom:H:mm} do {_dateTimeTo:H:mm}. ");
             }
             else
             {
-                builder.Append($"Organizuje se od {_dateTimeFrom:d-M-yyyy} u {_dateTimeFrom:H:m} do {_dateTimeTo:d-M-yyyy} u {_dateTimeTo:H:m}. ");
+                builder.Append($"Organizuje se od {_dateTimeFrom:d-M-yyyy} u {_dateTimeFrom:H:mm} do {_dateTimeTo:d-M-yyyy} u {_dateTimeTo:H:mm}. ");
             }
             builder.AppendLine("\n");
             builder.AppendLine("Moji zahtevi su: ");
