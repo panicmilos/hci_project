@@ -41,6 +41,7 @@ namespace Organizator_Proslava.Data
 
         public DbSet<CelebrationResponse> CelebrationResponses { get; set; }
         public DbSet<CelebrationProposal> CelebrationProposals { get; set; }
+        public DbSet<ProposalComment> ProposalComments { get; set; }
 
         // Collaborators
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Organizator_Proslava.Model;
+using System;
+using System.Collections.Generic;
 
 namespace Organizator_Proslava.Utility
 {
@@ -9,6 +11,13 @@ namespace Organizator_Proslava.Utility
         static GlobalStore()
         {
             _storedObjects = new Dictionary<string, object>();
+
+            _storedObjects["loggedUser"] = new BaseUser
+            {
+                FirstName = "Milos",
+                LastName = "Panic",
+                Id = new Guid("e0c1f7b7-1d73-43fd-98cc-c904295afb62")
+            };
         }
 
         public static void AddObject(string key, object @object)

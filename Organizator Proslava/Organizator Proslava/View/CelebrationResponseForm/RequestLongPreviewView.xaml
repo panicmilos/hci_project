@@ -25,7 +25,6 @@
 
         <Label Grid.Column="1"
                Grid.Row="1"
-
                Content="Zahtev" Style="{StaticResource registerPageLabel}"
                VerticalAlignment="Bottom" />
 

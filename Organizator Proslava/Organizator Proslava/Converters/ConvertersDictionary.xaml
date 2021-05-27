@@ -4,4 +4,6 @@
 
     <local:YesNoConverter x:Key="YesNoConverter" />
     <local:ObjectToStringConverter x:Key="ObjectToStringConverter" />
+    <local:NotYourCommentVisibilityConverter x:Key="NotYourCommentVisibilityConverter" />
+    <local:YourCommentVisibilityConverter x:Key="YourCommentVisibilityConverter" />
 </ResourceDictionary>

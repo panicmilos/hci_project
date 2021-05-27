@@ -17,16 +17,22 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Add { get; set; }
         public ICommand Back { get; set; }
 
+        private readonly ProposalCommentsViewModel _pcvm;
         private readonly IDialogService _dialogService;
         private readonly ICollaboratorService _collaboratorService;
 
-        public ProposalsTableForOrganizerViewModel(ICollaboratorService collaboratorService, IDialogService dialogService)
+        public ProposalsTableForOrganizerViewModel(ProposalCommentsViewModel pcvm, ICollaboratorService collaboratorService, IDialogService dialogService)
         {
+            _pcvm = pcvm;
             _collaboratorService = collaboratorService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand<CelebrationProposal>(cd => { });
-            Comments = new RelayCommand<CelebrationProposal>(cd => { });
+            Comments = new RelayCommand<CelebrationProposal>(cd =>
+            {
+                _pcvm.CelebrationProposal = cd;
+                EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _pcvm);
+            });
+
             Add = new RelayCommand(() =>
             {
                 var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService));

@@ -211,8 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
+    <Compile Include="Converters\YourCommentVisibilityConverter.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Dialogs\Alert\AlertDialogView.xaml.cs">
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
@@ -302,6 +304,10 @@
     <Compile Include="Migrations\20210527204356_added some new properties to celebration proposal.designer.cs">
       <DependentUpon>20210527204356_added some new properties to celebration proposal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210527223126_added proposal comments.cs" />
+    <Compile Include="Migrations\20210527223126_added proposal comments.designer.cs">
+      <DependentUpon>20210527223126_added proposal comments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -318,6 +324,7 @@
     <Compile Include="Model\CelebrationResponses\CelebrationProposal.cs" />
     <Compile Include="Model\CelebrationResponses\CelebrationResponse.cs" />
     <Compile Include="Model\CelebrationResponses\CelebrationProposalStatus.cs" />
+    <Compile Include="Model\CelebrationResponses\ProposalComment.cs" />
     <Compile Include="Model\Celebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborators\Collaborator.cs" />
@@ -356,6 +363,7 @@
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\CelebrationResponseFormViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\ProposalCommentsViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\ProposalsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
@@ -390,6 +398,9 @@
     </Compile>
     <Compile Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml.cs">
       <DependentUpon>CelebrationResponseFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\ProposalCommentsView.xaml.cs">
+      <DependentUpon>ProposalCommentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml.cs">
       <DependentUpon>ProposalsTableForOrganizerView.xaml</DependentUpon>
@@ -545,6 +556,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CelebrationResponseForm\ProposalCommentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -639,6 +654,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -691,6 +707,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\RequestResponseFormShared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

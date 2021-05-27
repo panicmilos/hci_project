@@ -1,6 +1,8 @@
 ﻿using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Collaborators;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Organizator_Proslava.Model.CelebrationResponses
 {
@@ -38,5 +40,23 @@ namespace Organizator_Proslava.Model.CelebrationResponses
 
         private CelebrationHall _celebrationHall;
         public virtual CelebrationHall CelebrationHall { get => _celebrationHall; set => OnPropertyChanged(ref _celebrationHall, value); }
+
+        private List<ProposalComment> _proposalComments;
+
+        public virtual List<ProposalComment> ProposalComments
+        {
+            get { return _proposalComments; }
+            set { _proposalComments = value; OnPropertyChanged("ProposalComments"); }
+        }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine(_title);
+            builder.AppendLine("====================");
+            builder.AppendLine(_content);
+
+            return builder.ToString();
+        }
     }
 }

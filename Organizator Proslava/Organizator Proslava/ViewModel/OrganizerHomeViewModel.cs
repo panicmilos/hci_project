@@ -80,7 +80,40 @@ namespace Organizator_Proslava.ViewModel
                 {
                     CelebrationDetail = CelebrationResponses.ToList()[0].Celebration.CelebrationDetails.ToList()[0],
                     Title = "jaksdkajsdjkasd",
-                    Content = "sadkljasdklasdkl"
+                    Content = "sadkljasdklasdkl",
+                    ProposalComments = new List<ProposalComment>
+                    {
+                        new ProposalComment
+                        {
+                            Content = "akjlsfjkasfjklasfjkl,.;safklsalkasfl;ksaflk;sflak;kl;safkl;faskl;asfkl;asfkl;asfkl;safkl;asfkl;asf;klasfk;lasfk;lfsak;lasfk;lsafkl;asfl;kafskl;asfl;kasfk;lasflk;asfkl;asfkl;asfk;lasfk;lasfkl;kals;fkl;asfkl;asfkl;saflk;asflk;saflk;safkl;saflk;asfl;kalks;fkl;asf;klasfkl;safkl;saf;klsaf;lksafkl;safl;ksaf;klsaf;lk;klsafkl;saf;klsafkl;asfl;kfas;lkasfkl;safl;kk;lsafk;lfl;kafskl;afslk;afskl;afskl;asfkl;lkas;fkl;afsk;lasfk;lasfk;lasf;lkasf;klasfkl;asf;klk;lasfk;lasfk;lsafkl;asfkl;safkl;asfkl;kl;afskl;asfkl;afskl;asfl;kasfk;lasfk;lafsk;lasfjklafskljasfkljljkafsljkafsljkasfljkasfljkas",
+                            Writer = new Client
+                            {
+                                Id = new Guid("9eeafd35-9850-4663-baf7-491f92ae84f5"),
+                                FirstName = "Jelisaveta",
+                                LastName = "Papic"
+                            }
+                        },
+                        new ProposalComment
+                        {
+                            Content = "ioasiopasdipoasdpioasdiopsapodiiopasd",
+                            Writer = new Client
+                            {
+                                Id = new Guid("e0c1f7b7-1d73-43fd-98cc-c904295afb62"),
+                                FirstName = "Milos",
+                                LastName = "Panic"
+                            }
+                        },
+                        new ProposalComment
+                        {
+                            Content = "251125gdasagssagagsashassdhgqweheq",
+                            Writer = new Client
+                            {
+                                Id = new Guid("9eeafd35-9850-4663-baf7-491f92ae84f5"),
+                                FirstName = "Jelisaveta",
+                                LastName = "Papic"
+                            }
+                        }
+                    }
                 },
                 new CelebrationProposal
                 {

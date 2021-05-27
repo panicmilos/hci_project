@@ -47,17 +47,6 @@
                     Width="1.5*"
                     Binding="{Binding Path=Status}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Pregled" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:ProposalsTableForOrganizerView}}}"
-                                    CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="Komentari" Width="1*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>

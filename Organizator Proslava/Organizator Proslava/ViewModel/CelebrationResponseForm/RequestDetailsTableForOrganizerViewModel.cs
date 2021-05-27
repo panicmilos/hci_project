@@ -32,6 +32,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToRequestLongPreviewForOranizer"));
+
+            EventBus.RegisterHandler("BackToProposalsTableForOrganizer", () => EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _ptfovm));
         }
     }
 }
