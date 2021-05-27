@@ -30,6 +30,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             Comments = new RelayCommand<CelebrationProposal>(cd =>
             {
                 _pcvm.CelebrationProposal = cd;
+                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cd.ProposalComments);
                 EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _pcvm);
             });
 

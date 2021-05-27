@@ -34,7 +34,7 @@
                VerticalAlignment="Bottom" />
 
         <ScrollViewer Grid.Column="1" Grid.Row="4" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=CelebrationProposal.ProposalComments}">
+            <ItemsControl ItemsSource="{Binding Path=ProposalComments}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
@@ -95,8 +95,9 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="5">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
+            <Button Content="Komentariši" Command="{Binding Path=Comment}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
     </Grid>
 </UserControl>

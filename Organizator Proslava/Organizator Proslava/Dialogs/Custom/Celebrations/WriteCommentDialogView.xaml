@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Custom.Celebrations.WriteCommentDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="560">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.6*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1"
+               Grid.Row="1"
+               Content="Komentar" Style="{StaticResource registerPageLabel}"
+               VerticalAlignment="Bottom" />
+
+        <ScrollViewer Grid.Column="1"
+                      Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <TextBox Text="{Binding Path=Comment, Mode=OneWayToSource}"
+                             Style="{StaticResource registerFormTextBox}"
+                             Background="{StaticResource Cararra}"
+                             TextWrapping="Wrap" />
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Odustani"
+                    Command="{Binding Path=Close}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+
+            <Button Content="Dodaj"
+                    Command="{Binding Path=Add}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
