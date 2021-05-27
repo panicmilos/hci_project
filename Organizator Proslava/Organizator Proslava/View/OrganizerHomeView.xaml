@@ -22,7 +22,7 @@
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=Celebrations}">
+            ItemsSource="{Binding Path=CelebrationResponses}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Vrsta Proslave"
@@ -44,7 +44,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:OrganizerHomeView}}}"
-                                    CommandParameter="{Binding Celebration}">
+                                    CommandParameter="{Binding}">
                                 <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
                             </Button>
                         </DataTemplate>

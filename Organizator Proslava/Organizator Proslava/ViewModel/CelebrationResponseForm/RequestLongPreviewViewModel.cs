@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Utility;
 using System.Windows.Input;
 
@@ -6,9 +7,9 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 {
     public class RequestLongPreviewViewModel : ObservableEntity
     {
-        private Celebration _celebration;
+        private CelebrationResponse _celebrationResponse;
 
-        public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
+        public CelebrationResponse CelebrationResponse { get => _celebrationResponse; set => OnPropertyChanged(ref _celebrationResponse, value); }
 
         public ICommand Back { get; set; }
         public ICommand Details { get; set; }

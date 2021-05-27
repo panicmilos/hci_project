@@ -6,6 +6,7 @@ using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
@@ -16,7 +17,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Cancel { get; set; }
         public ICommand Back { get; set; }
 
-        public IEnumerable<CelebrationResponse> Celebrations { get; set; } = new List<CelebrationResponse>
+        public IEnumerable<CelebrationResponse> CelebrationResponses { get; set; } = new List<CelebrationResponse>
         {
             new CelebrationResponse
             {
@@ -73,11 +74,40 @@ namespace Organizator_Proslava.ViewModel
 
         public OrganizerHomeViewModel(CelebrationResponseFormViewModel crfvm)
         {
+            CelebrationResponses.ToList()[0].CelebrationProposals = new List<CelebrationProposal>()
+            {
+                new CelebrationProposal
+                {
+                    CelebrationDetail = CelebrationResponses.ToList()[0].Celebration.CelebrationDetails.ToList()[0],
+                    Title = "jaksdkajsdjkasd",
+                    Content = "sadkljasdklasdkl"
+                },
+                new CelebrationProposal
+                {
+                    CelebrationDetail = CelebrationResponses.ToList()[0].Celebration.CelebrationDetails.ToList()[0],
+                    Title = "asgasg",
+                    Content = "asgasg"
+                },
+
+                 new CelebrationProposal
+                {
+                    CelebrationDetail = CelebrationResponses.ToList()[0].Celebration.CelebrationDetails.ToList()[1],
+                    Title = "gasgasgaga",
+                    Content = "gasgasgas"
+                },
+                new CelebrationProposal
+                {
+                    CelebrationDetail = CelebrationResponses.ToList()[0].Celebration.CelebrationDetails.ToList()[1],
+                    Title = "yeryeryeryery",
+                    Content = "yerreyerery"
+                },
+            };
+
             _crfvm = crfvm;
 
-            Preview = new RelayCommand<Celebration>(c =>
+            Preview = new RelayCommand<CelebrationResponse>(cr =>
             {
-                EventBus.FireEvent("ShowCelebrationRequest", c);
+                EventBus.FireEvent("ShowCelebrationRequest", cr);
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
             });
 

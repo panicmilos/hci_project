@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Organizator_Proslava.View.CelebrationResponseForm.RequestDetailsTableForOrganizerView"
+﻿<UserControl x:Class="Organizator_Proslava.View.CelebrationResponseForm.ProposalsTableForOrganizerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,28 +7,30 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="5*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Detalji proslave</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Predlozi</Label>
 
         <DataGrid
             Grid.Column="1"
-            Grid.Row="1"
+            Grid.Row="2"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=CelebrationResponse.Celebration.CelebrationDetails}">
+            ItemsSource="{Binding Path=CelebrationProposals}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
@@ -44,7 +46,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:RequestDetailsTableForOrganizerView}}}"
+                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:ProposalsTableForOrganizerView}}}"
                                     CommandParameter="{Binding}">
                                 <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
                             </Button>
@@ -52,22 +54,25 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Predlozi" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Komentari" Width="1*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Proposals, RelativeSource={RelativeSource AncestorType={x:Type local:RequestDetailsTableForOrganizerView}}}"
+                                    Command="{Binding Path=DataContext.Comments, RelativeSource={RelativeSource AncestorType={x:Type local:ProposalsTableForOrganizerView}}}"
                                     CommandParameter="{Binding}">
                                 <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>

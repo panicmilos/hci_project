@@ -108,6 +108,11 @@
         <cdcelebrations:CelebrationDetailView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationProposalDialogViewModel}">
+        <cdcelebrations:CelebrationProposalDialogView />
+    </DataTemplate>
+
+
     <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
         <dfv:DemoView />
     </DataTemplate>
@@ -134,5 +139,9 @@
 
     <DataTemplate DataType="{x:Type crespfvm:RequestDetailsTableForOrganizerViewModel}">
         <crespfv:RequestDetailsTableForOrganizerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:ProposalsTableForOrganizerViewModel}">
+        <crespfv:ProposalsTableForOrganizerView />
     </DataTemplate>
 </ResourceDictionary>

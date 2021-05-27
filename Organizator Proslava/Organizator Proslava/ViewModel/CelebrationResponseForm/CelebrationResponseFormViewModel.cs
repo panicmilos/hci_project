@@ -1,6 +1,5 @@
-﻿using Organizator_Proslava.Model;
+﻿using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Utility;
-using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 {
@@ -24,15 +23,18 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
         private void RegisterHandlersToEventBus()
         {
-            EventBus.RegisterHandler("ShowCelebrationRequest", c => ShowCelebrationRequest(c as Celebration));
+            EventBus.RegisterHandler("SwitchCelebrationResponseFormViewModel", vm => Switch(vm));
+
+            EventBus.RegisterHandler("ShowCelebrationRequest", cr => ShowCelebrationRequest(cr as CelebrationResponse));
             EventBus.RegisterHandler("NextToRequestDetailsForOrganizer", () => Switch(_rdtfovm));
             EventBus.RegisterHandler("BackToRequestLongPreviewForOranizer", () => Switch(_rlpvm));
+            EventBus.RegisterHandler("BackToRequestDetailsForOrganizer", () => Switch(_rdtfovm));
         }
 
-        private void ShowCelebrationRequest(Celebration celebration)
+        private void ShowCelebrationRequest(CelebrationResponse celebrationResponse)
         {
-            _rlpvm.Celebration = celebration;
-            _rdtfovm.CelebrationDetails = celebration.CelebrationDetails.ToList();
+            _rlpvm.CelebrationResponse = celebrationResponse;
+            _rdtfovm.CelebrationResponse = celebrationResponse;
             Switch(_rlpvm);
         }
     }

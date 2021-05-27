@@ -36,5 +36,10 @@ namespace Organizator_Proslava.Model.CelebrationResponses
                 return dictionaryOfProsals;
             }
         }
+
+        public CelebrationResponse()
+        {
+            CelebrationProposals = new List<CelebrationProposal>();
+        }
     }
 }

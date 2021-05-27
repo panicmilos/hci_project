@@ -222,6 +222,10 @@
       <DependentUpon>CelebrationDetailDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml.cs">
+      <DependentUpon>CelebrationProposalDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml.cs">
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
@@ -347,6 +351,7 @@
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\CelebrationResponseFormViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\ProposalsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
@@ -380,6 +385,9 @@
     </Compile>
     <Compile Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml.cs">
       <DependentUpon>CelebrationResponseFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml.cs">
+      <DependentUpon>ProposalsTableForOrganizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CelebrationResponseForm\RequestDetailsTableForOrganizerView.xaml.cs">
       <DependentUpon>RequestDetailsTableForOrganizerView.xaml</DependentUpon>
@@ -444,6 +452,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -525,6 +537,10 @@
     <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
     <Page Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
