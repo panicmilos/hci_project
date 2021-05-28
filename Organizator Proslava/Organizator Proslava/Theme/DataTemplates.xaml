@@ -7,6 +7,7 @@
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
+                    xmlns:dorganizers="clr-namespace:Organizator_Proslava.Dialogs.Custom.Organizers"
                     xmlns:dfvm="clr-namespace:Organizator_Proslava.ViewModel.DemoForm"
                     xmlns:dfv="clr-namespace:Organizator_Proslava.View.DemoForm"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
@@ -119,5 +120,9 @@
 
     <DataTemplate DataType="{x:Type vm:OrganziersTableViewModel}">
         <v:OrganizersTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dorganizers:OrganizerDetailViewModel}">
+        <dorganizers:OrganizerDetailView />
     </DataTemplate>
 </ResourceDictionary>

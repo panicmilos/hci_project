@@ -1,8 +1,10 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Custom.Organizers;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.Services.Implementations;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Add { get; set; }
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
+        public ICommand Details { get; set; }
 
         private readonly CreateOrganizerViewModel _covm;
         private readonly IOrganizerService _organizerService;
@@ -51,6 +54,11 @@ namespace Organizator_Proslava.ViewModel
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+
+            Details = new RelayCommand<Organizer>(organizer =>
+            {
+                _dialogService.OpenDialog(new OrganizerDetailViewModel(organizer));
+            });
 
             EventBus.RegisterHandler("ReloadOrganizerTable", () => Organizers = new ObservableCollection<Organizer>(_organizerService.Read()));
         }

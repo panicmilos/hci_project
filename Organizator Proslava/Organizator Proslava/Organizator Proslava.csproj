@@ -237,6 +237,10 @@
       <DependentUpon>ChooseOrganizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Organizers\OrganizerDetailView.xaml.cs">
+      <DependentUpon>OrganizerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Organizers\OrganizerDetailViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -431,6 +435,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml" />
+    <Page Include="Dialogs\Custom\Organizers\OrganizerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\Map\MapDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
