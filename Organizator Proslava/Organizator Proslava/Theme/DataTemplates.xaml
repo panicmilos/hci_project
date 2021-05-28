@@ -14,7 +14,9 @@
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map"
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
-                    xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations">
+                    xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
+                    xmlns:orghomevm="clr-namespace:Organizator_Proslava.ViewModel.OrganizatorHome"
+                    xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -150,5 +152,13 @@
 
     <DataTemplate DataType="{x:Type crespfvm:ProposalCommentsViewModel}">
         <crespfv:ProposalCommentsView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orghomevm:CurrentOrganizatorCelebrationsTableViewModel}">
+        <orghomev:CurrentOrganizatorCelebrationResponsesTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orghomevm:AcceptCelebrationRequestTableViewModel}">
+        <orghomev:AcceptCelebrationRequestTableView />
     </DataTemplate>
 </ResourceDictionary>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.OrganizatorHome.CurrentOrganizatorCelebrationResponsesTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
+        </ToolBar>
+
+        <Grid Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
+
+            <DataGrid
+            Grid.Row="1"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding Path=CelebrationResponses}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                    Header="Vrsta Proslave"
+                    Width="*"
+                    Binding="{Binding Path=Celebration.Type}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                    <DataGridTextColumn
+                    Header="Organizator"
+                    Width="*"
+                    Binding="{Binding Path=Celebration.Organizer.FullName}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                    <DataGridTextColumn
+                    Header="Datum i vreme"
+                    Width="*"
+                    Binding="{Binding Path=Celebration.DateTimeFrom}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                    <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:CurrentOrganizatorCelebrationResponsesTableView}}}"
+                                    CommandParameter="{Binding}">
+                                    <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Otkaži" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:CurrentOrganizatorCelebrationResponsesTableView}}}">
+                                    <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>
