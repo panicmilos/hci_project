@@ -26,20 +26,20 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Vrsta Proslave"
-                    Width="*"
-                    Binding="{Binding Path=Celebration.Type}"
+                    Width="1.5*"
+                    Binding="{Binding Path=Type}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Klijent"
-                    Width="*"
-                    Binding="{Binding Path=Celebration.Client.FullName}"
+                    Width="1.5*"
+                    Binding="{Binding Path=Client.FullName}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Datum i vreme"
-                    Width="*"
-                    Binding="{Binding Path=Celebration.DateTimeFrom}"
+                    Width="2*"
+                    Binding="{Binding Path=DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Pregled" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
@@ -50,7 +50,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Prihvati" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Prihvati" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"

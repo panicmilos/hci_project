@@ -118,6 +118,10 @@
         <cdcelebrations:WriteCommentDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationLongPreviewDialogViewModel}">
+        <cdcelebrations:CelebrationLongPreviewDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
         <dfv:DemoView />
     </DataTemplate>

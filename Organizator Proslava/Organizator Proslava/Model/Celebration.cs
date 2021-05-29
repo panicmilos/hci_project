@@ -12,6 +12,9 @@ namespace Organizator_Proslava.Model
         private Client _client;
         public virtual Client Client { get => _client; set => OnPropertyChanged(ref _client, value); }
 
+        private Guid? _organizerId;
+        public Guid? OrganizerId { get => _organizerId; set => OnPropertyChanged(ref _organizerId, value); }
+
         private Organizer _organizer;
         public virtual Organizer Organizer { get => _organizer; set => OnPropertyChanged(ref _organizer, value); }
 
@@ -49,7 +52,7 @@ namespace Organizator_Proslava.Model
             var builder = new StringBuilder();
             builder.Append($"Ja, {_client.FullName} želim da organizujem {_type}. ");
 
-            if (_organizer == null)
+            if (Organizer == null)
             {
                 builder.Append("Organizator će mi biti nahnadno dodeljen. ");
             }
@@ -58,7 +61,7 @@ namespace Organizator_Proslava.Model
                 builder.Append($"Organizator ove proslave je {_organizer.FullName}. ");
             }
 
-            if (_address == null)
+            if (Address == null)
             {
                 builder.Append("Želim da mi organizator predloži pogodnu lokaciju. ");
             }
@@ -80,7 +83,7 @@ namespace Organizator_Proslava.Model
             }
             builder.AppendLine("\n");
             builder.AppendLine("Moji zahtevi su: ");
-            foreach (var detail in _celebrationDetails)
+            foreach (var detail in CelebrationDetails)
             {
                 builder.AppendLine(detail.ToString());
             }

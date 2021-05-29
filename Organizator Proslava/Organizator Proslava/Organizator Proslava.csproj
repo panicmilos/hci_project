@@ -224,6 +224,10 @@
       <DependentUpon>CelebrationDetailDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogView.xaml.cs">
+      <DependentUpon>CelebrationLongPreviewDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml.cs">
       <DependentUpon>CelebrationProposalDialogView.xaml</DependentUpon>
     </Compile>
@@ -345,6 +349,7 @@
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
     <Compile Include="Services\Contracts\ICelebrationResponseService.cs" />
+    <Compile Include="Services\Contracts\ICelebrationService.cs" />
     <Compile Include="Services\Contracts\IClientService.cs" />
     <Compile Include="Services\Contracts\ICelebrationTypeService.cs" />
     <Compile Include="Services\Contracts\ICollaboratorService.cs" />
@@ -352,6 +357,7 @@
     <Compile Include="Services\Contracts\IOrganizerService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
     <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
+    <Compile Include="Services\Implementations\CelebrationService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
     <Compile Include="Services\Implementations\ClientService.cs" />
     <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
@@ -480,6 +486,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
