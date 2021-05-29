@@ -2,6 +2,7 @@
 using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,9 @@ namespace Organizator_Proslava.ViewModel
         public ICommand ClientHome { get; set; }
         public ICommand OrgHome { get; set; }
 
+        private readonly IUserService<BaseUser> _userService;
+        private readonly IDialogService _dialogService;
+
         public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
         {
             new Administrator
@@ -42,13 +46,20 @@ namespace Organizator_Proslava.ViewModel
             },
         };
 
-        public LoginViewModel()
+        public LoginViewModel(IUserService<BaseUser> userService, IDialogService dialogService)
         {
+            _userService = userService;
+            _dialogService = dialogService;
             User = new BaseUser();
             Login = new RelayCommand<BaseUser>(u =>
             {
-                var user = Users.FirstOrDefault(existingUser => existingUser.UserName == u.UserName);
-                if (user == null) return;
+                //var user = Users.FirstOrDefault(existingUser => existingUser.UserName == u.UserName);
+                var user = _userService.Authenticate(u.UserName, u.Password);
+                if (user == null)
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("", "Pogresno korisnicko ime ili sifra"));
+                    return;
+                }
                 switch (user.Role)
                 {
                     case Role.Administrator:
@@ -79,9 +90,9 @@ namespace Organizator_Proslava.ViewModel
 
             Map = new RelayCommand(() =>
             {
-                var result = new DialogService().OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
+                var result = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
                 var chosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
-                new DialogService().OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
+                _dialogService.OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
             }); // Delete Later
         }
     }

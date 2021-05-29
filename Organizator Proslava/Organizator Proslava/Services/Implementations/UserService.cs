@@ -1,6 +1,8 @@
 ﻿using Organizator_Proslava.Data;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Utility;
 using Organizator_Proslava.Services.Contracts;
+using System.Linq;
 
 namespace Organizator_Proslava.Services.Implementations
 {
@@ -9,6 +11,14 @@ namespace Organizator_Proslava.Services.Implementations
         public UserService(DatabaseContext context) :
             base(context)
         {
+        }
+
+        public BaseUser Authenticate(string username, string password)
+        {
+            var user = base.Read().FirstOrDefault(u => u.UserName == username && u.Password == password);
+            if (user != null)
+                GlobalStore.AddObject("loggedUser", user);
+            return user;
         }
     }
 }
