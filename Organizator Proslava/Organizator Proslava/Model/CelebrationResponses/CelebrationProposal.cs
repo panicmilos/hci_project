@@ -8,8 +8,8 @@ namespace Organizator_Proslava.Model.CelebrationResponses
 {
     public class CelebrationProposal : BaseObservableEntity
     {
-        private Guid _celebrationReponseId;
-        public Guid CelebrationReponseId { get => _celebrationReponseId; set => OnPropertyChanged(ref _celebrationReponseId, value); }
+        private Guid _celebrationResponseId;
+        public Guid CelebrationResponseId { get => _celebrationResponseId; set => OnPropertyChanged(ref _celebrationResponseId, value); }
 
         private CelebrationResponse _celebrationResponse;
         public virtual CelebrationResponse CelebrationResponse { get => _celebrationResponse; set => OnPropertyChanged(ref _celebrationResponse, value); }
@@ -35,8 +35,8 @@ namespace Organizator_Proslava.Model.CelebrationResponses
         private Collaborator _collaborator;
         public virtual Collaborator Collaborator { get => _collaborator; set => OnPropertyChanged(ref _collaborator, value); }
 
-        private Guid _celebrationHallId;
-        public Guid CelebrationHallId { get => _celebrationHallId; set => OnPropertyChanged(ref _celebrationHallId, value); }
+        private Guid? _celebrationHallId;
+        public Guid? CelebrationHallId { get => _celebrationHallId; set => OnPropertyChanged(ref _celebrationHallId, value); }
 
         private CelebrationHall _celebrationHall;
         public virtual CelebrationHall CelebrationHall { get => _celebrationHall; set => OnPropertyChanged(ref _celebrationHall, value); }

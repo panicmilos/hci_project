@@ -14,7 +14,7 @@ namespace Organizator_Proslava.ViewModel
             _acrtvm = acrtvm;
 
             EventBus.RegisterHandler("SwitchOrganizerViewModel", vm => Switch(vm));
-            EventBus.RegisterHandler("BackToCurrentCelebrationsForOrganizer", () => Switch(_coctvm));
+            EventBus.RegisterHandler("BackToCurrentCelebrationsForOrganizer", () => { _coctvm.Reload(); Switch(_coctvm); });
             EventBus.RegisterHandler("NextToAcceptCelebrationRequestTable", () => { _acrtvm.Reload(); Switch(_acrtvm); });
 
             Switch(_coctvm);

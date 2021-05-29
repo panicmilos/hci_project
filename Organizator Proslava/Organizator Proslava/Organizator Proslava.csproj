@@ -211,6 +211,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
@@ -320,6 +321,10 @@
     <Compile Include="Migrations\20210529185306_added foreign key for organizer to celebration.designer.cs">
       <DependentUpon>20210529185306_added foreign key for organizer to celebration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210529194131_fixed name of response id in celebration proposal.cs" />
+    <Compile Include="Migrations\20210529194131_fixed name of response id in celebration proposal.designer.cs">
+      <DependentUpon>20210529194131_fixed name of response id in celebration proposal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -352,6 +357,7 @@
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
+    <Compile Include="Services\Contracts\ICelebrationProposalService.cs" />
     <Compile Include="Services\Contracts\ICelebrationResponseService.cs" />
     <Compile Include="Services\Contracts\ICelebrationService.cs" />
     <Compile Include="Services\Contracts\IClientService.cs" />
@@ -359,7 +365,9 @@
     <Compile Include="Services\Contracts\ICollaboratorService.cs" />
     <Compile Include="Services\Contracts\ICrudService.cs" />
     <Compile Include="Services\Contracts\IOrganizerService.cs" />
+    <Compile Include="Services\Contracts\IProposalCommentService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\Implementations\CelebrationProposalService.cs" />
     <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
     <Compile Include="Services\Implementations\CelebrationService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
@@ -367,6 +375,7 @@
     <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
     <Compile Include="Services\Implementations\CrudService.cs" />
     <Compile Include="Services\Implementations\OrganizerService.cs" />
+    <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />

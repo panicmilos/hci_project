@@ -22,8 +22,7 @@ namespace Organizator_Proslava.Services.Implementations
             var organizer = _organizerService.Read(organizerId);
             var celebration = Read(celebrationId);
 
-            celebration.Organizer = organizer;
-            celebration.OrganizerId = organizerId;
+            celebration.OrganizerId = organizer.Id;
 
             return base.Update(celebration);
         }

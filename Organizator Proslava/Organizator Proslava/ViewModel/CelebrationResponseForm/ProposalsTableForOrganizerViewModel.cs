@@ -21,7 +21,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         private readonly IDialogService _dialogService;
         private readonly ICollaboratorService _collaboratorService;
 
-        public ProposalsTableForOrganizerViewModel(ProposalCommentsViewModel pcvm, ICollaboratorService collaboratorService, IDialogService dialogService)
+        public ProposalsTableForOrganizerViewModel(
+            ProposalCommentsViewModel pcvm,
+            ICollaboratorService collaboratorService,
+            IDialogService dialogService)
         {
             _pcvm = pcvm;
             _collaboratorService = collaboratorService;
@@ -39,6 +42,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                 var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService));
                 if (proposal != null)
                 {
+                    EventBus.FireEvent("CreateNewProposal", proposal);
                     CelebrationProposals.Add(proposal);
                 }
             });

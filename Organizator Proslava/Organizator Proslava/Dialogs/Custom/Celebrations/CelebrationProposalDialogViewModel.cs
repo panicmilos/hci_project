@@ -15,6 +15,10 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public CelebrationProposal Proposal { get; set; }
         public List<Collaborator> Collaborators { get; set; }
 
+        private Collaborator _selectedCollaborator;
+        public Collaborator SelectedCollaborator { get { return _selectedCollaborator; } set { _selectedCollaborator = value; Proposal.Collaborator = _selectedCollaborator; OnPropertyChanged("ShouldShowHalls"); } }
+        public bool ShouldShowHalls { get => Proposal.Collaborator?.CelebrationHalls.Any() ?? false; }
+
         public ICommand Add { get; set; }
         public ICommand Back { get; set; }
 

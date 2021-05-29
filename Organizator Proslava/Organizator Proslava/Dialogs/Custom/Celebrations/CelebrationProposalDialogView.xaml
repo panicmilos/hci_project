@@ -39,12 +39,11 @@
                     BorderBrush="{StaticResource Ming}"
                     Width="400"
                     ItemsSource="{Binding Path=Collaborators}"
-                    SelectedItem="{Binding Path=Proposal.Collaborator, Mode=OneWayToSource}"
-                    FilterMode="Contains">
+                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=OneWayToSource}">
             </controls:AutoCompleteBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="3">
+        <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox
                     Foreground="{StaticResource Ming}"
@@ -55,8 +54,7 @@
                     BorderBrush="{StaticResource Ming}"
                     Width="400"
                     ItemsSource="{Binding Path=Proposal.Collaborator.CelebrationHalls}"
-                    SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}"
-                    FilterMode="Contains">
+                    SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}">
             </controls:AutoCompleteBox>
         </StackPanel>
 

@@ -2,6 +2,7 @@
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -16,27 +17,29 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Back { get; set; }
         public ICommand Comment { get; set; }
 
+        private readonly IProposalCommentService _proposalCommentService;
         private readonly IDialogService _dialogService;
 
-        public ProposalCommentsViewModel(IDialogService dialogService)
+        public ProposalCommentsViewModel(IProposalCommentService proposalCommentService, IDialogService dialogService)
         {
+            _proposalCommentService = proposalCommentService;
             _dialogService = dialogService;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForOrganizer"));
             Comment = new RelayCommand(() =>
             {
-                var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel());
+                var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
                 if (commentText != null)
                 {
                     var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser");
                     var comment = new ProposalComment()
                     {
-                        Writer = loggedUser,
-                        CelebrationProposal = CelebrationProposal,
+                        WriterId = loggedUser.Id,
+                        CelebrationProposalId = CelebrationProposal.Id,
                         Content = commentText
                     };
 
-                    CelebrationProposal.ProposalComments.Add(comment);
+                    _proposalCommentService.Create(comment);
                     ProposalComments.Add(comment);
                 }
             });

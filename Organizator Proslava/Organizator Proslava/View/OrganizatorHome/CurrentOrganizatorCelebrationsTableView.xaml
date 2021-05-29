@@ -30,20 +30,20 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn
                     Header="Vrsta Proslave"
-                    Width="*"
+                    Width="1.5*"
                     Binding="{Binding Path=Celebration.Type}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                     <DataGridTextColumn
-                    Header="Organizator"
-                    Width="*"
-                    Binding="{Binding Path=Celebration.Organizer.FullName}"
+                    Header="Klijent"
+                    Width="1.5*"
+                    Binding="{Binding Path=Celebration.Client.FullName}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                     <DataGridTextColumn
                     Header="Datum i vreme"
-                    Width="*"
+                    Width="2*"
                     Binding="{Binding Path=Celebration.DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                    <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn Header="Pregled" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Style="{StaticResource SmallPaintedButton}"
@@ -54,7 +54,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Otkaži" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn Header="Otkaži" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Style="{StaticResource SmallPaintedButton}"
