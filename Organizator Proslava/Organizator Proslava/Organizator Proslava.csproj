@@ -316,6 +316,10 @@
     <Compile Include="Migrations\20210527223126_added proposal comments.designer.cs">
       <DependentUpon>20210527223126_added proposal comments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210529185306_added foreign key for organizer to celebration.cs" />
+    <Compile Include="Migrations\20210529185306_added foreign key for organizer to celebration.designer.cs">
+      <DependentUpon>20210529185306_added foreign key for organizer to celebration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />

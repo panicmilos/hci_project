@@ -16,7 +16,7 @@ namespace Organizator_Proslava.Utility
             {
                 FirstName = "Milos",
                 LastName = "Panic",
-                Id = new Guid("e0c1f7b7-1d73-43fd-98cc-c904295afb62")
+                Id = new Guid("08d91f80-1277-4f3a-87ec-6c54321bfcb1")
             };
         }
 
