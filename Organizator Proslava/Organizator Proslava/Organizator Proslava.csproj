@@ -257,6 +257,10 @@
       <DependentUpon>ChooseOrganizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Organizers\OrganizerDetailView.xaml.cs">
+      <DependentUpon>OrganizerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Organizers\OrganizerDetailViewModel.cs" />
     <Compile Include="Dialogs\DialogResults.cs" />
     <Compile Include="Dialogs\Map\MapControl.cs" />
     <Compile Include="Dialogs\Map\MapDialogView.xaml.cs">
@@ -407,6 +411,7 @@
     <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\CurrentOrganizatorCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
+    <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
@@ -481,6 +486,9 @@
     <Compile Include="View\OrganizerHomeView.xaml.cs">
       <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OrganizersTableView.xaml.cs">
+      <DependentUpon>OrganizersTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -531,6 +539,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml" />
+    <Page Include="Dialogs\Custom\Organizers\OrganizerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\Map\MapDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -668,6 +680,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrganizerHomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizersTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
