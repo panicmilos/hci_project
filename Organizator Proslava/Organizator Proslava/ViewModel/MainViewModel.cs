@@ -42,7 +42,7 @@ namespace Organizator_Proslava.ViewModel
             Covm = covm;
             Otvm = otvm;
 
-            CurrentViewModel = Ahvm;
+            CurrentViewModel = Lvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
