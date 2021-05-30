@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Organizers
 {
-    public class OrganizerDetailViewModel : DialogViewModelBase<OrganizerService>
+    public class OrganizerDetailViewModel : DialogViewModelBase<DialogResults>
     {
         public Organizer Organizer { get; set; }
         public ICommand Back { get; set; }
@@ -21,7 +21,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Organizers
             base("Pregled organizatora", 590, 420)
         {
             Organizer = organizer;
-            Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, null));
+            Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
         }
     }
 }
