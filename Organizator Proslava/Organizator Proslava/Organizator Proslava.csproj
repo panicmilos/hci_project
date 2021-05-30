@@ -211,12 +211,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
+    <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
+    <Compile Include="Converters\YourCommentVisibilityConverter.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Dialogs\Alert\AlertDialogView.xaml.cs">
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Alert\AlertDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml.cs">
+      <DependentUpon>CelebrationDetailDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogView.xaml.cs">
+      <DependentUpon>CelebrationLongPreviewDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml.cs">
+      <DependentUpon>CelebrationProposalDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml.cs">
+      <DependentUpon>WriteCommentDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml.cs">
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
@@ -285,6 +305,30 @@
     <Compile Include="Migrations\20210524181257_test2.designer.cs">
       <DependentUpon>20210524181257_test2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210527161733_added initial celebration response model.cs" />
+    <Compile Include="Migrations\20210527161733_added initial celebration response model.designer.cs">
+      <DependentUpon>20210527161733_added initial celebration response model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210527162539_updated celebration response model.cs" />
+    <Compile Include="Migrations\20210527162539_updated celebration response model.designer.cs">
+      <DependentUpon>20210527162539_updated celebration response model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210527204356_added some new properties to celebration proposal.cs" />
+    <Compile Include="Migrations\20210527204356_added some new properties to celebration proposal.designer.cs">
+      <DependentUpon>20210527204356_added some new properties to celebration proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210527223126_added proposal comments.cs" />
+    <Compile Include="Migrations\20210527223126_added proposal comments.designer.cs">
+      <DependentUpon>20210527223126_added proposal comments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210529185306_added foreign key for organizer to celebration.cs" />
+    <Compile Include="Migrations\20210529185306_added foreign key for organizer to celebration.designer.cs">
+      <DependentUpon>20210529185306_added foreign key for organizer to celebration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210529194131_fixed name of response id in celebration proposal.cs" />
+    <Compile Include="Migrations\20210529194131_fixed name of response id in celebration proposal.designer.cs">
+      <DependentUpon>20210529194131_fixed name of response id in celebration proposal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -298,6 +342,10 @@
     <Compile Include="Model\CelebrationHalls\ServingTable.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor18.cs" />
     <Compile Include="Model\CelebrationHalls\TableFor6.cs" />
+    <Compile Include="Model\CelebrationResponses\CelebrationProposal.cs" />
+    <Compile Include="Model\CelebrationResponses\CelebrationResponse.cs" />
+    <Compile Include="Model\CelebrationResponses\CelebrationProposalStatus.cs" />
+    <Compile Include="Model\CelebrationResponses\ProposalComment.cs" />
     <Compile Include="Model\Celebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborators\Collaborator.cs" />
@@ -313,18 +361,27 @@
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
+    <Compile Include="Services\Contracts\ICelebrationProposalService.cs" />
+    <Compile Include="Services\Contracts\ICelebrationResponseService.cs" />
+    <Compile Include="Services\Contracts\ICelebrationService.cs" />
     <Compile Include="Services\Contracts\IClientService.cs" />
     <Compile Include="Services\Contracts\ICelebrationTypeService.cs" />
     <Compile Include="Services\Contracts\ICollaboratorService.cs" />
     <Compile Include="Services\Contracts\ICrudService.cs" />
     <Compile Include="Services\Contracts\IOrganizerService.cs" />
+    <Compile Include="Services\Contracts\IProposalCommentService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\Implementations\CelebrationProposalService.cs" />
+    <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
+    <Compile Include="Services\Implementations\CelebrationService.cs" />
     <Compile Include="Services\Implementations\CelebrationTypeService.cs" />
     <Compile Include="Services\Implementations\ClientService.cs" />
     <Compile Include="Services\Implementations\CollaboratorCrudService.cs" />
     <Compile Include="Services\Implementations\CrudService.cs" />
     <Compile Include="Services\Implementations\OrganizerService.cs" />
+    <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
     <Compile Include="Utility\NavigabileModelView.cs" />
@@ -332,6 +389,11 @@
     <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\CelebrationResponseFormViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\ProposalCommentsViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\ProposalsTableForOrganizerViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
+    <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -346,6 +408,8 @@
     <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
+    <Compile Include="ViewModel\OrganizatorHome\CurrentOrganizatorCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
@@ -361,6 +425,21 @@
     </Compile>
     <Compile Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml.cs">
       <DependentUpon>CelebrationRequestInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml.cs">
+      <DependentUpon>CelebrationResponseFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\ProposalCommentsView.xaml.cs">
+      <DependentUpon>ProposalCommentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml.cs">
+      <DependentUpon>ProposalsTableForOrganizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\RequestDetailsTableForOrganizerView.xaml.cs">
+      <DependentUpon>RequestDetailsTableForOrganizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml.cs">
+      <DependentUpon>RequestLongPreviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
@@ -398,6 +477,12 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OrganizatorHome\AcceptCelebrationRequestTableView.xaml.cs">
+      <DependentUpon>AcceptCelebrationRequestTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml.cs">
+      <DependentUpon>CurrentOrganizatorCelebrationsTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OrganizerHomeView.xaml.cs">
       <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
     </Compile>
@@ -407,6 +492,9 @@
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SharedComponents\DisabledTextAreaPreview.xaml.cs">
+      <DependentUpon>DisabledTextAreaPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Space.xaml.cs">
       <DependentUpon>Space.xaml</DependentUpon>
     </Compile>
@@ -415,6 +503,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Alert\AlertDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationLongPreviewDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -499,6 +603,26 @@
     </Page>
     <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
+    <Page Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CelebrationResponseForm\ProposalCommentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CelebrationResponseForm\ProposalsTableForOrganizerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CelebrationResponseForm\RequestDetailsTableForOrganizerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -547,6 +671,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\OrganizatorHome\AcceptCelebrationRequestTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OrganizerHomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -556,6 +688,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SharedComponents\DisabledTextAreaPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -581,6 +717,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -628,6 +765,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\legalCollaborator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\RequestResponseFormShared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

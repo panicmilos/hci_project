@@ -13,11 +13,6 @@ namespace Organizator_Proslava.Services.Implementations
         {
         }
 
-        public override IEnumerable<Collaborator> Read()
-        {
-            return _entities.ToList();
-        }
-
         public override Collaborator Update(Collaborator collaborator)
         {
             var existingCollaborator = Read(collaborator.Id);

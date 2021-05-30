@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Custom.Celebrations.CelebrationProposalDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="440" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="Oznaka predloga" Style="{StaticResource registerPageLabel}" />
+            <TextBox Text="{Binding Path=Proposal.Title, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" Background="{StaticResource Cararra}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label Content="Saradnik" Style="{StaticResource registerPageLabel}" />
+            <controls:AutoCompleteBox
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="18"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    Width="400"
+                    ItemsSource="{Binding Path=Collaborators}"
+                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=OneWayToSource}">
+            </controls:AutoCompleteBox>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
+            <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
+            <controls:AutoCompleteBox
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="18"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    Width="400"
+                    ItemsSource="{Binding Path=Proposal.Collaborator.CelebrationHalls}"
+                    SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}">
+            </controls:AutoCompleteBox>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.Row="4" x:Name="WrapperGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Opis predloga" Style="{StaticResource registerPageLabel}" />
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <TextBox Text="{Binding Path=Proposal.Content, Mode=TwoWay}"
+                             Style="{StaticResource registerFormTextBox}"
+                             Background="{StaticResource Cararra}"
+                             TextWrapping="Wrap" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Nazad"
+                    Command="{Binding Path=Back}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+
+            <Button Content="Dodaj"
+                    Command="{Binding Path=Add}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -27,6 +27,11 @@ namespace Organizator_Proslava.Model.CelebrationHalls
             PlaceableEntities = new List<PlaceableEntity>();
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public CelebrationHall Clone()
         {
             return new CelebrationHall

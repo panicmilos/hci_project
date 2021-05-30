@@ -4,6 +4,8 @@
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
                     xmlns:crfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationRequestForm"
                     xmlns:crfv="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
+                    xmlns:crespfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationResponseForm"
+                    xmlns:crespfv="clr-namespace:Organizator_Proslava.View.CelebrationResponseForm"
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
@@ -12,7 +14,11 @@
                     xmlns:dfv="clr-namespace:Organizator_Proslava.View.DemoForm"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
-                    xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map">
+                    xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map"
+                    xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
+                    xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
+                    xmlns:orghomevm="clr-namespace:Organizator_Proslava.ViewModel.OrganizatorHome"
+                    xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -74,6 +80,18 @@
         <cfv:CollaboratorHallsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
+        <alert:AlertDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
+        <option:OptionDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type map:MapDialogViewModel}">
+        <map:MapDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceDialogViewModel}">
         <cdcollaborators:CollaboratorServiceDialogView />
     </DataTemplate>
@@ -90,30 +108,34 @@
         <cdcollaborators:SpaceModelingView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
-        <alert:AlertDialogView />
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationDetailDialogViewModel}">
+        <cdcelebrations:CelebrationDetailView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
-        <option:OptionDialogView />
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationProposalDialogViewModel}">
+        <cdcelebrations:CelebrationProposalDialogView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type map:MapDialogViewModel}">
-        <map:MapDialogView />
+    <DataTemplate DataType="{x:Type cdcelebrations:WriteCommentDialogViewModel}">
+        <cdcelebrations:WriteCommentDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationLongPreviewDialogViewModel}">
+        <cdcelebrations:CelebrationLongPreviewDialogView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
         <dfv:DemoView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestFormViewModel}">
         <crfv:CelebrationRequestFormView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestInfoViewModel}">
         <crfv:CelebrationRequestInfoView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type crfvm:ChooseOrganizerViewModel}">
         <crfv:ChooseOrganizerView />
     </DataTemplate>
@@ -124,5 +146,33 @@
 
     <DataTemplate DataType="{x:Type dorganizers:OrganizerDetailViewModel}">
         <dorganizers:OrganizerDetailView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:CelebrationResponseFormViewModel}">
+        <crespfv:CelebrationResponseFormView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:RequestLongPreviewViewModel}">
+        <crespfv:RequestLongPreviewView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:RequestDetailsTableForOrganizerViewModel}">
+        <crespfv:RequestDetailsTableForOrganizerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:ProposalsTableForOrganizerViewModel}">
+        <crespfv:ProposalsTableForOrganizerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crespfvm:ProposalCommentsViewModel}">
+        <crespfv:ProposalCommentsView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orghomevm:CurrentOrganizatorCelebrationsTableViewModel}">
+        <orghomev:CurrentOrganizatorCelebrationResponsesTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orghomevm:AcceptCelebrationRequestTableViewModel}">
+        <orghomev:AcceptCelebrationRequestTableView />
     </DataTemplate>
 </ResourceDictionary>

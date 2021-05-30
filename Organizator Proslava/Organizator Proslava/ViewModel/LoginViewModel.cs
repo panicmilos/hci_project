@@ -20,6 +20,8 @@ namespace Organizator_Proslava.ViewModel
         public ICommand DEMO { get; set; }
         public ICommand Colabs { get; set; }
         public ICommand Covm { get; set; }
+        public ICommand ClientHome { get; set; }
+        public ICommand OrgHome { get; set; }
 
         public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
         {
@@ -72,6 +74,8 @@ namespace Organizator_Proslava.ViewModel
             DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
             Colabs = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorsTable")); // Delete Later
             Covm = new RelayCommand(() => EventBus.FireEvent("CreateOrganizer")); // Delete later
+            ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin")); // Delete later
+            OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin")); // Delete later
 
             Map = new RelayCommand(() =>
             {

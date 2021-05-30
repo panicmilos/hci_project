@@ -60,8 +60,10 @@ namespace Organizator_Proslava.Dialogs.Map
             _map.Markers.Clear();
             var markerPosiiton = new PointLatLng(SelectedAddress.Lat, SelectedAddress.Lng);
 
-            var marker = new GMapMarker(markerPosiiton);
-            marker.Shape = new PinControl();
+            var marker = new GMapMarker(markerPosiiton)
+            {
+                Shape = new PinControl()
+            };
             _map.Markers.Add(marker);
             _map.Position = markerPosiiton;
         }

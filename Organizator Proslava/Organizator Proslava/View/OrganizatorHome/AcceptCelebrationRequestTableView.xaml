@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.OrganizatorHome.AcceptCelebrationRequestTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Style="{StaticResource TableTitleLabel}">Neprihvaćene proslave</Label>
+
+        <DataGrid
+            Grid.Row="1"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding Path=CelebrationRequests}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Vrsta Proslave"
+                    Width="1.5*"
+                    Binding="{Binding Path=Type}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="Klijent"
+                    Width="1.5*"
+                    Binding="{Binding Path=Client.FullName}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="Datum i vreme"
+                    Width="2*"
+                    Binding="{Binding Path=DateTimeFrom}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTemplateColumn Header="Pregled" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:AcceptCelebrationRequestTableView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Prihvati" Width="0.7*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Accept, RelativeSource={RelativeSource AncestorType={x:Type local:AcceptCelebrationRequestTableView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_check-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

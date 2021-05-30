@@ -27,7 +27,7 @@ namespace Organizator_Proslava.ViewModel
 
         private readonly IOrganizerService _organizerService;
         private readonly IDialogService _dialogService;
-        private ICelebrationTypeService _celebrationTypeService;
+        private readonly ICelebrationTypeService _celebrationTypeService;
 
         public CreateOrganizerViewModel(IOrganizerService organizerService, IDialogService dialogService, ICelebrationTypeService celebrationTypeService)
         {
