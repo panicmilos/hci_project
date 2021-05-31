@@ -8,6 +8,9 @@ namespace Organizator_Proslava.Model
     {
         private string _type;
         public string Type { get => _type; set => OnPropertyChanged(ref _type, value); }
+        
+        private Guid? _clientId;
+        public Guid? ClientId { get => _clientId; set => OnPropertyChanged(ref _clientId, value); }
 
         private Client _client;
         public virtual Client Client { get => _client; set => OnPropertyChanged(ref _client, value); }
@@ -50,7 +53,7 @@ namespace Organizator_Proslava.Model
         public override string ToString()
         {
             var builder = new StringBuilder();
-            builder.Append($"Ja, {_client.FullName} želim da organizujem {_type}. ");
+            builder.Append($"Ja, {_client?.FullName} želim da organizujem {_type}. ");
 
             if (Organizer == null)
             {
@@ -58,7 +61,7 @@ namespace Organizator_Proslava.Model
             }
             else
             {
-                builder.Append($"Organizator ove proslave je {_organizer.FullName}. ");
+                builder.Append($"Organizator ove proslave je {_organizer?.FullName}. ");
             }
 
             if (Address == null)
@@ -67,7 +70,7 @@ namespace Organizator_Proslava.Model
             }
             else
             {
-                builder.Append($"Želim da se organizuje na adresi {_address.WholeAddress}. ");
+                builder.Append($"Želim da se organizuje na adresi {_address?.WholeAddress}. ");
             }
 
             var isFixedString = _isBudgetFixed ? "jeste" : "nije";

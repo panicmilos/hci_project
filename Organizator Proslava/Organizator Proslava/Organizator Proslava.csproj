@@ -391,6 +391,7 @@
     <Compile Include="Utility\NavigabileModelView.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestPreviewViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestDetailsViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
@@ -433,6 +434,9 @@
     </Compile>
     <Compile Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml.cs">
       <DependentUpon>CelebrationRequestInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationRequestForm\CelebrationRequestPreviewView.xaml.cs">
+      <DependentUpon>CelebrationRequestPreviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml.cs">
       <DependentUpon>CelebrationResponseFormView.xaml</DependentUpon>
@@ -613,6 +617,7 @@
     <Page Include="View\CelebrationRequestForm\CelebrationRequestDetailsView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
+    <Page Include="View\CelebrationRequestForm\CelebrationRequestPreviewView.xaml" />
     <Page Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

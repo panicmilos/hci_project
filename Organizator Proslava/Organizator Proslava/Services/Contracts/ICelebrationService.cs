@@ -9,5 +9,6 @@ namespace Organizator_Proslava.Services.Contracts
         Celebration AcceptBy(Guid organizerId, Guid celebrationId);
 
         IEnumerable<Celebration> ReadNotTaken();
+        IEnumerable<Celebration> ReadForClient(Guid clientId);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
@@ -52,7 +51,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             });
             
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationRequestInfo"));
-            Next = new RelayCommand(() => EventBus.FireEvent("OpenDialog"));
+            Next = new RelayCommand(() => EventBus.FireEvent("NextToLongViewCelebration"));
         }
 
         public void ForAdd()
