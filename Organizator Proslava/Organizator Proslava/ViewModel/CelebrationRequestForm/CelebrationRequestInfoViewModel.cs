@@ -2,6 +2,7 @@
 using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
@@ -17,14 +18,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         private readonly IDialogService _dialogService;
 
-        public CelebrationRequestInfoViewModel(IDialogService dialogService)
+        public CelebrationRequestInfoViewModel(IOrganizerService organizerService, IDialogService dialogService)
         {
             _dialogService = dialogService;
-            Celebration = new Celebration();
             
             OpenOrganizersDialog = new RelayCommand(() =>
             {
-                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel());
+                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(organizerService));
             });
             OpenMap = new RelayCommand(() =>
             {
@@ -32,6 +32,16 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             });
             Back = new RelayCommand(() => EventBus.FireEvent("BackToClientPage"));
             Next = new RelayCommand(() => EventBus.FireEvent("NextToCelebrationRequestDetails"));
+        }
+
+        public void ForAdd()
+        {
+            Celebration = new Celebration();
+        }
+        
+        public void ForUpdate(Celebration celebration)
+        {
+            Celebration = celebration;
         }
     }
 }

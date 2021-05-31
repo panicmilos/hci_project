@@ -134,6 +134,18 @@
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestInfoViewModel}">
         <crfv:CelebrationRequestInfoView />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:CelebrationRequestDetailsViewModel}">
+        <crfv:CelebrationRequestDetailsView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type cdcelebrations:AddCelebrationDetailViewModel}">
+        <cdcelebrations:AddCelebrationDetailView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type crfvm:CelebrationRequestPreviewViewModel}">
+        <crfv:CelebrationRequestPreviewView/>
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type crfvm:ChooseOrganizerViewModel}">
         <crfv:ChooseOrganizerView />
