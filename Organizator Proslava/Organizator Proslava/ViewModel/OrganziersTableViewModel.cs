@@ -39,9 +39,16 @@ namespace Organizator_Proslava.ViewModel
             Organizers = new ObservableCollection<Organizer>(_organizerService.Read());
 
             Add = new RelayCommand(() =>
-            {
-                EventBus.FireEvent("CreateOrganizer");
+            { 
                 EventBus.FireEvent("SwitchMainViewModel", _covm);
+                _covm.ForAdd();
+            });
+
+            Edit = new RelayCommand<Organizer>(organizer =>
+            {
+                var organizerCopy = organizer.Clone();
+                EventBus.FireEvent("SwitchMainViewModel", _covm);
+                _covm.ForUpdate(organizerCopy);
             });
 
             Remove = new RelayCommand<Organizer>(organizer =>

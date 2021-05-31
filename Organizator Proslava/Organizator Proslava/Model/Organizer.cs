@@ -3,7 +3,7 @@ using System;
 
 namespace Organizator_Proslava.Model
 {
-    public class Organizer : BaseUser
+    public class Organizer : BaseUser, ICloneable<Organizer>
     {
         private string _personalId;
         public string PersonalId { get => _personalId; set => OnPropertyChanged(ref _personalId, value); }
@@ -19,5 +19,26 @@ namespace Organizator_Proslava.Model
 
         private CellebrationType _cellebrationType;
         public virtual CellebrationType CellebrationType { get => _cellebrationType; set => OnPropertyChanged(ref _cellebrationType, value); }
+
+        public Organizer Clone()
+        {
+            return new Organizer
+            {
+                Id = Id,
+                IsActive = IsActive,
+                CreatedAt = CreatedAt,
+                MailAddress = MailAddress,
+                FirstName = FirstName,
+                LastName = LastName,
+                UserName = UserName,
+                Password = Password,
+                PhoneNumber = PhoneNumber,
+                Role = Role,
+                PersonalId = PersonalId,
+                JMBG = JMBG,
+                Address = Address?.Clone(),
+                CellebrationType = CellebrationType?.Clone()
+            };
+        }
     }
 }

@@ -148,7 +148,7 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=celebrationType, Mode=TwoWay}"
+                    Text="{Binding Path=CelebrationType, Mode=TwoWay}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0">
             </controls:AutoCompleteBox>
@@ -156,7 +156,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Width="160">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            <Button Content="Napravi nalog" Command="{Binding Path=Create}" CommandParameter="{Binding Path=Organizer}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            <Button Content="Sačuvaj" Command="{Binding Path=Create}" CommandParameter="{Binding Path=Organizer}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>
 </UserControl>
