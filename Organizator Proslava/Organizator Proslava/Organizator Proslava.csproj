@@ -420,6 +420,7 @@
     <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
+    <Compile Include="ViewModel\UsersView\UsersTableViewModel.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
       <DependentUpon>AdminHomeView.xaml</DependentUpon>
     </Compile>
@@ -509,6 +510,9 @@
     </Compile>
     <Compile Include="View\Space.xaml.cs">
       <DependentUpon>Space.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UsersView\UserTableView.xaml.cs">
+      <DependentUpon>UserTableView.xaml</DependentUpon>
     </Compile>
     <Page Include="Converters\ConvertersDictionary.xaml">
       <SubType>Designer</SubType>
@@ -711,6 +715,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Space.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsersView\UserTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

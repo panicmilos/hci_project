@@ -13,11 +13,13 @@ namespace Organizator_Proslava.ViewModel
     {
         public ICommand Back { get; set; }
         public ICommand Organizers { get; set; }
+        public ICommand Clients { get; set; }
         
         public AdminHomeViewModel()
         {
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
             Organizers = new RelayCommand(() => EventBus.FireEvent("OrganizersTableView"));
+            Clients = new RelayCommand(() => EventBus.FireEvent("ClientsTableView"));
         }
     }
 }

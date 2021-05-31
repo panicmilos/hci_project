@@ -2,6 +2,7 @@
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
+using Organizator_Proslava.ViewModel.UsersView;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -21,6 +22,7 @@ namespace Organizator_Proslava.ViewModel
         public CelebrationRequestFormViewModel Crfvm { get; set; }
         public CreateOrganizerViewModel Covm { get; set; }
         public OrganziersTableViewModel Otvm { get; set; }
+        public UsersTableViewModel Utvm { get; set; }
 
         public MainViewModel(
             LoginViewModel lvm,
@@ -31,7 +33,8 @@ namespace Organizator_Proslava.ViewModel
             CollaboratorFormViewModel cfvm,
             CreateOrganizerViewModel covm,
             CollaboratorsTableViewModel ctvm,
-            OrganziersTableViewModel otvm)
+            OrganziersTableViewModel otvm,
+            UsersTableViewModel utvm)
         {
             Lvm = lvm;
             Rvm = rvm;
@@ -41,6 +44,7 @@ namespace Organizator_Proslava.ViewModel
             Ctvm = ctvm;
             Covm = covm;
             Otvm = otvm;
+            Utvm = utvm;
 
             CurrentViewModel = Ahvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
@@ -57,6 +61,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("BackToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
             EventBus.RegisterHandler("CreateOrganizer", () => CurrentViewModel = covm); // Delete later
             EventBus.RegisterHandler("OrganizersTableView", () => CurrentViewModel = otvm);
+            EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
         }
     }
 }

@@ -17,7 +17,9 @@
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map"
                     xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
                     xmlns:orghomevm="clr-namespace:Organizator_Proslava.ViewModel.OrganizatorHome"
-                    xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome">
+                    xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
+                    xmlns:uv="clr-namespace:Organizator_Proslava.View.UsersView"
+                    xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -185,5 +187,9 @@
 
     <DataTemplate DataType="{x:Type orghomevm:AcceptCelebrationRequestTableViewModel}">
         <orghomev:AcceptCelebrationRequestTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type uvm:UsersTableViewModel}">
+        <uv:UserTableView />
     </DataTemplate>
 </ResourceDictionary>
