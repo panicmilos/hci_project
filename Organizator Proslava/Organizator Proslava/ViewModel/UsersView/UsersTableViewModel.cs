@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Custom.Clients;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
@@ -42,6 +43,11 @@ namespace Organizator_Proslava.ViewModel.UsersView
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
+
+            Details = new RelayCommand<Client>(client =>
+            {
+                _dialogService.OpenDialog(new ClientDetailViewModel(client));
+            });
 
             EventBus.RegisterHandler("ReloadClientTable", () => Clients = new ObservableCollection<Client>(_clientService.Read()));
         }

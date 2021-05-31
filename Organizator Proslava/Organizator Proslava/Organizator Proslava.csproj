@@ -241,6 +241,10 @@
     <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml.cs">
       <DependentUpon>WriteCommentDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Custom\Clients\ClientDetailView.xaml.cs">
+      <DependentUpon>ClientDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Clients\ClientDetailViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml.cs">
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
@@ -536,6 +540,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Clients\ClientDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

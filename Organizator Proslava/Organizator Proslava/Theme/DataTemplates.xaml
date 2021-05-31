@@ -19,7 +19,8 @@
                     xmlns:orghomevm="clr-namespace:Organizator_Proslava.ViewModel.OrganizatorHome"
                     xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
                     xmlns:uv="clr-namespace:Organizator_Proslava.View.UsersView"
-                    xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView">
+                    xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView"
+                    xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -191,5 +192,9 @@
 
     <DataTemplate DataType="{x:Type uvm:UsersTableViewModel}">
         <uv:UserTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dclients:ClientDetailViewModel}">
+        <dclients:ClientDetailView />
     </DataTemplate>
 </ResourceDictionary>
