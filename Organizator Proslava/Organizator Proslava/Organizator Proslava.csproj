@@ -221,6 +221,10 @@
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Alert\AlertDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\AddCelebrationDetailView.xaml.cs">
+      <DependentUpon>AddCelebrationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\AddCelebrationDetailViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml.cs">
       <DependentUpon>CelebrationDetailDialogView.xaml</DependentUpon>
     </Compile>
@@ -387,6 +391,7 @@
     <Compile Include="Utility\NavigabileModelView.cs" />
     <Compile Include="Utility\ObservableEntity.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
+    <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestDetailsViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestInfoViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\CelebrationResponseFormViewModel.cs" />
@@ -419,6 +424,9 @@
     </Compile>
     <Compile Include="View\Background.xaml.cs">
       <DependentUpon>Background.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CelebrationRequestForm\CelebrationRequestDetailsView.xaml.cs">
+      <DependentUpon>CelebrationRequestDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml.cs">
       <DependentUpon>CelebrationRequestFormView.xaml</DependentUpon>
@@ -506,6 +514,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\Custom\Celebrations\AddCelebrationDetailView.xaml" />
     <Page Include="Dialogs\Custom\Celebrations\CelebrationDetailDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -601,6 +610,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CelebrationRequestForm\CelebrationRequestDetailsView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
     <Page Include="View\CelebrationResponseForm\CelebrationResponseFormView.xaml">
@@ -767,9 +777,6 @@
     <None Include="Resources\legalCollaborator.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\RequestResponseFormShared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\profile.png">

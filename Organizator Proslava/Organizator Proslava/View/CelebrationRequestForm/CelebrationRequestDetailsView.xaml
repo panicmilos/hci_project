@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Organizator_Proslava.View.CelebrationRequestForm.CelebrationRequestDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Detalji proslave</Label>
+
+        <DataGrid
+            Grid.Column="1"
+            Grid.Row="1"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            SelectedItem="{Binding Path=SelectedCelebrationDetail}"
+            ItemsSource="{Binding Path=CelebrationDetails}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Oznaka"
+                    Width="2*"
+                    Binding="{Binding Path=Title}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="Detalji"
+                    Width="4*"
+                    Binding="{Binding Path=Content}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTemplateColumn Header="Izmeni" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Ukloni" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
+        
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
+            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</UserControl>

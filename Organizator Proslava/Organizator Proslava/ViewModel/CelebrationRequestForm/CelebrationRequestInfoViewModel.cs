@@ -31,7 +31,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                 Celebration.Address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberite adresu proslave"));
             });
             Back = new RelayCommand(() => EventBus.FireEvent("BackToClientPage"));
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToCelebrationRequestDetails"));
+            Next = new RelayCommand(() => EventBus.FireEvent("NextToAddCelebrationRequestDetails"));
         }
     }
 }

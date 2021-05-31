@@ -67,13 +67,6 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorImages"));
-            Save = new RelayCommand(() =>
-            {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
-                {
-                    EventBus.FireEvent("SaveCollaborator");
-                }
-            });
         }
 
         public void ForAdd()
