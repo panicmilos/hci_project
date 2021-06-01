@@ -5,15 +5,36 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : IDataErrorInfo
     {
         public Client Client { get; set; }
+        public string RepeatedPassword { get; set; }
+        public string UN { get; set; }
         public ICommand Register { get; set; }
         public ICommand Back { get; set; }
+        public string Error { get; set; }
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "RepeatedPassword")
+                {
+                    if (Client.Password != RepeatedPassword)
+                        return "pw and repeated not equal";
+                }
+                else if (columnName == "UN")
+                {
+                    if (UN.Length < 5) return "username short";
+                    if (UN.Length > 15) return "username long";
+                }
+                return null;
+            }
+        }
 
         private readonly IClientService _clientService;
         private readonly IDialogService _dialogService;

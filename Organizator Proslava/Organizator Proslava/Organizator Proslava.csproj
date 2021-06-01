@@ -337,6 +337,7 @@
     <Compile Include="Model\DTO\AddPlaceableEntityDTO.cs" />
     <Compile Include="Model\Collaborators\IndividualCollaborator.cs" />
     <Compile Include="Model\Collaborators\LegalCollaborator.cs" />
+    <Compile Include="Model\DTO\LoginDTO.cs" />
     <Compile Include="Model\ICloneable.cs" />
     <Compile Include="Model\Organizer.cs" />
     <Compile Include="Model\Role.cs" />
@@ -715,6 +716,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\RequestResponseFormShared\" />
+    <Folder Include="View\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\profile.png">

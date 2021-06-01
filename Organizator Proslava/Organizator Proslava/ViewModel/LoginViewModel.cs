@@ -2,18 +2,17 @@
 using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.DTO;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
 {
     public class LoginViewModel
     {
-        public BaseUser User { get; set; }
+        public LoginDTO LoginDTO { get; set; }
         public ICommand Login { get; set; }
         public ICommand Register { get; set; }
         public ICommand Map { get; set; }
@@ -27,34 +26,14 @@ namespace Organizator_Proslava.ViewModel
         private readonly IUserService<BaseUser> _userService;
         private readonly IDialogService _dialogService;
 
-        public IEnumerable<BaseUser> Users { get; set; } = new BaseUser[]
-        {
-            new Administrator
-            {
-                UserName = "admin",
-                Role = Role.Administrator
-            },
-            new Organizer
-            {
-                UserName = "org",
-                Role = Role.Organizer
-            },
-            new Client
-            {
-                UserName = "client",
-                Role = Role.User
-            },
-        };
-
         public LoginViewModel(IUserService<BaseUser> userService, IDialogService dialogService)
         {
             _userService = userService;
             _dialogService = dialogService;
-            User = new BaseUser();
-            Login = new RelayCommand<BaseUser>(u =>
+            LoginDTO = new LoginDTO();
+            Login = new RelayCommand<LoginDTO>(login =>
             {
-                //var user = Users.FirstOrDefault(existingUser => existingUser.UserName == u.UserName);
-                var user = _userService.Authenticate(u.UserName, u.Password);
+                var user = _userService.Authenticate(login.UserName, login.Password);
                 if (user == null)
                 {
                     _dialogService.OpenDialog(new AlertDialogViewModel("", "Pogresno korisnicko ime ili sifra"));

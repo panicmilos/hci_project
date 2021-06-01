@@ -24,5 +24,9 @@ namespace Organizator_Proslava.View
         {
             InitializeComponent();
         }
+
+        private void RegisterClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

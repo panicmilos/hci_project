@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace Organizator_Proslava.Utility
@@ -21,6 +22,14 @@ namespace Organizator_Proslava.Utility
             backingField = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        protected void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
         }
     }
 }

@@ -72,4 +72,19 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+
+    <Style x:Key="validateTextBox" BasedOn="{StaticResource registerFormTextBox}" TargetType="{x:Type TextBox}">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder/>
+                        <TextBlock FontSize="11" FontStyle="Italic" Foreground="{StaticResource Pomegranate}"
+                                       Text="{Binding [0].ErrorContent}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
