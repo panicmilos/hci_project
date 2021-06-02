@@ -261,6 +261,10 @@
       <DependentUpon>SpaceModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml.cs">
+      <DependentUpon>NotificationsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Notifications\NotificationsDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Organizers\ChooseOrganizerView.xaml.cs">
       <DependentUpon>ChooseOrganizerView.xaml</DependentUpon>
     </Compile>
@@ -575,6 +579,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\SpaceModelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
