@@ -214,6 +214,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
+    <Compile Include="Converters\StringToImageStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
     <Compile Include="Converters\YourCommentVisibilityConverter.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
@@ -257,6 +258,10 @@
       <DependentUpon>NonDinningTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\NonDinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\PlacingGuestsDialogView.xaml.cs">
+      <DependentUpon>PlacingGuestsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\PlacingGuestsDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingView.xaml.cs">
       <DependentUpon>SpaceModelingView.xaml</DependentUpon>
     </Compile>
@@ -353,6 +358,14 @@
     <Compile Include="Migrations\20210602145510_refactored notifications model.designer.cs">
       <DependentUpon>20210602145510_refactored notifications model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210602200202_added list of guests.cs" />
+    <Compile Include="Migrations\20210602200202_added list of guests.designer.cs">
+      <DependentUpon>20210602200202_added list of guests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210602203847_added name for guest.cs" />
+    <Compile Include="Migrations\20210602203847_added name for guest.designer.cs">
+      <DependentUpon>20210602203847_added name for guest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -360,6 +373,7 @@
     <Compile Include="Model\Celebration.cs" />
     <Compile Include="Model\CelebrationHalls\CelebrationHall.cs" />
     <Compile Include="Model\CelebrationHalls\DinningTable.cs" />
+    <Compile Include="Model\CelebrationHalls\Guest.cs" />
     <Compile Include="Model\CelebrationHalls\Music.cs" />
     <Compile Include="Model\CelebrationHalls\PlaceableEntity.cs" />
     <Compile Include="Model\CelebrationHalls\PlaceableEntityType.cs" />
@@ -575,6 +589,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\NonDinningTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\PlacingGuestsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

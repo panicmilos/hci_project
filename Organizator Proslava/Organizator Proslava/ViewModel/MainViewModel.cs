@@ -38,6 +38,7 @@ namespace Organizator_Proslava.ViewModel
             CollaboratorsTableViewModel ctvm,
             OrganziersTableViewModel otvm,
             UsersTableViewModel utvm,
+            SpaceViewModel spvm,
             INotificationService ns)
         {
             Lvm = lvm;
@@ -50,7 +51,7 @@ namespace Organizator_Proslava.ViewModel
             Otvm = otvm;
             Utvm = utvm;
 
-            CurrentViewModel = Ahvm;
+            CurrentViewModel = lvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
@@ -67,7 +68,9 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("OrganizersTableView", () => CurrentViewModel = otvm);
             EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
 
-            new DialogService().OpenDialog(new NotificationsDialogViewModel(ns));
+            EventBus.RegisterHandler("Space", () => CurrentViewModel = spvm);
+
+            //new DialogService().OpenDialog(new NotificationsDialogViewModel(ns));
         }
     }
 }

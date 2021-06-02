@@ -30,6 +30,14 @@ namespace Organizator_Proslava.Utility
             return (T)_storedObjects[key];
         }
 
+        public static T ReadAndRemoveObject<T>(string key)
+        {
+            T storedObject = ReadObject<T>(key);
+            RemoveObject(key);
+
+            return storedObject;
+        }
+
         public static void RemoveObject(string key)
         {
             _storedObjects.Remove(key);

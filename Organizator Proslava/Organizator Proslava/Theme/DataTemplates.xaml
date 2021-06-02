@@ -111,6 +111,10 @@
         <cdcollaborators:SpaceModelingView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcollaborators:PlacingGuestsDialogViewModel}">
+        <cdcollaborators:PlacingGuestsDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type cdcelebrations:CelebrationDetailDialogViewModel}">
         <cdcelebrations:CelebrationDetailView />
     </DataTemplate>

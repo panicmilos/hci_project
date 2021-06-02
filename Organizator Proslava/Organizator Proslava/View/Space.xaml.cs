@@ -5,6 +5,7 @@ using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,7 +23,7 @@ namespace Organizator_Proslava.View
         private readonly IList<Image> _images;
 
         private readonly IDialogService _dialogService;
-        private Dictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
+        private IDictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
 
         public Space()
         {
@@ -34,7 +35,7 @@ namespace Organizator_Proslava.View
 
             foreach (var placeableEntity in GlobalStore.ReadObject<List<PlaceableEntity>>("placeableEntities"))
             {
-                var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
+                var image = AddImageToCanvas(placeableEntity.ImageName);
                 AddBindings(placeableEntity, image);
                 _imageWithPlaceableEntities.Add(image, placeableEntity);
             }
@@ -55,7 +56,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "6people.png");
+            var image = AddImageToCanvas("6people.png");
             tableFor6.Type = PlaceableEntityType.TableFor6;
             tableFor6.PositionX = Canvas.GetLeft(image);
             tableFor6.PositionY = Canvas.GetTop(image);
@@ -78,7 +79,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "18people.png");
+            var image = AddImageToCanvas("18people.png");
             tableFor18.Type = PlaceableEntityType.TableFor18;
             tableFor18.PositionX = Canvas.GetLeft(image);
             tableFor18.PositionY = Canvas.GetTop(image);
@@ -101,7 +102,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "music.png");
+            var image = AddImageToCanvas("music.png");
             music.Type = PlaceableEntityType.Music;
             music.PositionX = Canvas.GetLeft(image);
             music.PositionY = Canvas.GetTop(image);
@@ -124,7 +125,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "empty.png");
+            var image = AddImageToCanvas("empty.png");
             servingTable.Type = PlaceableEntityType.Empty;
             servingTable.PositionX = Canvas.GetLeft(image);
             servingTable.PositionY = Canvas.GetTop(image);
@@ -153,15 +154,16 @@ namespace Organizator_Proslava.View
             image.SetBinding(Canvas.TopProperty, positionY);
         }
 
-        private Image AddImageToCanvas(object sender, RoutedEventArgs e, string imageName)
+        private Image AddImageToCanvas(string imageName)
         {
-            Image image = new Image
+            var image = new Image
             {
                 Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Resources/{imageName}")),
                 Width = 130,
                 Height = 80
             };
-            image.PreviewMouseLeftButtonDown += Ellipse_PreviewMouseLeftButtonDown;
+            image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
+            image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
 
             Canvas.SetLeft(image, (MainCanvas.ActualWidth / 2) - (image.Width / 2));
             Canvas.SetTop(image, (MainCanvas.ActualHeight / 2) - (image.Height / 2));
@@ -171,6 +173,18 @@ namespace Organizator_Proslava.View
             MainCanvas.Children.Add(image);
 
             return image;
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount != 2)
+                return;
+
+            if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity) && placeableEntity is DinningTable dinningTable)
+            {
+                _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTable));
+                dragObject = null;
+            }
         }
 
         private void AddContextMenu(Image image)
@@ -230,7 +244,7 @@ namespace Organizator_Proslava.View
         private UIElement dragObject = null;
         private Point offset;
 
-        private void Ellipse_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity))
             {
