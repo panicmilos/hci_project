@@ -29,7 +29,8 @@ namespace Organizator_Proslava.Model
         public override string ToString()
         {
             // Dodati stranu korisnika
-            return $"Imate nov komentar na \"{Proposal.Title}\" predlogu proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
+            var sufix = NumOfComments > 3 ? "ih" : "a";
+            return $"Imate {NumOfComments} nov{sufix} komentar na \"{Proposal.Title}\" predlogu proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
         }
     }
 

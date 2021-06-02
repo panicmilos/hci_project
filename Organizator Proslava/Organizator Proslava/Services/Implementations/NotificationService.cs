@@ -9,16 +9,29 @@ namespace Organizator_Proslava.Services.Implementations
 {
     public class NotificationService : CrudService<Notification>, INotificationService
     {
-        private readonly IOrganizerService _organizerService;
-
-        public NotificationService(IOrganizerService organizerService, DatabaseContext context) :
+        public NotificationService(DatabaseContext context) :
             base(context)
         {
-            _organizerService = organizerService;
         }
 
         public override Notification Create(Notification notification)
         {
+            if (notification is NewCommentNotification commentNotification)
+            {
+                var existingNewComment = _context.NewCommentNotifications
+                    .FirstOrDefault(cn => cn.ForUserId == commentNotification.ForUserId &&
+                                          cn.CelebrationResponseId == commentNotification.CelebrationResponseId &&
+                                          cn.ProposalId == commentNotification.ProposalId);
+
+                if (existingNewComment != null)
+                {
+                    existingNewComment.NumOfComments++;
+                    base.Update(existingNewComment);
+
+                    return existingNewComment;
+                }
+            }
+
             return base.Create(notification);
         }
 
