@@ -60,7 +60,7 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+            Back = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
 
             Details = new RelayCommand<Organizer>(organizer =>
             {

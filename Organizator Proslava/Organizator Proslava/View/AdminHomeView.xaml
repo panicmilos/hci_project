@@ -20,8 +20,8 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource PaintedButton}">
+
+        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource PaintedButton}" Command="{Binding Path=Clients}">
             <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png" />
         </Button>
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">Korisnici</Label>
