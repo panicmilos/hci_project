@@ -18,11 +18,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Comment { get; set; }
 
         private readonly IProposalCommentService _proposalCommentService;
+        private readonly INotificationService _notificationService;
         private readonly IDialogService _dialogService;
 
-        public ProposalCommentsViewModel(IProposalCommentService proposalCommentService, IDialogService dialogService)
+        public ProposalCommentsViewModel(IProposalCommentService proposalCommentService, INotificationService notificationService, IDialogService dialogService)
         {
             _proposalCommentService = proposalCommentService;
+            _notificationService = notificationService;
             _dialogService = dialogService;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForOrganizer"));
@@ -40,6 +42,14 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                     };
 
                     _proposalCommentService.Create(comment);
+                    _notificationService.Create(new NewCommentNotification
+                    {
+                        ForUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id,
+                        ProposalId = CelebrationProposal.Id,
+                        CelebrationResponseId = CelebrationProposal.CelebrationResponseId,
+                        NumOfComments = 1
+                    });
+
                     ProposalComments.Add(comment);
                 }
             });

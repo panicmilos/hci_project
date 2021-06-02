@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210531213126_notiftications")]
+    partial class notiftications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -416,7 +418,7 @@ namespace Organizator_Proslava.Migrations
                     b.ToTable("CollaboratorServiceBooks");
                 });
 
-            modelBuilder.Entity("Organizator_Proslava.Model.Notification", b =>
+            modelBuilder.Entity("Organizator_Proslava.Model.ResponseNotification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -428,9 +430,8 @@ namespace Organizator_Proslava.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<Guid>("ForObjectId")
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("ForUserId")
                         .HasColumnType("char(36)");
@@ -438,11 +439,12 @@ namespace Organizator_Proslava.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int>("ResponseNotificationType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Notifications");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Notification");
+                    b.ToTable("ResponseNotifications");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Administrator", b =>
@@ -533,46 +535,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasBaseType("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity");
 
                     b.HasDiscriminator().HasValue("ServingTable");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewCommentNotification", b =>
-                {
-                    b.HasBaseType("Organizator_Proslava.Model.Notification");
-
-                    b.Property<int>("NumOfComments")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProposalId")
-                        .HasColumnType("char(36)");
-
-                    b.HasIndex("ProposalId");
-
-                    b.HasDiscriminator().HasValue("NewCommentNotification");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewDetailNotification", b =>
-                {
-                    b.HasBaseType("Organizator_Proslava.Model.Notification");
-
-                    b.Property<Guid>("DetailId")
-                        .HasColumnType("char(36)");
-
-                    b.HasIndex("DetailId");
-
-                    b.HasDiscriminator().HasValue("NewDetailNotification");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewProposalNotification", b =>
-                {
-                    b.HasBaseType("Organizator_Proslava.Model.Notification");
-
-                    b.Property<Guid>("ProposalId")
-                        .HasColumnName("NewProposalNotification_ProposalId")
-                        .HasColumnType("char(36)");
-
-                    b.HasIndex("ProposalId");
-
-                    b.HasDiscriminator().HasValue("NewProposalNotification");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.IndividualCollaborator", b =>
@@ -746,33 +708,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CellebrationType")
                         .WithMany()
                         .HasForeignKey("CellebrationTypeId");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewCommentNotification", b =>
-                {
-                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationProposal", "Proposal")
-                        .WithMany()
-                        .HasForeignKey("ProposalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewDetailNotification", b =>
-                {
-                    b.HasOne("Organizator_Proslava.Model.CelebrationDetail", "Detail")
-                        .WithMany()
-                        .HasForeignKey("DetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.NewProposalNotification", b =>
-                {
-                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationProposal", "Proposal")
-                        .WithMany()
-                        .HasForeignKey("ProposalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

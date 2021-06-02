@@ -22,6 +22,7 @@ namespace Organizator_Proslava.Ninject
             Bind(typeof(ICelebrationResponseService)).To(typeof(CelebrationResponseService));
             Bind(typeof(ICelebrationProposalService)).To(typeof(CelebrationProposalService));
             Bind(typeof(IProposalCommentService)).To(typeof(ProposalCommentService));
+            Bind(typeof(INotificationService)).To(typeof(NotificationService));
 
             Bind<DatabaseContext>().To<DatabaseContext>().InSingletonScope();
 

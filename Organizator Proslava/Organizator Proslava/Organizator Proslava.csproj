@@ -333,6 +333,18 @@
     <Compile Include="Migrations\20210529194131_fixed name of response id in celebration proposal.designer.cs">
       <DependentUpon>20210529194131_fixed name of response id in celebration proposal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210531213126_notiftications.cs" />
+    <Compile Include="Migrations\20210531213126_notiftications.designer.cs">
+      <DependentUpon>20210531213126_notiftications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210531214718_renamed atr.cs" />
+    <Compile Include="Migrations\20210531214718_renamed atr.designer.cs">
+      <DependentUpon>20210531214718_renamed atr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210602145510_refactored notifications model.cs" />
+    <Compile Include="Migrations\20210602145510_refactored notifications model.designer.cs">
+      <DependentUpon>20210602145510_refactored notifications model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -359,6 +371,7 @@
     <Compile Include="Model\Collaborators\IndividualCollaborator.cs" />
     <Compile Include="Model\Collaborators\LegalCollaborator.cs" />
     <Compile Include="Model\ICloneable.cs" />
+    <Compile Include="Model\Notifications.cs" />
     <Compile Include="Model\Organizer.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\BaseUser.cs" />
@@ -374,6 +387,7 @@
     <Compile Include="Services\Contracts\ICrudService.cs" />
     <Compile Include="Services\Contracts\IOrganizerService.cs" />
     <Compile Include="Services\Contracts\IProposalCommentService.cs" />
+    <Compile Include="Services\Contracts\INotificationService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
     <Compile Include="Services\Implementations\CelebrationProposalService.cs" />
     <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
@@ -384,6 +398,7 @@
     <Compile Include="Services\Implementations\CrudService.cs" />
     <Compile Include="Services\Implementations\OrganizerService.cs" />
     <Compile Include="Services\Implementations\ProposalCommentService.cs" />
+    <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />

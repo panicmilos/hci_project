@@ -51,6 +51,13 @@ namespace Organizator_Proslava.Data
         public DbSet<CollaboratorServiceBook> CollaboratorServiceBooks { get; set; }
         public DbSet<CollaboratorService> CollaboratorServices { get; set; }
 
+        // Notification
+
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NewCommentNotification> NewCommentNotifications { get; set; }
+        public DbSet<NewDetailNotification> NewDetailNotifications { get; set; }
+        public DbSet<NewProposalNotification> NewProposalNotifications { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = $"server=bjelicaluka.com;port=3310;database=hci;user=root;password=1234";

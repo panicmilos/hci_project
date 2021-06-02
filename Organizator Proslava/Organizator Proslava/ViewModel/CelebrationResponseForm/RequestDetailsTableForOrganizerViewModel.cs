@@ -19,13 +19,20 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Back { get; set; }
 
         private readonly ICelebrationProposalService _celebrationProposalService;
+        private readonly INotificationService _notificationService;
         private readonly IDialogService _dialogService;
+
         private readonly ProposalsTableForOrganizerViewModel _ptfovm;
 
-        public RequestDetailsTableForOrganizerViewModel(ProposalsTableForOrganizerViewModel ptfovm, ICelebrationProposalService celebrationProposalService, IDialogService dialogService)
+        public RequestDetailsTableForOrganizerViewModel(
+            ProposalsTableForOrganizerViewModel ptfovm,
+            ICelebrationProposalService celebrationProposalService,
+            INotificationService notificationService,
+            IDialogService dialogService)
         {
             _ptfovm = ptfovm;
             _celebrationProposalService = celebrationProposalService;
+            _notificationService = notificationService;
             _dialogService = dialogService;
 
             Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd)));
@@ -46,6 +53,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                 proposal.CelebrationDetail = _currentCelebrationDetail;
                 proposal.CelebrationResponse = CelebrationResponse;
                 _celebrationProposalService.Create(proposal);
+
+                _notificationService.Create(new NewProposalNotification
+                {
+                    ForUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id,
+                    ProposalId = proposal.Id,
+                    CelebrationResponseId = CelebrationResponse.Id,
+                });
             });
         }
     }
