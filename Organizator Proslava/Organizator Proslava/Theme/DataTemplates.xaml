@@ -214,4 +214,8 @@
     <DataTemplate DataType="{x:Type cdcollaborators:LegalCollaboratorDetailViewModel}">
         <cdcollaborators:LegalCollaboratorDetailView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:DisplayImagesViewModel}">
+        <cfv:CollaboratorImagesView />
+    </DataTemplate>
 </ResourceDictionary>

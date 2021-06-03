@@ -254,6 +254,7 @@
       <DependentUpon>DinningTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\DisplayImagesViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\IndividualCollaboratorDetailView.xaml.cs">
       <DependentUpon>IndividualCollaboratorDetailView.xaml</DependentUpon>
     </Compile>
