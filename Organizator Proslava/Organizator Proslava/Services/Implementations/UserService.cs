@@ -13,6 +13,11 @@ namespace Organizator_Proslava.Services.Implementations
         {
         }
 
+        public bool AlreadyInUse(string username)
+        {
+            return base.Read().Any(u => u.UserName == username);
+        }
+
         public BaseUser Authenticate(string username, string password)
         {
             var user = base.Read().FirstOrDefault(u => u.UserName == username && u.Password == password);
