@@ -33,14 +33,12 @@ namespace Organizator_Proslava.View
             _images = new List<Image>();
             _imageWithPlaceableEntities = new Dictionary<UIElement, PlaceableEntity>();
 
-            foreach (var placeableEntity in GlobalStore.ReadObject<List<PlaceableEntity>>("placeableEntities"))
+            foreach (var placeableEntity in GlobalStore.ReadAndRemoveObject<List<PlaceableEntity>>("placeableEntities"))
             {
                 var image = AddImageToCanvas(placeableEntity.ImageName);
                 AddBindings(placeableEntity, image);
                 _imageWithPlaceableEntities.Add(image, placeableEntity);
             }
-
-            GlobalStore.RemoveObject("placeableEntities");
         }
 
         private void People6_Click(object sender, RoutedEventArgs e)
@@ -183,7 +181,12 @@ namespace Organizator_Proslava.View
 
             if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity) && placeableEntity is DinningTable dinningTable)
             {
-                _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTable));
+                var dinningTableCopy = dinningTable.Clone() as DinningTable;
+                var editedDinningTable = _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTableCopy, _dialogService));
+                if (editedDinningTable != null)
+                {
+                    dinningTable.Guests = editedDinningTable.Guests;
+                }
                 dragObject = null;
             }
         }

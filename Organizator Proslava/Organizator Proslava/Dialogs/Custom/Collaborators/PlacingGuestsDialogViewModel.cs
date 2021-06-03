@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Dialogs.Option;
+using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
 using System.Diagnostics;
@@ -18,44 +19,27 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public ICommand Save { get; set; }
         public ICommand Back { get; set; }
 
-        public PlacingGuestsDialogViewModel(DinningTable dinningTable) :
+        private readonly IDialogService _dialogService;
+
+        public PlacingGuestsDialogViewModel(DinningTable dinningTable, IDialogService dialogService) :
             base("Gosti", 660, 460)
         {
             DinningTable = dinningTable;
+            _dialogService = dialogService;
 
             Add = new RelayCommand<Guest>(AddGuest);
-            AddNewGuest = new RelayCommand(() => EventBus.FireEvent("AddNewGuest"), () => DinningTable.Guests.Count() <= DinningTable.Seats);
+            AddNewGuest = new RelayCommand(() => EventBus.FireEvent("AddNewGuest"), () => DinningTable.Guests.Count() < DinningTable.Seats);
             Remove = new RelayCommand<int>(RemoveGuest);
-            DinningTable.Guests.Clear();
-            DinningTable.Guests.Add(new Guest
-            {
-                Name = "Milos Panic",
-                PositionX = 55,
-                PositionY = 66
-            });
-            DinningTable.Guests.Add(new Guest
-            {
-                Name = " Zoran Jankov",
-                PositionX = 300,
-                PositionY = 170
-            });
-            DinningTable.Guests.Add(new Guest
-            {
-                Name = "Klimenta Jovana",
-                PositionX = 125,
-                PositionY = 125
-            });
+
             GlobalStore.AddObject("guests", DinningTable.Guests);
             GlobalStore.AddObject("tableImageName", DinningTable.ImageName);
 
             Save = new RelayCommand<IDialogWindow>(w =>
             {
-                foreach (var guest in DinningTable.Guests)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored gostiju?")) == DialogResults.Yes)
                 {
-                    Trace.Write(guest.Name);
-                    Trace.WriteLine("   " + guest.PositionX + " " + guest.PositionY);
+                    CloseDialogWithResult(w, DinningTable);
                 }
-                CloseDialogWithResult(w, DinningTable);
             });
             Back = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, null));
         }

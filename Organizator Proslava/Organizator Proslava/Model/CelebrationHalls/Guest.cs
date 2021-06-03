@@ -28,7 +28,8 @@ namespace Organizator_Proslava.Model.CelebrationHalls
                 IsActive = IsActive,
                 DinningTableId = DinningTableId,
                 PositionX = PositionX,
-                PositionY = PositionY
+                PositionY = PositionY,
+                Name = Name
             };
         }
     }

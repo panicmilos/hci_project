@@ -15,6 +15,12 @@ using System.Windows.Media.Imaging;
 
 namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 {
+    internal class BorderTextBoxDTO
+    {
+        public TextBox TextBox { get; set; }
+        public Border Border { get; set; }
+    }
+
     /// <summary>
     /// Interaction logic for PlacingGuestsDialogView.xaml
     /// </summary>
@@ -25,6 +31,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         private PlacingGuestsDialogViewModel PlacingGuestsViewModel { get => DataContext as PlacingGuestsDialogViewModel; }
 
         private readonly IList<Border> _borders;
+        private readonly IDictionary<Border, TextBox> _bordersWithTextBoxes;
 
         public PlacingGuestsDialogView()
         {
@@ -33,13 +40,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             AddTableImage();
 
             _borders = new List<Border>();
+            _bordersWithTextBoxes = new Dictionary<Border, TextBox>();
 
-            foreach (var guest in GlobalStore.ReadObject<List<Guest>>("guests"))
+            foreach (var guest in GlobalStore.ReadAndRemoveObject<List<Guest>>("guests"))
             {
-                var border = AddBorderToCanvas(guest.Name);
-                AddBindings(guest, border);
+                var borderTextBox = AddBorderToCanvas(guest.Name);
+                AddBindings(guest, borderTextBox);
             }
-            GlobalStore.RemoveObject("guests");
 
             EventBus.RegisterHandler("AddNewGuest", Guest_Click);
         }
@@ -58,19 +65,19 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private void Guest_Click()
         {
-            var border = AddBorderToCanvas("");
+            var borderTextBox = AddBorderToCanvas("Ime gosta");
             var guest = new Guest
             {
-                Name = "",
-                PositionX = Canvas.GetLeft(border),
-                PositionY = Canvas.GetTop(border)
+                Name = "Ime gosta",
+                PositionX = Canvas.GetLeft(borderTextBox.Border),
+                PositionY = Canvas.GetTop(borderTextBox.Border)
             };
 
-            AddBindings(guest, border);
+            AddBindings(guest, borderTextBox);
             PlacingGuestsViewModel.Add.Execute(guest);
         }
 
-        private void AddBindings(Guest guest, Border border)
+        private void AddBindings(Guest guest, BorderTextBoxDTO borderTextBox)
         {
             Binding text = new Binding
             {
@@ -78,7 +85,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("Name"),
                 Mode = BindingMode.TwoWay
             };
-            (border.Child as TextBox).SetBinding(TextBox.TextProperty, text);
+            borderTextBox.TextBox.SetBinding(TextBox.TextProperty, text);
 
             Binding positionX = new Binding
             {
@@ -86,7 +93,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("PositionX"),
                 Mode = BindingMode.TwoWay
             };
-            border.SetBinding(Canvas.LeftProperty, positionX);
+            borderTextBox.Border.SetBinding(Canvas.LeftProperty, positionX);
 
             Binding positionY = new Binding
             {
@@ -94,16 +101,18 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("PositionY"),
                 Mode = BindingMode.TwoWay
             };
-            border.SetBinding(Canvas.TopProperty, positionY);
+            borderTextBox.Border.SetBinding(Canvas.TopProperty, positionY);
         }
 
-        private Border AddBorderToCanvas(string text)
+        private BorderTextBoxDTO AddBorderToCanvas(string text)
         {
             var textBox = new TextBox
             {
                 Text = text,
                 Style = (Style)Application.Current.Resources["guestNameTextBox"],
             };
+            textBox.GotFocus += TextBox_GotFocus;
+            textBox.LostFocus += TextBox_LostFocus;
 
             var border = new Border
             {
@@ -120,9 +129,32 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             Canvas.SetTop(border, (SecondCanvas.ActualHeight / 2) - (border.ActualHeight / 2));
 
             _borders.Add(border);
+            _bordersWithTextBoxes.Add(border, textBox);
             SecondCanvas.Children.Add(border);
 
-            return border;
+            return new BorderTextBoxDTO
+            {
+                TextBox = textBox,
+                Border = border
+            };
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox.Text == String.Empty)
+            {
+                textBox.Text = "Ime gosta";
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox.Text == "Ime gosta")
+            {
+                textBox.Text = String.Empty;
+            }
         }
 
         private void AddContextMenu(Border border)
@@ -137,6 +169,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 var indexOfBorder = _borders.IndexOf(border);
                 _borders.RemoveAt(indexOfBorder);
+                _bordersWithTextBoxes.Remove(border);
                 PlacingGuestsViewModel.Remove.Execute(indexOfBorder);
                 SecondCanvas.Children.Remove(border);
             };
