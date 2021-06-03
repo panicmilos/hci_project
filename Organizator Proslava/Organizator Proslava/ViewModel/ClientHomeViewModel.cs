@@ -3,15 +3,11 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Input;
-using GMap.NET.ObjectModel;
 using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Dialogs.Custom.Organizers;
 using Organizator_Proslava.Services.Contracts;
 
 namespace Organizator_Proslava.ViewModel
