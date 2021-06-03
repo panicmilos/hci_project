@@ -25,11 +25,14 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         {
             _dialogService = new DialogService();
             Collaborator = collaborator;
+
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
+
             Images = new RelayCommand<IDialogWindow>(window => {
                 CloseDialogWithResult(window, DialogResults.Undefined);
                 _dialogService.OpenDialog(new DisplayImagesViewModel(collaborator));
                 });
+
             Services = new RelayCommand<IDialogWindow>((window) => {
                 CloseDialogWithResult(window, DialogResults.Undefined);
                 _dialogService.OpenDialog(new CollaboratorServiceTableViewModel(collaborator));
