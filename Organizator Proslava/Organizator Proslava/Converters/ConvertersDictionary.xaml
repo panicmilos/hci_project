@@ -8,4 +8,5 @@
     <local:YourCommentVisibilityConverter x:Key="YourCommentVisibilityConverter" />
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <local:StringToImageStringConverter x:Key="StringToImageStringConverter" />
+    <local:ObjectReferenceToButtonConverter x:Key="ObjectReferenceToButtonConverter" />
 </ResourceDictionary>

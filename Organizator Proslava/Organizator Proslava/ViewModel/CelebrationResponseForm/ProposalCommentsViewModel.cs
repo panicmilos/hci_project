@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs.Custom.Celebrations;
+using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
@@ -14,6 +15,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }
 
+        public ICommand Preview { get; set; }
+
         public ICommand Back { get; set; }
         public ICommand Comment { get; set; }
 
@@ -26,6 +29,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             _proposalCommentService = proposalCommentService;
             _notificationService = notificationService;
             _dialogService = dialogService;
+
+            Preview = new RelayCommand(() => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(CelebrationProposal.CelebrationHall))));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForOrganizer"));
             Comment = new RelayCommand(() =>

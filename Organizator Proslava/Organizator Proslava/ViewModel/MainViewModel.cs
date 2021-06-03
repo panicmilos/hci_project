@@ -1,14 +1,9 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
-using Organizator_Proslava.Dialogs.Custom.Notifications;
-using Organizator_Proslava.Dialogs.Service;
-using Organizator_Proslava.Model.CelebrationHalls;
-using Organizator_Proslava.Services.Contracts;
+﻿using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
-using System;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -41,11 +36,8 @@ namespace Organizator_Proslava.ViewModel
             CollaboratorsTableViewModel ctvm,
             OrganziersTableViewModel otvm,
             UsersTableViewModel utvm,
-            ICrudService<CelebrationHall> ch,
-            IDialogService ds,
             INotificationService ns)
         {
-            //ds.OpenDialog<CelebrationHall>(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(ch.Read(new Guid("08d91eef-8aee-4e1c-8480-3160b9184202")))));
             Lvm = lvm;
             Rvm = rvm;
             Chvm = chvm;

@@ -2,6 +2,7 @@
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -17,18 +18,20 @@ namespace Organizator_Proslava.View
     /// </summary>
     public partial class SpacePreviewView : UserControl
     {
+        private readonly SpacePreviewMode _mode;
         private readonly IList<Image> _images;
+        private readonly IDictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
 
         private readonly IDialogService _dialogService;
-        private IDictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
 
         public SpacePreviewView()
         {
             InitializeComponent();
 
-            _dialogService = new DialogService();
+            _mode = GlobalStore.ReadAndRemoveObject<SpacePreviewMode>("spacePreviewMode");
             _images = new List<Image>();
             _imageWithPlaceableEntities = new Dictionary<UIElement, PlaceableEntity>();
+            _dialogService = new DialogService();
 
             foreach (var placeableEntity in GlobalStore.ReadAndRemoveObject<List<PlaceableEntity>>("placeableEntities"))
             {
@@ -63,10 +66,13 @@ namespace Organizator_Proslava.View
             {
                 Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Resources/{imageName}")),
                 Width = 130,
-                Height = 80,
-                Cursor = Cursors.Hand
+                Height = 80
             };
-            image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
+            if (_mode == SpacePreviewMode.Edit)
+            {
+                image.Cursor = Cursors.Hand;
+                image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
+            }
             image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
 
             Canvas.SetLeft(image, (MainCanvas.ActualWidth / 2) - (image.Width / 2));
@@ -86,7 +92,7 @@ namespace Organizator_Proslava.View
             if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity) && placeableEntity is DinningTable dinningTable)
             {
                 var dinningTableCopy = dinningTable.Clone() as DinningTable;
-                var editedDinningTable = _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTableCopy, _dialogService));
+                var editedDinningTable = _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTableCopy, _dialogService, _mode));
                 if (editedDinningTable != null)
                 {
                     dinningTable.Guests = editedDinningTable.Guests;

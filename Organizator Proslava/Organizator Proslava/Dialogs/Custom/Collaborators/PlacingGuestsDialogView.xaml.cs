@@ -1,6 +1,7 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,6 +27,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
     /// </summary>
     public partial class PlacingGuestsDialogView : UserControl
     {
+        private readonly SpacePreviewMode _mode;
+
         public readonly ICommand AddGuest;
 
         private PlacingGuestsDialogViewModel PlacingGuestsViewModel { get => DataContext as PlacingGuestsDialogViewModel; }
@@ -39,6 +42,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             AddTableImage();
 
+            _mode = GlobalStore.ReadAndRemoveObject<SpacePreviewMode>("spacePreviewMode");
             _borders = new List<Border>();
             _bordersWithTextBoxes = new Dictionary<Border, TextBox>();
 
@@ -49,6 +53,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             }
 
             EventBus.RegisterHandler("AddNewGuest", Guest_Click);
+
+            if (_mode == SpacePreviewMode.View)
+            {
+                SecondCanvas.ContextMenu = null;
+            }
         }
 
         private void AddTableImage()
@@ -110,6 +119,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 Text = text,
                 Style = (Style)Application.Current.Resources["guestNameTextBox"],
+                IsReadOnly = _mode == SpacePreviewMode.View
             };
             textBox.GotFocus += TextBox_GotFocus;
             textBox.LostFocus += TextBox_LostFocus;
@@ -118,12 +128,15 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 BorderBrush = new SolidColorBrush(Color.FromRgb(54, 116, 123)),
                 BorderThickness = new Thickness(3),
-                Cursor = Cursors.Hand
             };
             border.Child = textBox;
 
-            border.PreviewMouseLeftButtonDown += Border_PreviewMouseLeftButtonDown;
-            AddContextMenu(border);
+            if (_mode == SpacePreviewMode.Edit)
+            {
+                border.Cursor = Cursors.Hand;
+                border.PreviewMouseLeftButtonDown += Border_PreviewMouseLeftButtonDown;
+                AddContextMenu(border);
+            }
 
             Canvas.SetLeft(border, (SecondCanvas.ActualWidth / 2) - (border.ActualWidth / 2));
             Canvas.SetTop(border, (SecondCanvas.ActualHeight / 2) - (border.ActualHeight / 2));

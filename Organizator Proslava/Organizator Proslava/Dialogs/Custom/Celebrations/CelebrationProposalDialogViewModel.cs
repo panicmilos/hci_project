@@ -1,9 +1,11 @@
-﻿using Organizator_Proslava.Dialogs.Option;
+﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
+using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -19,6 +21,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public Collaborator SelectedCollaborator { get { return _selectedCollaborator; } set { _selectedCollaborator = value; Proposal.Collaborator = _selectedCollaborator; OnPropertyChanged("ShouldShowHalls"); } }
         public bool ShouldShowHalls { get => Proposal.Collaborator?.CelebrationHalls.Any() ?? false; }
 
+        public ICommand Preview { get; set; }
+
         public ICommand Add { get; set; }
         public ICommand Back { get; set; }
 
@@ -32,6 +36,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
             Proposal = new CelebrationProposal();
             Collaborators = _collaboratorService.Read().ToList();
+
+            Preview = new RelayCommand(() => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(Proposal.CelebrationHall))), () => Proposal.CelebrationHall != null);
 
             Add = new RelayCommand<IDialogWindow>(w =>
             {

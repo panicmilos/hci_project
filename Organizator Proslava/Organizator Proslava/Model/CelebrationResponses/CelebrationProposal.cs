@@ -49,6 +49,11 @@ namespace Organizator_Proslava.Model.CelebrationResponses
             set { _proposalComments = value; OnPropertyChanged("ProposalComments"); }
         }
 
+        public CelebrationProposal()
+        {
+            ProposalComments = new List<ProposalComment>();
+        }
+
         public override string ToString()
         {
             var builder = new StringBuilder();

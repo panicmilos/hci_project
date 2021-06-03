@@ -37,7 +37,7 @@
                     FontSize="18"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Width="400"
+                    Width="405"
                     ItemsSource="{Binding Path=Collaborators}"
                     SelectedItem="{Binding Path=SelectedCollaborator, Mode=OneWayToSource}">
             </controls:AutoCompleteBox>
@@ -45,17 +45,26 @@
 
         <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
-            <controls:AutoCompleteBox
+            <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
+                <controls:AutoCompleteBox
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
                     FontSize="18"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Width="400"
+                    Width="333"
                     ItemsSource="{Binding Path=Proposal.Collaborator.CelebrationHalls}"
                     SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}">
-            </controls:AutoCompleteBox>
+                </controls:AutoCompleteBox>
+
+                <Button Content="Pregled"
+                        Command="{Binding Preview}"
+                        Style="{StaticResource mapDialogButton}"
+                        Background="{StaticResource Ming}"
+                        Margin="-5, 0, 0, 0"
+                        Height="29" />
+            </StackPanel>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="4" x:Name="WrapperGrid">

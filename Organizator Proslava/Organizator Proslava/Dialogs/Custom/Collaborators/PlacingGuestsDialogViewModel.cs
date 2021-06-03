@@ -2,7 +2,7 @@
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
-using System.Diagnostics;
+using Organizator_Proslava.ViewModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -21,7 +21,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private readonly IDialogService _dialogService;
 
-        public PlacingGuestsDialogViewModel(DinningTable dinningTable, IDialogService dialogService) :
+        public PlacingGuestsDialogViewModel(DinningTable dinningTable, IDialogService dialogService, SpacePreviewMode mode = SpacePreviewMode.View) :
             base("Gosti", 660, 460)
         {
             DinningTable = dinningTable;
@@ -33,6 +33,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             GlobalStore.AddObject("guests", DinningTable.Guests);
             GlobalStore.AddObject("tableImageName", DinningTable.ImageName);
+            GlobalStore.AddObject("spacePreviewMode", mode);
 
             Save = new RelayCommand<IDialogWindow>(w =>
             {
