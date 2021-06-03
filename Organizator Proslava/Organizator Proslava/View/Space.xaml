@@ -48,10 +48,10 @@
                         PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
                     <Canvas.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Add small table" Click="People6_Click" />
-                            <MenuItem Header="Add large table" Click="People18_Click" />
-                            <MenuItem Header="Add serving table" Click="Empty_Click" />
-                            <MenuItem Header="Add music" Click="Music_Click" />
+                            <MenuItem Header="Dodaj mali sto" Click="People6_Click" />
+                            <MenuItem Header="Dodaj veliki sto" Click="People18_Click" />
+                            <MenuItem Header="Dodaj sto za posluženje" Click="Empty_Click" />
+                            <MenuItem Header="Dodaj muziku" Click="Music_Click" />
                         </ContextMenu>
                     </Canvas.ContextMenu>
                 </Canvas>

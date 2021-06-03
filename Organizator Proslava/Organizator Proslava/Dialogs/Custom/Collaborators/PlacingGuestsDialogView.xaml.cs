@@ -1,12 +1,16 @@
-﻿using Organizator_Proslava.Model.CelebrationHalls;
+﻿using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing.Printing;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Organizator_Proslava.Dialogs.Custom.Collaborators
@@ -16,10 +20,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
     /// </summary>
     public partial class PlacingGuestsDialogView : UserControl
     {
-        private PlacingGuestsDialogViewModel PlacingGuestsViewModel { get => DataContext as PlacingGuestsDialogViewModel; }
-        private readonly IList<TextBox> _textBoxes;
+        public readonly ICommand AddGuest;
 
-        private IDictionary<UIElement, Guest> _textBoxesWithGuests;
+        private PlacingGuestsDialogViewModel PlacingGuestsViewModel { get => DataContext as PlacingGuestsDialogViewModel; }
+
+        private readonly IList<Border> _borders;
 
         public PlacingGuestsDialogView()
         {
@@ -27,16 +32,16 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             AddTableImage();
 
-            _textBoxes = new List<TextBox>();
-            _textBoxesWithGuests = new Dictionary<UIElement, Guest>();
+            _borders = new List<Border>();
 
             foreach (var guest in GlobalStore.ReadObject<List<Guest>>("guests"))
             {
-                var textBox = AddTextBoxToCanvas(guest.Name);
-                AddBindings(guest, textBox);
-                _textBoxesWithGuests.Add(textBox, guest);
+                var border = AddBorderToCanvas(guest.Name);
+                AddBindings(guest, border);
             }
             GlobalStore.RemoveObject("guests");
+
+            EventBus.RegisterHandler("AddNewGuest", Guest_Click);
         }
 
         private void AddTableImage()
@@ -51,22 +56,21 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             SecondCanvas.Children.Add(image);
         }
 
-        public void Guest_Click(object sender, RoutedEventArgs e)
+        private void Guest_Click()
         {
-            var textBox = AddTextBoxToCanvas("Ime Gosta");
+            var border = AddBorderToCanvas("");
             var guest = new Guest
             {
-                Name = "Ime Gosta",
-                PositionX = Canvas.GetLeft(textBox),
-                PositionY = Canvas.GetTop(textBox)
+                Name = "",
+                PositionX = Canvas.GetLeft(border),
+                PositionY = Canvas.GetTop(border)
             };
 
-            AddBindings(guest, textBox);
-            _textBoxesWithGuests.Add(textBox, guest);
+            AddBindings(guest, border);
             PlacingGuestsViewModel.Add.Execute(guest);
         }
 
-        private void AddBindings(Guest guest, TextBox textBox)
+        private void AddBindings(Guest guest, Border border)
         {
             Binding text = new Binding
             {
@@ -74,7 +78,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("Name"),
                 Mode = BindingMode.TwoWay
             };
-            textBox.SetBinding(TextBox.TextProperty, text);
+            (border.Child as TextBox).SetBinding(TextBox.TextProperty, text);
 
             Binding positionX = new Binding
             {
@@ -82,7 +86,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("PositionX"),
                 Mode = BindingMode.TwoWay
             };
-            textBox.SetBinding(Canvas.LeftProperty, positionX);
+            border.SetBinding(Canvas.LeftProperty, positionX);
 
             Binding positionY = new Binding
             {
@@ -90,31 +94,38 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 Path = new PropertyPath("PositionY"),
                 Mode = BindingMode.TwoWay
             };
-            textBox.SetBinding(Canvas.TopProperty, positionY);
+            border.SetBinding(Canvas.TopProperty, positionY);
         }
 
-        private TextBox AddTextBoxToCanvas(string text)
+        private Border AddBorderToCanvas(string text)
         {
             var textBox = new TextBox
             {
                 Text = text,
-                Width = 80,
-                TextWrapping = TextWrapping.Wrap
+                Style = (Style)Application.Current.Resources["guestNameTextBox"],
             };
 
-            textBox.PreviewMouseLeftButtonDown += TextBox_PreviewMouseLeftButtonDown;
+            var border = new Border
+            {
+                BorderBrush = new SolidColorBrush(Color.FromRgb(54, 116, 123)),
+                BorderThickness = new Thickness(3),
+                Cursor = Cursors.Hand
+            };
+            border.Child = textBox;
 
-            Canvas.SetLeft(textBox, (SecondCanvas.ActualWidth / 2) - (textBox.ActualWidth / 2));
-            Canvas.SetTop(textBox, (SecondCanvas.ActualHeight / 2) - (textBox.ActualHeight / 2));
+            border.PreviewMouseLeftButtonDown += Border_PreviewMouseLeftButtonDown;
+            AddContextMenu(border);
 
-            _textBoxes.Add(textBox);
-            AddContextMenu(textBox);
-            SecondCanvas.Children.Add(textBox);
+            Canvas.SetLeft(border, (SecondCanvas.ActualWidth / 2) - (border.ActualWidth / 2));
+            Canvas.SetTop(border, (SecondCanvas.ActualHeight / 2) - (border.ActualHeight / 2));
 
-            return textBox;
+            _borders.Add(border);
+            SecondCanvas.Children.Add(border);
+
+            return border;
         }
 
-        private void AddContextMenu(TextBox textBox)
+        private void AddContextMenu(Border border)
         {
             var contextMenu = new ContextMenu();
             var deleteMenuItem = new MenuItem()
@@ -124,15 +135,14 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             deleteMenuItem.Click += (object deleteSender, RoutedEventArgs deleteE) =>
             {
-                var index = _textBoxes.IndexOf(textBox);
-                _textBoxes.RemoveAt(index);
-                PlacingGuestsViewModel.Remove.Execute(index);
-                _textBoxesWithGuests.Remove(textBox);
-                SecondCanvas.Children.Remove(textBox);
+                var indexOfBorder = _borders.IndexOf(border);
+                _borders.RemoveAt(indexOfBorder);
+                PlacingGuestsViewModel.Remove.Execute(indexOfBorder);
+                SecondCanvas.Children.Remove(border);
             };
 
             contextMenu.Items.Add(deleteMenuItem);
-            textBox.ContextMenu = contextMenu;
+            border.ContextMenu = contextMenu;
         }
 
         #region DragAndDrop
@@ -140,15 +150,20 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         private UIElement dragObject = null;
         private Point offset;
 
-        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Border_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (e.OriginalSource.ToString() == "System.Windows.Controls.TextBoxView")
+            {
+                return;
+            }
+
             dragObject = sender as UIElement;
             offset = e.GetPosition(SecondCanvas);
             offset.Y -= Canvas.GetTop(dragObject);
             offset.X -= Canvas.GetLeft(dragObject);
         }
 
-        private void MainCanvas_PreviewMouseMove(object sender, MouseEventArgs e)
+        private void SecondCanvas_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (dragObject == null)
             {
@@ -160,7 +175,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             Canvas.SetLeft(dragObject, position.X - offset.X);
         }
 
-        private void MainCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void SecondCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             dragObject = null;
         }

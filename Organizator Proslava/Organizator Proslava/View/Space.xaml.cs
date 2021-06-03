@@ -160,7 +160,8 @@ namespace Organizator_Proslava.View
             {
                 Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Resources/{imageName}")),
                 Width = 130,
-                Height = 80
+                Height = 80,
+                Cursor = Cursors.Hand
             };
             image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
             image.MouseLeftButtonDown += Image_MouseLeftButtonDown;

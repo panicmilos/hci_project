@@ -79,11 +79,16 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border CornerRadius="10">
                         <Grid>
-                            <TextBox Text="{TemplateBinding Text}" x:Name="GuestNameBox" />
+                            <TextBox x:Name="GuestNameBox" 
+                                     Text="{TemplateBinding Text}"
+                                     Width="80"
+                                     TextWrapping="Wrap"
+                                     Foreground="{StaticResource Ming}" />
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="Ime gosta"
-                                       Margin="4    , 0, 0, 0">
+                                       Margin="4, 0, 0, 0"
+                                       Foreground="{StaticResource Ming}" >
                                 
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">

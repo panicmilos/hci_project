@@ -20,7 +20,7 @@ namespace Organizator_Proslava.ViewModel.DemoForm
         {
             _videos = new Dictionary<string, string>()
             {
-                { "Funkcionalnost 1", "pack://siteoforigin:,,,/Resources/somecatvideo.mp4" },
+                { "Funkcionalnost 1", "somecatvideo.mp4" },
                 { "Funkcionalnost 2", "Ruta 2" },
                 { "Funkcionalnost 3", "Ruta 3" },
                 { "Funkcionalnost 4", "Ruta 4" },
@@ -36,7 +36,7 @@ namespace Organizator_Proslava.ViewModel.DemoForm
 
             PlayVideo = new RelayCommand<string>(functionalityName =>
             {
-                SelectedVideo = _videos[functionalityName];
+                SelectedVideo = "pack://siteoforigin:,,,/Resources/" + _videos[functionalityName];
                 EventBus.FireEvent("demoFunctinalityChanged");
             });
         }

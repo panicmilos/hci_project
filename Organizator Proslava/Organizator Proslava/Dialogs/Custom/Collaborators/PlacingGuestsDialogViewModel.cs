@@ -2,6 +2,7 @@
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Collaborators
@@ -11,6 +12,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public DinningTable DinningTable { get; set; }
 
         public ICommand Add { get; set; }
+        public ICommand AddNewGuest { get; set; }
         public ICommand Remove { get; set; }
 
         public ICommand Save { get; set; }
@@ -22,6 +24,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             DinningTable = dinningTable;
 
             Add = new RelayCommand<Guest>(AddGuest);
+            AddNewGuest = new RelayCommand(() => EventBus.FireEvent("AddNewGuest"), () => DinningTable.Guests.Count() <= DinningTable.Seats);
             Remove = new RelayCommand<int>(RemoveGuest);
             DinningTable.Guests.Clear();
             DinningTable.Guests.Add(new Guest
@@ -34,7 +37,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 Name = " Zoran Jankov",
                 PositionX = 300,
-                PositionY = 320
+                PositionY = 170
             });
             DinningTable.Guests.Add(new Guest
             {
