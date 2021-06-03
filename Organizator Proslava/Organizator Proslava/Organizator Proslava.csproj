@@ -250,6 +250,10 @@
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceTableView.xaml.cs">
+      <DependentUpon>CollaboratorServiceTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceTableViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogView.xaml.cs">
       <DependentUpon>DinningTableDialogView.xaml</DependentUpon>
     </Compile>
@@ -590,6 +594,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\CollaboratorServiceTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

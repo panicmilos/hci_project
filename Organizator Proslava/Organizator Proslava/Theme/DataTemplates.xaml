@@ -218,4 +218,8 @@
     <DataTemplate DataType="{x:Type cdcollaborators:DisplayImagesViewModel}">
         <cfv:CollaboratorImagesView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceTableViewModel}">
+        <cdcollaborators:CollaboratorServiceTableView/>
+    </DataTemplate>
 </ResourceDictionary>
