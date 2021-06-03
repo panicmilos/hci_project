@@ -128,10 +128,42 @@ namespace Organizator_Proslava.View
             {
                 return;
             }
-
+            var image = dragObject as Image;
             var position = e.GetPosition(sender as IInputElement);
-            Canvas.SetTop(dragObject, position.Y - offset.Y);
-            Canvas.SetLeft(dragObject, position.X - offset.X);
+
+            var newTop = position.Y - offset.Y;
+            var newLeft = position.X - offset.X;
+            var shouldNullDragObject = false;
+
+            if (newTop < 0)
+            {
+                newTop = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newTop + image.ActualHeight > MainCanvas.ActualHeight)
+            {
+                newTop = MainCanvas.ActualHeight - image.ActualHeight;
+                shouldNullDragObject = true;
+            }
+
+            if (newLeft < 0)
+            {
+                newLeft = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newLeft + image.ActualWidth > MainCanvas.ActualWidth)
+            {
+                newLeft = MainCanvas.ActualWidth - image.ActualWidth;
+                shouldNullDragObject = true;
+            }
+
+            Canvas.SetTop(dragObject, newTop);
+            Canvas.SetLeft(dragObject, newLeft);
+
+            if (shouldNullDragObject)
+            {
+                dragObject = null;
+            }
         }
 
         private void MainCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

@@ -1,7 +1,6 @@
 ﻿using Organizator_Proslava.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Organizator_Proslava.Utility
 {
@@ -23,6 +22,12 @@ namespace Organizator_Proslava.Utility
 
         public static void AddObject(string key, object @object)
         {
+            if (_storedObjects.ContainsKey(key))
+            {
+                _storedObjects[key] = @object;
+                return;
+            } //Check if this is neccessery;
+
             _storedObjects.Add(key, @object);
         }
 

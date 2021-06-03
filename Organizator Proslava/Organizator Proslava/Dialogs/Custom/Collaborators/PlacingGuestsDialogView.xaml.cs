@@ -216,9 +216,42 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 return;
             }
 
+            var border = dragObject as Border;
             var position = e.GetPosition(sender as IInputElement);
-            Canvas.SetTop(dragObject, position.Y - offset.Y);
-            Canvas.SetLeft(dragObject, position.X - offset.X);
+
+            var newTop = position.Y - offset.Y;
+            var newLeft = position.X - offset.X;
+            var shouldNullDragObject = false;
+
+            if (newTop < 0)
+            {
+                newTop = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newTop + border.ActualHeight > SecondCanvas.ActualHeight)
+            {
+                newTop = SecondCanvas.ActualHeight - border.ActualHeight;
+                shouldNullDragObject = true;
+            }
+
+            if (newLeft < 0)
+            {
+                newLeft = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newLeft + border.ActualWidth > SecondCanvas.ActualWidth)
+            {
+                newLeft = SecondCanvas.ActualWidth - border.ActualWidth;
+                shouldNullDragObject = true;
+            }
+
+            Canvas.SetTop(dragObject, newTop);
+            Canvas.SetLeft(dragObject, newLeft);
+
+            if (shouldNullDragObject)
+            {
+                dragObject = null;
+            }
         }
 
         private void SecondCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
