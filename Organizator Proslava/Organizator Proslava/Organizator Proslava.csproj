@@ -254,6 +254,14 @@
       <DependentUpon>DinningTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\IndividualCollaboratorDetailView.xaml.cs">
+      <DependentUpon>IndividualCollaboratorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\IndividualCollaboratorDetailViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\LegalCollaboratorDetailView.xaml.cs">
+      <DependentUpon>LegalCollaboratorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\LegalCollaboratorDetailViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\NonDinningTableDialogView.xaml.cs">
       <DependentUpon>NonDinningTableDialogView.xaml</DependentUpon>
     </Compile>
@@ -585,6 +593,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\DinningTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\IndividualCollaboratorDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\LegalCollaboratorDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

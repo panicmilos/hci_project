@@ -67,6 +67,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("CreateOrganizer", () => CurrentViewModel = covm); // Delete later
             EventBus.RegisterHandler("OrganizersTableView", () => CurrentViewModel = otvm);
             EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
+            EventBus.RegisterHandler("CollaboratorsTableView", () => CurrentViewModel = Ctvm);
 
             EventBus.RegisterHandler("Space", () => CurrentViewModel = spvm);
 
