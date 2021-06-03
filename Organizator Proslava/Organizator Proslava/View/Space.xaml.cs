@@ -162,7 +162,6 @@ namespace Organizator_Proslava.View
                 Cursor = Cursors.Hand
             };
             image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
-            image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
 
             Canvas.SetLeft(image, (MainCanvas.ActualWidth / 2) - (image.Width / 2));
             Canvas.SetTop(image, (MainCanvas.ActualHeight / 2) - (image.Height / 2));
@@ -172,23 +171,6 @@ namespace Organizator_Proslava.View
             MainCanvas.Children.Add(image);
 
             return image;
-        }
-
-        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount != 2)
-                return;
-
-            if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity) && placeableEntity is DinningTable dinningTable)
-            {
-                var dinningTableCopy = dinningTable.Clone() as DinningTable;
-                var editedDinningTable = _dialogService.OpenDialog(new PlacingGuestsDialogViewModel(dinningTableCopy, _dialogService));
-                if (editedDinningTable != null)
-                {
-                    dinningTable.Guests = editedDinningTable.Guests;
-                }
-                dragObject = null;
-            }
         }
 
         private void AddContextMenu(Image image)
@@ -250,14 +232,6 @@ namespace Organizator_Proslava.View
 
         private void Image_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity))
-            {
-                if (!placeableEntity.Movable)
-                {
-                    return;
-                }
-            }
-
             dragObject = sender as UIElement;
             offset = e.GetPosition(MainCanvas);
             offset.Y -= Canvas.GetTop(dragObject);

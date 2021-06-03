@@ -266,6 +266,10 @@
       <DependentUpon>SpaceModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpaceModelingViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\SpacePreviewDialogView.xaml.cs">
+      <DependentUpon>SpacePreviewDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\SpacePreviewDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml.cs">
       <DependentUpon>NotificationsDialogView.xaml</DependentUpon>
     </Compile>
@@ -456,6 +460,7 @@
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\SpacePreviewViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="ViewModel\UsersView\UsersTableViewModel.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
@@ -548,6 +553,9 @@
     <Compile Include="View\Space.xaml.cs">
       <DependentUpon>Space.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SpacePreviewView.xaml.cs">
+      <DependentUpon>SpacePreviewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UsersView\UserTableView.xaml.cs">
       <DependentUpon>UserTableView.xaml</DependentUpon>
     </Compile>
@@ -597,6 +605,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\SpaceModelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\SpacePreviewDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -764,6 +776,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Space.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpacePreviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

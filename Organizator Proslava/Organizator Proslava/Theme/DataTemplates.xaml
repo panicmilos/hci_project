@@ -47,6 +47,10 @@
         <v:Space />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:SpacePreviewViewModel}">
+        <v:SpacePreviewView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:CollaboratorsTableViewModel}">
         <v:CollaboratorsTableView />
     </DataTemplate>
@@ -109,6 +113,10 @@
 
     <DataTemplate DataType="{x:Type cdcollaborators:SpaceModelingViewModel}">
         <cdcollaborators:SpaceModelingView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:SpacePreviewDialogViewModel}">
+        <cdcollaborators:SpacePreviewDialogView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type cdcollaborators:PlacingGuestsDialogViewModel}">
