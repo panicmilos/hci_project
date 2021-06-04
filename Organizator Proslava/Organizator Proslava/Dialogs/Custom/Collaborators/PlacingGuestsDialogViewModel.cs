@@ -11,6 +11,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
     public class PlacingGuestsDialogViewModel : DialogViewModelBase<DinningTable>
     {
         public DinningTable DinningTable { get; set; }
+        public SpacePreviewMode Mode { get; set; }
+        public bool ShouldShowSave { get => Mode == SpacePreviewMode.Edit; }
 
         public ICommand Add { get; set; }
         public ICommand AddNewGuest { get; set; }
@@ -25,6 +27,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             base("Gosti", 660, 460)
         {
             DinningTable = dinningTable;
+            Mode = mode;
             _dialogService = dialogService;
 
             Add = new RelayCommand<Guest>(AddGuest);

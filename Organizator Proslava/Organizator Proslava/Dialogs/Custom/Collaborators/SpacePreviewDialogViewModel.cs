@@ -11,6 +11,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         private SpacePreviewViewModel _viewModel;
         public SpacePreviewViewModel ViewModel { get => _viewModel; set => OnPropertyChanged(ref _viewModel, value); }
 
+        public bool ShouldShowSave { get => ViewModel.Mode == SpacePreviewMode.Edit; }
+
         public ICommand Save { get; set; }
         public ICommand Back { get; set; }
 

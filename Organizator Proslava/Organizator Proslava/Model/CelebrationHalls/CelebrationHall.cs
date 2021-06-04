@@ -20,7 +20,7 @@ namespace Organizator_Proslava.Model.CelebrationHalls
             set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); }
         }
 
-        public Guid CollaboratorId { get; set; }
+        public Guid? CollaboratorId { get; set; }
 
         public CelebrationHall()
         {

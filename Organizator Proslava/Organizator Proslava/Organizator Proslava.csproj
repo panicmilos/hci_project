@@ -384,6 +384,10 @@
     <Compile Include="Migrations\20210602203847_added name for guest.designer.cs">
       <DependentUpon>20210602203847_added name for guest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210604135723_nullable CollaboratorId.cs" />
+    <Compile Include="Migrations\20210604135723_nullable CollaboratorId.designer.cs">
+      <DependentUpon>20210604135723_nullable CollaboratorId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
