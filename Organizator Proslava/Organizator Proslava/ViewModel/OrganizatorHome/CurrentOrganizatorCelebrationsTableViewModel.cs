@@ -5,10 +5,7 @@ using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.OrganizatorHome
@@ -27,36 +24,11 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
         private readonly CelebrationResponseFormViewModel _crfvm;
 
-        public CurrentOrganizatorCelebrationsTableViewModel(ICelebrationResponseService celebrationResponseService, ICrudService<Celebration> crudService, ICrudService<Client> clients, CelebrationResponseFormViewModel crfvm)
+        public CurrentOrganizatorCelebrationsTableViewModel(ICelebrationResponseService celebrationResponseService, CelebrationResponseFormViewModel crfvm)
         {
             _celebrationResponseService = celebrationResponseService;
 
             NonAcceptedCelebrations = new RelayCommand(() => EventBus.FireEvent("NextToAcceptCelebrationRequestTable"));
-
-            //crudService.Create(new Celebration
-            //{
-            //    BudgetFrom = 2000,
-            //    BudgetTo = 6000,
-            //    IsBudgetFixed = true,
-            //    CelebrationDetails = new List<CelebrationDetail>
-            //    {
-            //        new CelebrationDetail
-            //        {
-            //            Title = "Zahtev 1",
-            //            Content = "Text zahteva koji sada treba da bude kao nesto dugggg"
-            //        },
-            //        new CelebrationDetail
-            //        {
-            //            Title = "Zahtev 2",
-            //            Content = "text zahteva kao nesto 2",
-            //        }
-            //    },
-            //    Client = clients.Read(new Guid("08d92223-3a29-4112-8707-4c38205264d0")),
-            //    DateTimeFrom = DateTime.Now,
-            //    DateTimeTo = DateTime.Now.AddDays(2),
-            //    ExpectedNumberOfGuests = 200,
-            //    Type = "Rodjendan"
-            //});
 
             _crfvm = crfvm;
 
@@ -65,6 +37,8 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
                 EventBus.FireEvent("ShowCelebrationRequest", cr);
                 EventBus.FireEvent("SwitchOrganizerViewModel", _crfvm);
             });
+
+            EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 
             Cancel = new RelayCommand(() =>
                 new DialogService().OpenDialog(new DialogWindow(),

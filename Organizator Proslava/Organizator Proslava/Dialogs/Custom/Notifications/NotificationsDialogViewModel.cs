@@ -11,7 +11,9 @@ namespace Organizator_Proslava.Dialogs.Custom.Notifications
     {
         public ObservableCollection<Notification> Notifications { get; set; }
 
+        public ICommand Preview { get; set; }
         public ICommand Delete { get; set; }
+
         public ICommand Close { get; set; }
 
         private readonly INotificationService _notificationService;
@@ -23,6 +25,24 @@ namespace Organizator_Proslava.Dialogs.Custom.Notifications
 
             var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
             Notifications = new ObservableCollection<Notification>(_notificationService.ReadFor(loggedUser));
+
+            Preview = new RelayCommand<Notification>(n =>
+            {
+                if (n is NewCommentNotification newComment)
+                {
+                    // za klijenta
+                    EventBus.FireEvent("NextToCelebrationProposals", newComment.CelebrationResponse.Celebration);
+                    EventBus.FireEvent("PreviewProposalsFromNotificationClient", newComment.Proposal.CelebrationDetail);
+                    EventBus.FireEvent("PreviewCommentsFromNotificationClient", newComment.Proposal);
+
+                    // za organizatora
+                    //EventBus.FireEvent("OrganizerLogin");
+                    //EventBus.FireEvent("PreviewResponseForNotification", newComment.CelebrationResponse);
+                    //EventBus.FireEvent("NextToRequestDetailsForOrganizer");
+                    //EventBus.FireEvent("PreviewProposalsFromNotificationOrganizer", newComment.Proposal.CelebrationDetail);
+                    //EventBus.FireEvent("PreviewCommentsFromNotificationOrganizer", newComment.Proposal);
+                }
+            });
 
             Delete = new RelayCommand<Notification>(n => { Notifications.Remove(n); _notificationService.Delete(n.Id); });
 

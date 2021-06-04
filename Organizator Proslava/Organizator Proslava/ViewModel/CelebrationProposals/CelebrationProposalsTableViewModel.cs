@@ -23,12 +23,14 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
         {
             _pcvm = pcvm;
 
-            Comments = new RelayCommand<CelebrationProposal>(cd =>
+            Comments = new RelayCommand<CelebrationProposal>(cp =>
             {
-                _pcvm.CelebrationProposal = cd;
-                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cd.ProposalComments);
+                _pcvm.CelebrationProposal = cp;
+                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cp.ProposalComments);
                 EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _pcvm);
             });
+
+            EventBus.RegisterHandler("PreviewCommentsFromNotificationClient", cp => Comments.Execute(cp));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationDetailsTable", CelebrationResponse));
         }

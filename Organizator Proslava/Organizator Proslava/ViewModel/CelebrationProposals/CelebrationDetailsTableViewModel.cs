@@ -37,6 +37,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _cptvm);
             });
 
+            EventBus.RegisterHandler("PreviewProposalsFromNotificationClient", cd => Proposals.Execute(cd));
+
             EventBus.RegisterHandler("BackToProposalsTableForClient", () => EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _cptvm));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToClientPage"));

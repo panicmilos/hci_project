@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Notifications"
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Notifications" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="500">
     <Grid>
@@ -39,6 +39,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock TextWrapping="Wrap"
@@ -47,12 +48,26 @@
 
                                 <Button Grid.Column="1"
                                         Style="{StaticResource DeleteNotificationButton}"
+                                        Background="{StaticResource PowderBlue}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationsDialogView}}}"
+                                                                   CommandParameter="{Binding}" />
+
+                                            <i:InvokeCommandAction Command="{Binding Path=DataContext.Close, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationsDialogView}}}"
+                                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    P
+                                </Button>
+
+                                <Button Grid.Column="2"
+                                        Style="{StaticResource DeleteNotificationButton}"
                                         Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationsDialogView}}}"
                                         CommandParameter="{Binding}"
                                         Background="{StaticResource PowderBlue}">
                                     X
                                 </Button>
-
                             </Grid>
                         </Border>
                     </DataTemplate>

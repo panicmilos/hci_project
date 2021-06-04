@@ -1,4 +1,6 @@
-﻿using Organizator_Proslava.Services.Contracts;
+﻿using Organizator_Proslava.Dialogs.Custom.Notifications;
+using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
@@ -66,7 +68,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
             EventBus.RegisterHandler("CollaboratorsTableView", () => CurrentViewModel = Ctvm);
 
-            //new DialogService().OpenDialog(new NotificationsDialogViewModel(ns));
+            EventBus.RegisterHandler("Notf", () => new DialogService().OpenDialog(new NotificationsDialogViewModel(ns))); // Delete later
         }
     }
 }
