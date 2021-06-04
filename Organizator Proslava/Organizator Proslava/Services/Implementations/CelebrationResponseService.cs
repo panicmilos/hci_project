@@ -18,5 +18,10 @@ namespace Organizator_Proslava.Services.Implementations
         {
             return _entities.Where(cr => cr.OrganizerId == organizerId).ToList();
         }
+
+        public IEnumerable<CelebrationResponse> ReadForCelebration(Guid celebrationId)
+        {
+            return Read().Where(celebrationResponse => celebrationResponse.CelebrationId == celebrationId);
+        }
     }
 }

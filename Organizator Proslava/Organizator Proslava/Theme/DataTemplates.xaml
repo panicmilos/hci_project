@@ -3,11 +3,13 @@
                     xmlns:vm="clr-namespace:Organizator_Proslava.ViewModel"
                     xmlns:v="clr-namespace:Organizator_Proslava.View"
                     xmlns:crfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationRequestForm"
+                    xmlns:cpvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationProposals"
                     xmlns:crfv="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
                     xmlns:crespfvm="clr-namespace:Organizator_Proslava.ViewModel.CelebrationResponseForm"
                     xmlns:crespfv="clr-namespace:Organizator_Proslava.View.CelebrationResponseForm"
                     xmlns:cfvm="clr-namespace:Organizator_Proslava.ViewModel.CollaboratorForm"
                     xmlns:cfv="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
+                    xmlns:cpv="clr-namespace:Organizator_Proslava.View.CelebrationProposals"
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
                     xmlns:cdnotifications="clr-namespace:Organizator_Proslava.Dialogs.Custom.Notifications"
                     xmlns:dorganizers="clr-namespace:Organizator_Proslava.Dialogs.Custom.Organizers"
@@ -181,6 +183,22 @@
 
     <DataTemplate DataType="{x:Type crespfvm:CelebrationResponseFormViewModel}">
         <crespfv:CelebrationResponseFormView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type cpvm:CelebrationProposalsViewModel}">
+        <cpv:CelebrationProposalsView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type cpvm:CelebrationProposalsTableViewModel}">
+        <cpv:CelebrationProposalsTableView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type cpvm:CelebrationDetailsTableViewModel}">
+        <cpv:CelebrationDetailsTableView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type cpvm:CelebrationResponsesTableViewModel}">
+        <cpv:CelebrationResponsesTableView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type crespfvm:RequestLongPreviewViewModel}">
