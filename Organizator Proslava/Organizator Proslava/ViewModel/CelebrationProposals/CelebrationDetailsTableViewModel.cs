@@ -39,7 +39,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _cptvm);
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationResponsesTable"));
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToClientPage"));
         }
     }
 }

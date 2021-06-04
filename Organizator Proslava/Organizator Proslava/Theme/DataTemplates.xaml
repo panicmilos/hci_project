@@ -197,10 +197,6 @@
         <cpv:CelebrationDetailsTableView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type cpvm:CelebrationResponsesTableViewModel}">
-        <cpv:CelebrationResponsesTableView />
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type crespfvm:RequestLongPreviewViewModel}">
         <crespfv:RequestLongPreviewView />
     </DataTemplate>

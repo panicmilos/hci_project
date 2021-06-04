@@ -436,7 +436,6 @@
     <Compile Include="ViewModel\CelebrationProposals\CelebrationProposalsViewModel.cs" />
     <Compile Include="ViewModel\CelebrationProposals\CelebrationProposalsTableViewModel.cs" />
     <Compile Include="ViewModel\CelebrationProposals\CelebrationDetailsTableViewModel.cs" />
-    <Compile Include="ViewModel\CelebrationProposals\CelebrationResponsesTableViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestPreviewViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestDetailsViewModel.cs" />
     <Compile Include="ViewModel\CelebrationRequestForm\CelebrationRequestFormViewModel.cs" />
@@ -482,9 +481,6 @@
     </Compile>
     <Compile Include="View\CelebrationProposals\CelebrationProposalsView.xaml.cs">
       <DependentUpon>CelebrationProposalsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CelebrationProposals\CelebrationResponsesTableView.xaml.cs">
-      <DependentUpon>CelebrationResponsesTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CelebrationRequestForm\CelebrationRequestDetailsView.xaml.cs">
       <DependentUpon>CelebrationRequestDetailsView.xaml</DependentUpon>
@@ -699,7 +695,6 @@
     <Page Include="View\CelebrationProposals\CelebrationDetailsTableView.xaml" />
     <Page Include="View\CelebrationProposals\CelebrationProposalsTableView.xaml" />
     <Page Include="View\CelebrationProposals\CelebrationProposalsView.xaml" />
-    <Page Include="View\CelebrationProposals\CelebrationResponsesTableView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestDetailsView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestFormView.xaml" />
     <Page Include="View\CelebrationRequestForm\CelebrationRequestInfoView.xaml" />
