@@ -21,7 +21,7 @@ namespace Organizator_Proslava.Services.Implementations
 
         public CelebrationResponse ReadForCelebration(Guid celebrationId)
         {
-            return Read().FirstOrDefault(celebrationResponse => celebrationResponse.CelebrationId == celebrationId);
+            return _entities.FirstOrDefault(celebrationResponse => celebrationResponse.CelebrationId == celebrationId);
         }
     }
 }

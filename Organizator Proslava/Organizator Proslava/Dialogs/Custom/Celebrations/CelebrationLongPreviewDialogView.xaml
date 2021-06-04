@@ -33,7 +33,7 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
                     Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Predlozi"
+            <Button Content="Zahtevi"
                     Command="{Binding Path=Next}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
