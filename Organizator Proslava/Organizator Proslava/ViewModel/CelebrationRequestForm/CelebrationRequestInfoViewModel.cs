@@ -14,12 +14,21 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         public Celebration Celebration
         {
             get => _celebration;
+            set => OnPropertyChanged(ref _celebration, value);
+        }
+
+        private string _selectedCelebrationType;
+        public string SelectedCelebrationType
+        {
+            get => _selectedCelebrationType;
             set
             {
-                _celebration = value;
+                _selectedCelebrationType = value;
+                _celebration.Type = value;
                 OnPropertyChanged("ShouldShowOrganizers");
             }
         }
+
         public ObservableCollection<string> CelebrationTypes { get; set; }
         public bool ShouldShowOrganizers { get => _organizerService.OrganizersExistFor(_celebration.Type); }
         

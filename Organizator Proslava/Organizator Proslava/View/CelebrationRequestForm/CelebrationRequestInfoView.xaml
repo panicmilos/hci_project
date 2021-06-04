@@ -36,7 +36,7 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=Celebration.Type, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Path=SelectedCelebrationType, Mode=TwoWay}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0">
                 </controls:AutoCompleteBox>
