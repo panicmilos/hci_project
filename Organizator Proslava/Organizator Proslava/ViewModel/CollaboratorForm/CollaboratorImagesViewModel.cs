@@ -25,8 +25,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
 
+        public bool ShowForAdd { get; set; }
+
         public CollaboratorImagesViewModel()
         {
+            ShowForAdd = true;
             AddImage = new RelayCommand(AddImageHandler);
             ChangeMainImage = new RelayCommand<string>(file => MainImage = file);
             DeleteImage = new RelayCommand<string>(DeleteImageHandler);
