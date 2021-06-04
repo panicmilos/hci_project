@@ -1,12 +1,10 @@
 ﻿using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
-using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Organizator_Proslava.Model;
-using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 
 namespace Organizator_Proslava.ViewModel.CelebrationProposals
 {
@@ -35,7 +33,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             {
                 _currentCelebrationDetail = cd;
                 _cptvm.CelebrationResponse = CelebrationResponse;
-                _cptvm.CelebrationProposals = new ObservableCollection<CelebrationProposal>(CelebrationResponse.CelebrationProposalsDict[cd]);
+                _cptvm.CelebrationProposals = new ObservableCollection<CelebrationProposal>(CelebrationResponse.CelebrationProposalsDict[_currentCelebrationDetail]);
                 EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _cptvm);
             });
 

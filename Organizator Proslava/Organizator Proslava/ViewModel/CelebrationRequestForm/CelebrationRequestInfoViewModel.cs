@@ -1,16 +1,17 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Organizator_Proslava.Dialogs.Map;
+﻿using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
     public class CelebrationRequestInfoViewModel : ObservableEntity
     {
         private Celebration _celebration;
+
         public Celebration Celebration
         {
             get => _celebration;
@@ -18,6 +19,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         }
 
         private string _selectedCelebrationType;
+
         public string SelectedCelebrationType
         {
             get => _selectedCelebrationType;
@@ -31,12 +33,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         public ObservableCollection<string> CelebrationTypes { get; set; }
         public bool ShouldShowOrganizers { get => _organizerService.OrganizersExistFor(_celebration.Type); }
-        
+
         public ICommand OpenOrganizersDialog { get; set; }
         public ICommand OpenMap { get; set; }
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
-        
+
         private readonly ICelebrationTypeService _celebrationTypeService;
         private readonly IOrganizerService _organizerService;
         private readonly IDialogService _dialogService;
@@ -49,7 +51,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             _celebrationTypeService = celebrationTypeService;
             _organizerService = organizerService;
             _dialogService = dialogService;
-            
+
             CelebrationTypes = new ObservableCollection<string>(_celebrationTypeService.ReadNames());
 
             OpenOrganizersDialog = new RelayCommand(() =>
@@ -68,7 +70,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         {
             Celebration = new Celebration();
         }
-        
+
         public void ForUpdate(Celebration celebration)
         {
             Celebration = celebration;

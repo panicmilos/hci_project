@@ -1,8 +1,7 @@
-﻿using System;
-using Organizator_Proslava.Data;
-using Organizator_Proslava.Model;
+﻿using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using System;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
@@ -13,22 +12,19 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         public CelebrationRequestPreviewViewModel Crpvm;
 
         private readonly ICelebrationService _celebrationService;
-        private readonly DatabaseContext _context;
-        
+
         public CelebrationRequestFormViewModel(
             CelebrationRequestInfoViewModel crivm,
             CelebrationRequestDetailsViewModel crdvm,
             CelebrationRequestPreviewViewModel crpvm,
-            ICelebrationService celebrationService,
-            DatabaseContext context)
+            ICelebrationService celebrationService)
         {
             Crivm = crivm;
             Crdvm = crdvm;
             Crpvm = crpvm;
 
             _celebrationService = celebrationService;
-            _context = context;
-            
+
             RegisterEventBusHandlers();
         }
 
@@ -36,12 +32,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         {
             EventBus.RegisterHandler("CelebrationRequestFormForAdd", ForAdd);
             EventBus.RegisterHandler("CelebrationRequestFromForUpdate", celebration => ForUpdate(celebration as Celebration));
-            
+
             EventBus.RegisterHandler("BackToCelebrationRequestInfo", () => Switch(Crivm));
             EventBus.RegisterHandler("BackToCelebrationRequestDetails", () => Switch(Crdvm));
             EventBus.RegisterHandler("NextToCelebrationRequestDetails", () => Switch(Crdvm));
             EventBus.RegisterHandler("NextToLongViewCelebration", () => Switch(Crpvm));
-            
+
             EventBus.RegisterHandler("FinishAddCelebrationRequest", AddCelebration);
             EventBus.RegisterHandler("FinishUpdateCelebrationRequest", UpdateCelebration);
         }
@@ -54,7 +50,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             Crivm.Celebration.CelebrationDetails = Crdvm.CelebrationDetails;
             Crpvm.ForAdd(Crivm.Celebration);
         }
-        
+
         public void ForUpdate(Celebration celebration)
         {
             Switch(Crivm);
@@ -72,7 +68,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             _celebrationService.Create(Crivm.Celebration);
             EventBus.FireEvent("CelebrationAddSuccess");
         }
-        
+
         public void UpdateCelebration()
         {
             EventBus.FireEvent("BackToClientPage");

@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Organizator_Proslava.Dialogs;
-using Organizator_Proslava.Dialogs.Custom.Celebrations;
+﻿using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
@@ -15,7 +11,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
     {
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
-        
+
         public Celebration Celebration { get; set; }
 
         private readonly IDialogService _dialogService;
@@ -37,7 +33,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                     EventBus.FireEvent("FinishAddCelebrationRequest");
             });
         }
-        
+
         public void ForUpdate(Celebration celebration)
         {
             Celebration = celebration;

@@ -11,10 +11,9 @@ namespace Organizator_Proslava.Services.Implementations
 {
     public class OrganizerService : UserService<Organizer>, IOrganizerService
     {
-        public OrganizerService(DatabaseContext context):
+        public OrganizerService(DatabaseContext context) :
             base(context)
         {
-
         }
 
         public override Organizer Update(Organizer organizer)
@@ -38,7 +37,7 @@ namespace Organizator_Proslava.Services.Implementations
 
         public bool OrganizersExistFor(string celebrationTypeName)
         {
-            return Read().FirstOrDefault(organizer => organizer.CellebrationType.Name == celebrationTypeName) != null;
+            return _entities.Any(organizer => organizer.CellebrationType.Name == celebrationTypeName);
         }
     }
 }

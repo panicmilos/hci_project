@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Organizator_Proslava.Dialogs;
+﻿using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
@@ -32,7 +32,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                 if (celebrationDetail != null)
                     CelebrationDetails.Add(celebrationDetail);
             });
-            
+
             Edit = new RelayCommand(() =>
             {
                 var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(SelectedCelebrationDetail, _dialogService));
@@ -41,7 +41,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                 CelebrationDetails[index].Content = celebrationDetail.Content;
                 CelebrationDetails[index].Title = celebrationDetail.Title;
             });
-            
+
             Delete = new RelayCommand(() =>
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da uklonite ovaj zahtev?")) == DialogResults.Yes)
@@ -49,7 +49,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                     CelebrationDetails.Remove(SelectedCelebrationDetail);
                 }
             });
-            
+
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationRequestInfo"));
             Next = new RelayCommand(() => EventBus.FireEvent("NextToLongViewCelebration"));
         }
@@ -58,7 +58,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         {
             CelebrationDetails = new ObservableCollection<CelebrationDetail>();
         }
-        
+
         public void ForUpdate(IEnumerable<CelebrationDetail> celebrationDetails)
         {
             CelebrationDetails = new ObservableCollection<CelebrationDetail>(celebrationDetails);
