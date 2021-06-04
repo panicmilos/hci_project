@@ -8,18 +8,28 @@ using Organizator_Proslava.Utility;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
-    public class CelebrationRequestInfoViewModel
+    public class CelebrationRequestInfoViewModel : ObservableEntity
     {
-        public Celebration Celebration { get; set; }
-        
+        private Celebration _celebration;
+        public Celebration Celebration
+        {
+            get => _celebration;
+            set
+            {
+                _celebration = value;
+                OnPropertyChanged("ShouldShowOrganizers");
+            }
+        }
         public ObservableCollection<string> CelebrationTypes { get; set; }
+        public bool ShouldShowOrganizers { get => _organizerService.OrganizersExistFor(_celebration.Type); }
         
         public ICommand OpenOrganizersDialog { get; set; }
         public ICommand OpenMap { get; set; }
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
-
+        
         private readonly ICelebrationTypeService _celebrationTypeService;
+        private readonly IOrganizerService _organizerService;
         private readonly IDialogService _dialogService;
 
         public CelebrationRequestInfoViewModel(
@@ -28,10 +38,11 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             IDialogService dialogService)
         {
             _celebrationTypeService = celebrationTypeService;
+            _organizerService = organizerService;
             _dialogService = dialogService;
             
             CelebrationTypes = new ObservableCollection<string>(_celebrationTypeService.ReadNames());
-            
+
             OpenOrganizersDialog = new RelayCommand(() =>
             {
                 Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(organizerService));

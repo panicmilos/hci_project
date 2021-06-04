@@ -36,13 +36,13 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=Celebration.Type, Mode=TwoWay}"
+                    Text="{Binding Path=Celebration.Type, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0">
                 </controls:AutoCompleteBox>
         </StackPanel>
         
-        <StackPanel Grid.Column="1" Grid.Row="2">
+        <StackPanel Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=ShouldShowOrganizers, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label Content="Organizator" Style="{StaticResource registerPageLabel}" />
             <Grid>
                 <Grid.ColumnDefinitions>
