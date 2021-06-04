@@ -274,6 +274,11 @@ namespace Organizator_Proslava.View
                 shouldNullDragObject = true;
             }
 
+            if (IsInCollision(image, newTop, newLeft))
+            {
+                return;
+            }
+
             Canvas.SetTop(dragObject, newTop);
             Canvas.SetLeft(dragObject, newLeft);
 
@@ -281,6 +286,44 @@ namespace Organizator_Proslava.View
             {
                 dragObject = null;
             }
+        }
+
+        // Please skip this function if you ever read this file.
+        private bool IsInCollision(Image image, double newTop, double newLeft)
+        {
+            foreach (var otherImage in _images)
+            {
+                if (otherImage == image)
+                {
+                    continue;
+                }
+                var haveByTop = false;
+                var haveByLeft = false;
+
+                var otherPositionTop = Canvas.GetTop(otherImage);
+                var otherPositionLeft = Canvas.GetLeft(otherImage);
+                if ((otherPositionTop <= newTop && newTop <= otherPositionTop + otherImage.ActualHeight) ||
+                    (otherPositionTop <= (newTop + image.ActualHeight) && (newTop + image.ActualHeight) <= otherPositionTop + otherImage.ActualHeight) ||
+                    (newTop <= otherPositionTop && otherPositionTop <= newTop + image.ActualHeight) ||
+                    (newTop <= (otherPositionTop + otherImage.ActualHeight) && (otherPositionTop + otherImage.ActualHeight) <= newTop + image.ActualHeight))
+                {
+                    haveByTop = true;
+                }
+
+                if ((otherPositionLeft <= newLeft && newLeft <= otherPositionLeft + otherImage.ActualWidth) ||
+                    (otherPositionLeft <= (newLeft + image.ActualWidth) && (newLeft + image.ActualWidth) <= otherPositionLeft + otherImage.ActualWidth) ||
+                    (newLeft <= otherPositionLeft && otherPositionLeft <= newLeft + image.ActualWidth) ||
+                    (newLeft <= (otherPositionLeft + otherImage.ActualWidth) && (otherPositionLeft + otherImage.ActualWidth) <= newLeft + image.ActualWidth))
+                {
+                    haveByLeft = true;
+                }
+
+                if (haveByLeft && haveByTop)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void MainCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

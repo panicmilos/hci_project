@@ -245,6 +245,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                 shouldNullDragObject = true;
             }
 
+            if (IsInCollision(border, newTop, newLeft))
+            {
+                return;
+            }
+
             Canvas.SetTop(dragObject, newTop);
             Canvas.SetLeft(dragObject, newLeft);
 
@@ -252,6 +257,44 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 dragObject = null;
             }
+        }
+
+        // Please skip this function if you ever read this file.
+        private bool IsInCollision(Border border, double newTop, double newLeft)
+        {
+            foreach (var otherBorder in _borders)
+            {
+                if (otherBorder == border)
+                {
+                    continue;
+                }
+                var haveByTop = false;
+                var haveByLeft = false;
+
+                var otherPositionTop = Canvas.GetTop(otherBorder);
+                var otherPositionLeft = Canvas.GetLeft(otherBorder);
+                if ((otherPositionTop <= newTop && newTop <= otherPositionTop + otherBorder.ActualHeight) ||
+                    (otherPositionTop <= (newTop + border.ActualHeight) && (newTop + border.ActualHeight) <= otherPositionTop + otherBorder.ActualHeight) ||
+                    (newTop <= otherPositionTop && otherPositionTop <= newTop + border.ActualHeight) ||
+                    (newTop <= (otherPositionTop + otherBorder.ActualHeight) && (otherPositionTop + otherBorder.ActualHeight) <= newTop + border.ActualHeight))
+                {
+                    haveByTop = true;
+                }
+
+                if ((otherPositionLeft <= newLeft && newLeft <= otherPositionLeft + otherBorder.ActualWidth) ||
+                    (otherPositionLeft <= (newLeft + border.ActualWidth) && (newLeft + border.ActualWidth) <= otherPositionLeft + otherBorder.ActualWidth) ||
+                    (newLeft <= otherPositionLeft && otherPositionLeft <= newLeft + border.ActualWidth) ||
+                    (newLeft <= (otherPositionLeft + otherBorder.ActualWidth) && (otherPositionLeft + otherBorder.ActualWidth) <= newLeft + border.ActualWidth))
+                {
+                    haveByLeft = true;
+                }
+
+                if (haveByLeft && haveByTop)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void SecondCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
