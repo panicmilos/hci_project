@@ -7,5 +7,6 @@ namespace Organizator_Proslava.Services.Contracts
     public interface ICelebrationResponseService : ICrudService<CelebrationResponse>
     {
         IEnumerable<CelebrationResponse> ReadOrganizingBy(Guid organizerId);
+        CelebrationResponse ReadForCelebration(Guid celebrationId);
     }
 }

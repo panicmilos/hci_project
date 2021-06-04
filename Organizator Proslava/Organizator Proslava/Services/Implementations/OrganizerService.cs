@@ -35,5 +35,10 @@ namespace Organizator_Proslava.Services.Implementations
 
             return base.Update(existingOrganizer);
         }
+
+        public bool OrganizersExistFor(string celebrationTypeName)
+        {
+            return Read().FirstOrDefault(organizer => organizer.CellebrationType.Name == celebrationTypeName) != null;
+        }
     }
 }

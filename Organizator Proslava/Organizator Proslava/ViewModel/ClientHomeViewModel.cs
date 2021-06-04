@@ -3,16 +3,13 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Input;
-using GMap.NET.ObjectModel;
 using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Dialogs.Custom.Organizers;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.ViewModel.CelebrationProposals;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -27,15 +24,19 @@ namespace Organizator_Proslava.ViewModel
         public ObservableCollection<Celebration> Celebrations { get; set; }
 
         private readonly CelebrationRequestFormViewModel _crfvm;
+        private readonly CelebrationProposalsViewModel _cpvm;
 
         private readonly ICelebrationService _celebrationService;
 
         public ClientHomeViewModel(
             ICelebrationService celebrationService,
+            ICollaboratorService collaboratorService,
             CelebrationRequestFormViewModel crfvm,
+            CelebrationProposalsViewModel cpvm,
             IDialogService dialogService)
         {
             _crfvm = crfvm;
+            _cpvm = cpvm;
             _celebrationService = celebrationService;
             
             LoadCelebrations();
@@ -66,6 +67,11 @@ namespace Organizator_Proslava.ViewModel
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
             });
             
+            EventBus.RegisterHandler("NextToCelebrationProposals", celebration =>
+            {
+                _cpvm.Celebration = celebration as Celebration;
+                EventBus.FireEvent("SwitchMainViewModel", _cpvm);
+            });
             EventBus.RegisterHandler("CelebrationAddSuccess", LoadCelebrations);
             EventBus.RegisterHandler("CelebrationUpdateSuccess", LoadCelebrations);
         }

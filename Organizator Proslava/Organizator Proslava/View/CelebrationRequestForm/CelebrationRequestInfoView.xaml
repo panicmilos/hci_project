@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -27,10 +28,21 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
                 <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
-                <TextBox Text="{Binding Path=Celebration.Type, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <controls:AutoCompleteBox
+                    Height="25"
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="16"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    Text="{Binding Path=SelectedCelebrationType, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
+                    Margin="10, 0, 10, 0">
+                </controls:AutoCompleteBox>
         </StackPanel>
         
-        <StackPanel Grid.Column="1" Grid.Row="2">
+        <StackPanel Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=ShouldShowOrganizers, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label Content="Organizator" Style="{StaticResource registerPageLabel}" />
             <Grid>
                 <Grid.ColumnDefinitions>

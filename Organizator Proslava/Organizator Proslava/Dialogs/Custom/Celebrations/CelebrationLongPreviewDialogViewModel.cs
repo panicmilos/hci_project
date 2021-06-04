@@ -10,12 +10,18 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public Celebration Celebration { get; set; }
 
         public ICommand Close { get; set; }
+        public ICommand Next { get; set; }
 
         public CelebrationLongPreviewDialogViewModel(Celebration celebration) :
             base("Pregled proslave", 660, 460)
         {
             Celebration = celebration;
             Close = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, DialogResults.Undefined));
+            Next = new RelayCommand<IDialogWindow>(w =>
+            {
+                EventBus.FireEvent("NextToCelebrationProposals", Celebration);
+                CloseDialogWithResult(w, DialogResults.Undefined);
+            });
         }
     }
 }
