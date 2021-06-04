@@ -36,8 +36,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             Services = new RelayCommand<IDialogWindow>((window) => {
                 CloseDialogWithResult(window, DialogResults.Undefined);
                 _dialogService.OpenDialog(new CollaboratorServiceTableViewModel(collaborator));
-            }
-);
+            });
+
+            Halls = new RelayCommand<IDialogWindow>((window) =>
+            {
+                CloseDialogWithResult(window, DialogResults.Undefined);
+                _dialogService.OpenDialog(new DisplayHallsDialogViewModel(collaborator));
+            });
         }
     }
 }

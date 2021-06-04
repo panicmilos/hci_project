@@ -259,6 +259,10 @@
       <DependentUpon>DinningTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\DinningTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\DisplayHallsDialogView.xaml.cs">
+      <DependentUpon>DisplayHallsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\DisplayHallsDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\DisplayImagesViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\IndividualCollaboratorDetailView.xaml.cs">
       <DependentUpon>IndividualCollaboratorDetailView.xaml</DependentUpon>
@@ -615,6 +619,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Collaborators\DinningTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\DisplayHallsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
