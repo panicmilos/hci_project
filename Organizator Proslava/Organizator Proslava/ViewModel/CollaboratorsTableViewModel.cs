@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.Collaborators;
@@ -20,6 +21,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Add { get; set; }
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
+        public ICommand Details { get; set; }
 
         private readonly CollaboratorFormViewModel _cfvm;
 
@@ -52,6 +54,18 @@ namespace Organizator_Proslava.ViewModel
                 {
                     Collaborators.Remove(collaborator);
                     _collaboratorService.Delete(collaborator.Id);
+                }
+            });
+
+            Details = new RelayCommand<Collaborator>(collaborator =>
+            {
+                if(collaborator is IndividualCollaborator)
+                {
+                    _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(collaborator as IndividualCollaborator));
+                }
+                else
+                {
+                    _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));
                 }
             });
 

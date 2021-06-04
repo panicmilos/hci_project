@@ -50,6 +50,17 @@
                     Width="*"
                     Binding="{Binding Path=PhoneNumber}"
                     CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTemplateColumn Header="Detalji" Width="0.5*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                Command="{Binding Path=DataContext.Details, RelativeSource={RelativeSource AncestorType={x:Type local:CollaboratorsTableView}}}"
+                                CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Eye-Show-View-Watch-See-512.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Izmeni" Width="0.5*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

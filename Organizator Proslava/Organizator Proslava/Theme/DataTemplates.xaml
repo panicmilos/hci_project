@@ -214,4 +214,20 @@
     <DataTemplate DataType="{x:Type dclients:ClientDetailViewModel}">
         <dclients:ClientDetailView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:IndividualCollaboratorDetailViewModel}">
+        <cdcollaborators:IndividualCollaboratorDetailView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:LegalCollaboratorDetailViewModel}">
+        <cdcollaborators:LegalCollaboratorDetailView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:DisplayImagesViewModel}">
+        <cfv:CollaboratorImagesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceTableViewModel}">
+        <cdcollaborators:CollaboratorServiceTableView/>
+    </DataTemplate>
 </ResourceDictionary>

@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.8*" />
             <RowDefinition Height="3.8*" />
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.5*" />
@@ -23,6 +23,8 @@
         </Grid.RowDefinitions>
 
         <v:Background Grid.ColumnSpan="3" Grid.RowSpan="5" />
+
+        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Korisnici sistema:</Label>
 
         <DataGrid
             Grid.Column="1"
