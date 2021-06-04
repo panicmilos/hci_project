@@ -1,8 +1,6 @@
 ﻿using Organizator_Proslava.Data;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Organizator_Proslava.Services.Implementations
 {

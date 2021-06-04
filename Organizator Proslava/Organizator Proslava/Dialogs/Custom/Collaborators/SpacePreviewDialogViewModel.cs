@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Dialogs.Option;
+using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel;
@@ -16,12 +17,22 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public ICommand Save { get; set; }
         public ICommand Back { get; set; }
 
-        public SpacePreviewDialogViewModel(SpacePreviewViewModel spvm) :
+        private readonly IDialogService _dialogService;
+
+        public SpacePreviewDialogViewModel(SpacePreviewViewModel spvm, IDialogService dialogService) :
             base("Pregled prostora", 650, 550)
         {
             ViewModel = spvm;
 
-            Save = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, ViewModel.Hall));
+            _dialogService = dialogService;
+
+            Save = new RelayCommand<IDialogWindow>(w =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored sale?")) == DialogResults.Yes)
+                {
+                    CloseDialogWithResult(w, ViewModel.Hall);
+                }
+            });
 
             Back = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, null));
         }

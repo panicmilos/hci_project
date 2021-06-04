@@ -422,6 +422,7 @@
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Ninject\ServiceLocator.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
+    <Compile Include="Services\Contracts\ICelebrationHallService.cs" />
     <Compile Include="Services\Contracts\ICelebrationProposalService.cs" />
     <Compile Include="Services\Contracts\ICelebrationResponseService.cs" />
     <Compile Include="Services\Contracts\ICelebrationService.cs" />
@@ -433,6 +434,7 @@
     <Compile Include="Services\Contracts\IProposalCommentService.cs" />
     <Compile Include="Services\Contracts\INotificationService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\Implementations\CelebrationHallService.cs" />
     <Compile Include="Services\Implementations\CelebrationProposalService.cs" />
     <Compile Include="Services\Implementations\CelebrationResponseService.cs" />
     <Compile Include="Services\Implementations\CelebrationService.cs" />

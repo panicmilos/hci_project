@@ -5,6 +5,7 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,6 +13,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 {
     public class ProposalCommentsViewModel : ObservableEntity
     {
+        private bool _isForClient = GlobalStore.ReadObject<BaseUser>("loggedUser").Role == Role.User;
+
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }
 
@@ -21,18 +24,34 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         public ICommand Comment { get; set; }
 
         private readonly IProposalCommentService _proposalCommentService;
+        private readonly ICelebrationHallService _celebrationHallService;
         private readonly INotificationService _notificationService;
         private readonly IDialogService _dialogService;
 
-        public ProposalCommentsViewModel(IProposalCommentService proposalCommentService, INotificationService notificationService, IDialogService dialogService)
+        public ProposalCommentsViewModel(
+            IProposalCommentService proposalCommentService,
+            ICelebrationHallService celebrationHallService,
+            INotificationService notificationService,
+            IDialogService dialogService)
         {
             _proposalCommentService = proposalCommentService;
+            _celebrationHallService = celebrationHallService;
             _notificationService = notificationService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand(() => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(CelebrationProposal.CelebrationHall))));
+            Preview = new RelayCommand(() =>
+            {
+                var celebrationHallCopy = CelebrationProposal.CelebrationHall.Clone();
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForOrganizer"));
+                var editedCelebrationHall = _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(celebrationHallCopy, _isForClient ? SpacePreviewMode.Edit : SpacePreviewMode.View), _dialogService));
+                if (editedCelebrationHall != null)
+                {
+                    CelebrationProposal.CelebrationHall.PlaceableEntities = editedCelebrationHall.PlaceableEntities;
+                    _celebrationHallService.Update(CelebrationProposal.CelebrationHall);
+                }
+            });
+
+            Back = new RelayCommand(() => EventBus.FireEvent(_isForClient ? "BackToProposalsTableForClient" : "BackToProposalsTableForOrganizer"));
             Comment = new RelayCommand(() =>
             {
                 var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));

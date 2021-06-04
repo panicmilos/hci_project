@@ -10,5 +10,6 @@ namespace Organizator_Proslava.Services.Implementations
             base(context)
         {
         }
+
     }
 }
