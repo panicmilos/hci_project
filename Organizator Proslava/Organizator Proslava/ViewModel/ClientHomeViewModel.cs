@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.ViewModel.CelebrationProposals;
@@ -56,6 +57,12 @@ namespace Organizator_Proslava.ViewModel
             
             Edit = new RelayCommand<Celebration>(celebration =>
             {
+                if (celebration.OrganizerId != null)
+                {
+                    dialogService.OpenDialog(new AlertDialogViewModel("Proslava preuzeta",
+                        "Nije moguće menjati informacije o proslavi nakon što je ona preuzeta od strane organizatora."));
+                    return;
+                }
                 EventBus.FireEvent("CelebrationRequestFromForUpdate", celebration);
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
             });

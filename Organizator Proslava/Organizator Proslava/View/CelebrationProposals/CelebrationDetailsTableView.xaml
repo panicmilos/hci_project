@@ -27,7 +27,7 @@
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=CelebrationResponse.Celebration.CelebrationDetails}">
+            ItemsSource="{Binding Path=CelebrationDetails}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
@@ -66,8 +66,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
+            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
     </Grid>
 </UserControl>
