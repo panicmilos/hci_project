@@ -941,6 +941,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ViewModel\RequestResponseFormShared\" />
+    <Folder Include="View\Validation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\celebration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+ </ItemGroup>
+  <ItemGroup>
     <Content Include="Documentation\error.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
