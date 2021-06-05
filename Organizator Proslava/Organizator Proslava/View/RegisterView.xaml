@@ -30,7 +30,7 @@
             <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/back.png"/>
         </Button>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
+        <StackPanel Grid.Column="1" Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.9*" />
@@ -51,12 +51,12 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
+        <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="E-mail adresa" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb3" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="3" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
+        <StackPanel Grid.Column="1" Grid.Row="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.9*" />
@@ -91,10 +91,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb6" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb7" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
