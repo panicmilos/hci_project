@@ -10,6 +10,10 @@
         Width="{Binding WindowWidth, Mode=TwoWay}"
         Title="{Binding Title}"
         WindowStartupLocation="CenterOwner">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed" />
+    </Window.CommandBindings>
+
     <Grid>
         <v:Background Opacity="0.3" />
         <ContentControl Width="{Binding ContentWidth, Mode=TwoWay}"
