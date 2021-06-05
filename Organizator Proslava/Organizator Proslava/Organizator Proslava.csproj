@@ -916,8 +916,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\RequestResponseFormShared\" />
-    <Folder Include="View\Validation\" />
     <None Include="Resources\profile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -929,6 +927,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\somecatvideo.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\RequestResponseFormShared\" />
+    <Folder Include="View\Validation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\celebration.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
