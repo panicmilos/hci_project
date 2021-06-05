@@ -87,38 +87,27 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
-            <Button Content="Napravi nalog" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Width" Value="80" />
-                        <Setter Property="Height" Value="25" />
-                        <Setter Property="Foreground" Value="White" />
-                        <Setter Property="IsEnabled" Value="False"/>
-                        <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb1}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb2}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb3}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb4}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb5}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb6}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb7}" Value="False"/>
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="IsEnabled" Value="True"/>
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+            <Button Content="Napravi nalog" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb4" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb5" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb6" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb7" />
+                    </MultiBinding>
+                </Button.IsEnabled>
             </Button>
         </StackPanel>
     </Grid>

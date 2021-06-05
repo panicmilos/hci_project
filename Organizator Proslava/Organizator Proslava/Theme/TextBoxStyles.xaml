@@ -91,10 +91,31 @@
         <Setter Property="Validation.ErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock FontSize="11" FontStyle="Italic" Foreground="{StaticResource Pomegranate}"
-                                       Text="{Binding [0].ErrorContent}" />
+                    <StackPanel x:Name="SP">
+                        <AdornedElementPlaceholder />
+                        <TextBlock x:Name="TB"  FontStyle="Italic" Foreground="{StaticResource Pomegranate}"
+                                       Text="{Binding [0].ErrorContent}">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="FontSize" Value="11" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=TB, Path=Text}" Value="*">
+                                            <Setter Property="FontSize" Value="22" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type StackPanel}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=TB,Path=Text}" Value="*">
+                                        <Setter Property="Orientation" Value="Horizontal" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
