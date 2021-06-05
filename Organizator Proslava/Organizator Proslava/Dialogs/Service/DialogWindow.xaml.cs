@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Utility;
+﻿using Organizator_Proslava.Help;
+using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,16 @@ namespace Organizator_Proslava.Dialogs.Service
         public DialogWindow()
         {
             InitializeComponent();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject dependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey(dependencyObject);
+                HelpProvider.ShowHelp(str, this);
+            }
         }
     }
 }

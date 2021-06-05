@@ -1,19 +1,7 @@
-﻿using Organizator_Proslava.Utility;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Organizator_Proslava.Help;
+using Organizator_Proslava.Utility;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Organizator_Proslava
 {
@@ -27,6 +15,16 @@ namespace Organizator_Proslava
             InitializeComponent();
             EventBus.RegisterHandler("DemoFullscreenMode", EnterFullscreenMode);
             EventBus.RegisterHandler("ExitDemoFullscreenMode", ExitFullscreenMode);
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject dependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey(dependencyObject);
+                HelpProvider.ShowHelp(str, this);
+            }
         }
 
         private void EnterFullscreenMode()
