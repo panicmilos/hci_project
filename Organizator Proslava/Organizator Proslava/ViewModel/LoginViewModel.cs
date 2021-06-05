@@ -39,6 +39,7 @@ namespace Organizator_Proslava.ViewModel
                     _dialogService.OpenDialog(new AlertDialogViewModel("", "Pogresno korisnicko ime ili sifra"));
                     return;
                 }
+                GlobalStore.AddObject("loggedUser", user);
                 switch (user.Role)
                 {
                     case Role.Administrator:

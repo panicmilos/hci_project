@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Organizator_Proslava.Model
+﻿namespace Organizator_Proslava.Model
 {
     public class BaseUser : BaseObservableEntity
     {
@@ -9,22 +7,10 @@ namespace Organizator_Proslava.Model
 
         private string _lastName;
         public string LastName { get => _lastName; set => OnPropertyChanged(ref _lastName, value); }
-
-        private string _userName;
-        
         public string FullName => $"{_firstName} {_lastName}";
 
-        //[Required(ErrorMessage = "USERNAME is required")]
-        //[StringLength(15, MinimumLength = 5, ErrorMessage = "UN min 5")]
-        public string UserName
-        {
-            get => _userName;
-            set
-            {
-                //ValidateProperty(value, "UserName");
-                OnPropertyChanged(ref _userName, value);
-            }
-        }
+        private string _userName;
+        public string UserName { get => _userName; set => OnPropertyChanged(ref _userName, value); }
 
         private string _password;
         public string Password { get => _password; set => OnPropertyChanged(ref _password, value); }
