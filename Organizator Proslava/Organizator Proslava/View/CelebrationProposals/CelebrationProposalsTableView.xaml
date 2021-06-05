@@ -58,6 +58,30 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Prihvati" Width="1*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Accept, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationProposalsTableView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-checkmark-round-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Odbij" Width="1*" CellStyle="{StaticResource DataGridButtonCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource SmallPaintedButton}"
+                                    Command="{Binding Path=DataContext.Reject, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationProposalsTableView}}}"
+                                    CommandParameter="{Binding}">
+                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
