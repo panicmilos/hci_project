@@ -21,11 +21,13 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Details { get; set; }
         public ICommand Back { get; set; }
         public ICommand Add { get; set; }
+        public ICommand Profile { get; set; }
     
         public ObservableCollection<Celebration> Celebrations { get; set; }
 
         private readonly CelebrationRequestFormViewModel _crfvm;
         private readonly CelebrationProposalsViewModel _cpvm;
+        private readonly RegisterViewModel _rvm;
 
         private readonly ICelebrationService _celebrationService;
 
@@ -34,10 +36,12 @@ namespace Organizator_Proslava.ViewModel
             ICollaboratorService collaboratorService,
             CelebrationRequestFormViewModel crfvm,
             CelebrationProposalsViewModel cpvm,
+            RegisterViewModel rvm,
             IDialogService dialogService)
         {
             _crfvm = crfvm;
             _cpvm = cpvm;
+            _rvm = rvm;
             _celebrationService = celebrationService;
             
             LoadCelebrations();
@@ -68,10 +72,17 @@ namespace Organizator_Proslava.ViewModel
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+
             Add = new RelayCommand(() =>
             {
                 EventBus.FireEvent("CelebrationRequestFormForAdd");
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
+            });
+
+            Profile = new RelayCommand(() =>
+            {
+                _rvm.ForUpdate();
+                EventBus.FireEvent("SwitchMainViewModel", _rvm);
             });
             
             EventBus.RegisterHandler("NextToCelebrationProposals", celebration =>

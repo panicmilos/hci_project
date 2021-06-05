@@ -24,6 +24,8 @@ namespace Organizator_Proslava.ViewModel
         // Commands:
         public ICommand Register { get; set; }
         public ICommand Back { get; set; }
+        public bool ForEdit { get; set; }
+        public string ButtonText { get; set; }
         // Rules:
         public string Error { get; set; }
         public string this[string columnName]
@@ -77,30 +79,15 @@ namespace Organizator_Proslava.ViewModel
             _dialogService = dialogService;
             _email = new EmailAddressAttribute();
             _calls = 0;
+            ForEdit = false;
+            ButtonText = "Napravi nalog";
 
             Register = new RelayCommand(() =>
             {
-                if (_clientService.AlreadyInUse(UserName))
-                {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
-                    return;
-                }
-                var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da napravite nalog?"));
-                if (optionDialogResult == DialogResults.Yes)
-                {
-                    _clientService.Create(new Client
-                    {
-                        FirstName = FirstName.Trim(),
-                        LastName = LastName.Trim(),
-                        MailAddress = MailAddress.Trim(),
-                        Password = Password.Trim(),
-                        UserName = UserName.Trim(),
-                        PhoneNumber = PhoneNumber.Trim(),
-                        Role = Role.User
-                    });
-                    EventBus.FireEvent("BackToLogin");
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
-                }
+                if (ForEdit)
+                    UpdateClient();
+                else
+                    RegisterClient();
             });
 
             Back = new RelayCommand(() =>
@@ -110,9 +97,73 @@ namespace Organizator_Proslava.ViewModel
             });
         }
 
+        private void RegisterClient()
+        {
+            if (_clientService.AlreadyInUse(UserName))
+            {
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
+                return;
+            }
+            var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da napravite nalog?"));
+            if (optionDialogResult == DialogResults.Yes)
+            {
+                _clientService.Create(new Client
+                {
+                    FirstName = FirstName.Trim(),
+                    LastName = LastName.Trim(),
+                    MailAddress = MailAddress.Trim(),
+                    Password = Password.Trim(),
+                    UserName = UserName.Trim(),
+                    PhoneNumber = PhoneNumber.Trim(),
+                    Role = Role.User
+                });
+                EventBus.FireEvent("BackToLogin");
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
+            }
+        }
+
+        private void UpdateClient()
+        {
+            Client client = GlobalStore.ReadObject<BaseUser>("loggedUser") as Client;
+
+            if (client.UserName != UserName && _clientService.AlreadyInUse(UserName))
+            {
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
+                return;
+            }
+            var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da promenite podatke?"));
+            if (optionDialogResult == DialogResults.Yes)
+            {
+                client.FirstName = FirstName.Trim();
+                client.LastName = LastName.Trim();
+                client.MailAddress = MailAddress.Trim();
+                client.Password = Password.Trim();
+                client.UserName = UserName.Trim();
+                client.PhoneNumber = PhoneNumber.Trim();
+                client.Role = Role.User;
+                _clientService.Update(client);
+                EventBus.FireEvent("ClientLogin");
+            }
+        }
+
         private string Err(string message)
         {
             return _calls++ < 7 ? "*" : message;   // there are 7 fields
+        }
+
+        public void ForUpdate()
+        {
+            ForEdit = true;
+            ButtonText = "Sacuvaj";
+            _calls = 7;
+            Client client = GlobalStore.ReadObject<BaseUser>("loggedUser") as Client;
+            FirstName = client.FirstName;
+            LastName = client.LastName;
+            UserName = client.UserName;
+            MailAddress = client.MailAddress;
+            PhoneNumber = client.PhoneNumber;
+            Password = client.Password;
+            RepeatedPassword = Password;
         }
     }
 }

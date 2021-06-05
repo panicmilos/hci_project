@@ -13,6 +13,13 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right">
+            <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Profile}">
+                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/profile.png"/>
+            </Button>
+            <Label>Moj profil</Label>
+        </StackPanel>
         
         <Label Grid.Row="0" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
         
@@ -45,7 +52,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Details, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png"/>
+                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/preview.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -55,7 +62,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/feather-2/24/edit-3-128.png"/>
+                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/edit.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -65,7 +72,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png"/>
+                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/remove.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

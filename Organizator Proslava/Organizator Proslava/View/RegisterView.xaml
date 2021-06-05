@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.3*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
@@ -26,7 +26,11 @@
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="6" Opacity="0.45" />
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <Button Grid.Row="0" Command="{Binding Path=Back}" Style="{StaticResource SmallPaintedButton}" Background="{StaticResource PowderBlue}">
+            <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/back.png"/>
+        </Button>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.9*" />
@@ -40,19 +44,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb1" Grid.Column="0" Grid.Row="1" Text="{Binding Path=FirstName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb1" Grid.Column="0" Grid.Row="1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb2" Grid.Column="2" Grid.Row="1" Text="{Binding Path=LastName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="2" Grid.Row="1" Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="2">
+        <StackPanel Grid.Column="1" Grid.Row="2" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
             <Label Content="E-mail adresa" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb3" Text="{Binding Path=MailAddress, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb3" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="3">
+        <StackPanel Grid.Column="1" Grid.Row="3" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.9*" />
@@ -66,10 +70,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb4" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb4" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb5" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PhoneNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb5" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -87,16 +91,15 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb6" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb7" IsEnabled="{Binding Path=ForEdit, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
-            <Button Content="Napravi nalog" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
+            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Width" Value="80" />
