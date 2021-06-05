@@ -32,7 +32,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
 
             Details = new RelayCommand<CelebrationHall>(hall => _dialogService.OpenDialog(new SpacePreviewDialogViewModel
-                (new SpacePreviewViewModel(hall))), (hall) => hall != null);
+                (new SpacePreviewViewModel(hall), _dialogService)), (hall) => hall != null);
 
         }
     }
