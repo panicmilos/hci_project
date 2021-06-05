@@ -40,16 +40,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.FirstName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb1" Grid.Column="0" Grid.Row="1" Text="{Binding Path=FirstName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Client.LastName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="2" Grid.Row="1" Text="{Binding Path=LastName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Client.PhoneNumber, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+            <Label Content="E-mail adresa" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tb3" Text="{Binding Path=MailAddress, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
@@ -66,10 +66,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.UserName, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb4" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
-                <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Client.MailAddress, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <Label Grid.Column="2" Grid.Row="0" Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
+                <TextBox x:Name="tb5" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PhoneNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -87,16 +87,39 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Client.Password, Mode=OneWayToSource}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="Ponovljena Šifra" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            <Button Content="Napravi nalog" Command="{Binding Path=Register}" CommandParameter="{Binding Path=Client}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
+            <Button Content="Napravi nalog" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Width" Value="80" />
+                        <Setter Property="Height" Value="25" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb1}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb2}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb3}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb4}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb5}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb6}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb7}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

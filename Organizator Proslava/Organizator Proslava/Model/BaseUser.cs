@@ -7,11 +7,9 @@
 
         private string _lastName;
         public string LastName { get => _lastName; set => OnPropertyChanged(ref _lastName, value); }
+        public string FullName => $"{_firstName} {_lastName}";
 
         private string _userName;
-        
-        public string FullName => $"{_firstName} {_lastName}";
-        
         public string UserName { get => _userName; set => OnPropertyChanged(ref _userName, value); }
 
         private string _password;

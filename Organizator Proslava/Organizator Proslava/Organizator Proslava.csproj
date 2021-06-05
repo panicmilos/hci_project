@@ -417,6 +417,7 @@
     <Compile Include="Model\DTO\AddPlaceableEntityDTO.cs" />
     <Compile Include="Model\Collaborators\IndividualCollaborator.cs" />
     <Compile Include="Model\Collaborators\LegalCollaborator.cs" />
+    <Compile Include="Model\DTO\LoginDTO.cs" />
     <Compile Include="Model\ICloneable.cs" />
     <Compile Include="Model\Notifications.cs" />
     <Compile Include="Model\Organizer.cs" />
@@ -907,6 +908,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ViewModel\RequestResponseFormShared\" />
+    <Folder Include="View\Validation\" />
     <None Include="Resources\profile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

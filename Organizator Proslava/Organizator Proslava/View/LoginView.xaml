@@ -24,12 +24,12 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding Path=User.UserName}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox Text="{Binding Path=LoginDTO.UserName}" Style="{StaticResource loginFormTextBox}" />
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
-                <TextBox Text="{Binding Path=User.Password}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox Text="{Binding Path=LoginDTO.Password}" Style="{StaticResource loginFormTextBox}" />
 
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Command="{Binding Path=Login}" CommandParameter="{Binding User}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                    <Button Command="{Binding Path=Login}" CommandParameter="{Binding LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                     <Button Command="{Binding Path=Register}" Content="Napravi nalog" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
                 </StackPanel>
             </StackPanel>

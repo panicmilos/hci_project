@@ -12,13 +12,13 @@ namespace Organizator_Proslava.Utility
         {
             _storedObjects = new Dictionary<string, object>();
 
-            _storedObjects["loggedUser"] = new BaseUser
+            /*_storedObjects["loggedUser"] = new BaseUser
             {
                 FirstName = "Milos",
                 LastName = "Panic",
                 Id = new Guid("08d92296-c0b7-40e9-8f6f-901a58b4d887"),
                 Role = Role.User
-            };
+            };*/
         }
 
         public static void AddObject(string key, object @object)
