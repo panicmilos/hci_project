@@ -244,4 +244,8 @@
     <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceTableViewModel}">
         <cdcollaborators:CollaboratorServiceTableView/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:DisplayHallsDialogViewModel}">
+        <cdcollaborators:DisplayHallsDialogView />
+    </DataTemplate>
 </ResourceDictionary>
