@@ -5,6 +5,7 @@ using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,7 +23,7 @@ namespace Organizator_Proslava.View
         private readonly IList<Image> _images;
 
         private readonly IDialogService _dialogService;
-        private Dictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
+        private IDictionary<UIElement, PlaceableEntity> _imageWithPlaceableEntities;
 
         public Space()
         {
@@ -32,14 +33,12 @@ namespace Organizator_Proslava.View
             _images = new List<Image>();
             _imageWithPlaceableEntities = new Dictionary<UIElement, PlaceableEntity>();
 
-            foreach (var placeableEntity in GlobalStore.ReadObject<List<PlaceableEntity>>("placeableEntities"))
+            foreach (var placeableEntity in GlobalStore.ReadAndRemoveObject<List<PlaceableEntity>>("placeableEntities"))
             {
-                var image = AddImageToCanvas(null, null, placeableEntity.ImageName);
+                var image = AddImageToCanvas(placeableEntity.ImageName);
                 AddBindings(placeableEntity, image);
                 _imageWithPlaceableEntities.Add(image, placeableEntity);
             }
-
-            GlobalStore.RemoveObject("placeableEntities");
         }
 
         private void People6_Click(object sender, RoutedEventArgs e)
@@ -55,7 +54,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "6people.png");
+            var image = AddImageToCanvas("6people.png");
             tableFor6.Type = PlaceableEntityType.TableFor6;
             tableFor6.PositionX = Canvas.GetLeft(image);
             tableFor6.PositionY = Canvas.GetTop(image);
@@ -78,7 +77,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "18people.png");
+            var image = AddImageToCanvas("18people.png");
             tableFor18.Type = PlaceableEntityType.TableFor18;
             tableFor18.PositionX = Canvas.GetLeft(image);
             tableFor18.PositionY = Canvas.GetTop(image);
@@ -101,7 +100,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "music.png");
+            var image = AddImageToCanvas("music.png");
             music.Type = PlaceableEntityType.Music;
             music.PositionX = Canvas.GetLeft(image);
             music.PositionY = Canvas.GetTop(image);
@@ -124,7 +123,7 @@ namespace Organizator_Proslava.View
                 return;
             }
 
-            var image = AddImageToCanvas(sender, e, "empty.png");
+            var image = AddImageToCanvas("empty.png");
             servingTable.Type = PlaceableEntityType.Empty;
             servingTable.PositionX = Canvas.GetLeft(image);
             servingTable.PositionY = Canvas.GetTop(image);
@@ -153,15 +152,16 @@ namespace Organizator_Proslava.View
             image.SetBinding(Canvas.TopProperty, positionY);
         }
 
-        private Image AddImageToCanvas(object sender, RoutedEventArgs e, string imageName)
+        private Image AddImageToCanvas(string imageName)
         {
-            Image image = new Image
+            var image = new Image
             {
                 Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Resources/{imageName}")),
                 Width = 130,
-                Height = 80
+                Height = 80,
+                Cursor = Cursors.Hand
             };
-            image.PreviewMouseLeftButtonDown += Ellipse_PreviewMouseLeftButtonDown;
+            image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
 
             Canvas.SetLeft(image, (MainCanvas.ActualWidth / 2) - (image.Width / 2));
             Canvas.SetTop(image, (MainCanvas.ActualHeight / 2) - (image.Height / 2));
@@ -230,16 +230,8 @@ namespace Organizator_Proslava.View
         private UIElement dragObject = null;
         private Point offset;
 
-        private void Ellipse_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_imageWithPlaceableEntities.TryGetValue(sender as UIElement, out var placeableEntity))
-            {
-                if (!placeableEntity.Movable)
-                {
-                    return;
-                }
-            }
-
             dragObject = sender as UIElement;
             offset = e.GetPosition(MainCanvas);
             offset.Y -= Canvas.GetTop(dragObject);
@@ -253,9 +245,85 @@ namespace Organizator_Proslava.View
                 return;
             }
 
+            var image = dragObject as Image;
             var position = e.GetPosition(sender as IInputElement);
-            Canvas.SetTop(dragObject, position.Y - offset.Y);
-            Canvas.SetLeft(dragObject, position.X - offset.X);
+
+            var newTop = position.Y - offset.Y;
+            var newLeft = position.X - offset.X;
+            var shouldNullDragObject = false;
+
+            if (newTop < 0)
+            {
+                newTop = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newTop + image.ActualHeight > MainCanvas.ActualHeight)
+            {
+                newTop = MainCanvas.ActualHeight - image.ActualHeight;
+                shouldNullDragObject = true;
+            }
+
+            if (newLeft < 0)
+            {
+                newLeft = 0;
+                shouldNullDragObject = true;
+            }
+            else if (newLeft + image.ActualWidth > MainCanvas.ActualWidth)
+            {
+                newLeft = MainCanvas.ActualWidth - image.ActualWidth;
+                shouldNullDragObject = true;
+            }
+
+            if (IsInCollision(image, newTop, newLeft))
+            {
+                return;
+            }
+
+            Canvas.SetTop(dragObject, newTop);
+            Canvas.SetLeft(dragObject, newLeft);
+
+            if (shouldNullDragObject)
+            {
+                dragObject = null;
+            }
+        }
+
+        // Please skip this function if you ever read this file.
+        private bool IsInCollision(Image image, double newTop, double newLeft)
+        {
+            foreach (var otherImage in _images)
+            {
+                if (otherImage == image)
+                {
+                    continue;
+                }
+                var haveByTop = false;
+                var haveByLeft = false;
+
+                var otherPositionTop = Canvas.GetTop(otherImage);
+                var otherPositionLeft = Canvas.GetLeft(otherImage);
+                if ((otherPositionTop <= newTop && newTop <= otherPositionTop + otherImage.ActualHeight) ||
+                    (otherPositionTop <= (newTop + image.ActualHeight) && (newTop + image.ActualHeight) <= otherPositionTop + otherImage.ActualHeight) ||
+                    (newTop <= otherPositionTop && otherPositionTop <= newTop + image.ActualHeight) ||
+                    (newTop <= (otherPositionTop + otherImage.ActualHeight) && (otherPositionTop + otherImage.ActualHeight) <= newTop + image.ActualHeight))
+                {
+                    haveByTop = true;
+                }
+
+                if ((otherPositionLeft <= newLeft && newLeft <= otherPositionLeft + otherImage.ActualWidth) ||
+                    (otherPositionLeft <= (newLeft + image.ActualWidth) && (newLeft + image.ActualWidth) <= otherPositionLeft + otherImage.ActualWidth) ||
+                    (newLeft <= otherPositionLeft && otherPositionLeft <= newLeft + image.ActualWidth) ||
+                    (newLeft <= (otherPositionLeft + otherImage.ActualWidth) && (otherPositionLeft + otherImage.ActualWidth) <= newLeft + image.ActualWidth))
+                {
+                    haveByLeft = true;
+                }
+
+                if (haveByLeft && haveByTop)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void MainCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

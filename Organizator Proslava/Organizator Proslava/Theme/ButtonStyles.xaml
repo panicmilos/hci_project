@@ -26,6 +26,11 @@
         <Setter Property="Foreground" Value="White" />
     </Style>
 
+    <Style x:Key="toolbarButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
     <Style x:Key="mapDialogButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="27" />
@@ -88,5 +93,13 @@
                 <Setter Property="Background" Value="#BADFE7" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="DeleteNotificationButton">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Margin" Value="0, 3, 3, 0"/>
+        <Setter Property="Background" Value="{StaticResource PowderBlue}" />
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 </ResourceDictionary>

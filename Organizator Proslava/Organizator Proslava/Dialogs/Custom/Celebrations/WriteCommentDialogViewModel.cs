@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Dialogs.Option;
+using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Utility;
 using System.Windows.Input;
 
@@ -11,10 +12,21 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public ICommand Add { get; set; }
         public ICommand Close { get; set; }
 
-        public WriteCommentDialogViewModel() :
+        private readonly IDialogService _dialogService;
+
+        public WriteCommentDialogViewModel(IDialogService dialogService) :
             base("Dodavanje komentara", 560, 460)
         {
-            Add = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, Comment));
+            _dialogService = dialogService;
+
+            Add = new RelayCommand<IDialogWindow>(w =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da komentarišete ovu ponudu?")) == DialogResults.Yes)
+                {
+                    CloseDialogWithResult(w, Comment);
+                }
+            });
+
             Close = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, null));
         }
     }

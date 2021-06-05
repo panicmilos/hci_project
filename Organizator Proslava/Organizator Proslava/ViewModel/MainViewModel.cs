@@ -1,7 +1,11 @@
-﻿using Organizator_Proslava.Utility;
+﻿using Organizator_Proslava.Dialogs.Custom.Notifications;
+using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
+using Organizator_Proslava.ViewModel.UsersView;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -20,6 +24,8 @@ namespace Organizator_Proslava.ViewModel
         public CollaboratorsTableViewModel Ctvm { get; set; }
         public CelebrationRequestFormViewModel Crfvm { get; set; }
         public CreateOrganizerViewModel Covm { get; set; }
+        public OrganziersTableViewModel Otvm { get; set; }
+        public UsersTableViewModel Utvm { get; set; }
 
         public MainViewModel(
             LoginViewModel lvm,
@@ -29,7 +35,10 @@ namespace Organizator_Proslava.ViewModel
             AdminHomeViewModel ahvm,
             CollaboratorFormViewModel cfvm,
             CreateOrganizerViewModel covm,
-            CollaboratorsTableViewModel ctvm)
+            CollaboratorsTableViewModel ctvm,
+            OrganziersTableViewModel otvm,
+            UsersTableViewModel utvm,
+            INotificationService ns)
         {
             Lvm = lvm;
             Rvm = rvm;
@@ -38,8 +47,10 @@ namespace Organizator_Proslava.ViewModel
             Ahvm = ahvm;
             Ctvm = ctvm;
             Covm = covm;
+            Otvm = otvm;
+            Utvm = utvm;
 
-            CurrentViewModel = Lvm;
+            CurrentViewModel = lvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
@@ -53,6 +64,11 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("NextToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
             EventBus.RegisterHandler("BackToCollaboratorsTable", () => CurrentViewModel = ctvm); // Delete Later
             EventBus.RegisterHandler("CreateOrganizer", () => CurrentViewModel = covm); // Delete later
+            EventBus.RegisterHandler("OrganizersTableView", () => CurrentViewModel = otvm);
+            EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
+            EventBus.RegisterHandler("CollaboratorsTableView", () => CurrentViewModel = Ctvm);
+
+            EventBus.RegisterHandler("Notf", () => new DialogService().OpenDialog(new NotificationsDialogViewModel(ns))); // Delete later
         }
     }
 }

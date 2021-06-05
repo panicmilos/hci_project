@@ -9,5 +9,6 @@ namespace Organizator_Proslava.Services.Contracts
 {
     public interface IOrganizerService : IUserService<Organizer>
     {
+        bool OrganizersExistFor(string celebrationTypeName);
     }
 }

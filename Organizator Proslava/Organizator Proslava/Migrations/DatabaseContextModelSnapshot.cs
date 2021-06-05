@@ -171,7 +171,7 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CollaboratorId")
+                    b.Property<Guid?>("CollaboratorId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -191,6 +191,37 @@ namespace Organizator_Proslava.Migrations
                     b.HasIndex("CollaboratorId");
 
                     b.ToTable("CelebrationHalls");
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.Guest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("DinningTableId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<double>("PositionX")
+                        .HasColumnType("double");
+
+                    b.Property<double>("PositionY")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DinningTableId");
+
+                    b.ToTable("Guest");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity", b =>
@@ -242,13 +273,10 @@ namespace Organizator_Proslava.Migrations
                     b.Property<Guid>("CelebrationDetailId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CelebrationHallId")
+                    b.Property<Guid?>("CelebrationHallId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CelebrationReponseId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("CelebrationResponseId")
+                    b.Property<Guid>("CelebrationResponseId")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("CollaboratorId")
@@ -419,6 +447,37 @@ namespace Organizator_Proslava.Migrations
                     b.ToTable("CollaboratorServiceBooks");
                 });
 
+            modelBuilder.Entity("Organizator_Proslava.Model.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CelebrationResponseId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid>("ForUserId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CelebrationResponseId");
+
+                    b.ToTable("Notifications");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Notification");
+                });
+
             modelBuilder.Entity("Organizator_Proslava.Model.Administrator", b =>
                 {
                     b.HasBaseType("Organizator_Proslava.Model.BaseUser");
@@ -509,6 +568,46 @@ namespace Organizator_Proslava.Migrations
                     b.HasDiscriminator().HasValue("ServingTable");
                 });
 
+            modelBuilder.Entity("Organizator_Proslava.Model.NewCommentNotification", b =>
+                {
+                    b.HasBaseType("Organizator_Proslava.Model.Notification");
+
+                    b.Property<int>("NumOfComments")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ProposalId")
+                        .HasColumnType("char(36)");
+
+                    b.HasIndex("ProposalId");
+
+                    b.HasDiscriminator().HasValue("NewCommentNotification");
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.NewDetailNotification", b =>
+                {
+                    b.HasBaseType("Organizator_Proslava.Model.Notification");
+
+                    b.Property<Guid>("DetailId")
+                        .HasColumnType("char(36)");
+
+                    b.HasIndex("DetailId");
+
+                    b.HasDiscriminator().HasValue("NewDetailNotification");
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.NewProposalNotification", b =>
+                {
+                    b.HasBaseType("Organizator_Proslava.Model.Notification");
+
+                    b.Property<Guid>("ProposalId")
+                        .HasColumnName("NewProposalNotification_ProposalId")
+                        .HasColumnType("char(36)");
+
+                    b.HasIndex("ProposalId");
+
+                    b.HasDiscriminator().HasValue("NewProposalNotification");
+                });
+
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.IndividualCollaborator", b =>
                 {
                     b.HasBaseType("Organizator_Proslava.Model.Collaborators.Collaborator");
@@ -577,7 +676,14 @@ namespace Organizator_Proslava.Migrations
                 {
                     b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", null)
                         .WithMany("CelebrationHalls")
-                        .HasForeignKey("CollaboratorId")
+                        .HasForeignKey("CollaboratorId");
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.Guest", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.CelebrationHalls.DinningTable", "DinningTable")
+                        .WithMany("Guests")
+                        .HasForeignKey("DinningTableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -601,13 +707,13 @@ namespace Organizator_Proslava.Migrations
 
                     b.HasOne("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", "CelebrationHall")
                         .WithMany()
-                        .HasForeignKey("CelebrationHallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CelebrationHallId");
 
                     b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationResponse", "CelebrationResponse")
                         .WithMany("CelebrationProposals")
-                        .HasForeignKey("CelebrationResponseId");
+                        .HasForeignKey("CelebrationResponseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
                         .WithMany()
@@ -664,6 +770,15 @@ namespace Organizator_Proslava.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Organizator_Proslava.Model.Notification", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationResponse", "CelebrationResponse")
+                        .WithMany()
+                        .HasForeignKey("CelebrationResponseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.Collaborator", b =>
                 {
                     b.HasOne("Organizator_Proslava.Model.Address", "Address")
@@ -680,6 +795,33 @@ namespace Organizator_Proslava.Migrations
                     b.HasOne("Organizator_Proslava.Model.Cellebrations.CellebrationType", "CellebrationType")
                         .WithMany()
                         .HasForeignKey("CellebrationTypeId");
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.NewCommentNotification", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationProposal", "Proposal")
+                        .WithMany()
+                        .HasForeignKey("ProposalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.NewDetailNotification", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.CelebrationDetail", "Detail")
+                        .WithMany()
+                        .HasForeignKey("DetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Organizator_Proslava.Model.NewProposalNotification", b =>
+                {
+                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationProposal", "Proposal")
+                        .WithMany()
+                        .HasForeignKey("ProposalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

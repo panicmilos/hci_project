@@ -2,7 +2,9 @@
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Organizator_Proslava.Services.Contracts;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
@@ -13,30 +15,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         public ICommand Choose { get; set; }
         public ICommand Cancel { get; set; }
 
-        public IEnumerable<Organizer> Organizers { get; set; } = new List<Organizer>
-        {
-            new Organizer
-            {
-                FirstName = "Milos",
-                LastName = "Panic",
-                PhoneNumber = "012301023012",
-            },
-            new Organizer
-            {
-                FirstName = "Luka",
-                LastName = "Bjelica",
-                PhoneNumber = "22222023012",
-            },
-            new Organizer
-            {
-                FirstName = "Jox",
-                LastName = "Jevtic",
-                PhoneNumber = "333301023012",
-            },
-        };
+        public ObservableCollection<Organizer> Organizers { get; set; }
 
-        public ChooseOrganizerViewModel() : base("Izaberi organizatora", 560, 360)
+        public ChooseOrganizerViewModel(IOrganizerService organizerService) : base("Izaberi organizatora", 560, 360)
         {
+            Organizers = new ObservableCollection<Organizer>(organizerService.Read());
+            
             Choose = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, SelectedOrganizer));
             Cancel = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, null));
         }

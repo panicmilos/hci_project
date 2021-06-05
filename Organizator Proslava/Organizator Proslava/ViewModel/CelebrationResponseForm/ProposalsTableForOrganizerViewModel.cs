@@ -21,24 +21,30 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
         private readonly IDialogService _dialogService;
         private readonly ICollaboratorService _collaboratorService;
 
-        public ProposalsTableForOrganizerViewModel(ProposalCommentsViewModel pcvm, ICollaboratorService collaboratorService, IDialogService dialogService)
+        public ProposalsTableForOrganizerViewModel(
+            ProposalCommentsViewModel pcvm,
+            ICollaboratorService collaboratorService,
+            IDialogService dialogService)
         {
             _pcvm = pcvm;
             _collaboratorService = collaboratorService;
             _dialogService = dialogService;
 
-            Comments = new RelayCommand<CelebrationProposal>(cd =>
+            Comments = new RelayCommand<CelebrationProposal>(cp =>
             {
-                _pcvm.CelebrationProposal = cd;
-                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cd.ProposalComments);
+                _pcvm.CelebrationProposal = cp;
+                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cp.ProposalComments);
                 EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _pcvm);
             });
+
+            EventBus.RegisterHandler("PreviewCommentsFromNotificationOrganizer", cp => Comments.Execute(cp));
 
             Add = new RelayCommand(() =>
             {
                 var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService));
                 if (proposal != null)
                 {
+                    EventBus.FireEvent("CreateNewProposal", proposal);
                     CelebrationProposals.Add(proposal);
                 }
             });

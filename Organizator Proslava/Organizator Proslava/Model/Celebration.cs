@@ -8,9 +8,15 @@ namespace Organizator_Proslava.Model
     {
         private string _type;
         public string Type { get => _type; set => OnPropertyChanged(ref _type, value); }
+        
+        private Guid? _clientId;
+        public Guid? ClientId { get => _clientId; set => OnPropertyChanged(ref _clientId, value); }
 
         private Client _client;
         public virtual Client Client { get => _client; set => OnPropertyChanged(ref _client, value); }
+
+        private Guid? _organizerId;
+        public Guid? OrganizerId { get => _organizerId; set => OnPropertyChanged(ref _organizerId, value); }
 
         private Organizer _organizer;
         public virtual Organizer Organizer { get => _organizer; set => OnPropertyChanged(ref _organizer, value); }
@@ -47,24 +53,24 @@ namespace Organizator_Proslava.Model
         public override string ToString()
         {
             var builder = new StringBuilder();
-            builder.Append($"Ja, {_client.FullName} želim da organizujem {_type}. ");
+            builder.Append($"Ja, {_client?.FullName} želim da organizujem {_type}. ");
 
-            if (_organizer == null)
+            if (Organizer == null)
             {
                 builder.Append("Organizator će mi biti nahnadno dodeljen. ");
             }
             else
             {
-                builder.Append($"Organizator ove proslave je {_organizer.FullName}. ");
+                builder.Append($"Organizator ove proslave je {_organizer?.FullName}. ");
             }
 
-            if (_address == null)
+            if (Address == null)
             {
                 builder.Append("Želim da mi organizator predloži pogodnu lokaciju. ");
             }
             else
             {
-                builder.Append($"Želim da se organizuje na adresi {_address.WholeAddress}. ");
+                builder.Append($"Želim da se organizuje na adresi {_address?.WholeAddress}. ");
             }
 
             var isFixedString = _isBudgetFixed ? "jeste" : "nije";
@@ -80,7 +86,7 @@ namespace Organizator_Proslava.Model
             }
             builder.AppendLine("\n");
             builder.AppendLine("Moji zahtevi su: ");
-            foreach (var detail in _celebrationDetails)
+            foreach (var detail in CelebrationDetails)
             {
                 builder.AppendLine(detail.ToString());
             }

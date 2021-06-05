@@ -22,6 +22,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Covm { get; set; }
         public ICommand ClientHome { get; set; }
         public ICommand OrgHome { get; set; }
+        public ICommand Notf { get; set; }
 
         private readonly IUserService<BaseUser> _userService;
         private readonly IDialogService _dialogService;
@@ -67,6 +68,7 @@ namespace Organizator_Proslava.ViewModel
             Covm = new RelayCommand(() => EventBus.FireEvent("CreateOrganizer")); // Delete later
             ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin")); // Delete later
             OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin")); // Delete later
+            Notf = new RelayCommand(() => EventBus.FireEvent("Notf")); // Delete later
 
             Map = new RelayCommand(() =>
             {

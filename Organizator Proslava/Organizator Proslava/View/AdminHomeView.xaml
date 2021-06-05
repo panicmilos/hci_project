@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Organizator_Proslava.View.AdminHomeView"
+﻿ <UserControl x:Class="Organizator_Proslava.View.AdminHomeView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,13 +20,13 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource PaintedButton}">
+
+        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource PaintedButton}" Command="{Binding Path=Clients}">
             <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png" />
         </Button>
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">Korisnici</Label>
         
-        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource PaintedButton}">
+        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource PaintedButton}" Command="{Binding Path=Organizers}">
             <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png" />
         </Button>
         <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center">Organizatori</Label>
@@ -36,7 +36,7 @@
         </Button>
         <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">Proslave</Label>
         
-        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource PaintedButton}">
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource PaintedButton}" Command="{Binding Path=Collaborators}">
             <BitmapImage UriSource="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png" />
         </Button>
         <Label Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center">Saradnici</Label>

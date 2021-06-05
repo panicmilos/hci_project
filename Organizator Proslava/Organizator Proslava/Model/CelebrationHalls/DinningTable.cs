@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model.CelebrationHalls
 {
@@ -10,5 +6,18 @@ namespace Organizator_Proslava.Model.CelebrationHalls
     {
         private int _seats;
         public int Seats { get => _seats; set => OnPropertyChanged(ref _seats, value); }
+
+        private List<Guest> _guests;
+
+        public virtual List<Guest> Guests
+        {
+            get { return _guests; }
+            set { _guests = value; OnPropertyChanged("Guests"); }
+        }
+
+        public DinningTable()
+        {
+            Guests = new List<Guest>();
+        }
     }
 }

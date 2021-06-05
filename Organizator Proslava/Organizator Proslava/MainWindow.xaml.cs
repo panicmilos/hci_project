@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Organizator_Proslava.Utility;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +25,20 @@ namespace Organizator_Proslava
         public MainWindow()
         {
             InitializeComponent();
+            EventBus.RegisterHandler("DemoFullscreenMode", EnterFullscreenMode);
+            EventBus.RegisterHandler("ExitDemoFullscreenMode", ExitFullscreenMode);
         }
 
-        private void TextBox_TextChanged()
+        private void EnterFullscreenMode()
         {
-
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
         }
 
-        private void TextBox_TextChanged_1()
+        private void ExitFullscreenMode()
         {
-
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            WindowState = WindowState.Normal;
         }
     }
 }

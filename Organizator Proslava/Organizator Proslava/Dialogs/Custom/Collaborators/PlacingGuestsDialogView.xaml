@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Custom.Collaborators.PlacingGuestsDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="Dozvoljeno gostiju je: " Style="{StaticResource spaceFormLabel}" />
+            <Label Content="{Binding DinningTable.Seats}" Margin="-10, 0, 0, 0" Style="{StaticResource spaceFormLabel}" />
+        </StackPanel>
+        <Border Grid.Column="1" Grid.Row="1" x:Name="CanvasBorder" BorderBrush="{StaticResource Ming}" BorderThickness="1">
+            <Canvas x:Name="SecondCanvas"
+                    Background="{StaticResource Cararra}"
+                    PreviewMouseMove="SecondCanvas_PreviewMouseMove"
+                    PreviewMouseLeftButtonUp="SecondCanvas_PreviewMouseLeftButtonUp">
+                <Canvas.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Dodaj gosta" Command="{Binding AddNewGuest}" />
+                    </ContextMenu>
+                </Canvas.ContextMenu>
+            </Canvas>
+        </Border>
+
+        <StackPanel Grid.Column ="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Nazad"
+                    Command="{Binding Path=Back}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+
+            <Button Visibility="{Binding Path=ShouldShowSave, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Content="Sačuvaj"
+                    Command="{Binding Path=Save}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

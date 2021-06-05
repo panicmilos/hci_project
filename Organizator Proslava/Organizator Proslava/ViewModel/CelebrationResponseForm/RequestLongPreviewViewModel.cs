@@ -1,5 +1,4 @@
-﻿using Organizator_Proslava.Model;
-using Organizator_Proslava.Model.CelebrationResponses;
+﻿using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Utility;
 using System.Windows.Input;
 
@@ -16,7 +15,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
         public RequestLongPreviewViewModel()
         {
-            Back = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin"));
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCurrentCelebrationsForOrganizer"));
             Details = new RelayCommand(() => EventBus.FireEvent("NextToRequestDetailsForOrganizer"));
         }
     }
