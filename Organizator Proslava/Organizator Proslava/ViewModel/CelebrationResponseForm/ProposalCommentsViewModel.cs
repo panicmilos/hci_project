@@ -57,18 +57,19 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                 var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
                 if (commentText != null)
                 {
-                    var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser");
+                    var loggedUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
                     var comment = new ProposalComment()
                     {
-                        WriterId = loggedUser.Id,
+                        WriterId = loggedUserId,
                         CelebrationProposalId = CelebrationProposal.Id,
                         Content = commentText
                     };
-
                     _proposalCommentService.Create(comment);
+
+                    var forUserId = loggedUserId == CelebrationProposal.CelebrationResponse.Celebration.Client.Id ? CelebrationProposal.CelebrationResponse.Celebration.Organizer.Id : CelebrationProposal.CelebrationResponse.Celebration.Client.Id;
                     _notificationService.Create(new NewCommentNotification
                     {
-                        ForUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id,
+                        ForUserId = forUserId,
                         ProposalId = CelebrationProposal.Id,
                         CelebrationResponseId = CelebrationProposal.CelebrationResponseId,
                         NumOfComments = 1

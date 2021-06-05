@@ -23,24 +23,44 @@ namespace Organizator_Proslava.Dialogs.Custom.Notifications
         {
             _notificationService = notificationService;
 
-            var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
-            Notifications = new ObservableCollection<Notification>(_notificationService.ReadFor(loggedUser));
+            var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser");
+            Notifications = new ObservableCollection<Notification>(_notificationService.ReadFor(loggedUser.Id));
 
             Preview = new RelayCommand<Notification>(n =>
             {
                 if (n is NewCommentNotification newComment)
                 {
-                    // za klijenta
-                    EventBus.FireEvent("NextToCelebrationProposals", newComment.CelebrationResponse.Celebration);
-                    EventBus.FireEvent("PreviewProposalsFromNotificationClient", newComment.Proposal.CelebrationDetail);
-                    EventBus.FireEvent("PreviewCommentsFromNotificationClient", newComment.Proposal);
+                    if (loggedUser.Role == Role.User)
+                    {
+                        // za klijenta
+                        EventBus.FireEvent("NextToCelebrationProposals", newComment.CelebrationResponse.Celebration);
+                        EventBus.FireEvent("PreviewProposalsFromNotificationClient", newComment.Proposal.CelebrationDetail);
+                        EventBus.FireEvent("PreviewCommentsFromNotificationClient", newComment.Proposal);
+                    }
+                    else if (loggedUser.Role == Role.Organizer)
+                    {
+                        // za organizatora
+                        EventBus.FireEvent("OrganizerLogin");
+                        EventBus.FireEvent("PreviewResponseForNotification", newComment.CelebrationResponse);
+                        EventBus.FireEvent("NextToRequestDetailsForOrganizer");
+                        EventBus.FireEvent("PreviewProposalsFromNotificationOrganizer", newComment.Proposal.CelebrationDetail);
+                        EventBus.FireEvent("PreviewCommentsFromNotificationOrganizer", newComment.Proposal);
+                    }
+                }
 
-                    // za organizatora
-                    //EventBus.FireEvent("OrganizerLogin");
-                    //EventBus.FireEvent("PreviewResponseForNotification", newComment.CelebrationResponse);
-                    //EventBus.FireEvent("NextToRequestDetailsForOrganizer");
-                    //EventBus.FireEvent("PreviewProposalsFromNotificationOrganizer", newComment.Proposal.CelebrationDetail);
-                    //EventBus.FireEvent("PreviewCommentsFromNotificationOrganizer", newComment.Proposal);
+                if (n is NewProposalNotification newProposal)
+                {
+                    EventBus.FireEvent("NextToCelebrationProposals", newProposal.CelebrationResponse.Celebration);
+                    EventBus.FireEvent("PreviewProposalsFromNotificationClient", newProposal.Proposal.CelebrationDetail);
+                    EventBus.FireEvent("PreviewCommentsFromNotificationClient", newProposal.Proposal);
+                }
+
+                if (n is NewDetailNotification newDetail)
+                {
+                    EventBus.FireEvent("OrganizerLogin");
+                    EventBus.FireEvent("PreviewResponseForNotification", newDetail.CelebrationResponse);
+                    EventBus.FireEvent("NextToRequestDetailsForOrganizer");
+                    EventBus.FireEvent("PreviewDetailFromNotificationOrganizer", newDetail.Detail);
                 }
             });
 

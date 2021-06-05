@@ -44,12 +44,15 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da date ovaj predlog?")) == DialogResults.Yes)
                 {
-                    Proposal.CelebrationHall = Proposal.CelebrationHall.Clone();
-                    Proposal.CelebrationHall.CollaboratorId = null;
-                    Proposal.CelebrationHall.Id = Guid.Empty;
-                    foreach (var placeableEntity in Proposal.CelebrationHall.PlaceableEntities)
+                    if (Proposal.CelebrationHall != null)
                     {
-                        placeableEntity.Id = Guid.Empty;
+                        Proposal.CelebrationHall = Proposal.CelebrationHall.Clone();
+                        Proposal.CelebrationHall.CollaboratorId = null;
+                        Proposal.CelebrationHall.Id = Guid.Empty;
+                        foreach (var placeableEntity in Proposal.CelebrationHall.PlaceableEntities)
+                        {
+                            placeableEntity.Id = Guid.Empty;
+                        }
                     }
 
                     CloseDialogWithResult(w, Proposal);

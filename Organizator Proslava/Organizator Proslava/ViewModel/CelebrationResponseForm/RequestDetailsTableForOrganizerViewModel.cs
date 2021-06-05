@@ -36,6 +36,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             _dialogService = dialogService;
 
             Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd)));
+            EventBus.RegisterHandler("PreviewDetailFromNotificationOrganizer", cd => Preview.Execute(cd));
+
             Proposals = new RelayCommand<CelebrationDetail>(cd =>
             {
                 _currentCelebrationDetail = cd;
@@ -58,7 +60,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
                 _notificationService.Create(new NewProposalNotification
                 {
-                    ForUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id,
+                    ForUserId = CelebrationResponse.Celebration.Client.Id,
                     ProposalId = proposal.Id,
                     CelebrationResponseId = CelebrationResponse.Id,
                 });

@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Model.CelebrationResponses;
+using Organizator_Proslava.Utility;
 using System;
 
 namespace Organizator_Proslava.Model
@@ -28,9 +29,21 @@ namespace Organizator_Proslava.Model
 
         public override string ToString()
         {
+            var novSufix = NumOfComments > 1 ? (NumOfComments > 3 ? "ih" : "a") : "";
+            var commentSufix = NumOfComments > 1 ? "a" : "";
+
             // Dodati stranu korisnika
-            var sufix = NumOfComments > 1 ? (NumOfComments > 3 ? "ih" : "a") : "";
-            return $"Imate {NumOfComments} nov{sufix} komentar na \"{Proposal.Title}\" predlogu proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
+            var loggedUserRole = GlobalStore.ReadObject<BaseUser>("loggedUser").Role;
+            if (loggedUserRole == Role.User)
+            {
+                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" predlogu proslave koju vam organizuje {CelebrationResponse.Celebration.Organizer.FullName}.";
+            }
+            else if (loggedUserRole == Role.Organizer)
+            {
+                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" predlogu proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
+            }
+
+            return String.Empty;
         }
     }
 
