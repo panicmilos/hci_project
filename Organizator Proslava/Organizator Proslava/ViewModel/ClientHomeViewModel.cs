@@ -22,6 +22,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Back { get; set; }
         public ICommand Add { get; set; }
         public ICommand Profile { get; set; }
+        public ICommand Logout { get; set; }
     
         public ObservableCollection<Celebration> Celebrations { get; set; }
 
@@ -84,7 +85,13 @@ namespace Organizator_Proslava.ViewModel
                 _rvm.ForUpdate();
                 EventBus.FireEvent("SwitchMainViewModel", _rvm);
             });
-            
+
+            Logout = new RelayCommand(() =>
+            {
+                GlobalStore.RemoveObject("loggedUser");
+                EventBus.FireEvent("BackToLogin");
+            });
+
             EventBus.RegisterHandler("NextToCelebrationProposals", celebration =>
             {
                 _cpvm.Celebration = celebration as Celebration;

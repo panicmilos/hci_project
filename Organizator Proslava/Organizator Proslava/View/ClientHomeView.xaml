@@ -10,21 +10,30 @@
     <Grid Margin="50">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Right">
-            <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Profile}">
-                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/profile.png"/>
-            </Button>
-            <Label>Moj profil</Label>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel>
+                <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Profile}">
+                    <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/profile.png"/>
+                </Button>
+                <Label>Moj profil</Label>
+            </StackPanel>
+            <StackPanel>
+                <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}">
+                    <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/logout.png"/>
+                </Button>
+                <Label>Odjava</Label>
+            </StackPanel>
         </StackPanel>
-        
-        <Label Grid.Row="0" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
+
+        <Label Grid.Row="1" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
         
         <DataGrid
-            Grid.Row="1"
+            Grid.Row="2"
             CanUserAddRows="False" 
             CanUserDeleteRows="False" 
             AutoGenerateColumns="False"
@@ -80,10 +89,10 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
         </StackPanel>
     </Grid>

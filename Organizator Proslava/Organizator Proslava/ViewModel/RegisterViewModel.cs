@@ -155,7 +155,7 @@ namespace Organizator_Proslava.ViewModel
             ForEdit = true;
             ButtonText = "Sacuvaj";
             _calls = 7;
-            Client client = GlobalStore.ReadObject<BaseUser>("loggedUser") as Client;
+            if (!(GlobalStore.ReadObject<BaseUser>("loggedUser") is Client client)) return;
             FirstName = client.FirstName;
             LastName = client.LastName;
             UserName = client.UserName;
