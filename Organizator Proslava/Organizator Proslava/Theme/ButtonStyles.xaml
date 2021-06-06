@@ -102,4 +102,17 @@
         <Setter Property="Background" Value="{StaticResource PowderBlue}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="BackButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Image Source="pack://siteoforigin:,,,/Resources/back.png"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

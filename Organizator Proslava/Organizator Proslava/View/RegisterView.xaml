@@ -26,9 +26,7 @@
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="6" Opacity="0.45" />
 
-        <Button Grid.Row="0" Command="{Binding Path=Back}" Style="{StaticResource SmallPaintedButton}" Background="{StaticResource PowderBlue}">
-            <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/back.png"/>
-        </Button>
+        <Button Grid.Row="0" Command="{Binding Path=Back}" Style="{StaticResource BackButton}" Background="{StaticResource PowderBlue}"/>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Grid>
