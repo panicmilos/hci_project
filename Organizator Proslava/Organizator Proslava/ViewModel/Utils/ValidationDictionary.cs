@@ -6,35 +6,30 @@ namespace Organizator_Proslava.ViewModel.Utils
 {
     public static class ValidationDictionary
     {
-        private static readonly IDictionary<string, Func<object, object, string>> _validations;
+        private static readonly EmailAddressAttribute _email = new EmailAddressAttribute();
+        private static readonly PhoneAttribute _phone = new PhoneAttribute();
 
-        static ValidationDictionary()
+        private static readonly IDictionary<string, Func<object, object, string>> _validations = new Dictionary<string, Func<object, object, string>>
         {
-            _validations = new Dictionary<string, Func<object, object, string>>
-            {
-                {"FirstName", ValidateFirstName},
-                {"LastName", ValidateLastName},
-                {"MailAddress", ValidateMailAddress},
-                {"UserName", ValidateUserName},
-                {"PhoneNumber", ValidatePhoneNumber},
-                {"Password", ValidatePassword},
-                {"RepeatedPassword", ValidateRepeatedPassword},
-            };
-        }
+            {"FirstName", ValidateFirstName},
+            {"LastName", ValidateLastName},
+            {"MailAddress", ValidateMailAddress},
+            {"UserName", ValidateUserName},
+            {"PhoneNumber", ValidatePhoneNumber},
+            {"Password", ValidatePassword},
+            {"RepeatedPassword", ValidateRepeatedPassword},
+        };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
         {
-            if (!_validations.ContainsKey(validationName))
-            {
-                return null;
-            }
+            if (!_validations.ContainsKey(validationName)) return null;
 
             return _validations[validationName].Invoke(firstParam, secondParam);
         }
 
         private static string ValidateFirstName(object firstName, object _)
         {
-            if (string.IsNullOrWhiteSpace(firstName as String))
+            if (string.IsNullOrWhiteSpace(firstName as string))
                 return "Morate zadati ime.";
 
             return null;
@@ -42,7 +37,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateLastName(object lastName, object _)
         {
-            if (string.IsNullOrWhiteSpace(lastName as String))
+            if (string.IsNullOrWhiteSpace(lastName as string))
                 return "Morate zadati prezime.";
 
             return null;
@@ -50,46 +45,45 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateMailAddress(object mailAddressObject, object _)
         {
-            var emailValidator = new EmailAddressAttribute();
-
-            var mailAddress = mailAddressObject as String;
+            var mailAddress = mailAddressObject as string;
             if (string.IsNullOrWhiteSpace(mailAddress))
                 return "Morate zadati mail adresu.";
-            if (!emailValidator.IsValid(mailAddress))
+            if (!_email.IsValid(mailAddress))
                 return "Nevalidna mail adresa.";
 
             return null;
         }
 
-        private static string ValidatePhoneNumber(object phoneNumber, object _)
+        private static string ValidatePhoneNumber(object phoneNumberObject, object _)
         {
-            if (string.IsNullOrWhiteSpace(phoneNumber as String))
+            var phoneNumber = phoneNumberObject as string;
+            if (string.IsNullOrWhiteSpace(phoneNumber))
                 return "Morate zadati broj telefona.";
-            //TODO: validate format
+            if (!_phone.IsValid(phoneNumber))
+                return "Nevalidan broj telefona.";
 
             return null;
         }
 
         private static string ValidateUserName(object userNameObject, object _)
         {
-            var userName = userNameObject as String;
+            var userName = userNameObject as string;
             if (string.IsNullOrWhiteSpace(userName))
-                return "Morate zadati korisnicko ime.";
+                return "Morate zadati korisničko ime.";
             if (userName.Trim().Length < 5)
-                return "Korisnicko ime je prekratko.";
+                return "Korisničko ime je prekratko.";
             if (userName.Trim().Length > 15)
-                return "Korisnicko ime je predugacko.";
+                return "Korisničko ime je predugačko.";
 
             return null;
         }
 
         private static string ValidatePassword(object passwordObject, object repeatedPasswordObject)
         {
-            var password = passwordObject as String;
-            var repeatedPassword = repeatedPasswordObject as String;
-
+            var password = passwordObject as string;
+            var repeatedPassword = repeatedPasswordObject as string;
             if (string.IsNullOrWhiteSpace(password))
-                return "Morate kreirati sifru.";
+                return "Morate kreirati šifru.";
             if (password != repeatedPassword)
                 return " ";
 
@@ -98,13 +92,12 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateRepeatedPassword(object passwordObject, object repeatedPasswordObject)
         {
-            var password = passwordObject as String;
-            var repeatedPassword = repeatedPasswordObject as String;
-
+            var password = passwordObject as string;
+            var repeatedPassword = repeatedPasswordObject as string;
             if (string.IsNullOrWhiteSpace(repeatedPassword))
-                return "Morate ponoviti sifru.";
+                return "Morate ponoviti šifru.";
             if (repeatedPassword != password)
-                return "Nije ista kao sifra.";
+                return "Nije ista kao šifra.";
 
             return null;
         }

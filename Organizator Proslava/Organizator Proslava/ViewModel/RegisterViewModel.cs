@@ -7,8 +7,6 @@ using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
@@ -17,37 +15,30 @@ namespace Organizator_Proslava.ViewModel
     {
         // Text fields:
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
         public string MailAddress { get; set; }
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
+        public string Password { get => _password; set { OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
+        public string RepeatedPassword { get => _repeatedPassword; set { OnPropertyChanged(ref _repeatedPassword, value); OnPropertyChanged("Password"); } }
 
-        private string _password;
-        public string Password { get { return _password; } set { OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
-
-        private string _repeatedPassword;
-        public string RepeatedPassword { get { return _repeatedPassword; } set { OnPropertyChanged(ref _repeatedPassword, value); OnPropertyChanged("Password"); } }
+        private string _password, _repeatedPassword;
 
         // Commands:
         public ICommand Register { get; set; }
-
         public ICommand Back { get; set; }
 
-        public bool ForEdit { get; set; }
-        public string ButtonText { get; set; }
+        public bool ForEdit { get; set; } = false;
+        public string ButtonText { get; set; } = "Napravi nalog";
 
         // Rules:
-        public string Error { get; set; }
-
+        public string Error => throw new System.NotImplementedException();
         public string this[string columnName]
         {
             get
             {
                 if (columnName == "Password" || columnName == "RepeatedPassword")
-                {
                     return Err(ValidationDictionary.Validate(columnName, Password, RepeatedPassword));
-                }
 
                 var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
                 return Err(ValidationDictionary.Validate(columnName, valueOfProperty, null));
@@ -56,17 +47,12 @@ namespace Organizator_Proslava.ViewModel
 
         private readonly IClientService _clientService;
         private readonly IDialogService _dialogService;
-        private readonly EmailAddressAttribute _email;
-        private int _calls;
+        private int _calls = 0;
 
         public RegisterViewModel(IClientService clientService, IDialogService dialogService)
         {
             _clientService = clientService;
             _dialogService = dialogService;
-            _email = new EmailAddressAttribute();
-            _calls = 0;
-            ForEdit = false;
-            ButtonText = "Napravi nalog";
 
             Register = new RelayCommand(() =>
             {
@@ -86,7 +72,7 @@ namespace Organizator_Proslava.ViewModel
         {
             if (_clientService.AlreadyInUse(UserName))
             {
-                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisničko ime je već iskorišćeno."));
                 return;
             }
             var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da napravite nalog?"));
@@ -133,18 +119,13 @@ namespace Organizator_Proslava.ViewModel
 
         private string Err(string message)
         {
-            if (message == null)
-            {
-                return null;
-            }
-
-            return _calls++ < 7 ? "*" : message;   // there are 7 fields
+            return message == null ? null : (_calls++ < 7 ? "*" : message);   // there are 7 fields
         }
 
         public void ForUpdate()
         {
             ForEdit = true;
-            ButtonText = "Sacuvaj";
+            ButtonText = "Sačuvaj";
             _calls = 7;
             if (!(GlobalStore.ReadObject<BaseUser>("loggedUser") is Client client)) return;
             FirstName = client.FirstName;
