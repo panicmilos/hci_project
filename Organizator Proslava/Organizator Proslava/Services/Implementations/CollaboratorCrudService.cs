@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Organizator_Proslava.Data;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
 
@@ -20,7 +21,15 @@ namespace Organizator_Proslava.Services.Implementations
             existingCollaborator.PhoneNumber = collaborator.PhoneNumber;
             existingCollaborator.MailAddress = collaborator.MailAddress;
 
-            existingCollaborator.Address = collaborator.Address;
+            existingCollaborator.Address.Lat = collaborator.Address.Lat;
+            existingCollaborator.Address.Lng = collaborator.Address.Lng;
+            existingCollaborator.Address.WholeAddress = collaborator.Address.WholeAddress;
+
+            foreach (var hall in existingCollaborator.CelebrationHalls)
+            {
+                _context.Entry(hall).State = EntityState.Detached;
+            }
+
             existingCollaborator.CelebrationHalls = collaborator.CelebrationHalls;
             existingCollaborator.CollaboratorServiceBook = collaborator.CollaboratorServiceBook;
             existingCollaborator.Images = collaborator.Images;
