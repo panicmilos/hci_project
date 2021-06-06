@@ -84,16 +84,15 @@ namespace Organizator_Proslava.ViewModel
 
             Register = new RelayCommand(() =>
             {
-                if (ForEdit)
-                    UpdateClient();
-                else
-                    RegisterClient();
+                if (ForEdit) UpdateClient();
+                else RegisterClient();
             });
 
             Back = new RelayCommand(() =>
             {
                 _calls = 0;
-                EventBus.FireEvent("BackToLogin");
+                if (ForEdit) EventBus.FireEvent("ClientLogin");
+                else EventBus.FireEvent("BackToLogin");
             });
         }
 
