@@ -100,28 +100,17 @@
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Width" Value="80" />
-                        <Setter Property="Height" Value="25" />
-                        <Setter Property="Foreground" Value="White" />
-                        <Setter Property="IsEnabled" Value="False"/>
-                        <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb1}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb2}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb3}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb4}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb5}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb6}" Value="False"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tb7}" Value="False"/>
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="IsEnabled" Value="True"/>
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb4" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb5" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb6" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb7" />
+                    </MultiBinding>
+                </Button.IsEnabled>
             </Button>
         </StackPanel>
     </Grid>

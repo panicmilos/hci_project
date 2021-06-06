@@ -9,4 +9,5 @@
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <local:StringToImageStringConverter x:Key="StringToImageStringConverter" />
     <local:ObjectReferenceToButtonConverter x:Key="ObjectReferenceToButtonConverter" />
+    <local:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter" />
 </ResourceDictionary>
