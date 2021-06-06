@@ -83,9 +83,29 @@ namespace Organizator_Proslava.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back {
+            get {
+                object obj = ResourceManager.GetObject("back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap celebration {
             get {
                 object obj = ResourceManager.GetObject("celebration", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +136,16 @@ namespace Organizator_Proslava.Properties {
         internal static System.Drawing.Bitmap legalCollaborator {
             get {
                 object obj = ResourceManager.GetObject("legalCollaborator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +193,29 @@ namespace Organizator_Proslava.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap preview {
+            get {
+                object obj = ResourceManager.GetObject("preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap profile {
             get {
                 object obj = ResourceManager.GetObject("profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remove {
+            get {
+                object obj = ResourceManager.GetObject("remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

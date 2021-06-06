@@ -99,7 +99,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" >
+            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
