@@ -79,6 +79,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 GetType().GetProperty(property.Name)?.SetValue(this, property.GetValue(Collaborator));
             }
             WholeAddress = string.Empty;
+            _calls = 0;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToSelectCollaboratorType"));
         }
@@ -91,6 +92,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 GetType().GetProperty(property.Name)?.SetValue(this, property.GetValue(collaborator));
             }
             WholeAddress = Collaborator.Address?.WholeAddress;
+            _calls = 0;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
         }

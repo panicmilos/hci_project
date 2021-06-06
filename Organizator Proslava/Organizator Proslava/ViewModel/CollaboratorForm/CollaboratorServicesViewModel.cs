@@ -5,14 +5,16 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
-    public class CollaboratorServicesViewModel : ObservableEntity
+    public class CollaboratorServicesViewModel : ObservableEntity, IDataErrorInfo
     {
         public string CameFrom { get; set; }
 
@@ -24,7 +26,26 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         public ObservableCollection<CollaboratorService> Services { get; set; }
 
+        // For TextBoxes:
+
+        private string _type;
+        public string Type { get { return _type; } set { OnPropertyChanged(ref _type, value); CollaboratorServiceBook.Type = value; } }
+
+        private string _description;
+        public string Description { get { return _description; } set { OnPropertyChanged(ref _description, value); CollaboratorServiceBook.Description = value; } }
+
+        // Validation
+        public string this[string columnName]
+        {
+            get
+            {
+                var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
+                return Err(ValidationDictionary.Validate("CS" + columnName, valueOfProperty, null));
+            }
+        }
+
         private readonly IDialogService _dialogService;
+        private int _calls = 0;
 
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
@@ -32,6 +53,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public ICommand Add { get; set; }
         public ICommand Edit { get; set; }
         public ICommand Remove { get; set; }
+
+        public string Error => throw new NotImplementedException();
 
         public CollaboratorServicesViewModel(ICelebrationTypeService celebrationTypeService, IDialogService dialogService)
         {
@@ -77,19 +100,38 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorInformations", CameFrom));
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorImages"));
+            Next = new RelayCommand(() =>
+            {
+                //if (!CollaboratorServiceBook.Services.Any())
+                //{
+                //    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Saradnik mora imati bar jednu uslugu."));
+                //    return;
+                //}
+                EventBus.FireEvent("NextToCollaboratorImages");
+            });
         }
 
         public void ForAdd()
         {
             CollaboratorServiceBook = new CollaboratorServiceBook();
+            Type = string.Empty;
+            Description = string.Empty;
+
             Services = new ObservableCollection<CollaboratorService>();
         }
 
         public void ForUpdate(Collaborator collaborator)
         {
             CollaboratorServiceBook = collaborator.CollaboratorServiceBook;
+            Type = collaborator.CollaboratorServiceBook.Type;
+            Description = collaborator.CollaboratorServiceBook.Description;
+
             Services = new ObservableCollection<CollaboratorService>(collaborator.CollaboratorServiceBook.Services);
+        }
+
+        private string Err(string message)
+        {
+            return message == null ? null : (_calls++ < 2 ? "*" : message);   // there are 7 fields
         }
     }
 }

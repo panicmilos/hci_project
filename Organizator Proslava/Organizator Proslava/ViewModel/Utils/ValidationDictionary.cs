@@ -23,6 +23,12 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"WholeAddress", ValidateWholeAddress},
             {"JMBG", ValidateJMBG},
             {"PersonalId", ValidatePersonalId},
+
+            {"CSType", ValidateCSType},
+            {"CSDescription", ValidateCSDescription},
+            {"CSName", ValidateCSName},
+            {"CSPrice", ValidateCSPrice},
+            {"CSUnit", ValidateCSUnit},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -109,7 +115,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidatePIB(object PIB, object _)
         {
-            if (string.IsNullOrWhiteSpace(PIB as String))
+            if (string.IsNullOrWhiteSpace(PIB as string))
                 return "Morate zadati PIB.";
 
             return null;
@@ -117,7 +123,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateIdentificationNumber(object identificationNumber, object _)
         {
-            if (string.IsNullOrWhiteSpace(identificationNumber as String))
+            if (string.IsNullOrWhiteSpace(identificationNumber as string))
                 return "Morate zadati matični broj.";
 
             return null;
@@ -125,7 +131,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateWholeAddress(object wholeAddress, object _)
         {
-            if (string.IsNullOrWhiteSpace(wholeAddress as String))
+            if (string.IsNullOrWhiteSpace(wholeAddress as string))
                 return "Morate zadati adresu.";
 
             return null;
@@ -133,16 +139,61 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateJMBG(object JMBG, object _)
         {
-            if (string.IsNullOrWhiteSpace(JMBG as String))
+            if (string.IsNullOrWhiteSpace(JMBG as string))
                 return "Morate zadati JMBG.";
 
             return null;
         }
 
-        private static string ValidatePersonalId(object PersonalId, object _)
+        private static string ValidatePersonalId(object personalId, object _)
         {
-            if (string.IsNullOrWhiteSpace(PersonalId as String))
+            if (string.IsNullOrWhiteSpace(personalId as string))
                 return "Morate zadati matični broj.";
+
+            return null;
+        }
+
+        private static string ValidateCSType(object type, object _)
+        {
+            if (string.IsNullOrWhiteSpace(type as string))
+                return "Morate zadati tip.";
+
+            return null;
+        }
+
+        private static string ValidateCSDescription(object description, object _)
+        {
+            if (string.IsNullOrWhiteSpace(description as string))
+                return "Morate zadati opis.";
+
+            return null;
+        }
+
+        private static string ValidateCSName(object name, object _)
+        {
+            if (string.IsNullOrWhiteSpace(name as string))
+                return "Morate zadati ime.";
+
+            return null;
+        }
+
+        private static string ValidateCSPrice(object price, object _)
+        {
+            if (string.IsNullOrWhiteSpace(price as string))
+                return "Morate zadati cenu.";
+
+            if (!Double.TryParse(price as string, out var _))
+            {
+                return "Cena mora biti broj.";
+            }
+
+            return null;
+        }
+
+        private static string ValidateCSUnit(object unit, object _)
+        {
+            if (string.IsNullOrWhiteSpace(unit as string))
+                return "Morate zadati jedinicu.";
 
             return null;
         }
