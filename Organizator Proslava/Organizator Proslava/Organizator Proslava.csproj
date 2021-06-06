@@ -948,7 +948,7 @@
     <None Include="Resources\celebration.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
- </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\error.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -956,11 +956,23 @@
     <Content Include="Documentation\index.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\remove.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\preview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\RequestResponseFormShared\" />
-    <Folder Include="View\Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
