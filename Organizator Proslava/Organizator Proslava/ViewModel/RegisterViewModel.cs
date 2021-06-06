@@ -5,6 +5,7 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel.Utils;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -35,6 +36,7 @@ namespace Organizator_Proslava.ViewModel
 
         public bool ForEdit { get; set; }
         public string ButtonText { get; set; }
+
         // Rules:
         public string Error { get; set; }
 
@@ -42,46 +44,13 @@ namespace Organizator_Proslava.ViewModel
         {
             get
             {
-                switch (columnName)
+                if (columnName == "Password" || columnName == "RepeatedPassword")
                 {
-                    case "FirstName":
-                        if (string.IsNullOrWhiteSpace(FirstName)) return Err("Morate zadati ime.");
-                        break;
-
-                    case "LastName":
-                        if (string.IsNullOrWhiteSpace(LastName)) return Err("Morate zadati prezime.");
-                        break;
-
-                    case "MailAddress":
-                        if (string.IsNullOrWhiteSpace(MailAddress)) return Err("Morate zadati mail adresu.");
-                        if (!_email.IsValid(MailAddress)) return Err("Nevalidna mail adresa.");
-                        break;
-
-                    case "UserName":
-                        if (string.IsNullOrWhiteSpace(UserName)) return Err("Morate zadati korisnicko ime.");
-                        if (UserName.Trim().Length < 5) return Err("Korisnicko ime je prekratko.");
-                        if (UserName.Trim().Length > 15) return Err("Korisnicko ime je predugacko.");
-                        break;
-
-                    case "PhoneNumber":
-                        if (string.IsNullOrWhiteSpace(PhoneNumber)) return Err("Morate zadati broj telefona.");
-                        //TODO: validate format
-                        break;
-
-                    case "Password":
-                        if (string.IsNullOrWhiteSpace(Password)) return Err("Morate kreirati sifru.");
-                        if (Password != RepeatedPassword) return Err(" ");
-                        break;
-
-                    case "RepeatedPassword":
-                        if (string.IsNullOrWhiteSpace(RepeatedPassword)) return Err("Morate ponoviti sifru.");
-                        if (Password != RepeatedPassword) return Err("Nije ista kao sifra.");
-                        break;
-
-                    default:
-                        return null;
+                    return Err(ValidationDictionary.Validate(columnName, Password, RepeatedPassword));
                 }
-                return null;
+
+                var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
+                return Err(ValidationDictionary.Validate(columnName, valueOfProperty, null));
             }
         }
 
@@ -164,6 +133,11 @@ namespace Organizator_Proslava.ViewModel
 
         private string Err(string message)
         {
+            if (message == null)
+            {
+                return null;
+            }
+
             return _calls++ < 7 ? "*" : message;   // there are 7 fields
         }
 

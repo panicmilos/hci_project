@@ -500,6 +500,7 @@
     <Compile Include="ViewModel\SpacePreviewViewModel.cs" />
     <Compile Include="ViewModel\SpaceViewModel.cs" />
     <Compile Include="ViewModel\UsersView\UsersTableViewModel.cs" />
+    <Compile Include="ViewModel\Utils\ValidationDictionary.cs" />
     <Compile Include="View\AdminHomeView.xaml.cs">
       <DependentUpon>AdminHomeView.xaml</DependentUpon>
     </Compile>
@@ -941,7 +942,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\RequestResponseFormShared\" />
     <Folder Include="View\Validation\" />
   </ItemGroup>
   <ItemGroup>
