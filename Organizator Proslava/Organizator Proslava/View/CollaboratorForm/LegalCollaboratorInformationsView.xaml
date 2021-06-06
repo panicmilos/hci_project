@@ -25,8 +25,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label  Content="Naziv pravnog lica" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Collaborator.FirstName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <Label Content="Naziv pravnog lica" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
@@ -43,16 +43,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Matični broj" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Collaborator.IdentificationNumber, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="0" Grid.Row="1" Text="{Binding Path=IdentificationNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="PIB" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Collaborator.PIB, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb3" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PIB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
-            <Label  Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Collaborator.PhoneNumber, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tb4" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="4">
@@ -63,11 +63,12 @@
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0"
+                <TextBox x:Name="tb5"
+                         Grid.Column="0"
                          IsReadOnly="True"
-                         Text="{Binding Path=Collaborator.Address.WholeAddress, Mode=TwoWay}"
-                         Style="{StaticResource disabledRegisterFormTextBox}"
-                         Margin="10, 0, -20, 0" />
+                         Text="{Binding Path=WholeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource disabledValidateTextBox}"
+                         Margin="10, 0, 10, 0" />
 
                 <Button Grid.Column="1"
                         HorizontalAlignment="Right"
@@ -93,10 +94,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Collaborator.UserName, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=Collaborator.MailAddress, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
@@ -114,16 +115,30 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding Path=Collaborator.Password, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb8" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="2" Grid.Row="1" Text="Ponovljena Šifra" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb9" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
             </Grid>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb4" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb5" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb6" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb7" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb8" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb9" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

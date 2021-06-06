@@ -18,6 +18,11 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"PhoneNumber", ValidatePhoneNumber},
             {"Password", ValidatePassword},
             {"RepeatedPassword", ValidateRepeatedPassword},
+            {"PIB", ValidatePIB},
+            {"IdentificationNumber", ValidateIdentificationNumber},
+            {"WholeAddress", ValidateWholeAddress},
+            {"JMBG", ValidateJMBG},
+            {"PersonalId", ValidatePersonalId},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -98,6 +103,46 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Morate ponoviti šifru.";
             if (repeatedPassword != password)
                 return "Nije ista kao šifra.";
+
+            return null;
+        }
+
+        private static string ValidatePIB(object PIB, object _)
+        {
+            if (string.IsNullOrWhiteSpace(PIB as String))
+                return "Morate zadati PIB.";
+
+            return null;
+        }
+
+        private static string ValidateIdentificationNumber(object identificationNumber, object _)
+        {
+            if (string.IsNullOrWhiteSpace(identificationNumber as String))
+                return "Morate zadati matični broj.";
+
+            return null;
+        }
+
+        private static string ValidateWholeAddress(object wholeAddress, object _)
+        {
+            if (string.IsNullOrWhiteSpace(wholeAddress as String))
+                return "Morate zadati adresu.";
+
+            return null;
+        }
+
+        private static string ValidateJMBG(object JMBG, object _)
+        {
+            if (string.IsNullOrWhiteSpace(JMBG as String))
+                return "Morate zadati JMBG.";
+
+            return null;
+        }
+
+        private static string ValidatePersonalId(object PersonalId, object _)
+        {
+            if (string.IsNullOrWhiteSpace(PersonalId as String))
+                return "Morate zadati matični broj.";
 
             return null;
         }
