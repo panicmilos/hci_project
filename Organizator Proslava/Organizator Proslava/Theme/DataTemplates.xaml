@@ -13,9 +13,8 @@
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
                     xmlns:cdnotifications="clr-namespace:Organizator_Proslava.Dialogs.Custom.Notifications"
                     xmlns:dorganizers="clr-namespace:Organizator_Proslava.Dialogs.Custom.Organizers"
-                    xmlns:dfvm="clr-namespace:Organizator_Proslava.ViewModel.DemoForm"
-                    xmlns:dfv="clr-namespace:Organizator_Proslava.View.DemoForm"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
+                    xmlns:demo="clr-namespace:Organizator_Proslava.Dialogs.Custom.Demo"
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map"
                     xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
@@ -85,6 +84,10 @@
         <alert:AlertDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type demo:DemoDialogViewModel}">
+        <demo:DemoDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
         <option:OptionDialogView />
     </DataTemplate>
@@ -131,10 +134,6 @@
 
     <DataTemplate DataType="{x:Type cdcelebrations:CelebrationLongPreviewDialogViewModel}">
         <cdcelebrations:CelebrationLongPreviewDialogView />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
-        <dfv:DemoView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestFormViewModel}">

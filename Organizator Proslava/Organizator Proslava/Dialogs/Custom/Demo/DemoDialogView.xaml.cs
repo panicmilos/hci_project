@@ -4,16 +4,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Organizator_Proslava.View.DemoForm
+namespace Organizator_Proslava.Dialogs.Custom.Demo
 {
     /// <summary>
-    /// Interaction logic for DemoView.xaml
+    /// Interaction logic for DemoDialogView.xaml
     /// </summary>
-    public partial class DemoView : UserControl
+    public partial class DemoDialogView : UserControl
     {
         private bool fullscreen = false;
 
-        public DemoView()
+        public DemoDialogView()
         {
             InitializeComponent();
 

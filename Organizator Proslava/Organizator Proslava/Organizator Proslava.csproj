@@ -293,6 +293,10 @@
       <DependentUpon>SpacePreviewDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpacePreviewDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Demo\DemoDialogView.xaml.cs">
+      <DependentUpon>DemoDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Demo\DemoDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml.cs">
       <DependentUpon>NotificationsDialogView.xaml</DependentUpon>
     </Compile>
@@ -318,11 +322,16 @@
       <DependentUpon>OptionDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Option\OptionDialogViewModel.cs" />
+    <Compile Include="Dialogs\Service\DemoService.cs" />
+    <Compile Include="Dialogs\Service\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Service\DialogService.cs" />
     <Compile Include="Dialogs\Service\DialogViewModelBase.cs" />
     <Compile Include="Dialogs\Service\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Service\IDemoService.cs" />
     <Compile Include="Dialogs\Service\IDialogService.cs" />
     <Compile Include="Dialogs\Service\IDialogWindow.cs" />
     <Compile Include="Help\HelpProvider.cs" />
@@ -490,7 +499,6 @@
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorsTableViewModel.cs" />
     <Compile Include="ViewModel\CreateOrganizerViewModel.cs" />
-    <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
@@ -568,9 +576,6 @@
     </Compile>
     <Compile Include="View\CollaboratorsTableView.xaml.cs">
       <DependentUpon>CollaboratorsTableView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DemoForm\DemoView.xaml.cs">
-      <DependentUpon>DemoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreateOrganizerView.xaml.cs">
       <DependentUpon>CreateOrganizerView.xaml</DependentUpon>
@@ -668,6 +673,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\Custom\Demo\DemoDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -686,6 +695,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Option\OptionDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Service\DemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -799,10 +812,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CollaboratorsTableView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DemoForm\DemoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

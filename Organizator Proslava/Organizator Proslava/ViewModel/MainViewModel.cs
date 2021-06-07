@@ -3,7 +3,6 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
 
 namespace Organizator_Proslava.ViewModel
@@ -54,7 +53,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("OrganizerLogin", () => CurrentViewModel = Ohvm);
             EventBus.RegisterHandler("BackToLogin", () => CurrentViewModel = Lvm);
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
-            EventBus.RegisterHandler("DEMO", () => CurrentViewModel = new DemoViewModel()); // Delete Later
+            EventBus.RegisterHandler("DEMO", () => new DemoService().OpenDemo()); // Delete Later
 
             EventBus.RegisterHandler("BackToClientPage", () => CurrentViewModel = Chvm);
 

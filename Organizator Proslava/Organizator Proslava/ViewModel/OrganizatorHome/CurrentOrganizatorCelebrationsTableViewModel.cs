@@ -41,8 +41,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
             EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 
             Cancel = new RelayCommand(() =>
-                new DialogService().OpenDialog(new DialogWindow(),
-                    new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                new DialogService().OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
                         "Da li ste sigurni da želite da otkažete organizovanje proslave?")));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
