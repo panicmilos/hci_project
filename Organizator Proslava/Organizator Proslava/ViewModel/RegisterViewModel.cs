@@ -14,7 +14,6 @@ namespace Organizator_Proslava.ViewModel
     public class RegisterViewModel : BaseObservableEntity, IDataErrorInfo
     {
         // Text fields:
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MailAddress { get; set; }
@@ -26,7 +25,6 @@ namespace Organizator_Proslava.ViewModel
         private string _password, _repeatedPassword;
 
         // Commands:
-
         public ICommand Register { get; set; }
         public ICommand Back { get; set; }
 
@@ -35,7 +33,6 @@ namespace Organizator_Proslava.ViewModel
 
         // Rules:
         public string Error => throw new System.NotImplementedException();
-
         public string this[string columnName]
         {
             get

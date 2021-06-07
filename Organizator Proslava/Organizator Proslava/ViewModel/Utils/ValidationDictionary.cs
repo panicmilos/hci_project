@@ -34,6 +34,13 @@ namespace Organizator_Proslava.ViewModel.Utils
 
             {"CHName", ValidateCHName},
             {"CHSeats", ValidateCHSeats},
+
+            {"CelebrationType", ValidateCelebrationType},
+            {"DateTimeFrom", ValidateDateTimeFrom},
+            {"DateTimeTo", ValidateDateTimeTo},
+            {"ExpectedNumberOfGuests", ValidateExpectedNumberOfGuests},
+            {"BudgetFrom", ValidateBudget},
+            {"BudgetTo", ValidateBudget},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -124,13 +131,13 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(PIB))
                 return "Morate zadati PIB.";
 
-            if (PIB.Any(c => !Char.IsDigit(c)))
+            if (PIB.Any(c => !char.IsDigit(c)))
                 return "PIB morati imati samo cifre.";
 
             if (PIB.Length != 9)
                 return "PIB nije ispravan.";
 
-            if (Double.Parse(PIB.Substring(0, 8)) < 10000001)
+            if (double.Parse(PIB.Substring(0, 8)) < 10000001)
                 return "PIB nije ispravan.";
 
             var rest = 10;
@@ -154,7 +161,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(MB as string))
                 return "Morate zadati matični broj.";
 
-            if (MB.Any(c => !Char.IsDigit(c)))
+            if (MB.Any(c => !char.IsDigit(c)))
                 return "Matični broj morati imati samo cifre.";
 
             if (MB.Length != 8)
@@ -189,8 +196,8 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(JMBG as string))
                 return "Morate zadati JMBG.";
 
-            if (JMBG.Any(c => !Char.IsDigit(c)))
-                return "JMBG morati imati samo cifre.";
+            if (JMBG.Any(c => !char.IsDigit(c)))
+                return "JMBG mora imati samo cifre.";
 
             if (JMBG.Length != 13)
                 return "JMBG nije ispravan.";
@@ -211,7 +218,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(personalId as string))
                 return "Morate zadati broj lične karte.";
 
-            if (personalId.Any(c => !Char.IsDigit(c)))
+            if (personalId.Any(c => !char.IsDigit(c)))
                 return "Broj lične karte morati imati samo cifre.";
 
             if (personalId.Length != 9)
@@ -278,15 +285,91 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Morate zadati broj stolica.";
 
             if (!int.TryParse(seats, out var seatsNum))
-            {
                 return "Broj stolica mora biti broj.";
-            }
+
             else if (seatsNum < 1 || seatsNum > 100)
-            {
                 return "Broj stolica mora biti između 1 i 100.";
-            }
 
             return null;
         }
+        private static string ValidateBudget(object budgetObject, object _)
+        {
+            var budgetStr = budgetObject as string;
+            if (string.IsNullOrWhiteSpace(budgetStr))
+                return "Morate zadati budžet.";
+
+            if (!float.TryParse(budgetStr, out var budget))
+                return "Budžet mora biti broj.";
+
+            else if (budget <= 0)
+                return "Budžet mora biti pozitivan.";
+
+            return null;
+        }
+
+        private static string ValidateExpectedNumberOfGuests(object numberObject, object _)
+        {
+            var numberStr = numberObject as string;
+            if (string.IsNullOrWhiteSpace(numberStr))
+                return "Morate zadati o;ekivani broj gostiju.";
+
+            if (!int.TryParse(numberStr, out var number))
+                return "Broj gostiju mora biti ceo broj.";
+
+            else if (number <= 0)
+                return "Broj gostiju mora biti pozitivan.";
+
+            return null;
+        }
+
+        private static string ValidateDateTimeTo(object dateTime1Object, object dateTime2Object)
+        {
+            try
+            {
+                var dateTimeFrom = Convert.ToDateTime(dateTime1Object);
+                var dateTimeTo = Convert.ToDateTime(dateTime2Object);
+
+                if (dateTimeTo < DateTime.Now.AddDays(2))
+                    return "Mora biti najmanje za 48 sati kasnije.";
+
+                else if (dateTimeTo < dateTimeFrom)
+                    return "Ne može biti ranije od početka.";
+            }
+            catch
+            {
+                return "Nevalidan datum.";   // should not happen
+            }
+            return null;
+        }
+
+        private static string ValidateDateTimeFrom(object dateTime1Object, object dateTime2Object)
+        {
+            try
+            {
+                var dateTimeFrom = Convert.ToDateTime(dateTime1Object);
+                var dateTimeTo = Convert.ToDateTime(dateTime2Object);
+
+                if (dateTimeFrom < DateTime.Now.AddDays(2))
+                    return "Mora biti najmanje za 48 sati kasnije.";
+
+                else if (dateTimeTo < dateTimeFrom)
+                    return "Ne može biti kasnije od završetka.";
+            }
+            catch
+            {
+                return "Nevalidan datum.";   // should not happen
+            }
+            return null;
+        }
+
+        private static string ValidateCelebrationType(object type, object _)
+        {
+            if(string.IsNullOrWhiteSpace(type as string))
+                return "Morate zadati tip proslave.";
+
+            return null;
+        }
+
+
     }
 }

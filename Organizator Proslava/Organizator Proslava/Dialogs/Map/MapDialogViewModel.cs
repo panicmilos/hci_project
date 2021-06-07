@@ -92,6 +92,7 @@ namespace Organizator_Proslava.Dialogs.Map
             {
                 var jsonAddresses = JArray.Parse(responseBody);
                 fetchedAddresses = ConvertJArrayOfAddressesToList(jsonAddresses);
+                ErrorMessage = "Kucajte dalje.";
             }
 
             return fetchedAddresses;
@@ -101,7 +102,7 @@ namespace Organizator_Proslava.Dialogs.Map
         {
             try
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, $"https://nominatim.openstreetmap.org/search.php?q=${InputedAddress}&polygon_geojson=1&format=jsonv2&limit=5");
+                var request = new HttpRequestMessage(HttpMethod.Get, $"https://nominatim.openstreetmap.org/search.php?q={InputedAddress}&polygon_geojson=1&format=jsonv2&limit=5");
                 request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Mozilla", "1.0"));
 
                 HttpResponseMessage response = await client.SendAsync(request);
