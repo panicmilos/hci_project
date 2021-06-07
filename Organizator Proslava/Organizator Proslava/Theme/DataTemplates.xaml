@@ -254,4 +254,8 @@
     <DataTemplate DataType="{x:Type celebrationsvm:CelebrationsTableViewModel}">
         <celebrationsv:CelebrationsTableView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:MoreAboutCelebrationsDialogViewModel}">
+        <cdcelebrations:MoreAboutCelebrationsDialogView />
+    </DataTemplate>
 </ResourceDictionary>
