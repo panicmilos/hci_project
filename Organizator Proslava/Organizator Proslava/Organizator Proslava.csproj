@@ -478,6 +478,7 @@
     <Compile Include="ViewModel\CelebrationResponseForm\ProposalsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
+    <Compile Include="ViewModel\Celebrations\CelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -542,6 +543,9 @@
     </Compile>
     <Compile Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml.cs">
       <DependentUpon>RequestLongPreviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Celebrations\CelebrationsTableView.xaml.cs">
+      <DependentUpon>CelebrationsTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
@@ -770,6 +774,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Celebrations\CelebrationsTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

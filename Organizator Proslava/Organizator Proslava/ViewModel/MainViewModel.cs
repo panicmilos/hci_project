@@ -3,6 +3,7 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
+using Organizator_Proslava.ViewModel.Celebrations;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
@@ -26,7 +27,7 @@ namespace Organizator_Proslava.ViewModel
         public CreateOrganizerViewModel Covm { get; set; }
         public OrganziersTableViewModel Otvm { get; set; }
         public UsersTableViewModel Utvm { get; set; }
-
+        public CelebrationsTableViewModel CelebrationsTableViewModel { get; set; }
         public MainViewModel(
             LoginViewModel lvm,
             RegisterViewModel rvm,
@@ -38,7 +39,8 @@ namespace Organizator_Proslava.ViewModel
             CollaboratorsTableViewModel ctvm,
             OrganziersTableViewModel otvm,
             UsersTableViewModel utvm,
-            INotificationService ns)
+            INotificationService ns,
+            CelebrationsTableViewModel celebrationsTableViewModel)
         {
             Lvm = lvm;
             Rvm = rvm;
@@ -49,8 +51,9 @@ namespace Organizator_Proslava.ViewModel
             Covm = covm;
             Otvm = otvm;
             Utvm = utvm;
+            CelebrationsTableViewModel = celebrationsTableViewModel;
 
-            CurrentViewModel = lvm;
+            CurrentViewModel = Ahvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
@@ -67,6 +70,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("OrganizersTableView", () => CurrentViewModel = otvm);
             EventBus.RegisterHandler("ClientsTableView", () => CurrentViewModel = Utvm);
             EventBus.RegisterHandler("CollaboratorsTableView", () => CurrentViewModel = Ctvm);
+            EventBus.RegisterHandler("CelebrationsTableView", () => CurrentViewModel = CelebrationsTableViewModel);
 
             EventBus.RegisterHandler("Notf", () => new DialogService().OpenDialog(new NotificationsDialogViewModel(ns))); // Delete later
         }
