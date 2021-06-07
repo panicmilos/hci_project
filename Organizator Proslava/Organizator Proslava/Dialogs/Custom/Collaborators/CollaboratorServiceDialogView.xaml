@@ -23,18 +23,18 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Naziv usloge" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Service.Name, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <Label Content="Naziv usluge" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Cena usluge" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Service.Price, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox x:Name="tb2" Text="{Binding Path=Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Jedinica" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Service.Unit, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox x:Name="tb3" Text="{Binding Path=Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1"  Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -48,7 +48,15 @@
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
+                    Background="{StaticResource PowderBlue}">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
