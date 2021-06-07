@@ -52,6 +52,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent(_isForClient ? "BackToProposalsTableForClient" : "BackToProposalsTableForOrganizer"));
+
             Comment = new RelayCommand(() =>
             {
                 var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
@@ -78,6 +79,11 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                     ProposalComments.Add(comment);
                 }
             });
+        }
+
+        public void ChangeBack()
+        {
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForAdmin"));
         }
     }
 }

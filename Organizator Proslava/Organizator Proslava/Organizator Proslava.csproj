@@ -247,6 +247,10 @@
       <DependentUpon>CelebrationsDetailsTableDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogView.xaml.cs">
+      <DependentUpon>CelebrationsProposalsTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\DetailsDialogView.xaml.cs">
       <DependentUpon>DetailsDialogView.xaml</DependentUpon>
     </Compile>
@@ -645,6 +649,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

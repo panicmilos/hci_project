@@ -1,6 +1,9 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel.CelebrationProposals;
+using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +21,43 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         private readonly IDialogService _dialogService;
 
-        public MoreAboutCelebrationsDialogViewModel(Celebration celebration):
+        private readonly ICelebrationResponseService _celebrationResponseService;
+
+        public CelebrationsDetailsTableDialogViewModel CelebrationsDetailsTableDialogViewModel { get; set; }
+        public CelebrationDetailDialogViewModel CelebrationDetailDialogViewModel { get; set; }
+        public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
+        public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
+
+        public MoreAboutCelebrationsDialogViewModel(Celebration celebration,
+            ICelebrationResponseService celebrationResponseService,
+            IDialogService dialogService,
+            CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
+            CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
+            CelebrationsDetailsTableDialogViewModel celebrationsDetailsTableDialogViewModel,
+            ProposalCommentsViewModel proposalCommentsViewModel) :
             base("Pregled proslave", 550, 450)
         {
-            _dialogService = new DialogService();
+
+            _celebrationResponseService = celebrationResponseService;
+            _dialogService = dialogService;
+
+            CelebrationsDetailsTableDialogViewModel = celebrationsDetailsTableDialogViewModel;
+            CelebrationDetailDialogViewModel = celebrationDetailDialogViewModel;
+            CelebrationsProposalsTableDialogViewModel = celebrationsProposalsTableDialogViewModel;
+            ProposalCommentsViewModel = proposalCommentsViewModel;
 
             Celebration = celebration;
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
 
             Details = new RelayCommand(() =>
             {
-                CelebrationsDetailsTableDialogViewModel cdtdvm = new CelebrationsDetailsTableDialogViewModel(_dialogService, celebration);
-                _dialogService.OpenDialog(new DetailsDialogViewModel(cdtdvm));
+                CelebrationsDetailsTableDialogViewModel.Celebration = Celebration;
+                DetailsDialogViewModel ddvm = new DetailsDialogViewModel(CelebrationsDetailsTableDialogViewModel,
+                    _celebrationResponseService, CelebrationDetailDialogViewModel,
+                    CelebrationsProposalsTableDialogViewModel,
+                    ProposalCommentsViewModel);
+                ddvm.CurrentCelebration = Celebration;
+                _dialogService.OpenDialog(ddvm);
             });
         }
     }

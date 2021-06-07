@@ -14,12 +14,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public bool IsBack { get; set; }
         public bool IsClose { get; set; }
 
-        public CelebrationDetailDialogViewModel(CelebrationDetail detail, bool isBack, bool isClose) : base("Pregled detalja", 660, 460)
+        public CelebrationDetailDialogViewModel() : base("Pregled detalja", 660, 460)
         {
-            IsBack = isBack;
-            IsClose = isClose;
-            CelebrationDetail = detail;
-
             Close = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, DialogResults.Undefined));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToDetailsTable"));
