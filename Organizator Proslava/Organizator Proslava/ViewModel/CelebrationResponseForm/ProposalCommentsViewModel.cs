@@ -5,7 +5,6 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -43,7 +42,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             {
                 var celebrationHallCopy = CelebrationProposal.CelebrationHall.Clone();
 
-                var editedCelebrationHall = _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(celebrationHallCopy, _isForClient ? SpacePreviewMode.Edit : SpacePreviewMode.View), _dialogService));
+                var editedCelebrationHall = _dialogService.OpenDialog(new SpacePreviewDialogViewModel(celebrationHallCopy, _dialogService, _isForClient ? SpacePreviewMode.Edit : SpacePreviewMode.View));
                 if (editedCelebrationHall != null)
                 {
                     CelebrationProposal.CelebrationHall.PlaceableEntities = editedCelebrationHall.PlaceableEntities;
@@ -52,6 +51,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent(_isForClient ? "BackToProposalsTableForClient" : "BackToProposalsTableForOrganizer"));
+
             Comment = new RelayCommand(() =>
             {
                 var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));

@@ -33,7 +33,6 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"CSUnit", ValidateCSUnit},
 
             {"CHName", ValidateCHName},
-            {"CHNumberOfGuests", ValidateCHNumberOfGuests},
             {"CHSeats", ValidateCHSeats},
         };
 
@@ -272,24 +271,20 @@ namespace Organizator_Proslava.ViewModel.Utils
             return null;
         }
 
-        private static string ValidateCHNumberOfGuests(object numberOfGuests, object _)
+        private static string ValidateCHSeats(object seatsObject, object _)
         {
-            if (string.IsNullOrWhiteSpace(numberOfGuests as string))
-                return "Morate zadati broj gostiju.";
-
-            if (!int.TryParse(numberOfGuests as string, out var _))
-                return "Broj gostiju mora biti broj.";
-
-            return null;
-        }
-
-        private static string ValidateCHSeats(object seats, object _)
-        {
-            if (string.IsNullOrWhiteSpace(seats as string))
+            var seats = seatsObject as string;
+            if (string.IsNullOrWhiteSpace(seats))
                 return "Morate zadati broj stolica.";
 
-            if (!int.TryParse(seats as string, out var _))
+            if (!int.TryParse(seats, out var seatsNum))
+            {
                 return "Broj stolica mora biti broj.";
+            }
+            else if (seatsNum < 1 || seatsNum > 100)
+            {
+                return "Broj stolica mora biti između 1 i 100.";
+            }
 
             return null;
         }

@@ -3,7 +3,6 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
 
@@ -16,7 +15,6 @@ namespace Organizator_Proslava.ViewModel
 
         public LoginViewModel Lvm { get; set; }
         public RegisterViewModel Rvm { get; set; }
-        public SpaceViewModel Svm { get; set; }
         public ClientHomeViewModel Chvm { get; set; }
         public OrganizerHomeViewModel Ohvm { get; set; }
 
@@ -33,7 +31,6 @@ namespace Organizator_Proslava.ViewModel
             ClientHomeViewModel chvm,
             OrganizerHomeViewModel ohvm,
             AdminHomeViewModel ahvm,
-            CollaboratorFormViewModel cfvm,
             CreateOrganizerViewModel covm,
             CollaboratorsTableViewModel ctvm,
             OrganziersTableViewModel otvm,

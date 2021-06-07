@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -102,11 +104,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorInformations", CameFrom));
             Next = new RelayCommand(() =>
             {
-                //if (!CollaboratorServiceBook.Services.Any())
-                //{
-                //    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Saradnik mora imati bar jednu uslugu."));
-                //    return;
-                //}
+                if (!CollaboratorServiceBook.Services.Any())
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Saradnik mora imati bar jednu uslugu."));
+                    return;
+                }
                 EventBus.FireEvent("NextToCollaboratorImages");
             });
         }

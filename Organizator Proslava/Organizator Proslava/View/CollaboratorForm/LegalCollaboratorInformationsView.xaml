@@ -127,7 +127,7 @@
             <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
-                        <!--<Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
                         <Binding Path="(Validation.HasError)" ElementName="tb2" />
                         <Binding Path="(Validation.HasError)" ElementName="tb3" />
                         <Binding Path="(Validation.HasError)" ElementName="tb4" />
@@ -135,7 +135,7 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb6" />
                         <Binding Path="(Validation.HasError)" ElementName="tb7" />
                         <Binding Path="(Validation.HasError)" ElementName="tb8" />
-                        <Binding Path="(Validation.HasError)" ElementName="tb9" />-->
+                        <Binding Path="(Validation.HasError)" ElementName="tb9" />
                     </MultiBinding>
                 </Button.IsEnabled>
             </Button>

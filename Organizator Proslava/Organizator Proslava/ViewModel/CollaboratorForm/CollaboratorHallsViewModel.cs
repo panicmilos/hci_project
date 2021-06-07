@@ -36,7 +36,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Add = new RelayCommand(() =>
             {
-                var hall = _dialogService.OpenDialog(new SpaceModelingViewModel(new SpaceViewModel()));
+                var hall = _dialogService.OpenDialog(new SpaceModelingViewModel());
                 if (hall != null)
                 {
                     Halls.Add(hall);
@@ -47,12 +47,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Edit = new RelayCommand<CelebrationHall>(hall =>
             {
                 var hallCopy = hall.Clone();
-                var editedHall = dialogService.OpenDialog(new SpaceModelingViewModel(new SpaceViewModel(hallCopy)));
+                var editedHall = dialogService.OpenDialog(new SpaceModelingViewModel(hallCopy));
 
                 if (editedHall != null)
                 {
                     hall.Name = editedHall.Name;
-                    hall.NumberOfGuests = editedHall.NumberOfGuests;
                     hall.PlaceableEntities = editedHall.PlaceableEntities;
                 }
             });
