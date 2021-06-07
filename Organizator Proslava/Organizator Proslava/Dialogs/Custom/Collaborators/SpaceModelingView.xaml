@@ -19,7 +19,69 @@
             <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
-        <ContentControl Grid.Column ="1" Grid.Row="0" Content="{Binding ViewModel}" />
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*" />
+                <RowDefinition Height="2.5*" />
+                <RowDefinition Height="0.3*" />
+                <RowDefinition Height="14*" />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.9*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.9*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="1" Grid.Row="0" Content="Naziv prostora" Style="{StaticResource spaceFormLabel}" />
+                <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+
+                <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljeno osoba" Style="{StaticResource spaceFormLabel}" />
+                <TextBox x:Name="tb2" Grid.Column="3" Grid.Row="1" Text="{Binding Path=NumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" x:Name="CanvasBorder" BorderBrush="{StaticResource Ming}" BorderThickness="1">
+                    <Canvas x:Name="MainCanvas"
+                        Background="{StaticResource Cararra}"
+                        PreviewMouseMove="MainCanvas_PreviewMouseMove"
+                        PreviewMouseLeftButtonUp="MainCanvas_PreviewMouseLeftButtonUp">
+                        <Canvas.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Dodaj mali sto" Click="People6_Click" />
+                                <MenuItem Header="Dodaj veliki sto" Click="People18_Click" />
+                                <MenuItem Header="Dodaj sto za posluženje" Click="Empty_Click" />
+                                <MenuItem Header="Dodaj muziku" Click="Music_Click" />
+                            </ContextMenu>
+                        </Canvas.ContextMenu>
+                    </Canvas>
+                </Border>
+
+                <Border Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Background="{StaticResource Cararra}">
+                            <Image Width="125" Height="70" Margin="5, 5, 5, 5"  Source="pack://siteoforigin:,,,/Resources/6people.png" PreviewMouseLeftButtonUp="People6_Click" />
+                            <Image Width="125" Height="70" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/18people.png" PreviewMouseLeftButtonUp="People18_Click" />
+                            <Image Width="115" Height="50" Margin="0, 5, 0, 5" Source="pack://siteoforigin:,,,/Resources/music.png" PreviewMouseLeftButtonUp="Music_Click" />
+                            <Image Width="110" Height="70" Margin="5, 5, 5, 5" Source="pack://siteoforigin:,,,/Resources/empty.png" PreviewMouseLeftButtonUp="Empty_Click" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Grid>
 
         <StackPanel Grid.Column ="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Nazad"
@@ -32,7 +94,14 @@
                     Command="{Binding Path=Save}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
+                    Background="{StaticResource PowderBlue}" >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

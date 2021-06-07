@@ -45,10 +45,6 @@
         <v:AdminHomeView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:SpaceViewModel}">
-        <v:Space />
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:SpacePreviewViewModel}">
         <v:SpacePreviewView />
     </DataTemplate>
@@ -184,19 +180,19 @@
     <DataTemplate DataType="{x:Type crespfvm:CelebrationResponseFormViewModel}">
         <crespfv:CelebrationResponseFormView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type cpvm:CelebrationProposalsViewModel}">
         <cpv:CelebrationProposalsView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type cpvm:CelebrationProposalsTableViewModel}">
         <cpv:CelebrationProposalsTableView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type cpvm:CelebrationDetailsTableViewModel}">
         <cpv:CelebrationDetailsTableView />
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type crespfvm:RequestLongPreviewViewModel}">
         <crespfv:RequestLongPreviewView />
     </DataTemplate>
@@ -242,7 +238,7 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type cdcollaborators:CollaboratorServiceTableViewModel}">
-        <cdcollaborators:CollaboratorServiceTableView/>
+        <cdcollaborators:CollaboratorServiceTableView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type cdcollaborators:DisplayHallsDialogViewModel}">
