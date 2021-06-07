@@ -32,7 +32,6 @@ namespace Organizator_Proslava.ViewModel
             ClientHomeViewModel chvm,
             OrganizerHomeViewModel ohvm,
             AdminHomeViewModel ahvm,
-            CollaboratorFormViewModel cfvm,
             CreateOrganizerViewModel covm,
             CollaboratorsTableViewModel ctvm,
             OrganziersTableViewModel otvm,

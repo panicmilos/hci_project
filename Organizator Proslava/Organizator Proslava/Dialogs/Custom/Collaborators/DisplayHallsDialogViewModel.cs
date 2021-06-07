@@ -31,9 +31,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
 
-            Details = new RelayCommand<CelebrationHall>(hall => _dialogService.OpenDialog(new SpacePreviewDialogViewModel
-                (new SpacePreviewViewModel(hall), _dialogService)), (hall) => hall != null);
-
+            Details = new RelayCommand<CelebrationHall>(hall => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(hall, _dialogService)), (hall) => hall != null);
         }
     }
 }
