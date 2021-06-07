@@ -53,7 +53,7 @@ namespace Organizator_Proslava.ViewModel
             Utvm = utvm;
             CelebrationsTableViewModel = celebrationsTableViewModel;
 
-            CurrentViewModel = Ahvm;
+            CurrentViewModel = lvm;
             EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
             EventBus.RegisterHandler("AdminLogin", () => CurrentViewModel = Ahvm);
             EventBus.RegisterHandler("ClientLogin", () => CurrentViewModel = Chvm);
