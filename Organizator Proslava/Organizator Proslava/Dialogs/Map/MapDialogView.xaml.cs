@@ -1,21 +1,9 @@
 ﻿using GMap.NET;
 using GMap.NET.MapProviders;
-using GMap.NET.WindowsPresentation;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Organizator_Proslava.Utility;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Organizator_Proslava.Dialogs.Map
 {
@@ -41,6 +29,8 @@ namespace Organizator_Proslava.Dialogs.Map
             map.MouseLeftButtonDown += new MouseButtonEventHandler(mapControl_MouseLeftButtonDown);
 
             addresses.ItemFilter += SearchAddress;
+
+            EventBus.RegisterHandler("OpenAddresses", () => addresses.IsDropDownOpen = true);
         }
 
         private void mapControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

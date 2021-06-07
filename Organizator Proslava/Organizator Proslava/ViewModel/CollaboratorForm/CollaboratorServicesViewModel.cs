@@ -118,6 +118,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             CollaboratorServiceBook = new CollaboratorServiceBook();
             Type = string.Empty;
             Description = string.Empty;
+            _calls = 0;
 
             Services = new ObservableCollection<CollaboratorService>();
         }
@@ -127,6 +128,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             CollaboratorServiceBook = collaborator.CollaboratorServiceBook;
             Type = collaborator.CollaboratorServiceBook.Type;
             Description = collaborator.CollaboratorServiceBook.Description;
+            _calls = 2;
 
             Services = new ObservableCollection<CollaboratorService>(collaborator.CollaboratorServiceBook.Services);
         }

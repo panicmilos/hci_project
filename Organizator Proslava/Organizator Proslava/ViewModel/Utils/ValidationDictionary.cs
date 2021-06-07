@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.Utils
@@ -34,6 +33,8 @@ namespace Organizator_Proslava.ViewModel.Utils
 
             {"CHName", ValidateCHName},
             {"CHSeats", ValidateCHSeats},
+
+            {"NOCelebrationType", ValidateNOCelebrationType},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -285,6 +286,14 @@ namespace Organizator_Proslava.ViewModel.Utils
             {
                 return "Broj stolica mora biti između 1 i 100.";
             }
+
+            return null;
+        }
+
+        private static string ValidateNOCelebrationType(object celebrationType, object _)
+        {
+            if (string.IsNullOrWhiteSpace(celebrationType as string))
+                return "Morate zadati specijalizaciju.";
 
             return null;
         }
