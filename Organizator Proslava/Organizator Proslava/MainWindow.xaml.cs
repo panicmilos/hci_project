@@ -1,5 +1,4 @@
 ﻿using Organizator_Proslava.Help;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
