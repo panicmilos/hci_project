@@ -26,6 +26,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Vrsta usluge" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox
+                    x:Name="tb1"
                     Height="25"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
@@ -33,7 +34,7 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=CollaboratorServiceBook.Type, Mode=TwoWay}"
+                    Text="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0">
             </controls:AutoCompleteBox>
@@ -41,7 +42,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Kratak opis" Style="{StaticResource registerPageLabel}" />
-            <TextBox Background="{StaticResource Cararra}"  Text="{Binding Path=CollaboratorServiceBook.Description, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox x:Name="tb2" Background="{StaticResource Cararra}"  Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <DataGrid
@@ -101,7 +102,14 @@
 
         <Grid Grid.Column="1" Grid.Row="6">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+                <!--<Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                    </MultiBinding>
+                </Button.IsEnabled>-->
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

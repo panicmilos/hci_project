@@ -122,7 +122,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         private Collaborator CollectCollaboratorInformations()
         {
-            var collaborator = _selectedCollaboratorType == "Legal" ? Lcivm.Collaborator : Icivm.Collaborator;
+            var collaborator = _selectedCollaboratorType == "Legal" ? Lcivm.CollectCollaborator() : Icivm.CollectCollaborator();
             collaborator.CollaboratorServiceBook = Csvm.CollaboratorServiceBook;
             collaborator.CelebrationHalls = Chvm.CelebrationHalls;
 
