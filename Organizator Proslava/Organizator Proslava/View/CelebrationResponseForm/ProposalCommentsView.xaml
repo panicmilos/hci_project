@@ -112,13 +112,14 @@
 
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="15*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox x:Name="newcomment" Grid.Column="0" Text="{Binding Path=NewComment, Mode=OneWayToSource}" Style="{StaticResource newCommentTextBox}"/>
-            <Button Grid.Column="1" Click="CommentClick" Content="Komentariši" Command="{Binding Path=Comment}" Style="{StaticResource loginPageButton}" 
-                    Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" 
-                    IsEnabled="{Binding ElementName=newcomment ,Path=Text, Converter={StaticResource IsNullOrWhiteSpaceConverter}}"/>
+            <Button Grid.Column="1" Click="CommentClick" Command="{Binding Path=Comment}" Style="{StaticResource PaintedButton}" 
+                    HorizontalAlignment="Right" IsEnabled="{Binding ElementName=newcomment ,Path=Text, Converter={StaticResource IsNullOrWhiteSpaceConverter}}">
+                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/send.png"/>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

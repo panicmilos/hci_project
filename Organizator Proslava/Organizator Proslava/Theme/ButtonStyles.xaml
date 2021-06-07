@@ -107,6 +107,8 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" x:Key="BackButton">
+        <Setter Property="Width" Value="35" />
+        <Setter Property="Height" Value="35" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

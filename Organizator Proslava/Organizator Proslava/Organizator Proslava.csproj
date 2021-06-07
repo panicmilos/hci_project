@@ -957,6 +957,9 @@
     <Content Include="Documentation\index.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\send.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\remove.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
