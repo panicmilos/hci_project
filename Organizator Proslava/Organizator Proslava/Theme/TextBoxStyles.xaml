@@ -106,6 +106,10 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource OurErrorTemplate}" />
     </Style>
 
+    <Style x:Key="validateSpaceTextBox" BasedOn="{StaticResource spaceFormTextBox}" TargetType="{x:Type TextBox}">
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource OurErrorTemplate}" />
+    </Style>
+
     <Style x:Key="disabledValidateTextBox" BasedOn="{StaticResource validateTextBox}" TargetType="{x:Type TextBox}">
         <Style.Triggers>
             <Trigger Property="IsReadOnly" Value="True">

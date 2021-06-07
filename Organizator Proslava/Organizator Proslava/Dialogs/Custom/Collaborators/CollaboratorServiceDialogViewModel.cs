@@ -58,7 +58,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private string Err(string message)
         {
-            return message == null ? null : (_calls++ < 3 ? "*" : message);   // there are 7 fields
+            return message == null ? null : (_calls++ < 2 ? "*" : message);   // there are 7 fields
         }
     }
 }

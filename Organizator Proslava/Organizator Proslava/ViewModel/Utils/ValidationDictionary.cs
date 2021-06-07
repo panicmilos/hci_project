@@ -29,6 +29,10 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"CSName", ValidateCSName},
             {"CSPrice", ValidateCSPrice},
             {"CSUnit", ValidateCSUnit},
+
+            {"CHName", ValidateCHName},
+            {"CHNumberOfGuests", ValidateCHNumberOfGuests},
+            {"CHSeats", ValidateCHSeats},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -182,10 +186,8 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(price as string))
                 return "Morate zadati cenu.";
 
-            if (!Double.TryParse(price as string, out var _))
-            {
+            if (!double.TryParse(price as string, out var _))
                 return "Cena mora biti broj.";
-            }
 
             return null;
         }
@@ -194,6 +196,36 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             if (string.IsNullOrWhiteSpace(unit as string))
                 return "Morate zadati jedinicu.";
+
+            return null;
+        }
+
+        private static string ValidateCHName(object name, object _)
+        {
+            if (string.IsNullOrWhiteSpace(name as string))
+                return "Morate zadati ime.";
+
+            return null;
+        }
+
+        private static string ValidateCHNumberOfGuests(object numberOfGuests, object _)
+        {
+            if (string.IsNullOrWhiteSpace(numberOfGuests as string))
+                return "Morate zadati broj gostiju.";
+
+            if (!int.TryParse(numberOfGuests as string, out var _))
+                return "Broj gostiju mora biti broj.";
+
+            return null;
+        }
+
+        private static string ValidateCHSeats(object seats, object _)
+        {
+            if (string.IsNullOrWhiteSpace(seats as string))
+                return "Morate zadati broj stolica.";
+
+            if (!int.TryParse(seats as string, out var _))
+                return "Broj stolica mora biti broj.";
 
             return null;
         }

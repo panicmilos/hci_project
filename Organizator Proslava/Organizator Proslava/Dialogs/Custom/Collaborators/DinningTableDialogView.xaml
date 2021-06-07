@@ -24,7 +24,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Dozvoljen broj osoba" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Table.Seats, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=Seats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
@@ -49,7 +49,13 @@
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
+                    Background="{StaticResource PowderBlue}">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
