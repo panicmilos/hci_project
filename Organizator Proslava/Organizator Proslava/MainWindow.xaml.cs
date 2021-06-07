@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Help;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,8 +21,15 @@ namespace Organizator_Proslava
             if (focusedControl is DependencyObject dependencyObject)
             {
                 string str = HelpProvider.GetHelpKey(dependencyObject);
-                HelpProvider.ShowHelp(str, this);
+                if (str != null)
+                {
+                    HelpProvider.ShowHelp(str, this);
+                    return;
+                }
             }
+
+            HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
+            helpViewer.Show();
         }
     }
 }

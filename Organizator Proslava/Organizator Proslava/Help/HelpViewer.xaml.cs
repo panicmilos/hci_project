@@ -1,5 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using Organizator_Proslava.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,26 +11,54 @@ namespace Organizator_Proslava.Help
     /// </summary>
     public partial class HelpViewer : Window
     {
-        private readonly JavaScriptControlHelper ch;
+        private JavaScriptControlHelper ch;
 
-        public HelpViewer(string key, Window originator)
+        public HelpViewer(string helpKey, Window originator)
         {
             InitializeComponent();
-            string curDir = Directory.GetCurrentDirectory();
-            string path = String.Format("{0}/Documentation/{1}.htm", curDir, key);
-            if (!File.Exists(path))
-            {
-                key = "error";
-            }
-            Uri u = new Uri(String.Format("file:///{0}/Documentation/{1}.htm", curDir, key));
+
+            Uri u = new Uri($"http://proslavio-doc.bjelicaluka.com/{GetUrlForHelpKey(helpKey)}");
+            ShowHelp(u, originator);
+        }
+
+        public HelpViewer(Type dataContextType, Window originator)
+        {
+            InitializeComponent();
+
+            Uri u = new Uri($"http://proslavio-doc.bjelicaluka.com/{GetUrlForContext(dataContextType)}");
+            ShowHelp(u, originator);
+        }
+
+        private void ShowHelp(Uri u, Window originator)
+        {
             ch = new JavaScriptControlHelper(originator);
             wbHelp.ObjectForScripting = ch;
             wbHelp.Navigate(u);
         }
 
+        private string GetUrlForHelpKey(string helpKey)
+        {
+            var keysToUrlDictionary = new Dictionary<string, string>()
+            {
+                { "Login", "user/auth.html#prijava-na-sistem" }
+            };
+
+            return keysToUrlDictionary.ContainsKey(helpKey) ? keysToUrlDictionary[helpKey] : "";
+        }
+
+        private string GetUrlForContext(Type dataContextType)
+        {
+            var contextsToUrlDictionary = new Dictionary<Type, string>()
+            {
+                { typeof(RegisterViewModel), "user/auth.html#kreiranje-naloga" }
+            };
+
+            return contextsToUrlDictionary.ContainsKey(dataContextType) ? contextsToUrlDictionary[dataContextType] : "";
+        }
+
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ((wbHelp != null) && (wbHelp.CanGoBack));
+            e.CanExecute = (wbHelp != null) && wbHelp.CanGoBack;
         }
 
         private void BrowseBack_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -39,7 +68,7 @@ namespace Organizator_Proslava.Help
 
         private void BrowseForward_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ((wbHelp != null) && (wbHelp.CanGoForward));
+            e.CanExecute = (wbHelp != null) && wbHelp.CanGoForward;
         }
 
         private void BrowseForward_Executed(object sender, ExecutedRoutedEventArgs e)

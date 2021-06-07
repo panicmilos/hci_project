@@ -20,8 +20,15 @@ namespace Organizator_Proslava.Dialogs.Service
             if (focusedControl is DependencyObject dependencyObject)
             {
                 string str = HelpProvider.GetHelpKey(dependencyObject);
-                HelpProvider.ShowHelp(str, this);
+                if (str != null)
+                {
+                    HelpProvider.ShowHelp(str, this);
+                    return;
+                }
             }
+
+            HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
+            helpViewer.Show();
         }
     }
 }
