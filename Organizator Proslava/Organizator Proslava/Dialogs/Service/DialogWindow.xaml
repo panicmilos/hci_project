@@ -16,8 +16,8 @@
 
     <Grid>
         <v:Background Opacity="0.3" />
-        <ContentControl Width="{Binding ContentWidth, Mode=TwoWay}"
-                        Height="{Binding ContentHeight, Mode=TwoWay}"
+        <ContentControl Width="{Binding ContentWidth, Mode=OneWay}"
+                        Height="{Binding ContentHeight, Mode=OneWay}"
                         x:Name="ContentPresenter" Content="{Binding}" />
     </Grid>
 </Window>
