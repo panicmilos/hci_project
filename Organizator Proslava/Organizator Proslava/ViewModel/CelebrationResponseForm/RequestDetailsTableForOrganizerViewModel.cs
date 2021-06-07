@@ -35,7 +35,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             _notificationService = notificationService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd)));
+            Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd, false, true)));
             EventBus.RegisterHandler("PreviewDetailFromNotificationOrganizer", cd => Preview.Execute(cd));
 
             Proposals = new RelayCommand<CelebrationDetail>(cd =>

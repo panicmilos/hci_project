@@ -258,4 +258,12 @@
     <DataTemplate DataType="{x:Type cdcelebrations:MoreAboutCelebrationsDialogViewModel}">
         <cdcelebrations:MoreAboutCelebrationsDialogView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsDetailsTableDialogViewModel}">
+        <cdcelebrations:CelebrationsDetailsTableDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:DetailsDialogViewModel}">
+        <cdcelebrations:DetailsDialogView />
+    </DataTemplate>
 </ResourceDictionary>

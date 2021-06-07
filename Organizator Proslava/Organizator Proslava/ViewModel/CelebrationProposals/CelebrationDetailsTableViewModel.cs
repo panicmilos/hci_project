@@ -49,7 +49,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             _notificationSerivce = notificationService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd)));
+            Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd, false, true)));
 
             Add = new RelayCommand(() =>
             {

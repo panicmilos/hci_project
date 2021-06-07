@@ -243,6 +243,14 @@
       <DependentUpon>CelebrationProposalDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogView.xaml.cs">
+      <DependentUpon>CelebrationsDetailsTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\DetailsDialogView.xaml.cs">
+      <DependentUpon>DetailsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\DetailsDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogView.xaml.cs">
       <DependentUpon>MoreAboutCelebrationsDialogView.xaml</DependentUpon>
     </Compile>
@@ -328,6 +336,7 @@
     </Compile>
     <Compile Include="Dialogs\Service\IDialogService.cs" />
     <Compile Include="Dialogs\Service\IDialogWindow.cs" />
+    <Compile Include="Dialogs\Service\NavigableDialogViewModelBase.cs" />
     <Compile Include="Help\HelpProvider.cs" />
     <Compile Include="Help\HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>
@@ -632,6 +641,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\DetailsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
