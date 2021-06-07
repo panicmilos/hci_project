@@ -3,7 +3,6 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using Organizator_Proslava.ViewModel.CollaboratorForm;
 using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
 

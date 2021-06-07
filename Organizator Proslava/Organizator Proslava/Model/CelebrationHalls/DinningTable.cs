@@ -4,7 +4,7 @@ namespace Organizator_Proslava.Model.CelebrationHalls
 {
     public abstract class DinningTable : PlaceableEntity
     {
-        private int _seats;
+        private int _seats = 1;
         public int Seats { get => _seats; set => OnPropertyChanged(ref _seats, value); }
 
         private List<Guest> _guests;

@@ -2,13 +2,7 @@
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Collaborators

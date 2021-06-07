@@ -46,7 +46,7 @@
                 <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
 
                 <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljeno osoba" Style="{StaticResource spaceFormLabel}" />
-                <TextBox x:Name="tb2" Grid.Column="3" Grid.Row="1" Text="{Binding Path=NumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="3" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=NumberOfGuests, Mode=OneWay}" Style="{StaticResource disabledSpaceFormTextBox}" />
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="3">
@@ -94,7 +94,7 @@
                     Command="{Binding Path=Save}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" >
+                    Background="{StaticResource PowderBlue}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />

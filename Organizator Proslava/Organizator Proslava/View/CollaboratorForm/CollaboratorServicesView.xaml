@@ -103,12 +103,12 @@
         <Grid Grid.Column="1" Grid.Row="6">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
             <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
-                <!--<Button.IsEnabled>
+                <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
                         <Binding Path="(Validation.HasError)" ElementName="tb2" />
                     </MultiBinding>
-                </Button.IsEnabled>-->
+                </Button.IsEnabled>
             </Button>
         </Grid>
     </Grid>

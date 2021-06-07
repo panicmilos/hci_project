@@ -35,6 +35,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 var image = AddImageToCanvas(placeableEntity.ImageName);
                 AddBindings(placeableEntity, image);
+                AddCursor(placeableEntity, image);
                 _imageWithPlaceableEntities.Add(image, placeableEntity);
             }
         }
@@ -68,7 +69,6 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             };
             if (_mode == SpacePreviewMode.Edit)
             {
-                image.Cursor = Cursors.Hand;
                 image.PreviewMouseLeftButtonDown += Image_PreviewMouseLeftButtonDown;
             }
             image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
@@ -80,6 +80,14 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             MainCanvas.Children.Add(image);
 
             return image;
+        }
+
+        private void AddCursor(PlaceableEntity placeableEntity, Image image)
+        {
+            if (_mode == SpacePreviewMode.Edit && placeableEntity.Movable)
+            {
+                image.Cursor = Cursors.Hand;
+            }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

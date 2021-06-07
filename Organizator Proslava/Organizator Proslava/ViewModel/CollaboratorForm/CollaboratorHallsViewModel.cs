@@ -52,7 +52,6 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 if (editedHall != null)
                 {
                     hall.Name = editedHall.Name;
-                    hall.NumberOfGuests = editedHall.NumberOfGuests;
                     hall.PlaceableEntities = editedHall.PlaceableEntities;
                 }
             });

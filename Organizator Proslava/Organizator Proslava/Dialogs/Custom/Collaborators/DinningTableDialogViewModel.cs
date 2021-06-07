@@ -13,6 +13,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public DinningTable Table { get; set; }
 
         private string _seats;
+
         public string Seats { get { return _seats; } set { OnPropertyChanged(ref _seats, value); if (int.TryParse(value, out var seats)) Table.Seats = seats; } }
 
         // Validation

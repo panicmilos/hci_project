@@ -3,7 +3,6 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel;
 using System.Linq;
 using System.Windows.Input;
 

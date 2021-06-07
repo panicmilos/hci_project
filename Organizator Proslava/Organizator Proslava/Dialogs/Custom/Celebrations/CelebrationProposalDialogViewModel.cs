@@ -5,7 +5,6 @@ using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

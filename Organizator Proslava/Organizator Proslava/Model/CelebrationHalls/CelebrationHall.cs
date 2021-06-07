@@ -9,8 +9,7 @@ namespace Organizator_Proslava.Model.CelebrationHalls
         private string _name;
         public string Name { get => _name; set => OnPropertyChanged(ref _name, value); }
 
-        private int _numberOfGuests;
-        public int NumberOfGuests { get => _numberOfGuests; set => OnPropertyChanged(ref _numberOfGuests, value); }
+        public int NumberOfGuests { get => PlaceableEntities.Sum(pe => (pe as DinningTable)?.Seats ?? 0); }
 
         private List<PlaceableEntity> _placeableEntities;
 
@@ -41,7 +40,6 @@ namespace Organizator_Proslava.Model.CelebrationHalls
                 CreatedAt = CreatedAt,
                 CollaboratorId = CollaboratorId,
                 Name = Name,
-                NumberOfGuests = NumberOfGuests,
                 PlaceableEntities = new List<PlaceableEntity>(PlaceableEntities.Select(pe => pe.Clone()))
             };
         }

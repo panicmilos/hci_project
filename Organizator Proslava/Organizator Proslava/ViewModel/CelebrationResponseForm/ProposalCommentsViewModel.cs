@@ -5,7 +5,6 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

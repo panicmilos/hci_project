@@ -15,8 +15,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         private string _name;
         public string Name { get { return _name; } set { OnPropertyChanged(ref _name, value); Hall.Name = value; } }
 
-        private string _numberOfGuests;
-        public string NumberOfGuests { get { return _numberOfGuests; } set { OnPropertyChanged(ref _numberOfGuests, value); if (int.TryParse(value, out int numberOfGuests)) Hall.NumberOfGuests = numberOfGuests; } }
+        public int NumberOfGuests { get => Hall.NumberOfGuests; }
 
         // Validation
         public string this[string columnName]
@@ -53,7 +52,6 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             // Modeling
             Hall = celebrationHall;
             Name = celebrationHall.Name;
-            NumberOfGuests = celebrationHall.NumberOfGuests.ToString();
 
             Add = new RelayCommand<PlaceableEntity>(AddEntity);
             Remove = new RelayCommand<int>(RemoveEntity);
@@ -78,11 +76,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public void AddEntity(PlaceableEntity placeableEntity)
         {
             Hall.PlaceableEntities.Add(placeableEntity);
+            OnPropertyChanged("NumberOfGuests");
         }
 
         public void RemoveEntity(int entityNo)
         {
             Hall.PlaceableEntities.RemoveAt(entityNo);
+            OnPropertyChanged("NumberOfGuests");
         }
 
         private string Err(string message)
