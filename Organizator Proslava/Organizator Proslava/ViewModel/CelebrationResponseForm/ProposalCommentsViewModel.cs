@@ -1,11 +1,9 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Dialogs.Custom.Collaborators;
+﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -17,6 +15,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }
+        public string NewComment { get; set; }
 
         public ICommand Preview { get; set; }
 
@@ -54,9 +53,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             Back = new RelayCommand(() => EventBus.FireEvent(_isForClient ? "BackToProposalsTableForClient" : "BackToProposalsTableForOrganizer"));
             Comment = new RelayCommand(() =>
             {
-                var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
-                if (commentText != null)
+                var commentText = NewComment; //_dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
+                if (!string.IsNullOrWhiteSpace(commentText))
                 {
+                    NewComment = null;
                     var loggedUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
                     var comment = new ProposalComment()
                     {
