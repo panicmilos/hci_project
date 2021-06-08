@@ -5,6 +5,7 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
 using System;
@@ -77,6 +78,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 {
                     Services.Add(service);
                     CollaboratorServiceBook.Services.Add(service);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateService(service, Services, CollaboratorServiceBook));
                 }
             });
 
@@ -86,6 +89,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 var editedService = dialogService.OpenDialog(new CollaboratorServiceDialogViewModel(serviceCopy));
                 if (editedService != null)
                 {
+                    var currentServiceCopy = service.Clone();
+                    var newServiceCopy = editedService.Clone();
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateService(service, currentServiceCopy, newServiceCopy));
+
                     service.Name = editedService.Name;
                     service.Price = editedService.Price;
                     service.Unit = editedService.Unit;
@@ -98,6 +106,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 {
                     Services.Remove(service);
                     CollaboratorServiceBook.Services.Remove(service);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteService(service, Services, CollaboratorServiceBook));
                 }
             });
 

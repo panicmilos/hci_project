@@ -470,6 +470,8 @@
     <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
+    <Compile Include="UserCommands\ImageUserCommands.cs" />
     <Compile Include="UserCommands\OrganizersUserCommand.cs" />
     <Compile Include="UserCommands\IUserCommand.cs" />
     <Compile Include="UserCommands\IUserCommandManager.cs" />
