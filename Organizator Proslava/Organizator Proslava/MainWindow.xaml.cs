@@ -1,4 +1,6 @@
 ﻿using Organizator_Proslava.Help;
+using Organizator_Proslava.UserCommands;
+using Organizator_Proslava.Utility;
 using System.Windows;
 using System.Windows.Input;
 
@@ -29,6 +31,16 @@ namespace Organizator_Proslava
 
             HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
             helpViewer.Show();
+        }
+
+        private void CommandBinding_Executed_Undo(object sender, ExecutedRoutedEventArgs e)
+        {
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteUndo();
+        }
+
+        private void CommandBinding_Executed_Redo(object sender, ExecutedRoutedEventArgs e)
+        {
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteRedo();
         }
     }
 }

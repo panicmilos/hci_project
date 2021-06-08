@@ -470,6 +470,10 @@
     <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="UserCommands\OrganizersUserCommand.cs" />
+    <Compile Include="UserCommands\IUserCommand.cs" />
+    <Compile Include="UserCommands\IUserCommandManager.cs" />
+    <Compile Include="UserCommands\UserCommandManager.cs" />
     <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
@@ -871,6 +875,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

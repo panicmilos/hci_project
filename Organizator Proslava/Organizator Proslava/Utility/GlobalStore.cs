@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Model;
+using Organizator_Proslava.UserCommands;
 using System;
 using System.Collections.Generic;
 
@@ -6,11 +7,14 @@ namespace Organizator_Proslava.Utility
 {
     public static class GlobalStore
     {
-        private static Dictionary<string, object> _storedObjects;
+        private static readonly Dictionary<string, object> _storedObjects;
 
         static GlobalStore()
         {
-            _storedObjects = new Dictionary<string, object>();
+            _storedObjects = new Dictionary<string, object>
+            {
+                ["userCommands"] = new UserCommandManager(),
+            };
 
             // User
             _storedObjects["loggedUser"] = new BaseUser

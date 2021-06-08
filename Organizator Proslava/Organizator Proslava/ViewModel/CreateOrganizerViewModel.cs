@@ -5,6 +5,7 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.Cellebrations;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
 using System;
@@ -122,6 +123,11 @@ namespace Organizator_Proslava.ViewModel
                             Name = CelebrationType
                         };
                     }
+
+                    var currentOrganizerCopy = _organizerService.Read(organizer.Id).Clone();
+                    var newOrganizerCopy = organizer.Clone();
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateOrganizerUserCommand(currentOrganizerCopy, newOrganizerCopy));
+
                     _organizerService.Update(organizer);
                     EventBus.FireEvent("OrganizersTableView");
                     EventBus.FireEvent("ReloadOrganizerTable");
@@ -161,6 +167,8 @@ namespace Organizator_Proslava.ViewModel
                     EventBus.FireEvent("OrganizersTableView");
                     EventBus.FireEvent("ReloadOrganizerTable");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateOrganizerUserCommand(o));
                 }
             });
         }
