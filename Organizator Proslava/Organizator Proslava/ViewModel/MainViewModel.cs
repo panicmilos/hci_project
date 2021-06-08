@@ -4,8 +4,6 @@ using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using Organizator_Proslava.ViewModel.Celebrations;
-using Organizator_Proslava.ViewModel.CollaboratorForm;
-using Organizator_Proslava.ViewModel.DemoForm;
 using Organizator_Proslava.ViewModel.UsersView;
 
 namespace Organizator_Proslava.ViewModel
@@ -27,6 +25,7 @@ namespace Organizator_Proslava.ViewModel
         public OrganziersTableViewModel Otvm { get; set; }
         public UsersTableViewModel Utvm { get; set; }
         public CelebrationsTableViewModel CelebrationsTableViewModel { get; set; }
+
         public MainViewModel(
             LoginViewModel lvm,
             RegisterViewModel rvm,
