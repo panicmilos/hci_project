@@ -36,7 +36,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
             //CelebrationDetails = new ObservableCollection<CelebrationDetail>(Celebration.CelebrationDetails);
 
-            Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
+            Back = new RelayCommand<IDialogWindow>(window => EventBus.FireEvent("BackToMoreInfoAboutCelebration"));
 
             Preview = new RelayCommand<CelebrationDetail>(celebrationDetail =>
             {

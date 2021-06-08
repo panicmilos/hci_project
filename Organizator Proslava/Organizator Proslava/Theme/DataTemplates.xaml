@@ -265,4 +265,8 @@
     <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsProposalsTableDialogViewModel}">
         <cdcelebrations:CelebrationsProposalsTableDialogView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcollaborators:DetailsCollaboratorDialogViewModel}">
+        <cdcollaborators:DetailsCollaboratorDialogView />
+    </DataTemplate>
 </ResourceDictionary>

@@ -30,12 +30,29 @@ namespace Organizator_Proslava.ViewModel
 
         private readonly ICollaboratorService _collaboratorService;
         private readonly IDialogService _dialogService;
+        public LegalCollaboratorDetailViewModel LegalCollaboratorDetailViewModel { get; set; }
+        public IndividualCollaboratorDetailViewModel IndividualCollaboratorDetailViewModel { get; set; }
+        public DisplayImagesViewModel DisplayImagesViewModel { get; set; }
+        public CollaboratorServiceTableViewModel CollaboratorServiceTableViewModel { get; set; }
+        public DisplayHallsDialogViewModel DisplayHallsDialogViewModel { get; set; }
 
-        public CollaboratorsTableViewModel(CollaboratorFormViewModel cfvm, ICollaboratorService collaboratorService, IDialogService dialogService)
+
+        public CollaboratorsTableViewModel(CollaboratorFormViewModel cfvm, ICollaboratorService collaboratorService, IDialogService dialogService,
+            LegalCollaboratorDetailViewModel legalCollaboratorDetailViewModel,
+            IndividualCollaboratorDetailViewModel individualCollaboratorDetailViewModel,
+            DisplayImagesViewModel displayImagesViewModel,
+            CollaboratorServiceTableViewModel collaboratorServiceTableViewModel,
+            DisplayHallsDialogViewModel displayHallsDialogViewModel)
         {
             _cfvm = cfvm;
             _collaboratorService = collaboratorService;
             _dialogService = dialogService;
+
+            LegalCollaboratorDetailViewModel = legalCollaboratorDetailViewModel;
+            IndividualCollaboratorDetailViewModel = individualCollaboratorDetailViewModel;
+            DisplayImagesViewModel = displayImagesViewModel;
+            CollaboratorServiceTableViewModel = collaboratorServiceTableViewModel;
+            DisplayHallsDialogViewModel = displayHallsDialogViewModel;
 
             Collaborators = new ObservableCollection<Collaborator>(_collaboratorService.Read());
 
@@ -63,14 +80,19 @@ namespace Organizator_Proslava.ViewModel
 
             Details = new RelayCommand<Collaborator>(collaborator =>
             {
-                if (collaborator is IndividualCollaborator)
+                /*if (collaborator is IndividualCollaborator)
                 {
                     _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(collaborator as IndividualCollaborator));
                 }
                 else
                 {
                     _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));
-                }
+                }*/
+                DetailsCollaboratorDialogViewModel dcdvm = new DetailsCollaboratorDialogViewModel(LegalCollaboratorDetailViewModel, IndividualCollaboratorDetailViewModel,
+                    DisplayImagesViewModel, CollaboratorServiceTableViewModel, DisplayHallsDialogViewModel);
+                dcdvm.Collaborator = collaborator;
+                dcdvm.DisplayInfoAboutCollaborator();
+                _dialogService.OpenDialog(dcdvm);
             });
 
             EventBus.RegisterHandler("ReloadCollaboratorTable", () => { Collaborators.Clear(); _collaboratorService.Read().ToList().ForEach(c => Collaborators.Add(c)); });
