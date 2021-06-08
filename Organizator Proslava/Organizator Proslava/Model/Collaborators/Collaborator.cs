@@ -10,7 +10,7 @@ namespace Organizator_Proslava.Model.Collaborators
         public string PhoneNumber { get => _phoneNumber; set => OnPropertyChanged(ref _phoneNumber, value); }
 
         private Guid _addressId;
-        public virtual Guid AddressId { get => _addressId; set => OnPropertyChanged(ref _addressId, value); }
+        public Guid AddressId { get => _addressId; set => OnPropertyChanged(ref _addressId, value); }
 
         private Address _address;
         public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
@@ -35,6 +35,7 @@ namespace Organizator_Proslava.Model.Collaborators
         {
             CollaboratorServiceBook = new CollaboratorServiceBook();
             CelebrationHalls = new List<CelebrationHall>();
+            Address = new Address();
         }
     }
 }

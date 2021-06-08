@@ -14,25 +14,36 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="3.8*" />
-            <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.7*" />
         </Grid.RowDefinitions>
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="5" Opacity="0.45" />
 
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Saradnici</Label>
+
         <DataGrid
             Grid.Column="1"
-            Grid.Row="1"
+            Grid.Row="2"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             SelectionMode="Single"
             SelectionUnit="FullRow"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=Collaborators}">
+            ItemsSource="{Binding Path=Collaborators}"
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Saradnik"
@@ -86,7 +97,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1" Grid.Row="2">
+        <Grid Grid.Column="1" Grid.Row="3">
             <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
 

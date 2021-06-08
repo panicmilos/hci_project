@@ -57,7 +57,7 @@ namespace Organizator_Proslava.Model
 
             if (Organizer == null)
             {
-                builder.Append("Organizator će mi biti nahnadno dodeljen. ");
+                builder.Append("Organizator će mi biti naknadno dodeljen. ");
             }
             else
             {

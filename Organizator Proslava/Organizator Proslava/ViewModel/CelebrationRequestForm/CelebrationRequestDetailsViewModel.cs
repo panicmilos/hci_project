@@ -28,7 +28,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             Add = new RelayCommand(() =>
             {
-                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(null, _dialogService));
+                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(new CelebrationDetail { Title = $"Zahtev #{CelebrationDetails.Count + 1}" }, _dialogService));
                 if (celebrationDetail != null)
                     CelebrationDetails.Add(celebrationDetail);
             });

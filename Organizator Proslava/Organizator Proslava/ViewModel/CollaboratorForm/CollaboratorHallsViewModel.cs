@@ -8,14 +8,14 @@ using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
     public class CollaboratorHallsViewModel : ObservableEntity
     {
+        public string AsRole { get; set; }
+
         private List<CelebrationHall> _cellbrationHalls;
         public List<CelebrationHall> CelebrationHalls { get => _cellbrationHalls; set => OnPropertyChanged(ref _cellbrationHalls, value); }
 
@@ -86,7 +86,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
                 {
-                    EventBus.FireEvent("AddCollaborator");
+                    EventBus.FireEvent("AddCollaborator" + AsRole);
                 }
             });
         }
@@ -99,7 +99,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da izmeniti ovog saradnika?")) == DialogResults.Yes)
                 {
-                    EventBus.FireEvent("UpdateCollaborator");
+                    EventBus.FireEvent("UpdateCollaborator" + AsRole);
                 }
             });
         }

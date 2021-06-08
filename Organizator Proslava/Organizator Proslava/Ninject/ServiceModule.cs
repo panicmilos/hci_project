@@ -1,9 +1,11 @@
 ﻿using Ninject.Modules;
 using Organizator_Proslava.Data;
+using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Services.Implementations;
 using Organizator_Proslava.ViewModel;
+using Organizator_Proslava.ViewModel.CelebrationProposals;
 
 namespace Organizator_Proslava.Ninject
 {
@@ -31,6 +33,7 @@ namespace Organizator_Proslava.Ninject
 
             Bind<LoginViewModel>().To<LoginViewModel>();
             Bind<RegisterViewModel>().To<RegisterViewModel>();
+            Bind<CollaboratorsTableViewModel>().To<CollaboratorsTableViewModel>().InSingletonScope();
         }
     }
 }

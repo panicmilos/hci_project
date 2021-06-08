@@ -1,7 +1,6 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Organizator_Proslava.Services.Contracts;
