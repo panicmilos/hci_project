@@ -41,7 +41,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
             Add = new RelayCommand(() =>
             {
-                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService));
+                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService, CelebrationProposals.Count+1));
                 if (proposal != null)
                 {
                     EventBus.FireEvent("CreateNewProposal", proposal);

@@ -44,6 +44,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
             {"DetailTitle", ValidateDetailTitle},
             {"Content", ValidateContent},
+            {"ProposalTitle", ValidateProposalTitle},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -384,7 +385,15 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateDetailTitle(object title, object _)
         {
             if (string.IsNullOrWhiteSpace(title as string))
-                return "Morate zadati naslov.";
+                return "Morate zadati naslov zahteva.";
+
+            return null;
+        }
+
+        private static string ValidateProposalTitle(object title, object _)
+        {
+            if (string.IsNullOrWhiteSpace(title as string))
+                return "Morate zadati naslov predloga.";
 
             return null;
         }

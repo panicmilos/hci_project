@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Custom.Collaborators.ChooseCollaboratorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="3.8*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.7*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid
+            Grid.Column="1"
+            Grid.Row="1"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            AutoGenerateColumns="False"
+            SelectionMode="Single"
+            SelectionUnit="FullRow"
+            IsReadOnly="True"
+            SelectedItem="{Binding Path=SelectedCollaborator}"
+            ItemsSource="{Binding Path=Collaborators}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Naziv/Ime"
+                    Width="1.5*"
+                    Binding="{Binding Path=FullName}"
+                    CellStyle="{StaticResource DataGridTextCell}">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Header="Broj telefona"
+                    Width="1.5*"
+                    Binding="{Binding Path=PhoneNumber}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
+                    Header="tip"
+                    Width="*"
+                    Binding="{Binding Path=CollaboratorServiceBook.Type}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button 
+                Content="Izaberi" 
+                Command="{Binding Path=Choose}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource loginPageButton}"  
+                Background="{StaticResource PowderBlue}" 
+                HorizontalAlignment="Left" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Button 
+                Content="Odustani" 
+                Command="{Binding Path=Cancel}" 
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource loginPageButton}" 
+                Background="{StaticResource PowderBlue}" 
+                HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</UserControl>
