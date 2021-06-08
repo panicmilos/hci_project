@@ -1,5 +1,6 @@
 ﻿using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
@@ -110,11 +111,20 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             _collaboratorService.Create(collaborator);
             EventBus.FireEvent("ReloadCollaboratorTable");
             EventBus.FireEvent("BackToCollaboratorsTable");
+
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear();
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateCollaborator(collaborator));
         }
 
         private void UpdateCollaborator()
         {
             var collaborator = CollectCollaboratorInformations();
+
+            var currentCollaboratorCopy = _collaboratorService.Read(collaborator.Id).Clone();
+            var newCollaboratorCopy = collaborator.Clone();
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear();
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateCollaborator(currentCollaboratorCopy, newCollaboratorCopy));
+
             _collaboratorService.Update(collaborator);
             EventBus.FireEvent("ReloadCollaboratorTable");
             EventBus.FireEvent("BackToCollaboratorsTable");

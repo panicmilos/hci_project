@@ -21,6 +21,12 @@ namespace Organizator_Proslava.UserCommands
             _redoStack.Clear();
         }
 
+        public void Clear()
+        {
+            _undoStack.Clear();
+            _redoStack.Clear();
+        }
+
         public void ExecuteRedo()
         {
             if (!_redoStack.Any())

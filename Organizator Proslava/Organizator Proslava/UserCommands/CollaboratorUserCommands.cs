@@ -1,69 +1,79 @@
-﻿using Organizator_Proslava.Model.Collaborators;
-using System.Collections.ObjectModel;
+﻿using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Ninject;
+using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.Utility;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Organizator_Proslava.UserCommands
 {
-    public class CreateService : IUserCommand
+    public class CreateCollaborator : IUserCommand
     {
-        private readonly CollaboratorService _collaboratorService;
-        private readonly ObservableCollection<CollaboratorService> _services;
-        private readonly CollaboratorServiceBook _collaboratorServiceBook;
+        private readonly Collaborator _collaborator;
+        private readonly Address _address;
 
-        public CreateService(CollaboratorService collaboratorService, ObservableCollection<CollaboratorService> services, CollaboratorServiceBook collaboratorServiceBook)
+        private readonly ICollaboratorService _collaboratorService;
+
+        public CreateCollaborator(Collaborator collaborator)
         {
-            _collaboratorService = collaboratorService;
-            _services = services;
-            _collaboratorServiceBook = collaboratorServiceBook;
+            _collaborator = collaborator;
+            _address = collaborator.Address;
+
+            _collaboratorService = ServiceLocator.Get<ICollaboratorService>();
         }
 
         public void Redo()
         {
-            _services.Add(_collaboratorService);
-            _collaboratorServiceBook.Services.Add(_collaboratorService);
+            _collaborator.AddressId = _address.Id;
+            _collaborator.Address = null;
+
+            _collaboratorService.Create(_collaborator);
+            EventBus.FireEvent("ReloadCollaboratorTable");
         }
 
         public void Undo()
         {
-            _services.Remove(_collaboratorService);
-            _collaboratorServiceBook.Services.Remove(_collaboratorService);
+            _collaboratorService.Delete(_collaborator.Id);
+            EventBus.FireEvent("ReloadCollaboratorTable");
         }
     }
 
-    public class UpdateService : IUserCommand
+    public class UpdateCollaborator : IUserCommand
     {
-        private readonly CollaboratorService _collaboratorService;
-        private readonly CollaboratorService _oldCollaboratorService;
-        private readonly CollaboratorService _newCollaboratorService;
+        private readonly Collaborator _currentCollaborator;
+        private readonly Collaborator _newCollaborator;
 
-        public UpdateService(CollaboratorService collaboratorService, CollaboratorService oldCollaboratorService, CollaboratorService newCollaboratorService)
+        private readonly ICollaboratorService _collaboratorService;
+
+        public UpdateCollaborator(Collaborator currentCollaborator, Collaborator newCollaborator)
         {
-            _collaboratorService = collaboratorService;
-            _oldCollaboratorService = oldCollaboratorService;
-            _newCollaboratorService = newCollaboratorService;
+            _currentCollaborator = currentCollaborator;
+            _newCollaborator = newCollaborator;
+
+            _collaboratorService = ServiceLocator.Get<ICollaboratorService>();
         }
 
         public void Redo()
         {
-            _collaboratorService.Name = _newCollaboratorService.Name;
-            _collaboratorService.Price = _newCollaboratorService.Price;
-            _collaboratorService.Unit = _newCollaboratorService.Unit;
+            _collaboratorService.Update(_newCollaborator.Clone());
+            EventBus.FireEvent("ReloadCollaboratorTable");
         }
 
         public void Undo()
         {
-            _collaboratorService.Name = _oldCollaboratorService.Name;
-            _collaboratorService.Price = _oldCollaboratorService.Price;
-            _collaboratorService.Unit = _oldCollaboratorService.Unit;
+            _collaboratorService.Update(_currentCollaborator.Clone());
+            EventBus.FireEvent("ReloadCollaboratorTable");
         }
     }
 
-    public class DeleteService : IUserCommand
+    public class DeleteCollaborator : IUserCommand
     {
         private readonly IUserCommand _createCommand;
 
-        public DeleteService(CollaboratorService collaboratorService, ObservableCollection<CollaboratorService> services, CollaboratorServiceBook collaboratorServiceBook)
+        public DeleteCollaborator(Collaborator collaborator)
         {
-            _createCommand = new CreateService(collaboratorService, services, collaboratorServiceBook);
+            _createCommand = new CreateCollaborator(collaborator);
         }
 
         public void Redo()

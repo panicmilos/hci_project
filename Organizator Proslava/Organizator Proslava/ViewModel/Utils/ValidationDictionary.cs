@@ -152,7 +152,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateIdentificationNumber(object MBObject, object _)
         {
             var MB = MBObject as string;
-            if (string.IsNullOrWhiteSpace(MB as string))
+            if (string.IsNullOrWhiteSpace(MB))
                 return "Morate zadati matični broj.";
 
             if (MB.Any(c => !Char.IsDigit(c)))
@@ -187,7 +187,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateJMBG(object JMBGObject, object _)
         {
             var JMBG = JMBGObject as string;
-            if (string.IsNullOrWhiteSpace(JMBG as string))
+            if (string.IsNullOrWhiteSpace(JMBG))
                 return "Morate zadati JMBG.";
 
             if (JMBG.Any(c => !Char.IsDigit(c)))
@@ -209,7 +209,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidatePersonalId(object personalIdObject, object _)
         {
             var personalId = personalIdObject as string;
-            if (string.IsNullOrWhiteSpace(personalId as string))
+            if (string.IsNullOrWhiteSpace(personalId))
                 return "Morate zadati broj lične karte.";
 
             if (personalId.Any(c => !Char.IsDigit(c)))
