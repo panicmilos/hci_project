@@ -46,7 +46,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/feather-2/24/edit-3-128.png" />
+                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/edit.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -57,7 +57,7 @@
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/remove.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -67,7 +67,7 @@
         </DataGrid>
         
         <Grid Grid.Column="1" Grid.Row="2">
-            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Novi detalj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
         
         <Grid Grid.Column="1" Grid.Row="3">

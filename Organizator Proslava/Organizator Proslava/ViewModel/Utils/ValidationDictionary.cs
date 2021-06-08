@@ -41,6 +41,9 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"ExpectedNumberOfGuests", ValidateExpectedNumberOfGuests},
             {"BudgetFrom", ValidateBudget},
             {"BudgetTo", ValidateBudget},
+
+            {"DetailTitle", ValidateDetailTitle},
+            {"Content", ValidateContent},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -311,7 +314,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var numberStr = numberObject as string;
             if (string.IsNullOrWhiteSpace(numberStr))
-                return "Morate zadati o;ekivani broj gostiju.";
+                return "Morate zadati očekivani broj gostiju.";
 
             if (!int.TryParse(numberStr, out var number))
                 return "Broj gostiju mora biti ceo broj.";
@@ -370,6 +373,21 @@ namespace Organizator_Proslava.ViewModel.Utils
             return null;
         }
 
+        private static string ValidateContent(object content, object _)
+        {
+            if (string.IsNullOrWhiteSpace(content as string))
+                return "Morate zadati detalje.";
+
+            return null;
+        }
+
+        private static string ValidateDetailTitle(object title, object _)
+        {
+            if (string.IsNullOrWhiteSpace(title as string))
+                return "Morate zadati naslov.";
+
+            return null;
+        }
 
     }
 }

@@ -131,7 +131,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="5">
             <Label Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" PreviewTextInput="IntValidationTextBox" />
+            <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="6">
@@ -154,10 +154,10 @@
                 <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" PreviewTextInput="FloatValidationTextBox" />
+                <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="1" Content="Do" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" PreviewTextInput="FloatValidationTextBox" />
+                <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
                 
                 <CheckBox 
                     Grid.Column="4" 

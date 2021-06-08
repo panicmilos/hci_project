@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using System.Windows.Input;
+//using System.Windows.Input;
 
 namespace Organizator_Proslava.View.CelebrationRequestForm
 {
@@ -9,7 +9,7 @@ namespace Organizator_Proslava.View.CelebrationRequestForm
         {
             InitializeComponent();
         }
-
+        /*
         private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !int.TryParse(e.Text, out _);
@@ -19,5 +19,6 @@ namespace Organizator_Proslava.View.CelebrationRequestForm
         {
             e.Handled = !float.TryParse(e.Text, out _);
         }
+        */
     }
 }

@@ -15,17 +15,17 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.4*" />
             <RowDefinition Height="0.3*" />
-            <RowDefinition Height="0.3*" />
-            <RowDefinition Height="0.6*" />
+            <RowDefinition Height="0.4*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="0.3*" />
             <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         
         <Label Grid.Column="1" Grid.Row="1" Content="Naslov zahteva" Style="{StaticResource registerPageLabel}" />
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=CelebrationDetail.Title, Mode=TwoWay}" 
-                 Style="{StaticResource registerFormTextBox}" />
+        <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="2" Text="{Binding Path=DetailTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                 Style="{StaticResource validateTextBox}" />
 
         <Label Grid.Column="1"
                Grid.Row="3"
@@ -36,8 +36,8 @@
                       Grid.Row="4"
                       VerticalScrollBarVisibility="Auto">
             <Grid>
-                <TextBox Text="{Binding Path=CelebrationDetail.Content, Mode=TwoWay}"
-                         Style="{StaticResource registerFormTextBox}"
+                <TextBox x:Name="tb2" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource validateTextBox}"
                          Background="{StaticResource Cararra}"
                          TextWrapping="Wrap" />
             </Grid>
@@ -54,7 +54,14 @@
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
+                    Background="{StaticResource PowderBlue}" >
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
