@@ -16,6 +16,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
         public ObservableCollection<CelebrationResponse> CelebrationResponses { get; set; }
 
         public ICommand NonAcceptedCelebrations { get; set; }
+        public ICommand Collaborators { get; set; }
 
         public ICommand Preview { get; set; }
         public ICommand Cancel { get; set; }
@@ -24,8 +25,12 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
         private readonly ICelebrationResponseService _celebrationResponseService;
 
         private readonly CelebrationResponseFormViewModel _crfvm;
+        private readonly CollaboratorsTableViewModel _ctvm;
 
-        public CurrentOrganizatorCelebrationsTableViewModel(ICelebrationResponseService celebrationResponseService, CelebrationResponseFormViewModel crfvm)
+        public CurrentOrganizatorCelebrationsTableViewModel(
+            ICelebrationResponseService celebrationResponseService,
+            CelebrationResponseFormViewModel crfvm,
+            CollaboratorsTableViewModel ctvm)
         {
             _celebrationResponseService = celebrationResponseService;
             CelebrationResponses = new ObservableCollection<CelebrationResponse>();
@@ -33,12 +38,20 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
             NonAcceptedCelebrations = new RelayCommand(() => EventBus.FireEvent("NextToAcceptCelebrationRequestTable"));
 
             _crfvm = crfvm;
+            _ctvm = ctvm;
 
             Preview = new RelayCommand<CelebrationResponse>(cr =>
             {
                 EventBus.FireEvent("ShowCelebrationRequest", cr);
                 EventBus.FireEvent("SwitchOrganizerViewModel", _crfvm);
             });
+
+            Collaborators = new RelayCommand(() =>
+            {
+                _ctvm.ForOrganizer();
+                EventBus.FireEvent("SwitchOrganizerViewModel", _ctvm);
+            });
+            EventBus.RegisterHandler("BackToCollaboratorsForOrganizer", () => Collaborators.Execute(null));
 
             EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 

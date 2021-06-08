@@ -1,5 +1,4 @@
 ﻿using Organizator_Proslava.Dialogs.Alert;
-using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.DTO;
@@ -15,10 +14,7 @@ namespace Organizator_Proslava.ViewModel
         public LoginDTO LoginDTO { get; set; }
         public ICommand Login { get; set; }
         public ICommand Register { get; set; }
-        public ICommand Map { get; set; }
         public ICommand Isvm { get; set; }
-        public ICommand DEMO { get; set; }
-        public ICommand Colabs { get; set; }
         public ICommand Covm { get; set; }
         public ICommand ClientHome { get; set; }
         public ICommand OrgHome { get; set; }
@@ -63,19 +59,10 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            DEMO = new RelayCommand(() => EventBus.FireEvent("DEMO")); // Delete Later
-            Colabs = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorsTable")); // Delete Later
-            Covm = new RelayCommand(() => EventBus.FireEvent("CreateOrganizer")); // Delete later
+            Covm = new RelayCommand(() => EventBus.FireEvent("AdminLogin")); // Delete later
             ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin")); // Delete later
             OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin")); // Delete later
             Notf = new RelayCommand(() => EventBus.FireEvent("Notf")); // Delete later
-
-            Map = new RelayCommand(() =>
-            {
-                var result = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
-                var chosen = result == null ? "Nista" : $"{result.WholeAddress} ${result.Lat} ${result.Lng}";
-                _dialogService.OpenDialog(new AlertDialogViewModel("Izabrao si", chosen));
-            }); // Delete Later
         }
     }
 }

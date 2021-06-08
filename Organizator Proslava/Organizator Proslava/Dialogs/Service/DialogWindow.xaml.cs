@@ -18,7 +18,7 @@ namespace Organizator_Proslava.Dialogs.Service
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            var focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
             if (focusedControl is DependencyObject dependencyObject)
             {
                 string str = HelpProvider.GetHelpKey(dependencyObject);
@@ -29,7 +29,9 @@ namespace Organizator_Proslava.Dialogs.Service
                 }
             }
 
-            HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
+            var helpViewer = DataContext is NavigabileModelView navigabileModelView
+                ? new HelpViewer(navigabileModelView.Current.GetType(), this)
+                : new HelpViewer(DataContext.GetType(), this);
             helpViewer.Show();
         }
 

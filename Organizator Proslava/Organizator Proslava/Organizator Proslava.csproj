@@ -441,6 +441,10 @@
     <Compile Include="Migrations\20210608103552_something2.designer.cs">
       <DependentUpon>20210608103552_something2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210608205605_NZM.cs" />
+    <Compile Include="Migrations\20210608205605_NZM.designer.cs">
+      <DependentUpon>20210608205605_NZM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />

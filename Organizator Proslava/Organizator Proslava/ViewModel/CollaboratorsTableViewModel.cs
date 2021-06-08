@@ -15,6 +15,7 @@ namespace Organizator_Proslava.ViewModel
 {
     public class CollaboratorsTableViewModel : ObservableEntity
     {
+        private string _parentSwitchViewModelEvent;
         public ObservableCollection<Collaborator> Collaborators { get; set; }
 
         public ICommand Back { get; set; }
@@ -41,13 +42,13 @@ namespace Organizator_Proslava.ViewModel
             Add = new RelayCommand(() =>
             {
                 EventBus.FireEvent("CollaboratorFormForAdd");
-                EventBus.FireEvent("SwitchMainViewModel", _cfvm);
+                EventBus.FireEvent(_parentSwitchViewModelEvent, _cfvm);
             });
 
             Edit = new RelayCommand<Collaborator>(collaborator =>
             {
                 EventBus.FireEvent("CollaboratorFormForUpdate", collaborator);
-                EventBus.FireEvent("SwitchMainViewModel", _cfvm);
+                EventBus.FireEvent(_parentSwitchViewModelEvent, _cfvm);
             });
 
             Remove = new RelayCommand<Collaborator>(collaborator =>
@@ -72,9 +73,27 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
-
             EventBus.RegisterHandler("ReloadCollaboratorTable", () => { Collaborators.Clear(); _collaboratorService.Read().ToList().ForEach(c => Collaborators.Add(c)); });
+        }
+
+        public void ForOrganizer()
+        {
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCurrentCelebrationsForOrganizer"));
+            _cfvm.Sctvm.BackTo = "BackToCollaboratorsForOrganizer";
+            _cfvm.Icivm.BackTo = "BackToCollaboratorsForOrganizer";
+            _cfvm.Lcivm.BackTo = "BackToCollaboratorsForOrganizer";
+            _cfvm.Chvm.AsRole = "Organizer";
+            _parentSwitchViewModelEvent = "SwitchOrganizerViewModel";
+        }
+
+        public void ForAdministrator()
+        {
+            Back = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
+            _cfvm.Sctvm.BackTo = "BackToCollaboratorsForAdmin";
+            _cfvm.Icivm.BackTo = "BackToCollaboratorsForAdmin";
+            _cfvm.Lcivm.BackTo = "BackToCollaboratorsForAdmin";
+            _cfvm.Chvm.AsRole = "Admin";
+            _parentSwitchViewModelEvent = "SwitchMainViewModel";
         }
     }
 }

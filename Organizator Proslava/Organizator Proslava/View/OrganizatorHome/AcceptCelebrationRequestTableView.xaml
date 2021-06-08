@@ -22,8 +22,6 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <view:Background Grid.ColumnSpan="3" Grid.RowSpan="4" Opacity="0.45" />
-
         <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Neprihvaćene proslave</Label>
 
         <DataGrid

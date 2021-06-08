@@ -69,8 +69,10 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             EventBus.RegisterHandler("CollaboratorFormForAdd", ForAdd);
             EventBus.RegisterHandler("CollaboratorFormForUpdate", collaborator => ForUpdate(collaborator));
-            EventBus.RegisterHandler("AddCollaborator", AddCollaborator);
-            EventBus.RegisterHandler("UpdateCollaborator", UpdateCollaborator);
+            EventBus.RegisterHandler("AddCollaboratorOrganizer", AddCollaborator);
+            EventBus.RegisterHandler("UpdateCollaboratorOrganizer", UpdateCollaborator);
+            EventBus.RegisterHandler("AddCollaboratorAdmin", AddCollaborator);
+            EventBus.RegisterHandler("UpdateCollaboratorAdmin", UpdateCollaborator);
         }
 
         public void ForAdd()
@@ -110,7 +112,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             var collaborator = CollectCollaboratorInformations();
             _collaboratorService.Create(collaborator);
             EventBus.FireEvent("ReloadCollaboratorTable");
-            EventBus.FireEvent("BackToCollaboratorsTable");
+            EventBus.FireEvent(Sctvm.BackTo);
 
             GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear();
             GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateCollaborator(collaborator));
@@ -127,7 +129,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             _collaboratorService.Update(collaborator);
             EventBus.FireEvent("ReloadCollaboratorTable");
-            EventBus.FireEvent("BackToCollaboratorsTable");
+            EventBus.FireEvent(Sctvm.BackTo);
         }
 
         private Collaborator CollectCollaboratorInformations()

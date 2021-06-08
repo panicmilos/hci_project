@@ -10,6 +10,7 @@
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
             <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
+            <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}" />
         </ToolBar>
 
         <Grid>
@@ -18,33 +19,31 @@
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            
-            <view:Background Grid.ColumnSpan="3" Grid.RowSpan="3" Opacity="0.45" />
+
 
             <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
             <DataGrid
-                Grid.Column="1"    
+                Grid.Column="1"
                 Grid.Row="1"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
                 ItemsSource="{Binding Path=CelebrationResponses}"
-                Style="{StaticResource DataGridStyle}"
-        >
+                Style="{StaticResource DataGridStyle}">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
                 </DataGrid.Resources>
-                
+
                 <DataGrid.Columns>
                     <DataGridTextColumn
                     Header="Vrsta Proslave"

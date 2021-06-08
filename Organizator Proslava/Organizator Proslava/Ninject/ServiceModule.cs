@@ -33,6 +33,7 @@ namespace Organizator_Proslava.Ninject
 
             Bind<LoginViewModel>().To<LoginViewModel>();
             Bind<RegisterViewModel>().To<RegisterViewModel>();
+            Bind<CollaboratorsTableViewModel>().To<CollaboratorsTableViewModel>().InSingletonScope();
         }
     }
 }

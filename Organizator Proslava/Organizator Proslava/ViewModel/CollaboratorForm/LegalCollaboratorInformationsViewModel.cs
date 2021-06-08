@@ -11,6 +11,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 {
     public class LegalCollaboratorInformationsViewModel : BaseObservableEntity, IDataErrorInfo
     {
+        public string BackTo { get; set; }
+
         // Text fields:
         public Collaborator Collaborator { get; set; }
 
@@ -98,7 +100,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             RepeatedPassword = collaborator.Password;
             _calls = 9;
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
+            Back = new RelayCommand(() => EventBus.FireEvent(BackTo));
         }
 
         public Collaborator CollectCollaborator()
