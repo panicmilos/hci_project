@@ -30,7 +30,16 @@
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=CelebrationProposals}">
+            ItemsSource="{Binding Path=CelebrationProposals}"
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
