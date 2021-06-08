@@ -29,7 +29,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
-            <controls:AutoCompleteBox
+            <controls:AutoCompleteBox x:Name="tb1"
                     Height="25"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
@@ -37,10 +37,10 @@
                     FontSize="16"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Text="{Binding Path=SelectedCelebrationType, Mode=TwoWay}"
+                    Text="{Binding Path=CelebrationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
-                    Margin="10, 0, 10, 0">
-            </controls:AutoCompleteBox>
+                    Margin="10, 0, 10, 0"
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=ShouldShowOrganizers, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -114,8 +114,9 @@
                     Pattern="CustomPattern"
                     DropDownView="Combined"
                     x:Name="DateTimeFrom"
-                    DateTime="{Binding Path=Celebration.DateTimeFrom, Mode=TwoWay}"
-                    VerticalAlignment="Center" />
+                    DateTime="{Binding Path=DateTimeFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                    VerticalAlignment="Center"
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
@@ -126,14 +127,15 @@
                     Pattern="CustomPattern"
                     DropDownView="Combined"
                     x:Name="DateTimeTo"
-                    DateTime="{Binding Path=Celebration.DateTimeTo, Mode=TwoWay}"
-                    VerticalAlignment="Center" />
+                    DateTime="{Binding Path=DateTimeTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                    VerticalAlignment="Center"
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5">
-            <Label  Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Celebration.ExpectedNumberOfGuests, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+            <Label Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="6">
@@ -156,13 +158,13 @@
                 <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Celebration.BudgetFrom, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
+                <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
 
                 <Label Grid.Column="2" Grid.Row="1" Content="Do" Style="{StaticResource registerPageLabel}" />
-                <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Celebration.BudgetTo, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" />
-
-                <CheckBox
-                    Grid.Column="4"
+                <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                
+                <CheckBox 
+                    Grid.Column="4" 
                     Grid.Row="1"
                     IsChecked="{Binding Path=Celebration.IsBudgetFixed, Mode=TwoWay}">
                     <TextBlock Style="{StaticResource RegisterFormTextBlock}">
@@ -174,7 +176,18 @@
 
         <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb4" />
+                        <Binding Path="(Validation.HasError)" ElementName="DateTimeFrom" />
+                        <Binding Path="(Validation.HasError)" ElementName="DateTimeTo" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

@@ -269,6 +269,10 @@
       <DependentUpon>ClientDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Clients\ClientDetailViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Collaborators\ChooseCollaboratorView.xaml.cs">
+      <DependentUpon>ChooseCollaboratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Collaborators\ChooseCollaboratorViewModel.cs" />
     <Compile Include="Dialogs\Custom\Collaborators\CollaboratorServiceDialogView.xaml.cs">
       <DependentUpon>CollaboratorServiceDialogView.xaml</DependentUpon>
     </Compile>
@@ -693,6 +697,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Clients\ClientDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Collaborators\ChooseCollaboratorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
