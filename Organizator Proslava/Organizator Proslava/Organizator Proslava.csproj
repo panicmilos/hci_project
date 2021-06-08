@@ -945,9 +945,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Validation\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\celebration.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
