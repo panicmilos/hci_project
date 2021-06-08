@@ -7,15 +7,26 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     
-    <Grid Margin="50">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <local:Background Grid.ColumnSpan="3" Grid.RowSpan="7" Opacity="0.45" />
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel>
                 <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Profile}">
                     <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/profile.png"/>
@@ -30,16 +41,25 @@
             </StackPanel>
         </StackPanel>
 
-        <Label Grid.Row="1" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
+        <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
         
         <DataGrid
-            Grid.Row="2"
+            Grid.Column="1"
+            Grid.Row="3"
             CanUserAddRows="False" 
             CanUserDeleteRows="False" 
             AutoGenerateColumns="False"
             IsReadOnly="True"
             ItemsSource="{Binding Path=Celebrations}"
-            >
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Vrsta Proslave" 
@@ -56,32 +76,32 @@
                     Width="*" 
                     Binding="{Binding Path=DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Pregled" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Pregled" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Details, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/preview.png"/>
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/preview.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Izmena" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Izmena" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/edit.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Otkaži" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Otkaži" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:ClientHomeView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/remove.png"/>
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/reject.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -89,12 +109,13 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="5">
+            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
+        </Grid>
     </Grid>
 
 </UserControl>

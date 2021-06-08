@@ -5,12 +5,9 @@ namespace Organizator_Proslava.Ninject
 {
     public class ServiceLocator
     {
-        private readonly IKernel _kernel;
+        private static readonly IKernel _kernel = new StandardKernel(new ServiceModule());
 
-        public ServiceLocator()
-        {
-            _kernel = new StandardKernel(new ServiceModule());
-        }
+        public static T Get<T>() => _kernel.Get<T>();
 
         public MainViewModel MainViewModel
         {

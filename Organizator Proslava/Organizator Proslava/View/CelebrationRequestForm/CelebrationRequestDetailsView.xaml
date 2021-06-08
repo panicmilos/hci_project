@@ -8,28 +8,37 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Detalji proslave</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Detalji proslave</Label>
 
         <DataGrid
             Grid.Column="1"
-            Grid.Row="1"
+            Grid.Row="2"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
             SelectedItem="{Binding Path=SelectedCelebrationDetail}"
-            ItemsSource="{Binding Path=CelebrationDetails}">
+            ItemsSource="{Binding Path=CelebrationDetails}"
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
@@ -41,23 +50,23 @@
                     Width="4*"
                     Binding="{Binding Path=Content}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Izmeni" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Izmeni" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/edit.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/edit.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Ukloni" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Ukloni" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType={x:Type local:CelebrationRequestDetailsView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/remove.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/reject.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -66,11 +75,11 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <Grid Grid.Column="1" Grid.Row="2">
+        <Grid Grid.Column="1" Grid.Row="3">
             <Button Content="Novi detalj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
         
-        <Grid Grid.Column="1" Grid.Row="3">
+        <Grid Grid.Column="1" Grid.Row="4">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
             <Button Content="Pregled" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>

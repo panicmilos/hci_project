@@ -7,10 +7,12 @@ namespace Organizator_Proslava.Dialogs.Service
         public string Title { get; set; }
         public string Message { get; set; }
 
-        public double WindowWidth { get; set; }
-        public double WindowHeight { get; set; }
-        public double ContentWidth { get; set; }
-        public double ContentHeight { get; set; }
+        private double _windowWidth;
+        public double WindowWidth { get { return _windowWidth; } set { OnPropertyChanged(ref _windowWidth, value); OnPropertyChanged("ContentWidth"); } }
+        private double _windowHeight;
+        public double WindowHeight { get { return _windowHeight; } set { OnPropertyChanged(ref _windowHeight, value); OnPropertyChanged("ContentHeight"); } }
+        public double ContentWidth { get => WindowWidth - 60; }
+        public double ContentHeight { get => WindowHeight - 60; }
 
         public T DialogResult { get; set; }
 
@@ -40,8 +42,6 @@ namespace Organizator_Proslava.Dialogs.Service
             Message = message;
             WindowWidth = windowWidht;
             WindowHeight = windowHeight;
-            ContentWidth = windowWidht - 60;
-            ContentHeight = windowHeight - 60;
         }
 
         public void CloseDialogWithResult(IDialogWindow dialog, T result)

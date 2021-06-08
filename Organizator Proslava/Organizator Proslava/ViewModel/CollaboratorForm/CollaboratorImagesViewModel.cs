@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,15 +31,15 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public CollaboratorImagesViewModel()
         {
             ShowForAdd = true;
-            AddImage = new RelayCommand(AddImageHandler);
+            AddImage = new RelayCommand(ChooseAndAddImage);
             ChangeMainImage = new RelayCommand<string>(file => MainImage = file);
-            DeleteImage = new RelayCommand<string>(DeleteImageHandler);
+            DeleteImage = new RelayCommand<string>(f => { DeleteImageHandler(f); GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteImage(f, AddImageHandler, DeleteImageHandler)); });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorServices"));
             Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorHalls"));
         }
 
-        private void AddImageHandler()
+        private void ChooseAndAddImage()
         {
             var dialog = new OpenFileDialog() { Multiselect = false };
             dialog.Filter = @"Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
@@ -46,17 +47,22 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             if (response == true)
             {
-                string file = dialog.FileName;
+                AddImageHandler(dialog.FileName);
+                GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new AddImage(dialog.FileName, AddImageHandler, DeleteImageHandler));
+            }
+        }
 
-                if (Images.Count == 1 && Images[0] == ImagePlaceholderFileName)
-                {
-                    Images[0] = file;
-                    MainImage = file;
-                }
-                else
-                {
-                    Images.Add(file);
-                }
+        private void AddImageHandler(string file)
+
+        {
+            if (Images.Count == 1 && Images[0] == ImagePlaceholderFileName)
+            {
+                Images[0] = file;
+                MainImage = file;
+            }
+            else
+            {
+                Images.Add(file);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Help;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Windows;
 using System.Windows.Input;
@@ -13,8 +14,6 @@ namespace Organizator_Proslava
         public MainWindow()
         {
             InitializeComponent();
-            EventBus.RegisterHandler("DemoFullscreenMode", EnterFullscreenMode);
-            EventBus.RegisterHandler("ExitDemoFullscreenMode", ExitFullscreenMode);
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -23,20 +22,25 @@ namespace Organizator_Proslava
             if (focusedControl is DependencyObject dependencyObject)
             {
                 string str = HelpProvider.GetHelpKey(dependencyObject);
-                HelpProvider.ShowHelp(str, this);
+                if (str != null)
+                {
+                    HelpProvider.ShowHelp(str, this);
+                    return;
+                }
             }
+
+            HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
+            helpViewer.Show();
         }
 
-        private void EnterFullscreenMode()
+        private void CommandBinding_Executed_Undo(object sender, ExecutedRoutedEventArgs e)
         {
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteUndo();
         }
 
-        private void ExitFullscreenMode()
+        private void CommandBinding_Executed_Redo(object sender, ExecutedRoutedEventArgs e)
         {
-            WindowStyle = WindowStyle.SingleBorderWindow;
-            WindowState = WindowState.Normal;
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteRedo();
         }
     }
 }

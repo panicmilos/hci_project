@@ -6,6 +6,7 @@ using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.OrganizatorHome
@@ -27,6 +28,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
         public CurrentOrganizatorCelebrationsTableViewModel(ICelebrationResponseService celebrationResponseService, CelebrationResponseFormViewModel crfvm)
         {
             _celebrationResponseService = celebrationResponseService;
+            CelebrationResponses = new ObservableCollection<CelebrationResponse>();
 
             NonAcceptedCelebrations = new RelayCommand(() => EventBus.FireEvent("NextToAcceptCelebrationRequestTable"));
 
@@ -41,11 +43,12 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
             EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 
             Cancel = new RelayCommand(() =>
-                new DialogService().OpenDialog(new DialogWindow(),
-                    new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                new DialogService().OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
                         "Da li ste sigurni da želite da otkažete organizovanje proslave?")));
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+
+            EventBus.RegisterHandler("ReloadCurrentOrganizatorCelebrationsTable", () => Reload());
 
             Reload();
         }
@@ -53,7 +56,8 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
         public void Reload()
         {
             var loggedUser = GlobalStore.ReadObject<BaseUser>("loggedUser");
-            CelebrationResponses = new ObservableCollection<CelebrationResponse>(_celebrationResponseService.ReadOrganizingBy(loggedUser.Id));
+            CelebrationResponses.Clear();
+            _celebrationResponseService.ReadOrganizingBy(loggedUser.Id).ToList().ForEach(cr => CelebrationResponses.Add(cr));
         }
     }
 }

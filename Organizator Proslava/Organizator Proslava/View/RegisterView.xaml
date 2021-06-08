@@ -26,8 +26,6 @@
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="6" Opacity="0.45" />
 
-        <Button Grid.Row="0" Command="{Binding Path=Back}" Style="{StaticResource BackButton}" Background="{StaticResource PowderBlue}"/>
-
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -96,8 +94,8 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}">
+        <Grid Grid.Column="1" Grid.Row="5">
+            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" HorizontalAlignment="Right" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -110,6 +108,7 @@
                     </MultiBinding>
                 </Button.IsEnabled>
             </Button>
-        </StackPanel>
+            <Button Content="Nazad" Command="{Binding Path=Back}" HorizontalAlignment="Left" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}" />
+        </Grid>
     </Grid>
 </UserControl>

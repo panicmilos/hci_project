@@ -46,7 +46,7 @@
         <Border Grid.Row="3" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Proslave" Background="{StaticResource Cararra}" />
-                <Button Background="Transparent">
+                <Button Background="Transparent" Command="{Binding Path=Celebrations}">
                     <Image Source="pack://siteoforigin:,,,/Resources/celebration.png" />
                 </Button>
             </StackPanel>
