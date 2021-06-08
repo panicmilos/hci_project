@@ -215,6 +215,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
@@ -483,6 +484,7 @@
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="UserCommands\CelebrationHallUserCommands.cs" />
+    <Compile Include="UserCommands\CelebrationProposalUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorServiceUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
     <Compile Include="UserCommands\ImageUserCommands.cs" />
