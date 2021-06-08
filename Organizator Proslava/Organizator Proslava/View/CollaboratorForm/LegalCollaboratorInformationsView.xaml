@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Organizator_Proslava.View.CollaboratorForm"
+             xmlns:help="clr-namespace:Organizator_Proslava.Help"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -64,6 +65,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="tb5"
+                         help:HelpProvider.HelpKey="Address"
                          Grid.Column="0"
                          IsReadOnly="True"
                          Text="{Binding Path=WholeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

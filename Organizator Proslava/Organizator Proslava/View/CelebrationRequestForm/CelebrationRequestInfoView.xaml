@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+             xmlns:help="clr-namespace:Organizator_Proslava.Help"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -75,6 +76,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
+                         help:HelpProvider.HelpKey="Address"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Address.WholeAddress, Mode=TwoWay}"
                          Style="{StaticResource disabledValidateTextBox}"
@@ -105,6 +107,7 @@
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Datum i vreme od" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
+                    help:HelpProvider.HelpKey="DateTimePicker"
                     Grid.Column="0"
                     Grid.Row="1"
                     CustomPattern="dd.MM.yyyy hh:mm"
@@ -116,6 +119,7 @@
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
+                    help:HelpProvider.HelpKey="DateTimePicker"
                     Grid.Column="2"
                     Grid.Row="1"
                     CustomPattern="dd.MM.yyyy hh:mm"
