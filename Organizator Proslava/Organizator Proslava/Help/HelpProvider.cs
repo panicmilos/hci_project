@@ -4,8 +4,6 @@ namespace Organizator_Proslava.Help
 {
     public class HelpProvider
     {
-        private const string defaultPage = "index";
-
         public static string GetHelpKey(DependencyObject obj)
         {
             return obj.GetValue(HelpKeyProperty) as string;
@@ -17,7 +15,7 @@ namespace Organizator_Proslava.Help
         }
 
         public static readonly DependencyProperty HelpKeyProperty =
-            DependencyProperty.RegisterAttached("HelpKey", typeof(string), typeof(HelpProvider), new PropertyMetadata(defaultPage, HelpKey));
+            DependencyProperty.RegisterAttached("HelpKey", typeof(string), typeof(HelpProvider), new PropertyMetadata(null, HelpKey));
 
         private static void HelpKey(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

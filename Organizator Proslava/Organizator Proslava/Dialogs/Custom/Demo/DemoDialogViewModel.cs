@@ -1,13 +1,15 @@
-﻿using Organizator_Proslava.Utility;
+﻿using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace Organizator_Proslava.ViewModel.DemoForm
+namespace Organizator_Proslava.Dialogs.Custom.Demo
 {
-    public class DemoViewModel : ObservableEntity
+    public class DemoDialogViewModel : DialogViewModelBase<DialogResults>
+
     {
-        private IDictionary<string, string> _videos;
+        private readonly IDictionary<string, string> _videos;
 
         public ObservableCollection<string> Functionalities { get; set; }
 
@@ -16,7 +18,8 @@ namespace Organizator_Proslava.ViewModel.DemoForm
 
         public ICommand PlayVideo { get; set; }
 
-        public DemoViewModel()
+        public DemoDialogViewModel() :
+            base("Demo", 860, 660)
         {
             _videos = new Dictionary<string, string>()
             {

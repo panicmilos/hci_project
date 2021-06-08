@@ -71,7 +71,11 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             });
             OpenMap = new RelayCommand(() =>
             {
-                Celebration.Address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberite adresu proslave"));
+                var address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberite adresu proslave"));
+                if (address != null)
+                {
+                    Celebration.Address = address;
+                }
             });
             Back = new RelayCommand(() => EventBus.FireEvent("BackToClientPage"));
             Next = new RelayCommand(() =>

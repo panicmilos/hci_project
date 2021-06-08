@@ -11,5 +11,5 @@
     <local:ObjectReferenceToButtonConverter x:Key="ObjectReferenceToButtonConverter" />
     <local:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter" />
     <local:IsNullOrWhiteSpaceConverter x:Key="IsNullOrWhiteSpaceConverter" />
-    
+    <local:EmptyListToVisibilityConverter x:Key="EmptyListToVisibilityConverter" />
 </ResourceDictionary>

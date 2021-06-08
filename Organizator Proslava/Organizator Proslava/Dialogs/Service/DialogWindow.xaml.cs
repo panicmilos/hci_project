@@ -1,19 +1,8 @@
 ﻿using Organizator_Proslava.Help;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Organizator_Proslava.Dialogs.Service
 {
@@ -33,8 +22,25 @@ namespace Organizator_Proslava.Dialogs.Service
             if (focusedControl is DependencyObject dependencyObject)
             {
                 string str = HelpProvider.GetHelpKey(dependencyObject);
-                HelpProvider.ShowHelp(str, this);
+                if (str != null)
+                {
+                    HelpProvider.ShowHelp(str, this);
+                    return;
+                }
             }
+
+            HelpViewer helpViewer = new HelpViewer(DataContext.GetType(), this);
+            helpViewer.Show();
+        }
+
+        private void CommandBinding_Executed_Undo(object sender, ExecutedRoutedEventArgs e)
+        {
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteUndo();
+        }
+
+        private void CommandBinding_Executed_Redo(object sender, ExecutedRoutedEventArgs e)
+        {
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").ExecuteRedo();
         }
     }
 }

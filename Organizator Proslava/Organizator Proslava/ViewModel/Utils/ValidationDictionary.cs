@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.Utils
@@ -45,6 +44,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"DetailTitle", ValidateDetailTitle},
             {"Content", ValidateContent},
             {"ProposalTitle", ValidateProposalTitle},
+            {"NOCelebrationType", ValidateNOCelebrationType},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -162,7 +162,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateIdentificationNumber(object MBObject, object _)
         {
             var MB = MBObject as string;
-            if (string.IsNullOrWhiteSpace(MB as string))
+            if (string.IsNullOrWhiteSpace(MB))
                 return "Morate zadati matični broj.";
 
             if (MB.Any(c => !char.IsDigit(c)))
@@ -197,7 +197,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateJMBG(object JMBGObject, object _)
         {
             var JMBG = JMBGObject as string;
-            if (string.IsNullOrWhiteSpace(JMBG as string))
+            if (string.IsNullOrWhiteSpace(JMBG))
                 return "Morate zadati JMBG.";
 
             if (JMBG.Any(c => !char.IsDigit(c)))
@@ -219,7 +219,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidatePersonalId(object personalIdObject, object _)
         {
             var personalId = personalIdObject as string;
-            if (string.IsNullOrWhiteSpace(personalId as string))
+            if (string.IsNullOrWhiteSpace(personalId))
                 return "Morate zadati broj lične karte.";
 
             if (personalId.Any(c => !char.IsDigit(c)))
@@ -398,5 +398,12 @@ namespace Organizator_Proslava.ViewModel.Utils
             return null;
         }
 
+        private static string ValidateNOCelebrationType(object celebrationType, object _)
+        {
+            if (string.IsNullOrWhiteSpace(celebrationType as string))
+                return "Morate zadati specijalizaciju.";
+
+            return null;
+        }
     }
 }

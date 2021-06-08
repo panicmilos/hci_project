@@ -1,11 +1,8 @@
-﻿using Organizator_Proslava.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Organizator_Proslava.Data;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Organizator_Proslava.Services.Implementations
 {
@@ -29,10 +26,16 @@ namespace Organizator_Proslava.Services.Implementations
             existingOrganizer.Address.Lng = organizer.Address.Lng;
             existingOrganizer.Address.WholeAddress = organizer.Address.WholeAddress;
             existingOrganizer.PersonalId = organizer.PersonalId;
+
+            var oldCelebrationType = existingOrganizer.CellebrationType;
             existingOrganizer.CellebrationType = organizer.CellebrationType;
             existingOrganizer.JMBG = organizer.JMBG;
 
-            return base.Update(existingOrganizer);
+            var updatedOrganizer = base.Update(existingOrganizer);
+            _context.Entry(organizer.CellebrationType).State = EntityState.Detached;
+            _context.Entry(oldCelebrationType).State = EntityState.Detached;
+
+            return updatedOrganizer;
         }
 
         public bool OrganizersExistFor(string celebrationTypeName)

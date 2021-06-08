@@ -15,7 +15,7 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="#7eb4ea" />
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -23,7 +23,7 @@
     <Style x:Key="loginPageButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="#d3e3d5" />
     </Style>
 
     <Style x:Key="toolbarButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">

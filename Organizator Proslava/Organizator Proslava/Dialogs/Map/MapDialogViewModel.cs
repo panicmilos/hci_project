@@ -77,6 +77,7 @@ namespace Organizator_Proslava.Dialogs.Map
 
             Addresses = await FetchAddresses();
             Addresses.Select(a => a.WholeAddress).ToList().ForEach(a => WholeAddresses.Add(a));
+            EventBus.FireEvent("OpenAddresses");
         }
 
         private async Task<IList<Address>> FetchAddresses()

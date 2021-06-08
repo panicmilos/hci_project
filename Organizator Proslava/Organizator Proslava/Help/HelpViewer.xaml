@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Organizator_Proslava.Help"
         mc:Ignorable="d"
-        Title="HelpViewer" Height="300" Width="300" Closing="Window_Closing">
+        Title="HelpViewer" Height="600" Width="800" Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="NavigationCommands.BrowseBack" CanExecute="BrowseBack_CanExecute" Executed="BrowseBack_Executed" />
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />

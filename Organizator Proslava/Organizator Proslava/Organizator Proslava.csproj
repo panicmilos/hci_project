@@ -215,6 +215,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
@@ -244,6 +245,22 @@
       <DependentUpon>CelebrationProposalDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogView.xaml.cs">
+      <DependentUpon>CelebrationsDetailsTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogView.xaml.cs">
+      <DependentUpon>CelebrationsProposalsTableDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\DetailsDialogView.xaml.cs">
+      <DependentUpon>DetailsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\DetailsDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogView.xaml.cs">
+      <DependentUpon>MoreAboutCelebrationsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml.cs">
       <DependentUpon>WriteCommentDialogView.xaml</DependentUpon>
@@ -297,6 +314,10 @@
       <DependentUpon>SpacePreviewDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Collaborators\SpacePreviewDialogViewModel.cs" />
+    <Compile Include="Dialogs\Custom\Demo\DemoDialogView.xaml.cs">
+      <DependentUpon>DemoDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Custom\Demo\DemoDialogViewModel.cs" />
     <Compile Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml.cs">
       <DependentUpon>NotificationsDialogView.xaml</DependentUpon>
     </Compile>
@@ -322,13 +343,19 @@
       <DependentUpon>OptionDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Option\OptionDialogViewModel.cs" />
+    <Compile Include="Dialogs\Service\DemoService.cs" />
+    <Compile Include="Dialogs\Service\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Service\DialogService.cs" />
     <Compile Include="Dialogs\Service\DialogViewModelBase.cs" />
     <Compile Include="Dialogs\Service\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Service\IDemoService.cs" />
     <Compile Include="Dialogs\Service\IDialogService.cs" />
     <Compile Include="Dialogs\Service\IDialogWindow.cs" />
+    <Compile Include="Dialogs\Service\NavigableDialogViewModelBase.cs" />
     <Compile Include="Help\HelpProvider.cs" />
     <Compile Include="Help\HelpViewer.xaml.cs">
       <DependentUpon>HelpViewer.xaml</DependentUpon>
@@ -406,6 +433,18 @@
     <Compile Include="Migrations\20210604135723_nullable CollaboratorId.designer.cs">
       <DependentUpon>20210604135723_nullable CollaboratorId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210608102226_something.cs" />
+    <Compile Include="Migrations\20210608102226_something.designer.cs">
+      <DependentUpon>20210608102226_something.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608103335_test cascade.cs" />
+    <Compile Include="Migrations\20210608103335_test cascade.designer.cs">
+      <DependentUpon>20210608103335_test cascade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608103552_something2.cs" />
+    <Compile Include="Migrations\20210608103552_something2.designer.cs">
+      <DependentUpon>20210608103552_something2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -465,6 +504,15 @@
     <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="UserCommands\CelebrationHallUserCommands.cs" />
+    <Compile Include="UserCommands\CelebrationProposalUserCommands.cs" />
+    <Compile Include="UserCommands\CollaboratorServiceUserCommands.cs" />
+    <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
+    <Compile Include="UserCommands\ImageUserCommands.cs" />
+    <Compile Include="UserCommands\OrganizersUserCommand.cs" />
+    <Compile Include="UserCommands\IUserCommand.cs" />
+    <Compile Include="UserCommands\IUserCommandManager.cs" />
+    <Compile Include="UserCommands\UserCommandManager.cs" />
     <Compile Include="Utility\DefaultDictionary.cs" />
     <Compile Include="Utility\EventBus.cs" />
     <Compile Include="Utility\GlobalStore.cs" />
@@ -483,6 +531,7 @@
     <Compile Include="ViewModel\CelebrationResponseForm\ProposalsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
+    <Compile Include="ViewModel\Celebrations\CelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -494,7 +543,6 @@
     <Compile Include="ViewModel\ClientHomeViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorsTableViewModel.cs" />
     <Compile Include="ViewModel\CreateOrganizerViewModel.cs" />
-    <Compile Include="ViewModel\DemoForm\DemoViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
@@ -546,6 +594,9 @@
     <Compile Include="View\CelebrationResponseForm\RequestLongPreviewView.xaml.cs">
       <DependentUpon>RequestLongPreviewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Celebrations\CelebrationsTableView.xaml.cs">
+      <DependentUpon>CelebrationsTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
     </Compile>
@@ -572,9 +623,6 @@
     </Compile>
     <Compile Include="View\CollaboratorsTableView.xaml.cs">
       <DependentUpon>CollaboratorsTableView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DemoForm\DemoView.xaml.cs">
-      <DependentUpon>DemoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreateOrganizerView.xaml.cs">
       <DependentUpon>CreateOrganizerView.xaml</DependentUpon>
@@ -621,6 +669,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\CelebrationProposalDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationsDetailsTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\CelebrationsProposalsTableDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\DetailsDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -676,6 +740,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\Custom\Demo\DemoDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\Custom\Notifications\NotificationsDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -694,6 +762,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Option\OptionDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Service\DemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -774,6 +846,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Celebrations\CelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -807,10 +883,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CollaboratorsTableView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DemoForm\DemoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -870,6 +942,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -935,20 +1010,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Validation\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\celebration.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documentation\error.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documentation\index.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\send.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

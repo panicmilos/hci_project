@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Organizator_Proslava.View.CelebrationRequestForm"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+             xmlns:help="clr-namespace:Organizator_Proslava.Help"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -27,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-                <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
+            <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox x:Name="tb1"
                     Height="25"
                     Foreground="{StaticResource Ming}"
@@ -41,7 +42,7 @@
                     Margin="10, 0, 10, 0"
                     Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=ShouldShowOrganizers, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label Content="Organizator" Style="{StaticResource registerPageLabel}" />
             <Grid>
@@ -61,11 +62,11 @@
                         Content="Izaberi"
                         Command="{Binding OpenOrganizersDialog}"
                         Style="{StaticResource mapDialogButton}"
-                        Background="{StaticResource Ming}" 
-                        Margin="0, 2, 0, 0"/>
+                        Background="{StaticResource Ming}"
+                        Margin="0, 2, 0, 0" />
             </Grid>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Adresa" Style="{StaticResource registerPageLabel}" />
             <Grid>
@@ -75,6 +76,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
+                         help:HelpProvider.HelpKey="Address"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Address.WholeAddress, Mode=TwoWay}"
                          Style="{StaticResource disabledValidateTextBox}"
@@ -85,11 +87,11 @@
                         Content="Pronađi"
                         Command="{Binding OpenMap}"
                         Style="{StaticResource mapDialogButton}"
-                        Background="{StaticResource Ming}" 
-                        Margin="0, 2, 0, 0"/>
+                        Background="{StaticResource Ming}"
+                        Margin="0, 2, 0, 0" />
             </Grid>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1" Grid.Row="4">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -104,24 +106,26 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Datum i vreme od" Style="{StaticResource registerPageLabel}" />
-                <syncfusion:DateTimeEdit 
-                    Grid.Column="0" 
+                <syncfusion:DateTimeEdit
+                    help:HelpProvider.HelpKey="DateTimePicker"
+                    Grid.Column="0"
                     Grid.Row="1"
                     CustomPattern="dd.MM.yyyy hh:mm"
-                    Pattern="CustomPattern" 
-                    DropDownView="Combined" 
+                    Pattern="CustomPattern"
+                    DropDownView="Combined"
                     x:Name="DateTimeFrom"
                     DateTime="{Binding Path=DateTimeFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
                     Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
-                <syncfusion:DateTimeEdit 
-                    Grid.Column="2" 
+                <syncfusion:DateTimeEdit
+                    help:HelpProvider.HelpKey="DateTimePicker"
+                    Grid.Column="2"
                     Grid.Row="1"
                     CustomPattern="dd.MM.yyyy hh:mm"
-                    Pattern="CustomPattern" 
-                    DropDownView="Combined" 
+                    Pattern="CustomPattern"
+                    DropDownView="Combined"
                     x:Name="DateTimeTo"
                     DateTime="{Binding Path=DateTimeTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
@@ -133,24 +137,24 @@
             <Label Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1" Grid.Row="6">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.3*" />
-                    
+
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="0.3*" />
-                    
+
                     <ColumnDefinition Width="0.2*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                
+
                 <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}" />

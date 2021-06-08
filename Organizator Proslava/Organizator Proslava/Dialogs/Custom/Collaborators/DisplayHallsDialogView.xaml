@@ -29,7 +29,15 @@
             AutoGenerateColumns="False"
             SelectionMode="Single"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=Halls}">
+            ItemsSource="{Binding Path=Halls}"
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -43,13 +51,13 @@
                 Width="*"
                 Binding="{Binding Path=NumberOfGuests}"
                 CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Detalji" Width="0.5*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Detalji" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                             Command="{Binding Path=DataContext.Details, RelativeSource={RelativeSource AncestorType={x:Type local:DisplayHallsDialogView}}}"
                             CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Eye-Show-View-Watch-See-512.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/preview.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -13,9 +13,8 @@
                     xmlns:cdcollaborators="clr-namespace:Organizator_Proslava.Dialogs.Custom.Collaborators"
                     xmlns:cdnotifications="clr-namespace:Organizator_Proslava.Dialogs.Custom.Notifications"
                     xmlns:dorganizers="clr-namespace:Organizator_Proslava.Dialogs.Custom.Organizers"
-                    xmlns:dfvm="clr-namespace:Organizator_Proslava.ViewModel.DemoForm"
-                    xmlns:dfv="clr-namespace:Organizator_Proslava.View.DemoForm"
                     xmlns:alert="clr-namespace:Organizator_Proslava.Dialogs.Alert"
+                    xmlns:demo="clr-namespace:Organizator_Proslava.Dialogs.Custom.Demo"
                     xmlns:option="clr-namespace:Organizator_Proslava.Dialogs.Option"
                     xmlns:map="clr-namespace:Organizator_Proslava.Dialogs.Map"
                     xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
@@ -23,7 +22,9 @@
                     xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
                     xmlns:uv="clr-namespace:Organizator_Proslava.View.UsersView"
                     xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView"
-                    xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients">
+                    xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients"
+                    xmlns:celebrationsvm="clr-namespace:Organizator_Proslava.ViewModel.Celebrations"
+                    xmlns:celebrationsv="clr-namespace:Organizator_Proslava.View.Celebrations">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -85,6 +86,10 @@
         <alert:AlertDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type demo:DemoDialogViewModel}">
+        <demo:DemoDialogView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type option:OptionDialogViewModel}">
         <option:OptionDialogView />
     </DataTemplate>
@@ -131,10 +136,6 @@
 
     <DataTemplate DataType="{x:Type cdcelebrations:CelebrationLongPreviewDialogViewModel}">
         <cdcelebrations:CelebrationLongPreviewDialogView />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type dfvm:DemoViewModel}">
-        <dfv:DemoView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type crfvm:CelebrationRequestFormViewModel}">
@@ -243,5 +244,25 @@
 
     <DataTemplate DataType="{x:Type cdcollaborators:ChooseCollaboratorViewModel}">
         <cdcollaborators:ChooseCollaboratorView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type celebrationsvm:CelebrationsTableViewModel}">
+        <celebrationsv:CelebrationsTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:MoreAboutCelebrationsDialogViewModel}">
+        <cdcelebrations:MoreAboutCelebrationsDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsDetailsTableDialogViewModel}">
+        <cdcelebrations:CelebrationsDetailsTableDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:DetailsDialogViewModel}">
+        <cdcelebrations:DetailsDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsProposalsTableDialogViewModel}">
+        <cdcelebrations:CelebrationsProposalsTableDialogView />
     </DataTemplate>
 </ResourceDictionary>

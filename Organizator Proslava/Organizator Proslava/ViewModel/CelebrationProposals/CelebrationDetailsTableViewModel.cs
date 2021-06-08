@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Organizator_Proslava.Services.Contracts;
+using System.Collections.Generic;
 
 namespace Organizator_Proslava.ViewModel.CelebrationProposals
 {
@@ -21,7 +22,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             {
                 _celebrationResponse = value;
                 CelebrationDetails =
-                    new ObservableCollection<CelebrationDetail>(CelebrationResponse.Celebration.CelebrationDetails);
+                    new ObservableCollection<CelebrationDetail>(CelebrationResponse?.Celebration?.CelebrationDetails ?? new List<CelebrationDetail>());
             }
         }
 
@@ -49,7 +50,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             _notificationSerivce = notificationService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand<CelebrationDetail>(cd => _dialogService.OpenDialog(new CelebrationDetailDialogViewModel(cd)));
+            Preview = new RelayCommand<CelebrationDetail>(cd => {
+                CelebrationDetailDialogViewModel cddvm = new CelebrationDetailDialogViewModel();
+                cddvm.CelebrationDetail = cd;
+                cddvm.IsBack = false;
+                cddvm.IsClose = true;
+                _dialogService.OpenDialog(cddvm); }
+            );
 
             Add = new RelayCommand(() =>
             {
