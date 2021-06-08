@@ -48,13 +48,13 @@
                     Binding="{Binding Path=Status}"
                     CellStyle="{StaticResource DataGridTextCell}" />
 
-                <DataGridTemplateColumn Header="Komentari" Width="1*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Komentari" Width="70" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Comments, RelativeSource={RelativeSource AncestorType={x:Type local:ProposalsTableForOrganizerView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/freeline/32/eye_preview_see_seen_view-128.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/preview.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

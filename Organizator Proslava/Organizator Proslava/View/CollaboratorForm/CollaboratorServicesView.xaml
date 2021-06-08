@@ -71,24 +71,24 @@
                     Width="*"
                     Binding="{Binding Path=Unit}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Izmeni" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Izmeni" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                 Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType={x:Type local:CollaboratorServicesView}}}"
                                 CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/feather-2/24/edit-3-128.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/edit.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Obriši" Width="*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Obriši" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource AncestorType={x:Type local:CollaboratorServicesView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/reject.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
