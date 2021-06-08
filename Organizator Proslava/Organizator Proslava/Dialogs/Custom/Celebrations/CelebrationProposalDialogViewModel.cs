@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
+﻿using Organizator_Proslava.Dialogs.Alert;
+using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationResponses;
@@ -81,6 +82,12 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
             Add = new RelayCommand<IDialogWindow>(w =>
             {
+                if (ShouldShowHalls && Proposal.CelebrationHall == null)
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Morate izabrati i salu."));
+                    return;
+                }
+
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da date ovaj predlog?")) == DialogResults.Yes)
                 {
                     Proposal.Title = ProposalTitle;
