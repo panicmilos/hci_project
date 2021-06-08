@@ -41,7 +41,7 @@ namespace Organizator_Proslava.Utility
             {
                 _storedObjects[key] = @object;
                 return;
-            } //Check if this is neccessery;
+            }
 
             _storedObjects.Add(key, @object);
         }

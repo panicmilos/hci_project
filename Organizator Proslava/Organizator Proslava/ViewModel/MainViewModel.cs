@@ -30,8 +30,7 @@ namespace Organizator_Proslava.ViewModel
             RegisterViewModel rvm,
             ClientHomeViewModel chvm,
             OrganizerHomeViewModel ohvm,
-            AdminHomeViewModel ahvm,
-            INotificationService ns)
+            AdminHomeViewModel ahvm)
         {
             Lvm = lvm;
             Rvm = rvm;
@@ -48,8 +47,6 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
 
             EventBus.RegisterHandler("BackToClientPage", () => CurrentViewModel = Chvm);
-
-            EventBus.RegisterHandler("Notf", () => new DialogService().OpenDialog(new NotificationsDialogViewModel(ns))); // Delete later
 
             OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(CurrentViewModel.GetType()));
         }

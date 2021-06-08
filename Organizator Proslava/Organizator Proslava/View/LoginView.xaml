@@ -39,7 +39,6 @@
                 <Button Command="{Binding Path=Covm}" Content="AdminHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Path=ClientHome}" Content="ClientHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                 <Button Command="{Binding Path=OrgHome}" Content="OrgHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding Path=Notf}" Content="Notf" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </WrapPanel>
         </Grid>
 

@@ -8,10 +8,29 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <ToolBar DockPanel.Dock="Top">
-            <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
-            <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}" />
-        </ToolBar>
+        <Border DockPanel.Dock="Top" BorderBrush="{StaticResource Ming}" BorderThickness="0, 0, 0, 2">
+            <Grid Background="{StaticResource Cararra}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
+                    <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Notifications}" Margin="1, 1, 20, 1">
+                        <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/notification.png" />
+                    </Button>
+
+                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0">
+                        <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/logout.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -25,7 +44,6 @@
                 <RowDefinition Height="5*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-
 
             <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
             <DataGrid
@@ -83,10 +101,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            </StackPanel>
         </Grid>
     </DockPanel>
 </UserControl>
