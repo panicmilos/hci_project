@@ -242,6 +242,10 @@
         <cdcollaborators:DisplayHallsDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type cdcollaborators:ChooseCollaboratorViewModel}">
+        <cdcollaborators:ChooseCollaboratorView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type celebrationsvm:CelebrationsTableViewModel}">
         <celebrationsv:CelebrationsTableView />
     </DataTemplate>

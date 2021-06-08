@@ -25,28 +25,42 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Oznaka predloga" Style="{StaticResource registerPageLabel}" />
-            <TextBox Text="{Binding Path=Proposal.Title, Mode=TwoWay}" Style="{StaticResource registerFormTextBox}" Background="{StaticResource Cararra}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=ProposalTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" Background="{StaticResource Cararra}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Saradnik" Style="{StaticResource registerPageLabel}" />
-            <controls:AutoCompleteBox
+            <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal" Validation.ErrorTemplate="{StaticResource OurErrorTemplate}">
+                <controls:AutoCompleteBox x:Name="tb2"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
                     FontSize="18"
                     BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource Ming}"
-                    Width="405"
+                    Width="313"
                     ItemsSource="{Binding Path=Collaborators}"
-                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=OneWayToSource}">
-            </controls:AutoCompleteBox>
+                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     />
+                <Button
+                        HorizontalAlignment="Right"
+                        Content="Ili izaberi"
+                        Command="{Binding OpenCollaboratorsDialog}"
+                        Style="{StaticResource mapDialogButton}"
+                        Background="{StaticResource Ming}" 
+                        Margin="-5, 0, 0, 0"/>
+                <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding PreviewCollaborator}">
+                    <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/preview.png" />
+                </Button>
+
+            </StackPanel>
+
         </StackPanel>
 
         <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
-                <controls:AutoCompleteBox
+                <ComboBox
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
@@ -55,11 +69,10 @@
                     BorderBrush="{StaticResource Ming}"
                     Width="333"
                     ItemsSource="{Binding Path=Proposal.Collaborator.CelebrationHalls}"
-                    SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}">
-                </controls:AutoCompleteBox>
+                    SelectedItem="{Binding Path=Proposal.CelebrationHall, Mode=OneWayToSource}" />
 
                 <Button Content="Pregled"
-                        Command="{Binding Preview}"
+                        Command="{Binding PreviewHall}"
                         Style="{StaticResource mapDialogButton}"
                         Background="{StaticResource Ming}"
                         Margin="-5, 0, 0, 0"
@@ -76,8 +89,8 @@
             <Label Grid.Row="0" Content="Opis predloga" Style="{StaticResource registerPageLabel}" />
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
-                    <TextBox Text="{Binding Path=Proposal.Content, Mode=TwoWay}"
-                             Style="{StaticResource registerFormTextBox}"
+                    <TextBox x:Name="tb3" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{StaticResource validateTextBox}"
                              Background="{StaticResource Cararra}"
                              TextWrapping="Wrap" />
                 </Grid>
@@ -85,15 +98,23 @@
         </Grid>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nazad"
+            <Button Content="Odustani"
                     Command="{Binding Path=Back}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
 
-            <Button Content="Dodaj"
+            <Button Content="Sačuvaj"
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                    Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                        <Binding Path="(Validation.HasError)" ElementName="tb1" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb2" />
+                        <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
