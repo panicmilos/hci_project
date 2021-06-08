@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Organizator_Proslava.Dialogs.Custom.Celebrations.MoreAboutCelebrationsDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.2*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Label Content="Vrsta proslave:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="{Binding Path=Celebration.Type}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <Label Content="Klijent:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label Content="{Binding Path=Celebration.Client.FullName}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="3">
+            <Label Content="Organizator:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Label Content="{Binding Path=Celebration.Organizer.FullName}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="4">
+            <Label Content="Adresa:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="4">
+            <Label Content="{Binding Path=Celebration.Address.WholeAddress}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="5">
+            <Label Content="Od:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="5">
+            <Label Content="{Binding Path=Celebration.DateTimeFrom}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="6">
+            <Label Content="Do:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="6">
+            <Label Content="{Binding Path=Celebration.DateTimeTo}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="7">
+            <Label Content="Broj gostiju:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="7">
+            <Label Content="{Binding Path=Celebration.ExpectedNumberOfGuests}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="8">
+            <Label Content="Budžet od:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="8">
+            <Label Content="{Binding Path=Celebration.BudgetFrom}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="9">
+            <Label Content="Budžet do:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="9">
+            <Label Content="{Binding Path=Celebration.BudgetTo}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="10">
+            <Label Content="Fiksan budžet:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="10">
+            <Label Content="{Binding Path=Celebration.IsBudgetFixed, Converter={StaticResource YesNoConverter}}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Nazad" Command="{Binding Path=Back}" 
+                    Style="{StaticResource loginPageButton}"  
+                    Background="{StaticResource PowderBlue}"
+                    HorizontalAlignment="Left"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+            <Button Content="Detalji" Command="{Binding Path=Details}" 
+                    Style="{StaticResource loginPageButton}"  
+                    Background="{StaticResource PowderBlue}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

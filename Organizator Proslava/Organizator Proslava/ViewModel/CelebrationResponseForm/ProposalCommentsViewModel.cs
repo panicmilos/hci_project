@@ -83,5 +83,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                 }
             });
         }
+
+        public void ChangeBack()
+        {
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToProposalsTableForAdmin"));
+        }
     }
 }

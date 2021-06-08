@@ -15,13 +15,16 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Organizers { get; set; }
         public ICommand Clients { get; set; }
         public ICommand Collaborators { get; set; }
-        
+        public ICommand Celebrations { get; set; }
+
+
         public AdminHomeViewModel()
         {
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
             Organizers = new RelayCommand(() => EventBus.FireEvent("OrganizersTableView"));
             Clients = new RelayCommand(() => EventBus.FireEvent("ClientsTableView"));
             Collaborators = new RelayCommand(() => EventBus.FireEvent("CollaboratorsTableView"));
+            Celebrations = new RelayCommand(() => EventBus.FireEvent("CelebrationsTableView"));
         }
     }
 }

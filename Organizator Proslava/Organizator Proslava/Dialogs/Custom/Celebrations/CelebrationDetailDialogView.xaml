@@ -31,11 +31,21 @@
         <shared:DisabledTextAreaPreview Grid.Row="2" Grid.Column="1" Object="{Binding Path=CelebrationDetail}" />
 
         <Grid Grid.Column="1" Grid.Row="4">
+            <Button Content="Nazad"
+                    Command="{Binding Path=Back}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource loginPageButton}"
+                    Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" 
+                    Visibility="{Binding IsBack, Converter={StaticResource BoolToVisibilityConverter}}" />
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="4">
             <Button Content="Zatvori"
                     Command="{Binding Path=Close}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+                    Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" 
+                    Visibility="{Binding IsClose, Converter={StaticResource BoolToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </UserControl>

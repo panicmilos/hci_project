@@ -22,7 +22,9 @@
                     xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
                     xmlns:uv="clr-namespace:Organizator_Proslava.View.UsersView"
                     xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView"
-                    xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients">
+                    xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients"
+                    xmlns:celebrationsvm="clr-namespace:Organizator_Proslava.ViewModel.Celebrations"
+                    xmlns:celebrationsv="clr-namespace:Organizator_Proslava.View.Celebrations">
 
     <DataTemplate DataType="{x:Type vm:LoginViewModel}">
         <v:LoginView />
@@ -238,5 +240,25 @@
 
     <DataTemplate DataType="{x:Type cdcollaborators:DisplayHallsDialogViewModel}">
         <cdcollaborators:DisplayHallsDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type celebrationsvm:CelebrationsTableViewModel}">
+        <celebrationsv:CelebrationsTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:MoreAboutCelebrationsDialogViewModel}">
+        <cdcelebrations:MoreAboutCelebrationsDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsDetailsTableDialogViewModel}">
+        <cdcelebrations:CelebrationsDetailsTableDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:DetailsDialogViewModel}">
+        <cdcelebrations:DetailsDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type cdcelebrations:CelebrationsProposalsTableDialogViewModel}">
+        <cdcelebrations:CelebrationsProposalsTableDialogView />
     </DataTemplate>
 </ResourceDictionary>
