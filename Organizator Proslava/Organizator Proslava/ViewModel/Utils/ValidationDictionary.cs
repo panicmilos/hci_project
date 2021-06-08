@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Organizator_Proslava.ViewModel.Utils
@@ -33,8 +32,9 @@ namespace Organizator_Proslava.ViewModel.Utils
             {"CSUnit", ValidateCSUnit},
 
             {"CHName", ValidateCHName},
-            {"CHNumberOfGuests", ValidateCHNumberOfGuests},
             {"CHSeats", ValidateCHSeats},
+
+            {"NOCelebrationType", ValidateNOCelebrationType},
         };
 
         public static string Validate(string validationName, object firstParam, object secondParam)
@@ -152,7 +152,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateIdentificationNumber(object MBObject, object _)
         {
             var MB = MBObject as string;
-            if (string.IsNullOrWhiteSpace(MB as string))
+            if (string.IsNullOrWhiteSpace(MB))
                 return "Morate zadati matični broj.";
 
             if (MB.Any(c => !Char.IsDigit(c)))
@@ -187,7 +187,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateJMBG(object JMBGObject, object _)
         {
             var JMBG = JMBGObject as string;
-            if (string.IsNullOrWhiteSpace(JMBG as string))
+            if (string.IsNullOrWhiteSpace(JMBG))
                 return "Morate zadati JMBG.";
 
             if (JMBG.Any(c => !Char.IsDigit(c)))
@@ -209,7 +209,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidatePersonalId(object personalIdObject, object _)
         {
             var personalId = personalIdObject as string;
-            if (string.IsNullOrWhiteSpace(personalId as string))
+            if (string.IsNullOrWhiteSpace(personalId))
                 return "Morate zadati broj lične karte.";
 
             if (personalId.Any(c => !Char.IsDigit(c)))
@@ -272,24 +272,28 @@ namespace Organizator_Proslava.ViewModel.Utils
             return null;
         }
 
-        private static string ValidateCHNumberOfGuests(object numberOfGuests, object _)
+        private static string ValidateCHSeats(object seatsObject, object _)
         {
-            if (string.IsNullOrWhiteSpace(numberOfGuests as string))
-                return "Morate zadati broj gostiju.";
+            var seats = seatsObject as string;
+            if (string.IsNullOrWhiteSpace(seats))
+                return "Morate zadati broj stolica.";
 
-            if (!int.TryParse(numberOfGuests as string, out var _))
-                return "Broj gostiju mora biti broj.";
+            if (!int.TryParse(seats, out var seatsNum))
+            {
+                return "Broj stolica mora biti broj.";
+            }
+            else if (seatsNum < 1 || seatsNum > 100)
+            {
+                return "Broj stolica mora biti između 1 i 100.";
+            }
 
             return null;
         }
 
-        private static string ValidateCHSeats(object seats, object _)
+        private static string ValidateNOCelebrationType(object celebrationType, object _)
         {
-            if (string.IsNullOrWhiteSpace(seats as string))
-                return "Morate zadati broj stolica.";
-
-            if (!int.TryParse(seats as string, out var _))
-                return "Broj stolica mora biti broj.";
+            if (string.IsNullOrWhiteSpace(celebrationType as string))
+                return "Morate zadati specijalizaciju.";
 
             return null;
         }

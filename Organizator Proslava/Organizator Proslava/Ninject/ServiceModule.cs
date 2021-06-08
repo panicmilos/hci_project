@@ -17,7 +17,6 @@ namespace Organizator_Proslava.Ninject
             Bind(typeof(IUserService<>)).To(typeof(UserService<>));
             Bind(typeof(IClientService)).To(typeof(ClientService));
             Bind(typeof(ICelebrationTypeService)).To(typeof(CelebrationTypeService));
-            Bind(typeof(IDialogService)).To(typeof(DialogService));
             Bind(typeof(IOrganizerService)).To(typeof(OrganizerService));
             Bind(typeof(ICollaboratorService)).To(typeof(CollaboratorCrudService));
             Bind(typeof(ICelebrationService)).To(typeof(CelebrationService));
@@ -26,6 +25,9 @@ namespace Organizator_Proslava.Ninject
             Bind(typeof(IProposalCommentService)).To(typeof(ProposalCommentService));
             Bind(typeof(INotificationService)).To(typeof(NotificationService));
             Bind(typeof(ICelebrationHallService)).To(typeof(CelebrationHallService));
+
+            Bind(typeof(IDialogService)).To(typeof(DialogService));
+            Bind(typeof(IDemoService)).To(typeof(DemoService));
 
             Bind<DatabaseContext>().To<DatabaseContext>().InSingletonScope();
 

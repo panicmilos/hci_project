@@ -73,6 +73,11 @@ namespace Organizator_Proslava.Data
                     list => JsonSerializer.Serialize(list, default),
                     list => JsonSerializer.Deserialize<List<string>>(list, default)
                 );
+
+            modelBuilder.Entity<Collaborator>()
+                .HasMany(c => c.CelebrationHalls)
+                .WithOne(ch => ch.Collaborator)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

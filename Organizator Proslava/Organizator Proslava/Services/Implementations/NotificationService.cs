@@ -39,5 +39,17 @@ namespace Organizator_Proslava.Services.Implementations
         {
             return _entities.Where(n => n.ForUserId == forUserId).ToList();
         }
+
+        public Notification DeleteCommentNotification(NewCommentNotification newComment)
+        {
+            if (newComment.NumOfComments == 1)
+            {
+                Delete(newComment.Id);
+                return newComment;
+            }
+
+            newComment.NumOfComments -= 1;
+            return base.Update(newComment);
+        }
     }
 }

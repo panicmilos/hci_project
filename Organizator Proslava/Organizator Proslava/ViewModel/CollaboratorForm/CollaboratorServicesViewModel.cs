@@ -1,15 +1,18 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -75,6 +78,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 {
                     Services.Add(service);
                     CollaboratorServiceBook.Services.Add(service);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateService(service, Services, CollaboratorServiceBook));
                 }
             });
 
@@ -84,6 +89,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 var editedService = dialogService.OpenDialog(new CollaboratorServiceDialogViewModel(serviceCopy));
                 if (editedService != null)
                 {
+                    var currentServiceCopy = service.Clone();
+                    var newServiceCopy = editedService.Clone();
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateService(service, currentServiceCopy, newServiceCopy));
+
                     service.Name = editedService.Name;
                     service.Price = editedService.Price;
                     service.Unit = editedService.Unit;
@@ -96,17 +106,19 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 {
                     Services.Remove(service);
                     CollaboratorServiceBook.Services.Remove(service);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteService(service, Services, CollaboratorServiceBook));
                 }
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorInformations", CameFrom));
             Next = new RelayCommand(() =>
             {
-                //if (!CollaboratorServiceBook.Services.Any())
-                //{
-                //    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Saradnik mora imati bar jednu uslugu."));
-                //    return;
-                //}
+                if (!CollaboratorServiceBook.Services.Any())
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Saradnik mora imati bar jednu uslugu."));
+                    return;
+                }
                 EventBus.FireEvent("NextToCollaboratorImages");
             });
         }
@@ -116,6 +128,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             CollaboratorServiceBook = new CollaboratorServiceBook();
             Type = string.Empty;
             Description = string.Empty;
+            _calls = 0;
 
             Services = new ObservableCollection<CollaboratorService>();
         }
@@ -125,6 +138,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             CollaboratorServiceBook = collaborator.CollaboratorServiceBook;
             Type = collaborator.CollaboratorServiceBook.Type;
             Description = collaborator.CollaboratorServiceBook.Description;
+            _calls = 2;
 
             Services = new ObservableCollection<CollaboratorService>(collaborator.CollaboratorServiceBook.Services);
         }

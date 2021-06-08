@@ -7,5 +7,7 @@ namespace Organizator_Proslava.Services.Contracts
     public interface INotificationService : ICrudService<Notification>
     {
         IEnumerable<Notification> ReadFor(Guid forUserId);
+
+        Notification DeleteCommentNotification(NewCommentNotification newComment);
     }
 }

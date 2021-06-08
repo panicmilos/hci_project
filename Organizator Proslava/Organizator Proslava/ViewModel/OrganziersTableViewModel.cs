@@ -5,10 +5,12 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Services.Implementations;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +41,7 @@ namespace Organizator_Proslava.ViewModel
             Organizers = new ObservableCollection<Organizer>(_organizerService.Read());
 
             Add = new RelayCommand(() =>
-            { 
+            {
                 EventBus.FireEvent("SwitchMainViewModel", _covm);
                 _covm.ForAdd();
             });
@@ -57,6 +59,8 @@ namespace Organizator_Proslava.ViewModel
                 {
                     Organizers.Remove(organizer);
                     _organizerService.Delete(organizer.Id);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteOrganizer(organizer));
                 }
             });
 
@@ -67,7 +71,7 @@ namespace Organizator_Proslava.ViewModel
                 _dialogService.OpenDialog(new OrganizerDetailViewModel(organizer));
             });
 
-            EventBus.RegisterHandler("ReloadOrganizerTable", () => Organizers = new ObservableCollection<Organizer>(_organizerService.Read()));
+            EventBus.RegisterHandler("ReloadOrganizerTable", () => { Organizers.Clear(); _organizerService.Read().ToList().ForEach(o => Organizers.Add(o)); });
         }
     }
 }

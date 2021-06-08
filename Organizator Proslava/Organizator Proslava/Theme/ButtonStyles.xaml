@@ -12,10 +12,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
+        <Setter Property="Cursor" Value="Hand"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="#7eb4ea" />
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -23,7 +23,7 @@
     <Style x:Key="loginPageButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="#d3e3d5" />
     </Style>
 
     <Style x:Key="toolbarButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
@@ -38,6 +38,7 @@
     </Style>
 
     <Style TargetType="Button" x:Key="SmallPaintedButton">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
         <Setter Property="Template">
@@ -52,6 +53,7 @@
     </Style>
 
     <Style TargetType="Button" x:Key="PaintedButton">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -96,6 +98,7 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" x:Key="DeleteNotificationButton">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
         <Setter Property="Margin" Value="0, 3, 3, 0"/>
@@ -104,6 +107,8 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" x:Key="BackButton">
+        <Setter Property="Width" Value="35" />
+        <Setter Property="Height" Value="35" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -113,6 +118,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
 </ResourceDictionary>

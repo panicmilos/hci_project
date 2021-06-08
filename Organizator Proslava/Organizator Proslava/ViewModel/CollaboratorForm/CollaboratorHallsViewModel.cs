@@ -4,9 +4,12 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -36,23 +39,28 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Add = new RelayCommand(() =>
             {
-                var hall = _dialogService.OpenDialog(new SpaceModelingViewModel(new SpaceViewModel()));
+                var hall = _dialogService.OpenDialog(new SpaceModelingViewModel());
                 if (hall != null)
                 {
                     Halls.Add(hall);
                     CelebrationHalls.Add(hall);
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new AddCelebrationHall(hall, Halls, CelebrationHalls));
                 }
             });
 
             Edit = new RelayCommand<CelebrationHall>(hall =>
             {
                 var hallCopy = hall.Clone();
-                var editedHall = dialogService.OpenDialog(new SpaceModelingViewModel(new SpaceViewModel(hallCopy)));
+                var editedHall = dialogService.OpenDialog(new SpaceModelingViewModel(hallCopy));
 
                 if (editedHall != null)
                 {
+                    var currentCelebrationHalldCopy = hall.Clone();
+                    var newCelebrationHallCopy = editedHall.Clone();
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateCelebrationHall(hall, currentCelebrationHalldCopy, newCelebrationHallCopy));
+
                     hall.Name = editedHall.Name;
-                    hall.NumberOfGuests = editedHall.NumberOfGuests;
                     hall.PlaceableEntities = editedHall.PlaceableEntities;
                 }
             });
@@ -63,6 +71,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 {
                     Halls.Remove(hall);
                     CelebrationHalls.Remove(hall);
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new RemoveCelebrationHall(hall, Halls, CelebrationHalls));
                 }
             });
 

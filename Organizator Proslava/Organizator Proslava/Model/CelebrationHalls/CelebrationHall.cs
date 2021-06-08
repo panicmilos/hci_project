@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Organizator_Proslava.Model.Collaborators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,18 +10,21 @@ namespace Organizator_Proslava.Model.CelebrationHalls
         private string _name;
         public string Name { get => _name; set => OnPropertyChanged(ref _name, value); }
 
-        private int _numberOfGuests;
-        public int NumberOfGuests { get => _numberOfGuests; set => OnPropertyChanged(ref _numberOfGuests, value); }
+        public int NumberOfGuests { get => PlaceableEntities.Sum(pe => (pe as DinningTable)?.Seats ?? 0); }
 
         private List<PlaceableEntity> _placeableEntities;
 
         public virtual List<PlaceableEntity> PlaceableEntities
         {
             get { return _placeableEntities; }
-            set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); }
+            set { _placeableEntities = value; OnPropertyChanged("PlaceableEntities"); OnPropertyChanged("NumberOfGuests"); }
         }
 
-        public Guid? CollaboratorId { get; set; }
+        private Guid? _collaboratorId;
+        public Guid? CollaboratorId { get => _collaboratorId; set => OnPropertyChanged(ref _collaboratorId, value); }
+
+        private Collaborator _collaborator;
+        public virtual Collaborator Collaborator { get => _collaborator; set => OnPropertyChanged(ref _collaborator, value); }
 
         public CelebrationHall()
         {
@@ -41,7 +45,6 @@ namespace Organizator_Proslava.Model.CelebrationHalls
                 CreatedAt = CreatedAt,
                 CollaboratorId = CollaboratorId,
                 Name = Name,
-                NumberOfGuests = NumberOfGuests,
                 PlaceableEntities = new List<PlaceableEntity>(PlaceableEntities.Select(pe => pe.Clone()))
             };
         }

@@ -64,8 +64,11 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             OpenMap = new RelayCommand(() =>
             {
                 var address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi svoju adresu"));
-                Collaborator.Address = address;
-                WholeAddress = address.WholeAddress;
+                if (address != null)
+                {
+                    Address = address;
+                    WholeAddress = address?.WholeAddress;
+                }
             });
 
             Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorServicesFromIndividual"));
@@ -79,6 +82,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 GetType().GetProperty(property.Name)?.SetValue(this, property.GetValue(Collaborator));
             }
             WholeAddress = string.Empty;
+            RepeatedPassword = string.Empty;
             _calls = 0;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToSelectCollaboratorType"));
@@ -92,7 +96,8 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 GetType().GetProperty(property.Name)?.SetValue(this, property.GetValue(collaborator));
             }
             WholeAddress = Collaborator.Address?.WholeAddress;
-            _calls = 0;
+            RepeatedPassword = collaborator.Password;
+            _calls = 10;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
         }

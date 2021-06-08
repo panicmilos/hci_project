@@ -1,11 +1,10 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Dialogs.Custom.Collaborators;
+﻿using Organizator_Proslava.Dialogs.Custom.Collaborators;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -17,6 +16,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }
+        public string NewComment { get; set; }
 
         public ICommand Preview { get; set; }
 
@@ -43,7 +43,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             {
                 var celebrationHallCopy = CelebrationProposal.CelebrationHall.Clone();
 
-                var editedCelebrationHall = _dialogService.OpenDialog(new SpacePreviewDialogViewModel(new SpacePreviewViewModel(celebrationHallCopy, _isForClient ? SpacePreviewMode.Edit : SpacePreviewMode.View), _dialogService));
+                var editedCelebrationHall = _dialogService.OpenDialog(new SpacePreviewDialogViewModel(celebrationHallCopy, _dialogService, _isForClient ? SpacePreviewMode.Edit : SpacePreviewMode.View));
                 if (editedCelebrationHall != null)
                 {
                     CelebrationProposal.CelebrationHall.PlaceableEntities = editedCelebrationHall.PlaceableEntities;
@@ -55,9 +55,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
             Comment = new RelayCommand(() =>
             {
-                var commentText = _dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
-                if (commentText != null)
+                var commentText = NewComment; //_dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
+                if (!string.IsNullOrWhiteSpace(commentText))
                 {
+                    NewComment = null;
                     var loggedUserId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
                     var comment = new ProposalComment()
                     {
@@ -65,10 +66,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                         CelebrationProposalId = CelebrationProposal.Id,
                         Content = commentText
                     };
-                    _proposalCommentService.Create(comment);
+                    var createdComment = _proposalCommentService.Create(comment);
 
                     var forUserId = loggedUserId == CelebrationProposal.CelebrationResponse.Celebration.Client.Id ? CelebrationProposal.CelebrationResponse.Celebration.Organizer.Id : CelebrationProposal.CelebrationResponse.Celebration.Client.Id;
-                    _notificationService.Create(new NewCommentNotification
+                    var createdNotification = _notificationService.Create(new NewCommentNotification
                     {
                         ForUserId = forUserId,
                         ProposalId = CelebrationProposal.Id,
@@ -77,6 +78,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                     });
 
                     ProposalComments.Add(comment);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateComment(createdComment, createdNotification));
                 }
             });
         }

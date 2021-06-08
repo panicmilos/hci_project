@@ -22,7 +22,7 @@
             <RowDefinition Height="0.7*" />
         </Grid.RowDefinitions>
 
-        <v:Background Grid.ColumnSpan="3" Grid.RowSpan="5" />
+        <v:Background Grid.ColumnSpan="3" Grid.RowSpan="5" Opacity="0.45" />
 
         <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Korisnici sistema:</Label>
 
@@ -35,7 +35,16 @@
             SelectionMode="Single"
             SelectionUnit="FullRow"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=Clients}">
+            ItemsSource="{Binding Path=Clients}"
+            Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Korisnik"
@@ -53,24 +62,24 @@
                     Width="*"
                     Binding="{Binding Path=MailAddress}"
                     CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Detalji" Width="0.5*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Detalji" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                 Command="{Binding Path=DataContext.Details, RelativeSource={RelativeSource AncestorType={x:Type local:UserTableView}}}"
                                 CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Eye-Show-View-Watch-See-512.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/preview.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Obriši" Width="0.5*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Obriši" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
                                     Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource AncestorType={x:Type local:UserTableView}}}"
                                     CommandParameter="{Binding}">
-                                <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/faticons/32/remove-01-128.png" />
+                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/reject.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

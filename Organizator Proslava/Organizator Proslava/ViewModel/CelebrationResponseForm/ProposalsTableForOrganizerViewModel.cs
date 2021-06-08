@@ -4,6 +4,7 @@ using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
@@ -33,7 +34,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             Comments = new RelayCommand<CelebrationProposal>(cp =>
             {
                 _pcvm.CelebrationProposal = cp;
-                _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cp.ProposalComments);
+                if (_pcvm.ProposalComments == null)
+                {
+                    _pcvm.ProposalComments = new ObservableCollection<ProposalComment>();
+                }
+                _pcvm.ProposalComments.Clear();
+                cp.ProposalComments.ToList().ForEach(pc => _pcvm.ProposalComments.Add(pc));
                 EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _pcvm);
             });
 

@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Utility;
+﻿using Organizator_Proslava.UserCommands;
+using Organizator_Proslava.Utility;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CollaboratorForm
@@ -11,7 +12,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
         public SelectCollaboratorTypeViewModal()
         {
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToCollaboratorsTable"));
+            Back = new RelayCommand(() => { EventBus.FireEvent("BackToCollaboratorsTable"); GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear(); });
 
             IndividualSelected = new RelayCommand(() => EventBus.FireEvent("IndividualSelected"));
 

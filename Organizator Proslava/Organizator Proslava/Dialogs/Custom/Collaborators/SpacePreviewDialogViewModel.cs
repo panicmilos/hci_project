@@ -2,35 +2,43 @@
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 {
+    public enum SpacePreviewMode
+    {
+        View,
+        Edit
+    }
+
     public class SpacePreviewDialogViewModel : DialogViewModelBase<CelebrationHall>
     {
-        private SpacePreviewViewModel _viewModel;
-        public SpacePreviewViewModel ViewModel { get => _viewModel; set => OnPropertyChanged(ref _viewModel, value); }
+        public CelebrationHall Hall { get; set; }
+        public SpacePreviewMode Mode { get; set; }
 
-        public bool ShouldShowSave { get => ViewModel.Mode == SpacePreviewMode.Edit; }
+        public bool ShouldShowSave { get => Mode == SpacePreviewMode.Edit; }
 
         public ICommand Save { get; set; }
         public ICommand Back { get; set; }
 
         private readonly IDialogService _dialogService;
 
-        public SpacePreviewDialogViewModel(SpacePreviewViewModel spvm, IDialogService dialogService) :
+        public SpacePreviewDialogViewModel(CelebrationHall celebrationHall, IDialogService dialogService, SpacePreviewMode mode = SpacePreviewMode.View) :
             base("Pregled prostora", 650, 550)
         {
-            ViewModel = spvm;
-
             _dialogService = dialogService;
+            Hall = celebrationHall;
+            Mode = mode;
+
+            GlobalStore.AddObject("placeableEntities", Hall.PlaceableEntities);
+            GlobalStore.AddObject("spacePreviewMode", mode);
 
             Save = new RelayCommand<IDialogWindow>(w =>
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored sale?")) == DialogResults.Yes)
                 {
-                    CloseDialogWithResult(w, ViewModel.Hall);
+                    CloseDialogWithResult(w, Hall);
                 }
             });
 

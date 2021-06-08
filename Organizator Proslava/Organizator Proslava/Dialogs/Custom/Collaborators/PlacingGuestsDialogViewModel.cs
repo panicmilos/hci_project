@@ -1,8 +1,8 @@
-﻿using Organizator_Proslava.Dialogs.Option;
+﻿using Organizator_Proslava.Dialogs.Alert;
+using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -40,6 +40,12 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             Save = new RelayCommand<IDialogWindow>(w =>
             {
+                if (DinningTable.Guests.Any(g => g.Name.ToLower() == "ime gosta"))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Morate zadati imena svih gostiju."));
+                    return;
+                }
+
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored gostiju?")) == DialogResults.Yes)
                 {
                     CloseDialogWithResult(w, DinningTable);

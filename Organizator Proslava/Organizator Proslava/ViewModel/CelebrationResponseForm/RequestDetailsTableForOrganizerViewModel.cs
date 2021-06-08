@@ -3,8 +3,10 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
@@ -48,7 +50,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             Proposals = new RelayCommand<CelebrationDetail>(cd =>
             {
                 _currentCelebrationDetail = cd;
-                _ptfovm.CelebrationProposals = new ObservableCollection<CelebrationProposal>(CelebrationResponse.CelebrationProposalsDict[cd]);
+                if (_ptfovm.CelebrationProposals == null)
+                {
+                    _ptfovm.CelebrationProposals = new ObservableCollection<CelebrationProposal>();
+                }
+
+                _ptfovm.CelebrationProposals.Clear();
+                CelebrationResponse.CelebrationProposalsDict[cd].ToList().ForEach(cp => _ptfovm.CelebrationProposals.Add(cp));
                 EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _ptfovm);
             });
 
@@ -63,14 +71,16 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                 var proposal = proposalObject as CelebrationProposal;
                 proposal.CelebrationDetail = _currentCelebrationDetail;
                 proposal.CelebrationResponse = CelebrationResponse;
-                _celebrationProposalService.Create(proposal);
+                var createdProposal = _celebrationProposalService.Create(proposal);
 
-                _notificationService.Create(new NewProposalNotification
+                var createdNotification = _notificationService.Create(new NewProposalNotification
                 {
                     ForUserId = CelebrationResponse.Celebration.Client.Id,
                     ProposalId = proposal.Id,
                     CelebrationResponseId = CelebrationResponse.Id,
                 });
+
+                GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateProposal(createdProposal, createdNotification));
             });
         }
     }
