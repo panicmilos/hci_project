@@ -4,9 +4,11 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.Collaborators;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CollaboratorForm;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
@@ -54,12 +56,13 @@ namespace Organizator_Proslava.ViewModel
                 {
                     Collaborators.Remove(collaborator);
                     _collaboratorService.Delete(collaborator.Id);
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteCollaborator(collaborator));
                 }
             });
 
             Details = new RelayCommand<Collaborator>(collaborator =>
             {
-                if(collaborator is IndividualCollaborator)
+                if (collaborator is IndividualCollaborator)
                 {
                     _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(collaborator as IndividualCollaborator));
                 }
@@ -71,7 +74,7 @@ namespace Organizator_Proslava.ViewModel
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
 
-            EventBus.RegisterHandler("ReloadCollaboratorTable", () => Collaborators = new ObservableCollection<Collaborator>(_collaboratorService.Read()));
+            EventBus.RegisterHandler("ReloadCollaboratorTable", () => { Collaborators.Clear(); _collaboratorService.Read().ToList().ForEach(c => Collaborators.Add(c)); });
         }
     }
 }

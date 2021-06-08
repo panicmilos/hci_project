@@ -1,8 +1,10 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationHalls;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -59,6 +61,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             AddBindings(tableFor6, image);
             _imageWithPlaceableEntities.Add(image, tableFor6);
             SpaceModelingViewModel.Add.Execute(tableFor6);
+            InsertAddTableUserCommand(tableFor6, image);
         }
 
         private void People18_Click(object sender, RoutedEventArgs e)
@@ -82,6 +85,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             AddBindings(tableFor18, image);
             _imageWithPlaceableEntities.Add(image, tableFor18);
             SpaceModelingViewModel.Add.Execute(tableFor18);
+            InsertAddTableUserCommand(tableFor18, image);
         }
 
         private void Music_Click(object sender, RoutedEventArgs e)
@@ -105,6 +109,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             AddBindings(music, image);
             _imageWithPlaceableEntities.Add(image, music);
             SpaceModelingViewModel.Add.Execute(music);
+            InsertAddTableUserCommand(music, image);
         }
 
         private void Empty_Click(object sender, RoutedEventArgs e)
@@ -128,6 +133,29 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             AddBindings(servingTable, image);
             _imageWithPlaceableEntities.Add(image, servingTable);
             SpaceModelingViewModel.Add.Execute(servingTable);
+            InsertAddTableUserCommand(servingTable, image);
+        }
+
+        private void InsertAddTableUserCommand(PlaceableEntity placeableEntity, Image image)
+        {
+            var addTableCommand = new AddTable(
+                () =>
+                {
+                    var index = _images.IndexOf(image);
+                    _images.RemoveAt(index);
+                    SpaceModelingViewModel.Remove.Execute(index);
+                    _imageWithPlaceableEntities.Remove(image);
+                    MainCanvas.Children.Remove(image);
+                },
+                () =>
+                {
+                    _images.Add(image);
+                    SpaceModelingViewModel.Add.Execute(placeableEntity);
+                    _imageWithPlaceableEntities.Add(image, placeableEntity);
+                    MainCanvas.Children.Add(image);
+                });
+
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(addTableCommand);
         }
 
         private void AddBindings(PlaceableEntity placeableEntity, Image image)
@@ -210,6 +238,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             deleteMenuItem.Click += (object deleteSender, RoutedEventArgs deleteE) =>
             {
+                InsertRemoveTableUserCommand(_imageWithPlaceableEntities[image], image);
                 var index = _images.IndexOf(image);
                 _images.RemoveAt(index);
                 SpaceModelingViewModel.Remove.Execute(index);
@@ -222,17 +251,46 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             image.ContextMenu = contextMenu;
         }
 
+        private void InsertRemoveTableUserCommand(PlaceableEntity placeableEntity, Image image)
+        {
+            var removeTableCommand = new RemoveTable(
+                () =>
+                {
+                    var index = _images.IndexOf(image);
+                    _images.RemoveAt(index);
+                    SpaceModelingViewModel.Remove.Execute(index);
+                    _imageWithPlaceableEntities.Remove(image);
+                    MainCanvas.Children.Remove(image);
+                },
+                () =>
+                {
+                    _images.Add(image);
+                    SpaceModelingViewModel.Add.Execute(placeableEntity);
+                    _imageWithPlaceableEntities.Add(image, placeableEntity);
+                    MainCanvas.Children.Add(image);
+                });
+
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(removeTableCommand);
+        }
+
         #region DragAndDrop
 
         private UIElement dragObject = null;
+        private UIElement copyDragObject = null;
+        private Point startPoint;
+        private Point endPoint;
         private Point offset;
 
         private void Image_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             dragObject = sender as UIElement;
+            copyDragObject = sender as UIElement;
+
             offset = e.GetPosition(MainCanvas);
             offset.Y -= Canvas.GetTop(dragObject);
             offset.X -= Canvas.GetLeft(dragObject);
+
+            startPoint = new Point(Canvas.GetLeft(dragObject), Canvas.GetTop(dragObject));
         }
 
         private void MainCanvas_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -278,6 +336,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             Canvas.SetTop(dragObject, newTop);
             Canvas.SetLeft(dragObject, newLeft);
+
+            endPoint = new Point { X = newLeft, Y = newTop };
 
             if (shouldNullDragObject)
             {
@@ -325,6 +385,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private void MainCanvas_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new MoveImage(copyDragObject, new Point(startPoint.X, startPoint.Y), new Point(endPoint.X, endPoint.Y)));
+            copyDragObject = null;
             dragObject = null;
         }
 

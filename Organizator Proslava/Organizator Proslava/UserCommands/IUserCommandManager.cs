@@ -9,5 +9,7 @@ namespace Organizator_Proslava.UserCommands
         void ExecuteUndo();
 
         void ExecuteRedo();
+
+        void Clear();
     }
 }

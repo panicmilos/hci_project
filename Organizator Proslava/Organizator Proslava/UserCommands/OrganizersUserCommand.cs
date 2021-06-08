@@ -6,7 +6,7 @@ using Organizator_Proslava.Utility;
 
 namespace Organizator_Proslava.UserCommands
 {
-    public class CreateOrganizerUserCommand : IUserCommand
+    public class CreateOrganizer : IUserCommand
     {
         private readonly Organizer _organizer;
         private readonly Address _address;
@@ -14,7 +14,7 @@ namespace Organizator_Proslava.UserCommands
 
         private readonly IOrganizerService _organizerService;
 
-        public CreateOrganizerUserCommand(Organizer organizer)
+        public CreateOrganizer(Organizer organizer)
         {
             _organizer = organizer;
             _address = organizer.Address;
@@ -40,34 +40,14 @@ namespace Organizator_Proslava.UserCommands
         }
     }
 
-    public class DeleteOrganizerUserCommand : IUserCommand
-    {
-        private readonly IUserCommand _createCommand;
-
-        public DeleteOrganizerUserCommand(Organizer organizer)
-        {
-            _createCommand = new CreateOrganizerUserCommand(organizer);
-        }
-
-        public void Redo()
-        {
-            _createCommand.Undo();
-        }
-
-        public void Undo()
-        {
-            _createCommand.Redo();
-        }
-    }
-
-    public class UpdateOrganizerUserCommand : IUserCommand
+    public class UpdateOrganizer : IUserCommand
     {
         private readonly Organizer _currentOrganizer;
         private readonly Organizer _newOrganizer;
 
         private readonly IOrganizerService _organizerService;
 
-        public UpdateOrganizerUserCommand(Organizer currentOrganizer, Organizer newOrganizer)
+        public UpdateOrganizer(Organizer currentOrganizer, Organizer newOrganizer)
         {
             _currentOrganizer = currentOrganizer;
             _newOrganizer = newOrganizer;
@@ -85,6 +65,26 @@ namespace Organizator_Proslava.UserCommands
         {
             _organizerService.Update(_currentOrganizer);
             EventBus.FireEvent("ReloadOrganizerTable");
+        }
+    }
+
+    public class DeleteOrganizer : IUserCommand
+    {
+        private readonly IUserCommand _createCommand;
+
+        public DeleteOrganizer(Organizer organizer)
+        {
+            _createCommand = new CreateOrganizer(organizer);
+        }
+
+        public void Redo()
+        {
+            _createCommand.Undo();
+        }
+
+        public void Undo()
+        {
+            _createCommand.Redo();
         }
     }
 }

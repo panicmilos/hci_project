@@ -11,6 +11,7 @@ using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.ViewModel.CelebrationProposals;
+using Organizator_Proslava.UserCommands;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -23,7 +24,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Add { get; set; }
         public ICommand Profile { get; set; }
         public ICommand Logout { get; set; }
-    
+
         public ObservableCollection<Celebration> Celebrations { get; set; }
 
         private readonly CelebrationRequestFormViewModel _crfvm;
@@ -44,14 +45,14 @@ namespace Organizator_Proslava.ViewModel
             _cpvm = cpvm;
             _rvm = rvm;
             _celebrationService = celebrationService;
-            
+
             LoadCelebrations();
 
             Details = new RelayCommand<Celebration>(celebration =>
             {
                 dialogService.OpenDialog(new CelebrationLongPreviewDialogViewModel(celebration));
             });
-            
+
             Cancel = new RelayCommand<Celebration>(celebration =>
             {
                 if (dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
@@ -59,7 +60,7 @@ namespace Organizator_Proslava.ViewModel
                 Celebrations.Remove(Celebrations.FirstOrDefault(c => c.Id == celebration.Id));
                 _celebrationService.Delete(celebration.Id);
             });
-            
+
             Edit = new RelayCommand<Celebration>(celebration =>
             {
                 if (celebration.OrganizerId != null)
@@ -88,6 +89,7 @@ namespace Organizator_Proslava.ViewModel
 
             Logout = new RelayCommand(() =>
             {
+                GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear();
                 GlobalStore.RemoveObject("loggedUser");
                 EventBus.FireEvent("BackToLogin");
             });

@@ -126,7 +126,7 @@ namespace Organizator_Proslava.ViewModel
 
                     var currentOrganizerCopy = _organizerService.Read(organizer.Id).Clone();
                     var newOrganizerCopy = organizer.Clone();
-                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateOrganizerUserCommand(currentOrganizerCopy, newOrganizerCopy));
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new UpdateOrganizer(currentOrganizerCopy, newOrganizerCopy));
 
                     _organizerService.Update(organizer);
                     EventBus.FireEvent("OrganizersTableView");
@@ -168,7 +168,7 @@ namespace Organizator_Proslava.ViewModel
                     EventBus.FireEvent("ReloadOrganizerTable");
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Uspešno ste napravili nalog."));
 
-                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateOrganizerUserCommand(o));
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateOrganizer(o));
                 }
             });
         }

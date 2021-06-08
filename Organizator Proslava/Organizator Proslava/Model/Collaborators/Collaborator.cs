@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Model.CelebrationHalls;
+using System;
 using System.Collections.Generic;
 
 namespace Organizator_Proslava.Model.Collaborators
@@ -7,6 +8,9 @@ namespace Organizator_Proslava.Model.Collaborators
     {
         private string _phoneNumber;
         public string PhoneNumber { get => _phoneNumber; set => OnPropertyChanged(ref _phoneNumber, value); }
+
+        private Guid _addressId;
+        public virtual Guid AddressId { get => _addressId; set => OnPropertyChanged(ref _addressId, value); }
 
         private Address _address;
         public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
@@ -25,6 +29,12 @@ namespace Organizator_Proslava.Model.Collaborators
         public override string ToString()
         {
             return FullName;
+        }
+
+        public Collaborator()
+        {
+            CollaboratorServiceBook = new CollaboratorServiceBook();
+            CelebrationHalls = new List<CelebrationHall>();
         }
     }
 }

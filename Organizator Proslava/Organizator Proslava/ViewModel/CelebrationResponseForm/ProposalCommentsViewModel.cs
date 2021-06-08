@@ -3,6 +3,7 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -65,10 +66,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                         CelebrationProposalId = CelebrationProposal.Id,
                         Content = commentText
                     };
-                    _proposalCommentService.Create(comment);
+                    var createdComment = _proposalCommentService.Create(comment);
 
                     var forUserId = loggedUserId == CelebrationProposal.CelebrationResponse.Celebration.Client.Id ? CelebrationProposal.CelebrationResponse.Celebration.Organizer.Id : CelebrationProposal.CelebrationResponse.Celebration.Client.Id;
-                    _notificationService.Create(new NewCommentNotification
+                    var createdNotification = _notificationService.Create(new NewCommentNotification
                     {
                         ForUserId = forUserId,
                         ProposalId = CelebrationProposal.Id,
@@ -77,6 +78,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                     });
 
                     ProposalComments.Add(comment);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new CreateComment(createdComment, createdNotification));
                 }
             });
         }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210608102226_something")]
+    partial class something
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -671,10 +673,9 @@ namespace Organizator_Proslava.Migrations
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.CelebrationHall", b =>
                 {
-                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", "Collaborator")
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.Collaborator", null)
                         .WithMany("CelebrationHalls")
-                        .HasForeignKey("CollaboratorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CollaboratorId");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationHalls.Guest", b =>

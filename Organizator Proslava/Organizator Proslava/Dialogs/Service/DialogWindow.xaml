@@ -12,6 +12,9 @@
         WindowStartupLocation="CenterOwner">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed" />
+
+        <CommandBinding Command="ApplicationCommands.Undo" Executed="CommandBinding_Executed_Undo" />
+        <CommandBinding Command="ApplicationCommands.Redo" Executed="CommandBinding_Executed_Redo" />
     </Window.CommandBindings>
 
     <Grid>

@@ -215,6 +215,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
@@ -411,6 +412,18 @@
     <Compile Include="Migrations\20210604135723_nullable CollaboratorId.designer.cs">
       <DependentUpon>20210604135723_nullable CollaboratorId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210608102226_something.cs" />
+    <Compile Include="Migrations\20210608102226_something.designer.cs">
+      <DependentUpon>20210608102226_something.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608103335_test cascade.cs" />
+    <Compile Include="Migrations\20210608103335_test cascade.designer.cs">
+      <DependentUpon>20210608103335_test cascade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608103552_something2.cs" />
+    <Compile Include="Migrations\20210608103552_something2.designer.cs">
+      <DependentUpon>20210608103552_something2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -470,6 +483,9 @@
     <Compile Include="Services\Implementations\ProposalCommentService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="UserCommands\CelebrationHallUserCommands.cs" />
+    <Compile Include="UserCommands\CelebrationProposalUserCommands.cs" />
+    <Compile Include="UserCommands\CollaboratorServiceUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
     <Compile Include="UserCommands\ImageUserCommands.cs" />
     <Compile Include="UserCommands\OrganizersUserCommand.cs" />

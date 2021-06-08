@@ -60,7 +60,7 @@ namespace Organizator_Proslava.ViewModel
                     Organizers.Remove(organizer);
                     _organizerService.Delete(organizer.Id);
 
-                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteOrganizerUserCommand(organizer));
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteOrganizer(organizer));
                 }
             });
 
