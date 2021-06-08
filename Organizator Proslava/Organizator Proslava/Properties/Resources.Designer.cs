@@ -239,5 +239,15 @@ namespace Organizator_Proslava.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] somekidheadshot {
+            get {
+                object obj = ResourceManager.GetObject("somekidheadshot", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

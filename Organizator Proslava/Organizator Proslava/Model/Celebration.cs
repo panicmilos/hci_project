@@ -8,7 +8,7 @@ namespace Organizator_Proslava.Model
     {
         private string _type;
         public string Type { get => _type; set => OnPropertyChanged(ref _type, value); }
-        
+
         private Guid? _clientId;
         public Guid? ClientId { get => _clientId; set => OnPropertyChanged(ref _clientId, value); }
 

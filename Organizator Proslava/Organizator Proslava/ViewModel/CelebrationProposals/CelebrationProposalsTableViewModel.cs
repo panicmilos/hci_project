@@ -1,13 +1,14 @@
-﻿using Organizator_Proslava.Model.CelebrationResponses;
-using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Organizator_Proslava.Dialogs;
+﻿using Organizator_Proslava.Dialogs;
 using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel.CelebrationResponseForm;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationProposals
 {
@@ -42,7 +43,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 _pcvm.ProposalComments = new ObservableCollection<ProposalComment>(cp.ProposalComments);
                 EventBus.FireEvent("SwitchCelebrationProposalsViewModel", _pcvm);
             });
-            
+
             Accept = new RelayCommand<CelebrationProposal>(cp =>
             {
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
@@ -53,14 +54,14 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 }
 
                 if (dialogService.OpenDialog(new OptionDialogViewModel("Prihvatanje predloga",
-                    "Da li ste sigurni da želite da prihvatite predlog?")) != DialogResults.Yes) 
+                    "Da li ste sigurni da želite da prihvatite predlog?")) != DialogResults.Yes)
                     return;
-                
+
                 cp.Status = CelebrationProposalStatus.Prihvacen;
                 celebrationProposalService.Update(cp);
                 RefreshTable();
             });
-            
+
             Reject = new RelayCommand<CelebrationProposal>(cp =>
             {
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
@@ -69,11 +70,11 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                         "Predlog koji pokušavate da odbijete je već obrađen."));
                     return;
                 }
-                
+
                 if (dialogService.OpenDialog(new OptionDialogViewModel("Odbijanje predloga",
-                    "Da li ste sigurni da želite da odbijete predlog?")) != DialogResults.Yes) 
+                    "Da li ste sigurni da želite da odbijete predlog?")) != DialogResults.Yes)
                     return;
-                
+
                 cp.Status = CelebrationProposalStatus.Odbijen;
                 celebrationProposalService.Update(cp);
                 RefreshTable();
@@ -86,7 +87,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
 
         public void RefreshTable()
         {
-            CelebrationProposals = new ObservableCollection<CelebrationProposal>(_celebrationProposalService.Read());
+            if (CelebrationProposals == null)
+            {
+                CelebrationProposals = new ObservableCollection<CelebrationProposal>();
+            }
+            CelebrationProposals.Clear();
+
+            _celebrationProposalService.Read().ToList().ForEach(cp => CelebrationProposals.Add(cp));
         }
     }
 }

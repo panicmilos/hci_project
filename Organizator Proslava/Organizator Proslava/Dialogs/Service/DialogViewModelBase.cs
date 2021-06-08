@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Utility;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Service
 {
@@ -15,6 +16,8 @@ namespace Organizator_Proslava.Dialogs.Service
         public double ContentHeight { get => WindowHeight - 60; }
 
         public T DialogResult { get; set; }
+
+        public ICommand OpenDemo { get; set; }
 
         public DialogViewModelBase() :
             this(string.Empty, string.Empty, 360, 160)
@@ -42,6 +45,7 @@ namespace Organizator_Proslava.Dialogs.Service
             Message = message;
             WindowWidth = windowWidht;
             WindowHeight = windowHeight;
+            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(GetType()));
         }
 
         public void CloseDialogWithResult(IDialogWindow dialog, T result)

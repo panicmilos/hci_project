@@ -17,6 +17,10 @@
         <CommandBinding Command="ApplicationCommands.Redo" Executed="CommandBinding_Executed_Redo" />
     </Window.CommandBindings>
 
+    <Window.InputBindings>
+        <KeyBinding Key="F2" Command="{Binding Path=OpenDemo}" />
+    </Window.InputBindings>
+
     <Grid>
         <v:Background Opacity="0.3" />
         <ContentControl Width="{Binding ContentWidth, Mode=OneWay}"
