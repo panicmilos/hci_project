@@ -56,6 +56,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         public CelebrationRequestInfoViewModel(
             ICelebrationTypeService celebrationTypeService,
+            ICelebrationService celebrationService,
             IOrganizerService organizerService,
             IDialogService dialogService)
         {
@@ -67,7 +68,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             OpenOrganizersDialog = new RelayCommand(() =>
             {
-                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(organizerService));
+                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(organizerService, celebrationService));
             });
             OpenMap = new RelayCommand(() =>
             {
