@@ -33,7 +33,7 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
                     Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Zahtevi"
+            <Button Content="Pregled Zahteva"
                     Visibility="{Binding Path=Celebration.CelebrationDetails, Converter={StaticResource EmptyListToVisibilityConverter}}"
                     Command="{Binding Path=Next}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"

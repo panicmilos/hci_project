@@ -14,6 +14,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         private readonly IDialogService _dialogService;
 
+        // Ovaj fajl se moze obrisati jer se vise ne koristi - molim da neko potvrdi i obrise
         public WriteCommentDialogViewModel(IDialogService dialogService) :
             base("Dodavanje komentara", 560, 460)
         {

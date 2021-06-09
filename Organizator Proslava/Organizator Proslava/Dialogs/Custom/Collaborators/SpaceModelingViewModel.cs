@@ -47,7 +47,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         }
 
         public SpaceModelingViewModel(CelebrationHall celebrationHall) :
-            base("Modelovanje prostora", 800, 550)
+            base("Organizacija prostora", 800, 550)
         {
             // Modeling
             Hall = celebrationHall;
@@ -64,7 +64,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 if (!Hall.PlaceableEntities.Any())
                 {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Morate postaviti bar jedan sto."));
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Molimo Vas da postavite bar jedan sto."));
                     return;
                 }
                 CloseDialogWithResult(w, Hall);

@@ -39,7 +39,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public string Error => throw new System.NotImplementedException();
 
         public CollaboratorServiceDialogViewModel(CollaboratorService service) :
-            base("Dodavanje usloge", 560, 360)
+            base("Dodavanje usluge", 560, 360)
         {
             Service = service;
             Name = service.Name;

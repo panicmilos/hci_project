@@ -16,7 +16,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         public ObservableCollection<Organizer> Organizers { get; set; }
 
-        public ChooseOrganizerViewModel(IOrganizerService organizerService) : base("Izaberi organizatora", 560, 360)
+        public ChooseOrganizerViewModel(IOrganizerService organizerService) : base("Odabir organizatora", 560, 360)
         {
             Organizers = new ObservableCollection<Organizer>(organizerService.Read());
             

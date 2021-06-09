@@ -16,7 +16,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         public ObservableCollection<Collaborator> Collaborators { get; set; }
 
-        public ChooseCollaboratorViewModel(IEnumerable<Collaborator> collaborators) : base("Izaberi saradnika", 560, 360)
+        public ChooseCollaboratorViewModel(IEnumerable<Collaborator> collaborators) : base("Odabir saradnika", 560, 360)
         {
             Collaborators = new ObservableCollection<Collaborator>(collaborators);
 

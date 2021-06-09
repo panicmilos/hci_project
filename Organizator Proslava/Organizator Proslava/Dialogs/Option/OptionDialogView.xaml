@@ -18,13 +18,13 @@
                    TextWrapping="Wrap" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
-            <Button Content="Yes"
+            <Button Content="Da"
                     Command="{Binding Yes}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}"
                     Margin="0, 0, 10, 0" />
 
-            <Button Content="No"
+            <Button Content="Ne"
                     Command="{Binding No}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
