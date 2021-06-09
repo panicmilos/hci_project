@@ -157,7 +157,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
+                <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet (RSD)" Style="{StaticResource registerPageLabel}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}"/>
                 <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />

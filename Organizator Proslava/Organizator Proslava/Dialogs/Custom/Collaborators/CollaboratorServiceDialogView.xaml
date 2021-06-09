@@ -28,7 +28,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <Label Content="Cena usluge" Style="{StaticResource registerPageLabel}" />
+            <Label Content="Cena usluge (RSD)" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb2" Text="{Binding Path=Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
         </StackPanel>
 
