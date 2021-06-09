@@ -87,7 +87,7 @@ namespace Organizator_Proslava.Dialogs.Map
             var responseBody = await SendRequest();
             if (responseBody == "[]")
             {
-                ErrorMessage = "Nema rezultata pretrage. Molimo Vas da proverite li ste uneli dobru adresu.";
+                ErrorMessage = "Nema rezultata pretrage. Proverite da li je uneta dobra adresu.";
             }
             else
             {

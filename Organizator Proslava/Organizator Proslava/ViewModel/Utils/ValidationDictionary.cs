@@ -87,7 +87,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 return "Molimo Vas da unesete broj telefona.";
             if (!_phone.IsValid(phoneNumber))
-                return "Broj telefona nije validan.";
+                return "Broj telefona nije ispravan.";
 
             return null;
         }
@@ -139,10 +139,10 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "PIB se isključivo sastoji od cifara.";
 
             if (PIB.Length != 9)
-                return "PIB nije validan.";
+                return "PIB nije ispravan.";
 
             if (double.Parse(PIB.Substring(0, 8)) < 10000001)
-                return "PIB nije validan.";
+                return "PIB nije ispravan.";
 
             var rest = 10;
             for (int i = 0; i < 8; i++)
@@ -154,7 +154,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 rest = rest * 2 % 11;
             }
             if ((PIB[8] - '0') != ((11 - rest) % 10))
-                return "PIB nije validan.";
+                return "PIB nije ispravan.";
 
             return null;
         }
@@ -169,7 +169,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Matični broj se isključivo sastoji od cifara.";
 
             if (MB.Length != 8)
-                return "Matični broj nije validan.";
+                return "Matični broj nije ispravan.";
 
             var L = 0;
             for (int i = MB.Length - 2, mnozilac = 2; i >= 0; i--)
@@ -181,7 +181,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             L = L > 9 ? 0 : L;
 
             if (MB[7] - '0' != L)
-                return "Matični broj nije validan.";
+                return "Matični broj nije ispravan.";
 
             return null;
         }
@@ -204,14 +204,14 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "JMBG se isključivo sastoji od cifara.";
 
             if (JMBG.Length != 13)
-                return "JMBG nije validan.";
+                return "JMBG nije ispravan.";
 
             var L = 11 - ((7 * (JMBG[0] - '0' + JMBG[6] - '0') + 6 * (JMBG[1] - '0' + JMBG[7] - '0') + 5 * (JMBG[2] - '0' + JMBG[8] - '0') +
                 4 * (JMBG[3] - '0' + JMBG[9] - '0') + 3 * (JMBG[4] - '0' + JMBG[10] - '0') + 2 * (JMBG[5] - '0' + JMBG[11] - '0')) % 11);
             L = L <= 9 ? L : 0;
 
             if (JMBG[12] - '0' != L)
-                return "JMBG nije validan.";
+                return "JMBG nije ispravan.";
 
             return null;
         }
@@ -226,7 +226,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Broj lične karte se isključivo sastoji od cifara.";
 
             if (personalId.Length != 9)
-                return "Broj lične karte nije validan.";
+                return "Broj lične karte nije ispravan.";
 
             return null;
         }
@@ -289,7 +289,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Molimo Vas da unesete broj stolica.";
 
             if (!int.TryParse(seats, out var seatsNum))
-                return "Broj stolica nije validan.";
+                return "Broj stolica nije ispravan.";
 
             else if (seatsNum < 1 || seatsNum > 100)
                 return "Broj stolica mora biti između 1 i 100.";
@@ -303,7 +303,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Molimo Vas da unesete budžet.";
 
             if (!float.TryParse(budgetStr, out var budget))
-                return "Budžet nije validan.";
+                return "Budžet nije ispravan.";
 
             else if (budget <= 0)
                 return "Budžet mora biti pozitivan broj.";
@@ -318,7 +318,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Molimo Vas da unesete očekivani broj gostiju.";
 
             if (!int.TryParse(numberStr, out var number))
-                return "Broj gostiju nije validan.";
+                return "Broj gostiju nije ispravan.";
 
             else if (number <= 0)
                 return "Broj gostiju mora biti pozitivan.";
@@ -341,7 +341,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             }
             catch
             {
-                return "Datum nije validan.";   // should not happen
+                return "Datum nije ispravan.";   // should not happen
             }
             return null;
         }
@@ -361,7 +361,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             }
             catch
             {
-                return "Datum nije validan.";   // should not happen
+                return "Datum nije ispravan.";   // should not happen
             }
             return null;
         }
