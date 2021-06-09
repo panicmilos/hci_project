@@ -15,14 +15,18 @@ namespace Organizator_Proslava.ViewModel
 
         public ICommand OpenDemo { get; set; }
 
-        public MainViewModel(
-            LoginViewModel lvm,
-            RegisterViewModel rvm)
+        public MainViewModel(LoginViewModel lvm)
         {
             Lvm = lvm;
-            Rvm = rvm;
+            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(Current.GetType()));
 
             Switch(lvm);
+
+            RegisterHandlers();
+        }
+
+        private void RegisterHandlers()
+        {
             EventBus.RegisterHandler("SwitchMainViewModel", vm => Switch(vm));
 
             EventBus.RegisterHandler("AdminLogin", () =>
@@ -48,17 +52,23 @@ namespace Organizator_Proslava.ViewModel
 
             EventBus.RegisterHandler("BackToLogin", () =>
             {
+                EventBus.Clear();
                 Chvm = null;
                 Ohvm = null;
                 Ahvm = null;
-                Switch(lvm);
+                Rvm = null;
+                Switch(Lvm);
+                RegisterHandlers();
             });
 
-            EventBus.RegisterHandler("Register", () => Switch(Rvm));
+            EventBus.RegisterHandler("Register", () =>
+            {
+                if (Rvm == null)
+                    Rvm = ServiceLocator.Get<RegisterViewModel>();
+                Switch(Rvm);
+            });
 
             EventBus.RegisterHandler("BackToClientPage", () => Switch(Chvm));
-
-            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(Current.GetType()));
         }
     }
 }

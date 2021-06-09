@@ -16,7 +16,7 @@ namespace Organizator_Proslava.Utility
 
         public static void RegisterHandler(string eventName, Action handler)
         {
-            if (!_eventHandlers.TryGetValue(eventName, out IList<Action> handlers))
+            if (!_eventHandlers.TryGetValue(eventName, out var handlers))
             {
                 _eventHandlers[eventName] = new List<Action>();
                 handlers = _eventHandlers[eventName];
@@ -36,7 +36,7 @@ namespace Organizator_Proslava.Utility
 
         public static void RegisterHandler(string eventName, Action<object> handler)
         {
-            if (!_eventHandlersWithParameter.TryGetValue(eventName, out IList<Action<object>> handlers))
+            if (!_eventHandlersWithParameter.TryGetValue(eventName, out var handlers))
             {
                 _eventHandlersWithParameter[eventName] = new List<Action<object>>();
                 handlers = _eventHandlersWithParameter[eventName];
@@ -52,6 +52,12 @@ namespace Organizator_Proslava.Utility
             {
                 handler.Invoke(parameter);
             }
+        }
+
+        public static void Clear()
+        {
+            _eventHandlers.Clear();
+            _eventHandlersWithParameter.Clear();
         }
     }
 }
