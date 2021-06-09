@@ -141,12 +141,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb9" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
-                         ToolTip="Unesite šifru novog saradnika"/>
+                <TextBox IsEnabled="False" x:Name="pw01" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource hiddenValidateTextBox}" />
+                <PasswordBox x:Name="pw1" Grid.Column="0" Grid.Row="1" PasswordChanged="pw1_PasswordChanged" Style="{StaticResource registerFormPasswordBox}" ToolTip="Unesite šifru novog saradnika"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb10" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
-                         ToolTip="Ponovo unesite šifru novog saradnika"/>
+                <TextBox IsEnabled="False" x:Name="pw02" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource hiddenValidateTextBox}" TextChanged="PasswordChanged" />
+                <PasswordBox x:Name="pw2" Grid.Column="2" Grid.Row="1" PasswordChanged="pw2_PasswordChanged" Style="{StaticResource registerFormPasswordBox}" ToolTip="Ponovo unesite šifru novog saradnika"/>
             </Grid>
         </StackPanel>
 
@@ -163,8 +163,8 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb6" />
                         <Binding Path="(Validation.HasError)" ElementName="tb7" />
                         <Binding Path="(Validation.HasError)" ElementName="tb8" />
-                        <Binding Path="(Validation.HasError)" ElementName="tb9" />
-                        <Binding Path="(Validation.HasError)" ElementName="tb10" />
+                        <Binding Path="(Validation.HasError)" ElementName="pw01" />
+                        <Binding Path="(Validation.HasError)" ElementName="pw02" />
                     </MultiBinding>
                 </Button.IsEnabled>
 
