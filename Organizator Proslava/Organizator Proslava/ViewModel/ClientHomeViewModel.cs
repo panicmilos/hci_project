@@ -1,18 +1,18 @@
-﻿using Organizator_Proslava.Dialogs.Option;
+﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
+using Organizator_Proslava.Dialogs.Custom.Celebrations;
+using Organizator_Proslava.Dialogs.Custom.Notifications;
+using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Organizator_Proslava.Dialogs;
-using Organizator_Proslava.Dialogs.Alert;
-using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Services.Contracts;
-using Organizator_Proslava.ViewModel.CelebrationProposals;
-using Organizator_Proslava.UserCommands;
-using Organizator_Proslava.Dialogs.Custom.Notifications;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -64,6 +64,17 @@ namespace Organizator_Proslava.ViewModel
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
                     "Da li ste sigurni da želite da otkažete proslavu?")) == DialogResults.No) return;
+
+                if (celebration.Organizer != null)
+                {
+                    var createdCanceledNotification = _notificationService.Create(new CanceledCelebrationNotification
+                    {
+                        ForUserId = celebration.Organizer.Id,
+                        Client = celebration.Client.FullName,
+                        CelebrationType = celebration.Type
+                    });
+                }
+
                 Celebrations.Remove(Celebrations.FirstOrDefault(c => c.Id == celebration.Id));
                 _celebrationService.Delete(celebration.Id);
             });

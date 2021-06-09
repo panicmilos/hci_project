@@ -26,13 +26,13 @@ namespace Organizator_Proslava.Utility
             };
 
             //Organizer
-            _storedObjects["loggedUser"] = new BaseUser
-            {
-                FirstName = "Jovana",
-                LastName = "Jovanovic",
-                Id = new Guid("08d91f80-1277-4f3a-87ec-6c54321bfcb1"),
-                Role = Role.Organizer
-            };
+            //_storedObjects["loggedUser"] = new BaseUser
+            //{
+            //    FirstName = "Jovana",
+            //    LastName = "Jovanovic",
+            //    Id = new Guid("08d91f80-1277-4f3a-87ec-6c54321bfcb1"),
+            //    Role = Role.Organizer
+            //};
         }
 
         public static void AddObject(string key, object @object)
