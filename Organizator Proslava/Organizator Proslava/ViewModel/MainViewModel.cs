@@ -1,20 +1,12 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Notifications;
-using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Ninject;
-using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CelebrationRequestForm;
-using Organizator_Proslava.ViewModel.Celebrations;
-using Organizator_Proslava.ViewModel.UsersView;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel
 {
-    public class MainViewModel : ObservableEntity
+    public class MainViewModel : NavigabileModelView
     {
-        private object _currentViewModel;
-        public object CurrentViewModel { get => _currentViewModel; set => OnPropertyChanged(ref _currentViewModel, value); }
-
         public LoginViewModel Lvm { get; set; }
         public RegisterViewModel Rvm { get; set; }
         public ClientHomeViewModel Chvm { get; set; }
@@ -30,28 +22,28 @@ namespace Organizator_Proslava.ViewModel
             Lvm = lvm;
             Rvm = rvm;
 
-            CurrentViewModel = lvm;
-            EventBus.RegisterHandler("SwitchMainViewModel", vm => CurrentViewModel = vm);
+            Switch(lvm);
+            EventBus.RegisterHandler("SwitchMainViewModel", vm => Switch(vm));
 
             EventBus.RegisterHandler("AdminLogin", () =>
             {
                 if (Ahvm == null)
                     Ahvm = ServiceLocator.Get<AdminHomeViewModel>();
-                CurrentViewModel = Ahvm;
+                Switch(Ahvm);
             });
 
             EventBus.RegisterHandler("ClientLogin", () =>
             {
                 if (Chvm == null)
                     Chvm = ServiceLocator.Get<ClientHomeViewModel>();
-                CurrentViewModel = Chvm;
+                Switch(Chvm);
             });
 
             EventBus.RegisterHandler("OrganizerLogin", () =>
             {
                 if (Ohvm == null)
                     Ohvm = ServiceLocator.Get<OrganizerHomeViewModel>();
-                CurrentViewModel = Ohvm;
+                Switch(Ohvm);
             });
 
             EventBus.RegisterHandler("BackToLogin", () =>
@@ -59,14 +51,14 @@ namespace Organizator_Proslava.ViewModel
                 Chvm = null;
                 Ohvm = null;
                 Ahvm = null;
-                CurrentViewModel = Lvm;
+                Switch(lvm);
             });
 
-            EventBus.RegisterHandler("Register", () => CurrentViewModel = Rvm);
+            EventBus.RegisterHandler("Register", () => Switch(Rvm));
 
-            EventBus.RegisterHandler("BackToClientPage", () => CurrentViewModel = Chvm);
+            EventBus.RegisterHandler("BackToClientPage", () => Switch(Chvm));
 
-            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(CurrentViewModel.GetType()));
+            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(Current.GetType()));
         }
     }
 }
