@@ -13,4 +13,5 @@
     <local:IsNullOrWhiteSpaceConverter x:Key="IsNullOrWhiteSpaceConverter" />
     <local:EmptyListToVisibilityConverter x:Key="EmptyListToVisibilityConverter" />
     <local:NotificationRoutingVisibilityConverter x:Key="NotificationRoutingVisibilityConverter" />
+    <local:ProposalStatusToStringConverter x:Key="ProposalStatusToStringConverter" />
 </ResourceDictionary>

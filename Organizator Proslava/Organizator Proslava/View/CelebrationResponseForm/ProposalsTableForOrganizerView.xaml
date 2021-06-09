@@ -31,15 +31,14 @@
             AutoGenerateColumns="False"
             IsReadOnly="True"
             ItemsSource="{Binding Path=CelebrationProposals}"
-            Style="{StaticResource DataGridStyle}"
-        >
+            Style="{StaticResource DataGridStyle}">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
             </DataGrid.Resources>
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Oznaka"
@@ -54,7 +53,7 @@
                 <DataGridTextColumn
                     Header="Status"
                     Width="1.5*"
-                    Binding="{Binding Path=Status}"
+                    Binding="{Binding Path=Status, Converter={StaticResource ProposalStatusToStringConverter}}"
                     CellStyle="{StaticResource DataGridTextCell}" />
 
                 <DataGridTemplateColumn Header="Komentari" Width="70" CellStyle="{StaticResource DataGridButtonCell}">

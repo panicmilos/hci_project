@@ -42,7 +42,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public string Error => throw new System.NotImplementedException();
 
         public DinningTableDialogViewModel(DinningTable table, bool isEditing) :
-            base("Dodavanje stola", 560, 260)
+            base($"{(!isEditing ? "Dodavanje" : "Izmena")} stola", 560, 260)
         {
             Table = table;
             Seats = table.Seats.ToString();

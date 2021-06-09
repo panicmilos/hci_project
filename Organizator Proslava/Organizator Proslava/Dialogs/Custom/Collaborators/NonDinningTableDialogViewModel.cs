@@ -22,7 +22,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public ICommand Back { get; set; }
 
         public NonDinningTableDialogViewModel(PlaceableEntity entity, bool isEditing) :
-            base("Dodavanje stola", 560, 160)
+            base($"{(!isEditing ? "Dodavanje" : "Izmena")} {(entity is Music ? "muzike" : "stola")}", 560, 160)
         {
             Entity = entity;
             ButtonText = isEditing ? "Sačuvaj" : "Dodaj";

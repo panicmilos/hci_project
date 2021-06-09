@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Organizator_Proslava"
         xmlns:ninject="clr-namespace:Organizator_Proslava.Ninject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="900">
+        Title="PROSLAV.IO" Height="700" Width="900">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed" />
 

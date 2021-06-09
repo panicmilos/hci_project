@@ -38,8 +38,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         public string Error => throw new System.NotImplementedException();
 
-        public CollaboratorServiceDialogViewModel(CollaboratorService service) :
-            base("Dodavanje usloge", 560, 360)
+        public CollaboratorServiceDialogViewModel(CollaboratorService service, bool forAdd = false) :
+            base($"{(forAdd ? "Dodavanje" : "Izmena")} usluge", 560, 360)
         {
             Service = service;
             Name = service.Name;
@@ -51,7 +51,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         }
 
         public CollaboratorServiceDialogViewModel() :
-            this(new CollaboratorService())
+            this(new CollaboratorService(), true)
         {
             ButtonText = "Dodaj";
         }

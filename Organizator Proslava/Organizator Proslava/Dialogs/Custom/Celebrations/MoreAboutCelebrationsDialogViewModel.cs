@@ -1,14 +1,7 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
-using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Celebrations
@@ -19,28 +12,18 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public ICommand Back { get; set; }
         public ICommand Details { get; set; }
 
-        private readonly IDialogService _dialogService;
-
-        private readonly ICelebrationResponseService _celebrationResponseService;
-
         public CelebrationsDetailsTableDialogViewModel CelebrationsDetailsTableDialogViewModel { get; set; }
         public CelebrationDetailDialogViewModel CelebrationDetailDialogViewModel { get; set; }
         public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
         public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
 
         public MoreAboutCelebrationsDialogViewModel(
-            ICelebrationResponseService celebrationResponseService,
-            IDialogService dialogService,
             CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
             CelebrationsDetailsTableDialogViewModel celebrationsDetailsTableDialogViewModel,
             ProposalCommentsViewModel proposalCommentsViewModel) :
             base("Pregled proslave", 550, 450)
         {
-
-            _celebrationResponseService = celebrationResponseService;
-            _dialogService = dialogService;
-
             CelebrationsDetailsTableDialogViewModel = celebrationsDetailsTableDialogViewModel;
             CelebrationDetailDialogViewModel = celebrationDetailDialogViewModel;
             CelebrationsProposalsTableDialogViewModel = celebrationsProposalsTableDialogViewModel;

@@ -222,6 +222,7 @@
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\ObjectReferenceToButtonConverter.cs" />
+    <Compile Include="Converters\ProposalStatusToStringConverter.cs" />
     <Compile Include="Converters\StringToImageStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
     <Compile Include="Converters\YourCommentVisibilityConverter.cs" />
@@ -262,10 +263,6 @@
       <DependentUpon>MoreAboutCelebrationsDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogViewModel.cs" />
-    <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogViewModel.cs" />
-    <Compile Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml.cs">
-      <DependentUpon>WriteCommentDialogView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\Custom\Clients\ClientDetailView.xaml.cs">
       <DependentUpon>ClientDetailView.xaml</DependentUpon>
     </Compile>
@@ -714,10 +711,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Custom\Celebrations\MoreAboutCelebrationsDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\Custom\Celebrations\WriteCommentDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
