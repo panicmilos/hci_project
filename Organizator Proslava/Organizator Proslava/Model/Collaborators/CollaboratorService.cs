@@ -31,7 +31,7 @@ namespace Organizator_Proslava.Model.Collaborators
 
         public override string ToString()
         {
-            return $"{Name} ({Price}RSD/{Unit})";
+            return $"{Name} ({Price} RSD/{Unit})";
         }
     }
 }

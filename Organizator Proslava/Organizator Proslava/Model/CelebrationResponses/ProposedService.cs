@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return $"{Unit} x {Name} po ceni od {Price}RSD/{Unit}";
+            return $"{Unit} x {Name} po ceni od {Price} RSD/{Unit}";
         }
     }
 }

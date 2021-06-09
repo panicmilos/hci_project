@@ -131,7 +131,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                     var totalSpent = response.CelebrationProposals.Where(cp => cp.Status == CelebrationProposalStatus.Prihvacen).Sum(cp => cp.ProposedService.NumberOfService * cp.ProposedService.Price);
                     if (totalSpent + (SelectedService.Price * int.Parse(NumberOfService)) > response.Celebration.BudgetTo)
                     {
-                        _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", $"Ne možete dati ovaj predlog zato što bi ukupna cena predloga prekoračila zadatih {response.Celebration.BudgetTo}RSD."));
+                        _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", $"Ne možete dati ovaj predlog zato što bi ukupna cena predloga prekoračila zadatih {response.Celebration.BudgetTo} RSD."));
                         return;
                     }
                 }
