@@ -226,6 +226,7 @@
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\ObjectReferenceToButtonConverter.cs" />
+    <Compile Include="Converters\PriceToStringConverter.cs" />
     <Compile Include="Converters\ProposalStatusToStringConverter.cs" />
     <Compile Include="Converters\StringToImageStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
