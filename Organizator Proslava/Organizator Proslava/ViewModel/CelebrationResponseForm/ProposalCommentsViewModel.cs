@@ -13,6 +13,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
     public class ProposalCommentsViewModel : ObservableEntity
     {
         private readonly bool _isForClient = GlobalStore.ReadObject<BaseUser>("loggedUser").Role == Role.User;
+        public bool ShouldAllowComment { get; set; }
 
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }
@@ -39,6 +40,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             _notificationService = notificationService;
             _dialogService = dialogService;
 
+            ShouldAllowComment = GlobalStore.ReadObject<BaseUser>("loggedUser").Role != Role.Administrator;
+
             Preview = new RelayCommand(() =>
             {
                 var celebrationHallCopy = CelebrationProposal.CelebrationHall.Clone();
@@ -55,7 +58,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
             Comment = new RelayCommand(() =>
             {
-                var commentText = NewComment; //_dialogService.OpenDialog(new WriteCommentDialogViewModel(_dialogService));
+                var commentText = NewComment;
                 if (!string.IsNullOrWhiteSpace(commentText))
                 {
                     NewComment = null;
