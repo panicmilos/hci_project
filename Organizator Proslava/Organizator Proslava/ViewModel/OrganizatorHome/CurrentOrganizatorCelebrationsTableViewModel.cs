@@ -20,6 +20,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
         public ICommand NonAcceptedCelebrations { get; set; }
         public ICommand Collaborators { get; set; }
+        public ICommand PastCelebrations { get; set; }
         public ICommand Logout { get; set; }
         public ICommand Notifications { get; set; }
 
@@ -98,6 +99,8 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
             {
                 _dialogService.OpenDialog(new NotificationsDialogViewModel(_notificationService));
             });
+
+            PastCelebrations = new RelayCommand(() => EventBus.FireEvent("NextToOrganizersPastCelebrations"));
 
             EventBus.RegisterHandler("ReloadCurrentOrganizatorCelebrationsTable", () => Reload());
 
