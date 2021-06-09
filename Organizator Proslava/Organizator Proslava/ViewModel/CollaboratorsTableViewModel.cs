@@ -70,7 +70,7 @@ namespace Organizator_Proslava.ViewModel
 
             Remove = new RelayCommand<Collaborator>(collaborator =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
                 {
                     Collaborators.Remove(collaborator);
                     _collaboratorService.Delete(collaborator.Id);

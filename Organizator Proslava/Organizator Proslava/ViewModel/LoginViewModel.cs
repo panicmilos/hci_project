@@ -32,7 +32,7 @@ namespace Organizator_Proslava.ViewModel
                 var user = _userService.Authenticate(login.UserName, login.Password);
                 if (user == null)
                 {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("", "Pogresno korisnicko ime ili sifra"));
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Pogrešno korisničko ime ili šifra."));
                     return;
                 }
                 GlobalStore.AddObject("loggedUser", user);

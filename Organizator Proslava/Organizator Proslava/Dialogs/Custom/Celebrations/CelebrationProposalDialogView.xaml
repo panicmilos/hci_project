@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Oznaka predloga" Style="{StaticResource registerPageLabel}" />
+            <Label Content="Naslov ponude" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb1" Text="{Binding Path=ProposalTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" Background="{StaticResource Cararra}" />
         </StackPanel>
 
@@ -86,7 +86,7 @@
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Opis predloga" Style="{StaticResource registerPageLabel}" />
+            <Label Grid.Row="0" Content="Opis ponude" Style="{StaticResource registerPageLabel}" />
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <TextBox x:Name="tb3" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

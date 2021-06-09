@@ -28,7 +28,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             Add = new RelayCommand(() =>
             {
-                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(new CelebrationDetail { Title = $"Zahtev #{CelebrationDetails.Count + 1}" }, _dialogService));
+                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(new CelebrationDetail { Title = $"Detalj #{CelebrationDetails.Count + 1}" }, _dialogService));
                 if (celebrationDetail != null)
                     CelebrationDetails.Add(celebrationDetail);
             });
@@ -44,7 +44,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             Delete = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da uklonite ovaj zahtev?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da uklonite ovaj zahtev?")) == DialogResults.Yes)
                 {
                     CelebrationDetails.Remove(SelectedCelebrationDetail);
                 }

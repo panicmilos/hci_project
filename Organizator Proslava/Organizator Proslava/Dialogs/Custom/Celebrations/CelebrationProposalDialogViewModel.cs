@@ -51,7 +51,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             get
             {
                 if (columnName == "SelectedCollaborator")
-                    return SelectedCollaborator == null ? "Morate zadati saradnika." : null;
+                    return SelectedCollaborator == null ? "Molimo Vas odaberite saradnika." : null;
 
                 var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
                 return Err(ValidationDictionary.Validate(columnName, valueOfProperty, null));
@@ -68,7 +68,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             _dialogService = dialogService;
 
             Proposal = new CelebrationProposal();
-            ProposalTitle = $"Predlog #{n}";
+            ProposalTitle = $"Ponuda #{n}";
             Collaborators = _collaboratorService.Read().ToList();
 
             PreviewHall = new RelayCommand(() => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(Proposal.CelebrationHall, _dialogService)), () => Proposal.CelebrationHall != null);
@@ -93,11 +93,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             {
                 if (ShouldShowHalls && Proposal.CelebrationHall == null)
                 {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Morate izabrati i salu."));
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Molimo Vas izaberite salu."));
                     return;
                 }
 
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da date ovaj predlog?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da date ovaj predlog?")) == DialogResults.Yes)
                 {
                     Proposal.Title = ProposalTitle;
                     Proposal.Content = Content;

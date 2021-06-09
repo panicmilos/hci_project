@@ -65,7 +65,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             OpenMap = new RelayCommand(() =>
             {
-                var address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi svoju adresu"));
+                var address = _dialogService.OpenDialog(new MapDialogViewModel("Odabir adrese"));
                 if (address != null)
                 {
                     Address = address;

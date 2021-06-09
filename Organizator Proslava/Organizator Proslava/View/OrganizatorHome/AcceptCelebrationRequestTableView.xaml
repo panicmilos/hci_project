@@ -22,7 +22,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Neprihvaćene proslave</Label>
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Neprihvaćeni zahtevi za proslave</Label>
 
         <DataGrid
             Grid.Column="1"

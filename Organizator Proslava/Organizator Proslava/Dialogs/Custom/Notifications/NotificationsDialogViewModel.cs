@@ -19,7 +19,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Notifications
         private readonly INotificationService _notificationService;
 
         public NotificationsDialogViewModel(INotificationService notificationService) :
-            base("Obaveštenja", 560, 460)
+            base("Pregled obaveštenja", 560, 460)
         {
             _notificationService = notificationService;
 

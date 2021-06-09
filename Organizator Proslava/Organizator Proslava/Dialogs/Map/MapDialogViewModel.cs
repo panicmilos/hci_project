@@ -87,13 +87,13 @@ namespace Organizator_Proslava.Dialogs.Map
             var responseBody = await SendRequest();
             if (responseBody == "[]")
             {
-                ErrorMessage = "Nema rezultata pretrage. Proverite da li ste uneli dobru adresu.";
+                ErrorMessage = "Nema rezultata pretrage. Proverite da li je uneta dobra adresu.";
             }
             else
             {
                 var jsonAddresses = JArray.Parse(responseBody);
                 fetchedAddresses = ConvertJArrayOfAddressesToList(jsonAddresses);
-                ErrorMessage = "Kucajte dalje.";
+                ErrorMessage = "Momilo Vas da kucate dalje.";
             }
 
             return fetchedAddresses;
