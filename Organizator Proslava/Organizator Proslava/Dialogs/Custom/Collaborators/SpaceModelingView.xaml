@@ -95,7 +95,7 @@
 
         <StackPanel Grid.Column ="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
 
-            <Button Content="Sačuvaj"
+            <Button x:Name="BTN" Content="Sačuvaj"
                     Command="{Binding Path=Save}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Background="{StaticResource PowderBlue}">
@@ -110,7 +110,7 @@
                         <Setter Property="ToolTip" Value="Sačuvajte salu" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
-                                <Setter Property="ToolTip" Value="Da biste sačvali prostor potrebno je popuniti polje sa nazivom i dodati bar jedan sto" />
+                                <Setter Property="ToolTip" Value="Da biste sačuvali prostor potrebno je popuniti polje sa nazivom i dodati bar jedan sto" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
