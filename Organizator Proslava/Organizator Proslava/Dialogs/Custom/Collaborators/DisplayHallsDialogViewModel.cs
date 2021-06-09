@@ -19,7 +19,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public Collaborator Collaborator { get; set; }
 
         public DisplayHallsDialogViewModel() :
-            base("Pregled sala saradnika", 680, 420)
+            base("Pregled saradnikovih sala", 680, 420)
         {
             _dialogService = new DialogService();
 

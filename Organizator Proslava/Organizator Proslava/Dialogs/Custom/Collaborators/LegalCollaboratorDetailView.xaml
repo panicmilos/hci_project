@@ -18,14 +18,14 @@
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
-            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="2.0*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.4*" />
             <RowDefinition Height="0.9*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <Label Content="Ime i prezime:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+            <Label Content="Naziv:" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
@@ -61,7 +61,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5">
-            <Label Content="{Binding Path=Collaborator.Address.WholeAddress}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding Path=Collaborator.Address.WholeAddress}" TextWrapping="Wrap" Style="{StaticResource addressTextBlock}" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="6">

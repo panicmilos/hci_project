@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
@@ -6,6 +7,7 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
@@ -28,7 +30,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             Add = new RelayCommand(() =>
             {
-                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(new CelebrationDetail { Title = $"Zahtev #{CelebrationDetails.Count + 1}" }, _dialogService));
+                var celebrationDetail = _dialogService.OpenDialog(new AddCelebrationDetailViewModel(new CelebrationDetail { Title = $"Detalj #{CelebrationDetails.Count + 1}" }, _dialogService));
                 if (celebrationDetail != null)
                     CelebrationDetails.Add(celebrationDetail);
             });
@@ -44,14 +46,22 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             Delete = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da uklonite ovaj zahtev?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da uklonite ovaj zahtev?")) == DialogResults.Yes)
                 {
                     CelebrationDetails.Remove(SelectedCelebrationDetail);
                 }
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationRequestInfo"));
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToLongViewCelebration"));
+            Next = new RelayCommand(() =>
+            {
+                if (!CelebrationDetails.Any())
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Molimo Vas da unesete bar jedan detalj."));
+                    return;
+                }
+                EventBus.FireEvent("NextToLongViewCelebration");
+            });
         }
 
         public void ForAdd()

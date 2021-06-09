@@ -36,7 +36,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             Save = new RelayCommand<IDialogWindow>(w =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored sale?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da sačuvate ovaj raspored sale?")) == DialogResults.Yes)
                 {
                     CloseDialogWithResult(w, Hall);
                 }

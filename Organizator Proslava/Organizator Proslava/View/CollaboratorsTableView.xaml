@@ -23,7 +23,7 @@
 
         <local:Background Grid.ColumnSpan="3" Grid.RowSpan="5" Opacity="0.45" />
 
-        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Saradnici</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Svi saradnici u sistemu</Label>
 
         <DataGrid
             Grid.Column="1"

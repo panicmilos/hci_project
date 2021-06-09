@@ -55,7 +55,7 @@ namespace Organizator_Proslava.ViewModel
 
             Remove = new RelayCommand<Organizer>(organizer =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovog organizatora?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog organizatora?")) == DialogResults.Yes)
                 {
                     Organizers.Remove(organizer);
                     _organizerService.Delete(organizer.Id);

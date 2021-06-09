@@ -10,5 +10,6 @@ namespace Organizator_Proslava.Services.Contracts
 
         IEnumerable<Celebration> ReadNotTaken();
         IEnumerable<Celebration> ReadForClient(Guid clientId);
+        int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId);
     }
 }

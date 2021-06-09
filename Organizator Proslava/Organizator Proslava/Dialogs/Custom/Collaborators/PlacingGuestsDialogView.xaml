@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label Content="Dozvoljeno gostiju je: " Style="{StaticResource spaceFormLabel}" />
+            <Label Content="Dozvoljen broj gostiju: " Style="{StaticResource spaceFormLabel}" />
             <Label Content="{Binding DinningTable.Seats}" Margin="-10, 0, 0, 0" Style="{StaticResource spaceFormLabel}" />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1" x:Name="CanvasBorder" BorderBrush="{StaticResource Ming}" BorderThickness="1">

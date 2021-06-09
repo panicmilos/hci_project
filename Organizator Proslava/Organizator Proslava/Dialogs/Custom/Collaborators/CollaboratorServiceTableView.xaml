@@ -20,7 +20,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Content="Usluge saradnika:" Style="{StaticResource registerPageLabel}" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Usluge saradnika" Style="{StaticResource registerPageLabel}" Grid.Column="1" Grid.Row="1"/>
 
         <DataGrid
             Grid.Column="1"

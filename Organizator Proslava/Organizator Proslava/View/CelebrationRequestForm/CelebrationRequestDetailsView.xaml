@@ -41,7 +41,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Header="Oznaka"
+                    Header="Naslov"
                     Width="2*"
                     Binding="{Binding Path=Title}"
                     CellStyle="{StaticResource DataGridTextCell}" />

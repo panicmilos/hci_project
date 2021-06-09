@@ -3,12 +3,7 @@ using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Celebrations
@@ -21,12 +16,10 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public ICommand Comments { get; set; }
         public ICommand Back { get; set; }
 
-
         public CelebrationsProposalsTableDialogViewModel(ProposalCommentsViewModel pcvm,
             ICelebrationProposalService celebrationProposalService,
             IDialogService dialogService)
         {
-
             Comments = new RelayCommand<CelebrationProposal>(cp =>
             {
                 EventBus.FireEvent("ProposalsComments", cp);

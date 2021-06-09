@@ -27,6 +27,9 @@
                     Width="400"
                     Text="{Binding Path=InputedAddress, Mode=TwoWay}"
                     ItemsSource="{Binding Path=WholeAddresses}" FilterMode="Custom">
+                    <controls:AutoCompleteBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding Search}" CommandParameter="{Binding ElementName=map}" />
+                    </controls:AutoCompleteBox.InputBindings>
                 </controls:AutoCompleteBox>
 
                 <Button Content="Pronađi"

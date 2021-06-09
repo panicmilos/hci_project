@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="RoundButton" TargetType="Button">
+        <Setter Property="ToolTipService.ShowOnDisabled" Value="true" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -12,7 +13,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="White" />
@@ -20,25 +21,25 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="loginPageButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
+    <Style x:Key="loginPageButton" BasedOn="{StaticResource RoundButton}" TargetType="{x:Type Button}">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
         <Setter Property="Foreground" Value="#d3e3d5" />
     </Style>
 
-    <Style x:Key="toolbarButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
+    <Style x:Key="toolbarButton" BasedOn="{StaticResource RoundButton}" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="25" />
         <Setter Property="Foreground" Value="White" />
     </Style>
 
-    <Style x:Key="mapDialogButton" BasedOn="{StaticResource RoundButton}" TargetType="Button">
+    <Style x:Key="mapDialogButton" BasedOn="{StaticResource RoundButton}" TargetType="{x:Type Button}">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="White" />
     </Style>
 
     <Style TargetType="Button" x:Key="SmallPaintedButton">
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
         <Setter Property="Template">
@@ -53,7 +54,7 @@
     </Style>
 
     <Style TargetType="Button" x:Key="PaintedButton">
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -98,10 +99,10 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" x:Key="DeleteNotificationButton">
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
-        <Setter Property="Margin" Value="0, 3, 3, 0"/>
+        <Setter Property="Margin" Value="0, 3, 3, 0" />
         <Setter Property="Background" Value="{StaticResource PowderBlue}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
@@ -113,12 +114,11 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Image Source="pack://siteoforigin:,,,/Resources/back.png"/>
+                        <Image Source="pack://siteoforigin:,,,/Resources/back.png" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
     </Style>
-
 </ResourceDictionary>

@@ -21,7 +21,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Organizatori:</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Organizatori</Label>
 
         <DataGrid
             Grid.Column="1"
@@ -56,9 +56,9 @@
                     Binding="{Binding Path=PhoneNumber}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
-                    Header="Realizovanih proslava"
+                    Header="Broj realizovanih proslava"
                     Width="1.5*"
-                    Binding="{Binding Path=Proslava}"
+                    Binding="{Binding Path=NumOfDoneCelebrations}"
                     CellStyle="{StaticResource DataGridTextCell}" />
             </DataGrid.Columns>
         </DataGrid>

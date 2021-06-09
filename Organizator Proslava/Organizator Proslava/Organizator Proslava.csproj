@@ -471,6 +471,10 @@
     <Compile Include="Migrations\20210609001035_added canceled proposal notification3.designer.cs">
       <DependentUpon>20210609001035_added canceled proposal notification3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210609124551_added new notification.cs" />
+    <Compile Include="Migrations\20210609124551_added new notification.designer.cs">
+      <DependentUpon>20210609124551_added new notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />

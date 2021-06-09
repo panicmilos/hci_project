@@ -35,7 +35,7 @@ namespace Organizator_Proslava.ViewModel.UsersView
 
             Remove = new RelayCommand<Client>(client =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovog klijenta?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog klijenta?")) == DialogResults.Yes)
                 {
                     Clients.Remove(client);
                     _clientService.Delete(client.Id);

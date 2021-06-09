@@ -50,7 +50,7 @@
 
             <local:Background Grid.ColumnSpan="3" Grid.RowSpan="7" Opacity="0.45" />
 
-            <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource TableTitleLabel}">Vaše Buduće Proslave</Label>
+            <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource TableTitleLabel}">Vaše buduće proslave</Label>
 
             <DataGrid
             Grid.Column="1"

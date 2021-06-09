@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="1" Grid.Row="0"
-               Content="Predlog" Style="{StaticResource registerPageLabel}"
+               Content="Ponuda" Style="{StaticResource registerPageLabel}"
                VerticalAlignment="Bottom" />
 
         <Grid Grid.Row="1" Grid.Column="1">

@@ -45,7 +45,7 @@
         </Grid>
 
         <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock Text="ORGANIZATOR PROSLAVA" Foreground="{StaticResource Ming}" FontSize="26" FontFamily="Helvetica" FontWeight="DemiBold" />
+            <TextBlock Text="PROSLAV.IO" Foreground="{StaticResource Ming}" FontSize="26" FontFamily="Helvetica" FontWeight="DemiBold" />
             <Border Width="350" Height="3" Background="{StaticResource Ming}" Opacity="0.5" />
             <TextBlock Margin="0, 10, 0, 0" Text="Vaš najbolji prijatelj prilikom pravljenja proslava." Foreground="{StaticResource Ming}" FontSize="16" FontFamily="Helvetica" />
         </StackPanel>

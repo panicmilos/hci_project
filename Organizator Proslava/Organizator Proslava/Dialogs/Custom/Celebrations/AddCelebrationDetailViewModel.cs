@@ -1,10 +1,10 @@
 ﻿using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
-using Organizator_Proslava.Utility;
-using System.Windows.Input;
 using Organizator_Proslava.Model;
-using System.ComponentModel;
+using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 {
@@ -12,14 +12,17 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
     {
         // Text fields:
         public string DetailTitle { get; set; }
+
         public string Content { get; set; }
-        
+
         // Commands:
         public ICommand Add { get; set; }
+
         public ICommand Close { get; set; }
 
         // Rules:
         public string Error => throw new System.NotImplementedException();
+
         public string this[string columnName]
         {
             get
@@ -38,11 +41,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             _dialogService = dialogService;
             DetailTitle = celebrationDetail?.Title;
             Content = celebrationDetail?.Content;
-            
+
             Add = new RelayCommand<IDialogWindow>(w =>
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel
-                    ($"Pitanje", $"Da li ste sigurni da želite da {(celebrationDetail?.Content == null ? "dodate" : "izmenite")} ovaj zahtev?")
+                    ($"Potvrda", $"Da li ste sigurni da želite da {(celebrationDetail?.Content == null ? "dodate" : "izmenite")} ovaj zahtev?")
                     ) == DialogResults.Yes)
                     CloseDialogWithResult(w, new CelebrationDetail { Title = DetailTitle, Content = Content });
             });
