@@ -34,7 +34,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
             ProposalCommentsViewModel proposalCommentsViewModel,
             MoreAboutCelebrationsDialogViewModel moreAboutCelebrationsDialogView) :
-            base("Pregled detalja proslave", 650, 490)
+            base("Pregled detalja proslave", 670, 490)
         {
 
             _celebrationResponseService = celebrationResponseService;

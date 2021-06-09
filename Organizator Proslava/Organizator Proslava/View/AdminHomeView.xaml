@@ -22,7 +22,7 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <local:Background Grid.RowSpan="5" Grid.ColumnSpan="5" Opacity="0.5" />
+        <local:Background Grid.RowSpan="5" Grid.ColumnSpan="5" Opacity="0.45" />
 
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
             <StackPanel>
