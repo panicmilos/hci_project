@@ -10,7 +10,7 @@ namespace Organizator_Proslava.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is CanceledResponseNotification)
+            if (value is CanceledResponseNotification || value is CanceledCelebrationNotification)
             {
                 return Visibility.Collapsed;
             }
