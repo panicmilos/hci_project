@@ -36,9 +36,19 @@ namespace Organizator_Proslava.Services.Implementations
             return _entities.Where(c => c.OrganizerId == null);
         }
 
-        public IEnumerable<Celebration> ReadForClient(Guid clientId)
+        public IEnumerable<Celebration> ReadFutureForClient(Guid clientId)
         {
-            return _entities.Where(celebration => celebration.ClientId == clientId).ToList();
+            return _entities.Where(celebration => celebration.ClientId == clientId && celebration.DateTimeTo >= DateTime.Now).ToList();
+        }
+
+        public IEnumerable<Celebration> ReadPastForClient(Guid clientId)
+        {
+            return _entities.Where(celebration => celebration.ClientId == clientId && celebration.DateTimeTo < DateTime.Now);
+        }
+
+        public IEnumerable<Celebration> ReadPastForOrganizer(Guid organizerId)
+        {
+            return _entities.Where(celebration => celebration.OrganizerId == organizerId && celebration.DateTimeTo < DateTime.Now);
         }
 
         public int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId)
