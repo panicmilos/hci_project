@@ -19,9 +19,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
     {
         // Text fields:
         public string ProposalTitle { get; set; }
+
         public string Content { get; set; }
 
         private Collaborator _selectedCollaborator;
+
         public Collaborator SelectedCollaborator
         {
             get => _selectedCollaborator;
@@ -32,11 +34,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                 OnPropertyChanged("ShouldShowHalls");
             }
         }
+
         public CelebrationProposal Proposal { get; set; }
         public List<Collaborator> Collaborators { get; set; }
 
         // Commands:
         public ICommand PreviewHall { get; set; }
+
         public ICommand PreviewCollaborator { get; set; }
         public ICommand Add { get; set; }
         public ICommand Back { get; set; }
@@ -46,6 +50,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         // Rules:
         public string Error => throw new NotImplementedException();
+
         public string this[string columnName]
         {
             get
