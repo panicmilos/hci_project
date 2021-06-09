@@ -11,7 +11,7 @@ namespace Organizator_Proslava.Converters
         {
             if (value is DateTime dateTime)
             {
-                return dateTime.ToString("dd/MM/yyyy h:mm");
+                return dateTime.ToString("dd/MM/yyyy H:mm");
             }
 
             return null;
