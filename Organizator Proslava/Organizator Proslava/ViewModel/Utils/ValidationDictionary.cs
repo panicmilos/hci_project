@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Organizator_Proslava.ViewModel.Utils
 {
     public static class ValidationDictionary
     {
-        private static readonly EmailAddressAttribute _email = new EmailAddressAttribute();
         private static readonly PhoneAttribute _phone = new PhoneAttribute();
+        private static readonly Regex _emailregex = new Regex(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z");
 
         private static readonly IDictionary<string, Func<object, object, string>> _validations = new Dictionary<string, Func<object, object, string>>
         {
@@ -75,8 +76,8 @@ namespace Organizator_Proslava.ViewModel.Utils
             var mailAddress = mailAddressObject as string;
             if (string.IsNullOrWhiteSpace(mailAddress))
                 return "Molimo Vas da unesete mail adresu.";
-            if (!_email.IsValid(mailAddress))
-                return "Mail adresa nije validna.";
+            if (!_emailregex.IsMatch(mailAddress))
+                return "Mail adresa nije ispravna.";
 
             return null;
         }
@@ -111,6 +112,10 @@ namespace Organizator_Proslava.ViewModel.Utils
             var repeatedPassword = repeatedPasswordObject as string;
             if (string.IsNullOrWhiteSpace(password))
                 return "Molimo Vas da unesete šifru.";
+
+            if (password.Length < 8)
+                return "Šifra treba da ima bar 8 karaktera.";
+
             if (password != repeatedPassword)
                 return " ";
 

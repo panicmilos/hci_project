@@ -109,7 +109,7 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <Grid Grid.Column="1" Grid.Row="4">
+        <Grid Visibility="{Binding ShouldAllowComment, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*" />
                 <ColumnDefinition Width="*" />

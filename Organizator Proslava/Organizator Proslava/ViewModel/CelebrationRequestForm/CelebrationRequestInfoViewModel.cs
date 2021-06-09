@@ -97,8 +97,9 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                 Celebration.DateTimeFrom = DateTimeFrom;
                 Celebration.DateTimeTo = DateTimeTo;
                 Celebration.ExpectedNumberOfGuests = int.Parse(ExpectedNumberOfGuests);
-                Celebration.BudgetFrom = float.Parse(BudgetFrom);
-                Celebration.BudgetTo = float.Parse(BudgetTo);
+                float budgetFrom = float.Parse(BudgetFrom), budgetTo = float.Parse(BudgetTo);
+                Celebration.BudgetFrom = budgetFrom < budgetTo ? budgetFrom : budgetTo;
+                Celebration.BudgetTo = budgetFrom < budgetTo ? budgetTo : budgetFrom;
                 EventBus.FireEvent("NextToCelebrationRequestDetails");
             });
         }
