@@ -539,6 +539,7 @@
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="UserCommands\CelebrationHallUserCommands.cs" />
     <Compile Include="UserCommands\CelebrationProposalUserCommands.cs" />
+    <Compile Include="UserCommands\DeleteClientUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorServiceUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
     <Compile Include="UserCommands\ImageUserCommands.cs" />
