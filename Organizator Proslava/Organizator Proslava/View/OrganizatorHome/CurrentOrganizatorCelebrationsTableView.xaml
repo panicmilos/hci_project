@@ -93,7 +93,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:CurrentOrganizatorCelebrationResponsesTableView}}}">
+                                    Command="{Binding Path=DataContext.Cancel, RelativeSource={RelativeSource AncestorType={x:Type local:CurrentOrganizatorCelebrationResponsesTableView}}}"
+                                        CommandParameter="{Binding}">
                                     <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/reject.png" />
                                 </Button>
                             </DataTemplate>

@@ -2,10 +2,12 @@
 using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
+using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -27,15 +29,20 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
         private readonly ProposalCommentsViewModel _pcvm;
 
         private readonly ICelebrationProposalService _celebrationProposalService;
+        private readonly IDialogService _dialogService;
+        private readonly INotificationService _notificationService;
 
         public CelebrationProposalsTableViewModel(
             ProposalCommentsViewModel pcvm,
             ICelebrationProposalService celebrationProposalService,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            INotificationService notificationService)
         {
             _pcvm = pcvm;
 
             _celebrationProposalService = celebrationProposalService;
+            _dialogService = dialogService;
+            _notificationService = notificationService;
 
             Comments = new RelayCommand<CelebrationProposal>(cp =>
             {
@@ -48,36 +55,50 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             {
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
                 {
-                    dialogService.OpenDialog(new AlertDialogViewModel("Predlog već obrađen",
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Predlog već obrađen",
                         "Predlog koji pokušavate da prihvatite je već obrađen."));
                     return;
                 }
 
-                if (dialogService.OpenDialog(new OptionDialogViewModel("Prihvatanje predloga",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Prihvatanje predloga",
                     "Da li ste sigurni da želite da prihvatite predlog?")) != DialogResults.Yes)
                     return;
 
                 cp.Status = CelebrationProposalStatus.Prihvacen;
                 celebrationProposalService.Update(cp);
-                RefreshTable();
+                RefreshTableForDetail(cp.CelebrationDetailId);
+
+                _notificationService.Create(new ChangedStatusOfProposalNotification
+                {
+                    ForUserId = CelebrationResponse.Celebration.Organizer.Id,
+                    CelebrationResponseId = CelebrationResponse.Id,
+                    ProposalId = cp.Id
+                });
             });
 
             Reject = new RelayCommand<CelebrationProposal>(cp =>
             {
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
                 {
-                    dialogService.OpenDialog(new AlertDialogViewModel("Predlog već obrađen",
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Predlog već obrađen",
                         "Predlog koji pokušavate da odbijete je već obrađen."));
                     return;
                 }
 
-                if (dialogService.OpenDialog(new OptionDialogViewModel("Odbijanje predloga",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Odbijanje predloga",
                     "Da li ste sigurni da želite da odbijete predlog?")) != DialogResults.Yes)
                     return;
 
                 cp.Status = CelebrationProposalStatus.Odbijen;
                 celebrationProposalService.Update(cp);
-                RefreshTable();
+                RefreshTableForDetail(cp.CelebrationDetailId);
+
+                _notificationService.Create(new ChangedStatusOfProposalNotification
+                {
+                    ForUserId = CelebrationResponse.Celebration.Organizer.Id,
+                    CelebrationResponseId = CelebrationResponse.Id,
+                    ProposalId = cp.Id
+                });
             });
 
             EventBus.RegisterHandler("PreviewCommentsFromNotificationClient", cp => Comments.Execute(cp));
@@ -94,6 +115,17 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
             CelebrationProposals.Clear();
 
             _celebrationProposalService.Read().ToList().ForEach(cp => CelebrationProposals.Add(cp));
+        }
+
+        public void RefreshTableForDetail(Guid detailId)
+        {
+            if (CelebrationProposals == null)
+            {
+                CelebrationProposals = new ObservableCollection<CelebrationProposal>();
+            }
+            CelebrationProposals.Clear();
+
+            _celebrationProposalService.ReadFor(detailId).ToList().ForEach(cp => CelebrationProposals.Add(cp));
         }
     }
 }

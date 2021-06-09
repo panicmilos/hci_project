@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210609000626_added canceled proposal notification")]
+    partial class addedcanceledproposalnotification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -565,7 +567,7 @@ namespace Organizator_Proslava.Migrations
                     b.HasDiscriminator().HasValue("ServingTable");
                 });
 
-            modelBuilder.Entity("Organizator_Proslava.Model.CanceledResponseNotification", b =>
+            modelBuilder.Entity("Organizator_Proslava.Model.CanceledProposalNotification", b =>
                 {
                     b.HasBaseType("Organizator_Proslava.Model.Notification");
 
@@ -575,7 +577,7 @@ namespace Organizator_Proslava.Migrations
                     b.Property<string>("Organizer")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasDiscriminator().HasValue("CanceledResponseNotification");
+                    b.HasDiscriminator().HasValue("CanceledProposalNotification");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.ChangedStatusOfProposalNotification", b =>

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210608233424_changed statuts notificaiton2")]
+    partial class changedstatutsnotificaiton2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -450,7 +452,7 @@ namespace Organizator_Proslava.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CelebrationResponseId")
+                    b.Property<Guid>("CelebrationResponseId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -563,19 +565,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasBaseType("Organizator_Proslava.Model.CelebrationHalls.PlaceableEntity");
 
                     b.HasDiscriminator().HasValue("ServingTable");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.CanceledResponseNotification", b =>
-                {
-                    b.HasBaseType("Organizator_Proslava.Model.Notification");
-
-                    b.Property<string>("CelebrationType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Organizer")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasDiscriminator().HasValue("CanceledResponseNotification");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.ChangedStatusOfProposalNotification", b =>
@@ -798,7 +787,9 @@ namespace Organizator_Proslava.Migrations
                 {
                     b.HasOne("Organizator_Proslava.Model.CelebrationResponses.CelebrationResponse", "CelebrationResponse")
                         .WithMany()
-                        .HasForeignKey("CelebrationResponseId");
+                        .HasForeignKey("CelebrationResponseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Collaborators.Collaborator", b =>

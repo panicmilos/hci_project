@@ -47,6 +47,7 @@
                                            Style="{StaticResource NotificationTextBlock}" />
 
                                 <Button Grid.Column="1"
+                                        Visibility="{Binding Path=., Converter={StaticResource NotificationRoutingVisibilityConverter}}"
                                         Style="{StaticResource DeleteNotificationButton}"
                                         Background="{StaticResource PowderBlue}">
                                     <i:Interaction.Triggers>

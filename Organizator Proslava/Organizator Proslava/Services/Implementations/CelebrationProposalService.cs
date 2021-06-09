@@ -1,6 +1,9 @@
 ﻿using Organizator_Proslava.Data;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Organizator_Proslava.Services.Implementations
 {
@@ -11,5 +14,9 @@ namespace Organizator_Proslava.Services.Implementations
         {
         }
 
+        public IEnumerable<CelebrationProposal> ReadFor(Guid detailId)
+        {
+            return _entities.Where(proposal => proposal.CelebrationDetailId == detailId).ToList();
+        }
     }
 }

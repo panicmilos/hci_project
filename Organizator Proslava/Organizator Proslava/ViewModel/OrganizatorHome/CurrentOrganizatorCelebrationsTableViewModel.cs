@@ -1,4 +1,5 @@
-﻿using Organizator_Proslava.Dialogs.Custom.Notifications;
+﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Custom.Notifications;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
@@ -65,9 +66,22 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
             EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 
-            Cancel = new RelayCommand(() =>
-                new DialogService().OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
-                        "Da li ste sigurni da želite da otkažete organizovanje proslave?")));
+            Cancel = new RelayCommand<CelebrationResponse>(cr =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                        "Da li ste sigurni da želite da otkažete organizovanje proslave?")) == DialogResults.Yes)
+                {
+                    _notificationService.Create(new CanceledResponseNotification
+                    {
+                        ForUserId = cr.Celebration.ClientId.Value,
+                        Organizer = cr.Celebration.Organizer.FullName,
+                        CelebrationType = cr.Celebration.Type
+                    });
+
+                    CelebrationResponses.Remove(cr);
+                    _celebrationResponseService.CancelCelebrationResponse(cr.Id);
+                }
+            });
 
             Logout = new RelayCommand(() =>
             {
