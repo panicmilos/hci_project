@@ -36,5 +36,11 @@ namespace Organizator_Proslava.Services.Implementations
         {
             return _entities.Where(celebration => celebration.ClientId == clientId).ToList();
         }
+
+        public int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId)
+        {
+            return _entities
+                .Count(celebration => celebration.OrganizerId == organizerId && celebration.DateTimeTo < DateTime.Now);
+        }
     }
 }
