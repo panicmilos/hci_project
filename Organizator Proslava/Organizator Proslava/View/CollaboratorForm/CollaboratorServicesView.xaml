@@ -77,7 +77,7 @@
                 <DataGridTextColumn
                     Header="Cena"
                     Width="*"
-                    Binding="{Binding Path=Price}"
+                    Binding="{Binding Path=Price, Converter={StaticResource PriceToStringConverter}}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Jedinica"

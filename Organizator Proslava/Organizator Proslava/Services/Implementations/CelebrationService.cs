@@ -1,5 +1,6 @@
 ﻿using Organizator_Proslava.Data;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,23 @@ namespace Organizator_Proslava.Services.Implementations
         {
             _organizerService = organizerService;
             _collaboratorService = collaboratorService;
+        }
+
+        public override Celebration Create(Celebration celebration)
+        {
+            if (celebration.OrganizerId != null)
+            {
+                _context.Add(new CelebrationResponse
+                {
+                    Celebration = celebration,
+                    OrganizerId = celebration.OrganizerId.Value
+                });
+                _context.SaveChanges();
+
+                return celebration;
+            }
+
+            return base.Create(celebration);
         }
 
         public Celebration AcceptBy(Guid organizerId, Guid celebrationId)

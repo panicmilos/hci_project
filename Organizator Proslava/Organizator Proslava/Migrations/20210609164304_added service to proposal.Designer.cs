@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizator_Proslava.Data;
 
 namespace Organizator_Proslava.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210609164304_added service to proposal")]
+    partial class addedservicetoproposal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,6 +281,9 @@ namespace Organizator_Proslava.Migrations
                     b.Property<Guid>("CollaboratorId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("CollaboratorServiceId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -287,9 +292,6 @@ namespace Organizator_Proslava.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<Guid?>("ProposedServiceId")
-                        .HasColumnType("char(36)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -307,7 +309,7 @@ namespace Organizator_Proslava.Migrations
 
                     b.HasIndex("CollaboratorId");
 
-                    b.HasIndex("ProposedServiceId");
+                    b.HasIndex("CollaboratorServiceId");
 
                     b.ToTable("CelebrationProposals");
                 });
@@ -367,35 +369,6 @@ namespace Organizator_Proslava.Migrations
                     b.HasIndex("WriterId");
 
                     b.ToTable("ProposalComments");
-                });
-
-            modelBuilder.Entity("Organizator_Proslava.Model.CelebrationResponses.ProposedService", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("NumberOfService")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Unit")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProposedService");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.Cellebrations.CellebrationType", b =>
@@ -793,9 +766,9 @@ namespace Organizator_Proslava.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Organizator_Proslava.Model.CelebrationResponses.ProposedService", "ProposedService")
+                    b.HasOne("Organizator_Proslava.Model.Collaborators.CollaboratorService", "CollaboratorService")
                         .WithMany()
-                        .HasForeignKey("ProposedServiceId");
+                        .HasForeignKey("CollaboratorServiceId");
                 });
 
             modelBuilder.Entity("Organizator_Proslava.Model.CelebrationResponses.CelebrationResponse", b =>

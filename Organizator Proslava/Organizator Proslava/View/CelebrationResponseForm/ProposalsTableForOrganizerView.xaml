@@ -46,8 +46,13 @@
                     Binding="{Binding Path=Title}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
+                    Header="Usluga"
+                    Width="1.5*"
+                    Binding="{Binding Path=ProposedService.Name}"
+                    CellStyle="{StaticResource DataGridTextCell}" />
+                <DataGridTextColumn
                     Header="Detalji"
-                    Width="3.5*"
+                    Width="2.0*"
                     Binding="{Binding Path=Content}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn

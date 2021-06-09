@@ -5,16 +5,16 @@ using System.Windows.Data;
 
 namespace Organizator_Proslava.Converters
 {
-    public class DateToStringConverter : IValueConverter
+    public class PriceToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is DateTime dateTime)
+            if (value is float price)
             {
-                return dateTime.ToString("dd/MM/yyyy H:mm");
+                return price + " RSD";
             }
 
-            return null;
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

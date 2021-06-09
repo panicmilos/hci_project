@@ -28,5 +28,10 @@ namespace Organizator_Proslava.Model.Collaborators
                 CollaboratorServiceBookId = CollaboratorServiceBookId
             };
         }
+
+        public override string ToString()
+        {
+            return $"{Name} ({Price} RSD/{Unit})";
+        }
     }
 }

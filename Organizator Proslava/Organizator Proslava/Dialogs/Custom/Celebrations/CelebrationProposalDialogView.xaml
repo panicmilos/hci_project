@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d"
-             d:DesignHeight="440" d:DesignWidth="600">
+             d:DesignHeight="610" d:DesignWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -16,6 +16,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
@@ -42,24 +44,42 @@
                     BorderBrush="{StaticResource Ming}"
                     Width="313"
                     ItemsSource="{Binding Path=Collaborators}"
-                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     />
+                    SelectedItem="{Binding Path=SelectedCollaborator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                 <Button
                         HorizontalAlignment="Right"
                         Content="Ili izaberi"
                         Command="{Binding OpenCollaboratorsDialog}"
                         Style="{StaticResource mapDialogButton}"
-                        Background="{StaticResource Ming}" 
-                        Margin="-5, 0, 0, 0"/>
+                        Background="{StaticResource Ming}"
+                        Margin="-5, 0, 0, 0" />
                 <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding PreviewCollaborator}">
                     <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/preview.png" />
                 </Button>
-
             </StackPanel>
-
         </StackPanel>
 
-        <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
+        <StackPanel Visibility="{Binding ShouldShowServices, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
+            <Label Content="Usluga" Style="{StaticResource registerPageLabel}" />
+            <ComboBox
+                    x:Name="tbService"
+                    Foreground="{StaticResource Ming}"
+                    Background="{StaticResource Cararra}"
+                    FontFamily="Helvetica"
+                    FontSize="18"
+                    BorderThickness="0,0,0,2"
+                    BorderBrush="{StaticResource Ming}"
+                    ItemsSource="{Binding Path=Proposal.Collaborator.CollaboratorServiceBook.Services}"
+                    SelectedItem="{Binding Path=SelectedService, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                    Margin="10, 0, 10, 0"
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="4" Visibility="{Binding ShouldShowServices, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Label Content="Potreban broj usluga" Style="{StaticResource registerPageLabel}" />
+            <TextBox x:Name="tbNumOfServ" Height="25" Text="{Binding Path=NumberOfService, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="5">
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
                 <ComboBox
@@ -83,7 +103,7 @@
             </StackPanel>
         </StackPanel>
 
-        <Grid Grid.Column="1" Grid.Row="4" x:Name="WrapperGrid">
+        <Grid Grid.Column="1" Grid.Row="6" x:Name="WrapperGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="5*" />
@@ -101,10 +121,8 @@
             </ScrollViewer>
         </Grid>
 
-        <Button Content="Odustani"
-                    Grid.Column="1"
-                    Grid.Row="5"
-                    HorizontalAlignment="Left"
+        <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Odustani"
                     Command="{Binding Path=Back}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
@@ -120,6 +138,8 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
                         <Binding Path="(Validation.HasError)" ElementName="tb2" />
                         <Binding Path="(Validation.HasError)" ElementName="tb3" />
+                        <Binding Path="(Validation.HasError)" ElementName="tbService" />
+                        <Binding Path="(Validation.HasError)" ElementName="tbNumOfServ" />
                     </MultiBinding>
                 </Button.IsEnabled>
 
