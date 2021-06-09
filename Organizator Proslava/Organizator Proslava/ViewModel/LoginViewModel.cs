@@ -15,9 +15,6 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Login { get; set; }
         public ICommand Register { get; set; }
         public ICommand Isvm { get; set; }
-        public ICommand Covm { get; set; }
-        public ICommand ClientHome { get; set; }
-        public ICommand OrgHome { get; set; }
 
         private readonly IUserService<BaseUser> _userService;
         private readonly IDialogService _dialogService;
@@ -59,9 +56,6 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            Covm = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
-            ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin"));
-            OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin"));
         }
     }
 }

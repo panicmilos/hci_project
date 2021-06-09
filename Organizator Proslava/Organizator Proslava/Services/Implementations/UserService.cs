@@ -14,7 +14,7 @@ namespace Organizator_Proslava.Services.Implementations
 
         public bool AlreadyInUse(string username)
         {
-            return _entities.Any(u => u.UserName == username);
+            return _context.BaseUsers.Any(u => u.UserName == username);
         }
 
         public BaseUser Authenticate(string username, string password)
