@@ -63,7 +63,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Obriši" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Ukloni" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"

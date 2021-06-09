@@ -24,7 +24,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         private readonly IDialogService _dialogService;
 
         public PlacingGuestsDialogViewModel(DinningTable dinningTable, IDialogService dialogService, SpacePreviewMode mode = SpacePreviewMode.View) :
-            base("Gosti", 660, 460)
+            base("Definisanje rasporeda gostiju", 660, 460)
         {
             DinningTable = dinningTable;
             Mode = mode;
@@ -42,11 +42,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             {
                 if (DinningTable.Guests.Any(g => g.Name.ToLower() == "ime gosta"))
                 {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Morate zadati imena svih gostiju."));
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Molimo Vas da zadate imena svih gostiju."));
                     return;
                 }
 
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da sačuvate ovaj raspored gostiju?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da sačuvate ovaj raspored gostiju?")) == DialogResults.Yes)
                 {
                     CloseDialogWithResult(w, DinningTable);
                 }

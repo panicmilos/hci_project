@@ -41,7 +41,7 @@
             
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Header="Oznaka"
+                    Header="Naslov"
                     Width="2*"
                     Binding="{Binding Path=Title}"
                     CellStyle="{StaticResource DataGridTextCell}" />
@@ -62,7 +62,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Predlozi" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Ponude" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"

@@ -67,7 +67,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Remove = new RelayCommand<CelebrationHall>(hall =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovu salu?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovu salu?")) == DialogResults.Yes)
                 {
                     Halls.Remove(hall);
                     CelebrationHalls.Remove(hall);
@@ -84,7 +84,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Halls = new ObservableCollection<CelebrationHall>();
             Save = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da dodate ovog saradnika?")) == DialogResults.Yes)
                 {
                     EventBus.FireEvent("AddCollaborator" + AsRole);
                 }
@@ -97,7 +97,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             Halls = new ObservableCollection<CelebrationHall>(collaborator.CelebrationHalls);
             Save = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da izmeniti ovog saradnika?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da izmeniti ovog saradnika?")) == DialogResults.Yes)
                 {
                     EventBus.FireEvent("UpdateCollaborator" + AsRole);
                 }

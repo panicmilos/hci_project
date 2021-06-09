@@ -30,7 +30,7 @@
 
         <shared:DisabledTextAreaPreview Grid.Row="2" Grid.Column="1" Object="{Binding Path=CelebrationResponse.Celebration}" />
         <Grid Grid.Column="1" Grid.Row="3">
-            <Button Content="Zahtevi" Command="{Binding Path=Details}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Detalji" Command="{Binding Path=Details}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">

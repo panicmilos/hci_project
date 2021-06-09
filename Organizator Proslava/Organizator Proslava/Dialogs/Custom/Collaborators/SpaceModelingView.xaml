@@ -45,7 +45,7 @@
                 <Label Grid.Column="1" Grid.Row="0" Content="Naziv prostora" Style="{StaticResource spaceFormLabel}" />
                 <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
 
-                <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljeno osoba" Style="{StaticResource spaceFormLabel}" />
+                <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljen broj osoba" Style="{StaticResource spaceFormLabel}" />
                 <TextBox x:Name="tb2" Grid.Column="3" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=NumberOfGuests, Mode=OneWay}" Style="{StaticResource disabledSpaceFormTextBox}" />
             </Grid>
 

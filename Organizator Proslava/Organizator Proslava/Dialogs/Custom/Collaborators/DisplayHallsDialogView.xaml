@@ -20,7 +20,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Sale:</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Postojeće sale</Label>
 
         <DataGrid
             Grid.Column="1"
@@ -52,7 +52,7 @@
                 Width="*"
                 Binding="{Binding Path=NumberOfGuests}"
                 CellStyle="{StaticResource DataGridTextCell}" />
-                <DataGridTemplateColumn Header="Detalji" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Pregled" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"

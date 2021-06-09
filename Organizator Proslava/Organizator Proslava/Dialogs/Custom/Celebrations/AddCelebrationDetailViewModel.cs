@@ -42,7 +42,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             Add = new RelayCommand<IDialogWindow>(w =>
             {
                 if (_dialogService.OpenDialog(new OptionDialogViewModel
-                    ($"Pitanje", $"Da li ste sigurni da želite da {(celebrationDetail?.Content == null ? "dodate" : "izmenite")} ovaj zahtev?")
+                    ($"Potvrda", $"Da li ste sigurni da želite da {(celebrationDetail?.Content == null ? "dodate" : "izmenite")} ovaj zahtev?")
                     ) == DialogResults.Yes)
                     CloseDialogWithResult(w, new CelebrationDetail { Title = DetailTitle, Content = Content });
             });

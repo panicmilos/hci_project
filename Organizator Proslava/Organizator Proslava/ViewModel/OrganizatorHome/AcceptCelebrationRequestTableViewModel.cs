@@ -39,7 +39,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
             Preview = new RelayCommand<Celebration>(c => _dialogService.OpenDialog(new CelebrationLongPreviewDialogViewModel(c)));
             Accept = new RelayCommand<Celebration>(c =>
             {
-                var result = _dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da prihvatite ovu organizaciju?"));
+                var result = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da prihvatite ovu organizaciju?"));
                 if (result == DialogResults.Yes)
                 {
                     var loggerOrganizerId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;

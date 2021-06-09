@@ -28,7 +28,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             Celebration = celebration;
             Next = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
                     "Da li ste sigurni da želite da dodate novu proslavu?")) == DialogResults.Yes)
                     EventBus.FireEvent("FinishAddCelebrationRequest");
             });
@@ -39,7 +39,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             Celebration = celebration;
             Next = new RelayCommand(() =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
                     "Da li ste sigurni da želite da sačuvate sve izmene?")) == DialogResults.Yes)
                     EventBus.FireEvent("FinishUpdateCelebrationRequest");
             });

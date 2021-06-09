@@ -24,7 +24,7 @@
 
         <v:Background Grid.ColumnSpan="3" Grid.RowSpan="5" Opacity="0.45" />
 
-        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Korisnici sistema:</Label>
+        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource TableTitleLabel}">Svi korisnici u sistemu</Label>
 
         <DataGrid
             Grid.Column="1"
