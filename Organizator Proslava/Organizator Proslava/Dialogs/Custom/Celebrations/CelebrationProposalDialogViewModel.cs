@@ -11,6 +11,7 @@ using Organizator_Proslava.ViewModel.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 
@@ -23,6 +24,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         public string Content { get; set; }
 
+        public string NumberOfService { get; set; }
+
         private Collaborator _selectedCollaborator;
 
         public Collaborator SelectedCollaborator
@@ -33,8 +36,12 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                 OnPropertyChanged(ref _selectedCollaborator, value);
                 Proposal.Collaborator = _selectedCollaborator;
                 OnPropertyChanged("ShouldShowHalls");
+                OnPropertyChanged("ShouldShowServices");
             }
         }
+
+        private CollaboratorService _selectedService;
+        public CollaboratorService SelectedService { get => _selectedService; set => OnPropertyChanged(ref _selectedService, value); }
 
         public CelebrationProposal Proposal { get; set; }
         public List<Collaborator> Collaborators { get; set; }
@@ -49,6 +56,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         public bool ShouldShowHalls { get => Proposal.Collaborator?.CelebrationHalls.Any() ?? false; }
 
+        public bool ShouldShowServices { get => SelectedCollaborator != null; }
+
         // Rules:
         public string Error => throw new NotImplementedException();
 
@@ -57,7 +66,29 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             get
             {
                 if (columnName == "SelectedCollaborator")
-                    return SelectedCollaborator == null ? "Molimo Vas odaberite saradnika." : null;
+                    return Err(SelectedCollaborator == null ? "Molimo Vas odaberite saradnika." : null);
+
+                if (columnName == "SelectedService")
+                    return Err(SelectedCollaborator == null ? "Molimo Vas odaberite uslugu." : null);
+
+                if (columnName == "NumberOfService")
+                {
+                    if (string.IsNullOrEmpty(NumberOfService))
+                    {
+                        return Err("Molimo Vas unesite potreban broj usluga.");
+                    }
+
+                    if (!int.TryParse(NumberOfService, out var numOfService))
+                    {
+                        return Err("Broj usluga mora biti broj.");
+                    }
+                    else if (numOfService <= 0)
+                    {
+                        return Err("Broj usluga mora biti veći od 0.");
+                    }
+
+                    return null;
+                }
 
                 var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
                 return Err(ValidationDictionary.Validate(columnName, valueOfProperty, null));
@@ -68,7 +99,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         private readonly IDialogService _dialogService;
         private int _calls = 0;
 
-        public CelebrationProposalDialogViewModel(ICollaboratorService collaboratorService, IDialogService dialogService, int n) : base("Davanje ponude", 660, 500)
+        public CelebrationProposalDialogViewModel(CelebrationResponse response, ICollaboratorService collaboratorService, IDialogService dialogService, int n) : base("Davanje ponude", 660, 670)
         {
             _collaboratorService = collaboratorService;
             _dialogService = dialogService;
@@ -95,10 +126,28 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                     return;
                 }
 
+                if (response.Celebration.IsBudgetFixed)
+                {
+                    var totalSpent = response.CelebrationProposals.Where(cp => cp.Status == CelebrationProposalStatus.Prihvacen).Sum(cp => cp.ProposedService.NumberOfService * cp.ProposedService.Price);
+                    if (totalSpent + (SelectedService.Price * int.Parse(NumberOfService)) > response.Celebration.BudgetTo)
+                    {
+                        _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", $"Ne možete dati ovaj predlog zato što bi ukupna cena predloga prekoračila zadatih {response.Celebration.BudgetTo}RSD."));
+                        return;
+                    }
+                }
+
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da date ovaj predlog?")) == DialogResults.Yes)
                 {
                     Proposal.Title = ProposalTitle;
                     Proposal.Content = Content;
+                    Proposal.ProposedService = new ProposedService
+                    {
+                        Name = SelectedService.Name,
+                        Price = SelectedService.Price,
+                        Unit = SelectedService.Unit,
+                        NumberOfService = int.Parse(NumberOfService)
+                    };
+
                     if (Proposal.CelebrationHall != null)
                     {
                         Proposal.CelebrationHall = Proposal.CelebrationHall.Clone();
@@ -125,7 +174,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         private string Err(string message)
         {
-            return message == null ? null : (_calls++ < 3 ? "*" : message);
+            return message == null ? null : (_calls++ < 4 ? "*" : message);
         }
     }
 }

@@ -10,17 +10,10 @@ using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
+using Organizator_Proslava.ViewModel.ClientHome;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Organizator_Proslava.Dialogs;
-using Organizator_Proslava.Dialogs.Alert;
-using Organizator_Proslava.Dialogs.Custom.Celebrations;
-using Organizator_Proslava.Services.Contracts;
-using Organizator_Proslava.ViewModel.CelebrationProposals;
-using Organizator_Proslava.UserCommands;
-using Organizator_Proslava.Dialogs.Custom.Notifications;
-using Organizator_Proslava.ViewModel.ClientHome;
 
 namespace Organizator_Proslava.ViewModel
 {

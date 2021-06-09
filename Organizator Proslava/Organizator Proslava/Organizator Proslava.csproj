@@ -478,6 +478,14 @@
     <Compile Include="Migrations\20210609124551_added new notification.designer.cs">
       <DependentUpon>20210609124551_added new notification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210609164304_added service to proposal.cs" />
+    <Compile Include="Migrations\20210609164304_added service to proposal.designer.cs">
+      <DependentUpon>20210609164304_added service to proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210609164650_added service to proposal...cs" />
+    <Compile Include="Migrations\20210609164650_added service to proposal...designer.cs">
+      <DependentUpon>20210609164650_added service to proposal...cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -496,6 +504,7 @@
     <Compile Include="Model\CelebrationResponses\CelebrationResponse.cs" />
     <Compile Include="Model\CelebrationResponses\CelebrationProposalStatus.cs" />
     <Compile Include="Model\CelebrationResponses\ProposalComment.cs" />
+    <Compile Include="Model\CelebrationResponses\ProposedService.cs" />
     <Compile Include="Model\Celebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborators\Collaborator.cs" />

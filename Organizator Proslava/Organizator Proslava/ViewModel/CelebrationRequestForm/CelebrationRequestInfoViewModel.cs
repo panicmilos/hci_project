@@ -106,6 +106,13 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         public void ForAdd()
         {
             Celebration = new Celebration();
+            _celebrationType = string.Empty;
+            DateTimeFrom = DateTime.Now;
+            DateTimeTo = DateTime.Now;
+            ExpectedNumberOfGuests = string.Empty;
+            BudgetFrom = string.Empty;
+            BudgetTo = string.Empty;
+            _calls = 0;
         }
 
         public void ForUpdate(Celebration celebration)
