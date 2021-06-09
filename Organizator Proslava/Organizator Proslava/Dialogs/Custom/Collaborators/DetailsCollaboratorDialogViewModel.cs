@@ -23,7 +23,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
             DisplayImagesViewModel displayImagesViewModel,
             CollaboratorServiceTableViewModel collaboratorServiceTableViewModel,
             DisplayHallsDialogViewModel displayHallsDialogViewModel) :
-            base("Pregled saradnika", 650, 490)
+            base("Pregled saradnika", 650, 550)
         {
             LegalCollaboratorDetailViewModel = legalCollaboratorDetailViewModel;
             IndividualCollaboratorDetailViewModel = individualCollaboratorDetailViewModel;
