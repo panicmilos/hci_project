@@ -18,6 +18,7 @@
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi za proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
                     <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}" />
+                    <Button Command="{Binding Path=PastCelebrations}" Content="Prošle proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
