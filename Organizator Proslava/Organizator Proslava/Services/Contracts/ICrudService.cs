@@ -12,6 +12,8 @@ namespace Organizator_Proslava.Services.Contracts
 
         T Create(T entity);
 
+        IEnumerable<T> CreateRange(IEnumerable<T> entities);
+
         T Update(T entity);
 
         T Delete(Guid id);

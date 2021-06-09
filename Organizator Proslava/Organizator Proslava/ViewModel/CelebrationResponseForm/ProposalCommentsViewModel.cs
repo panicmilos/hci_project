@@ -12,7 +12,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 {
     public class ProposalCommentsViewModel : ObservableEntity
     {
-        private bool _isForClient = GlobalStore.ReadObject<BaseUser>("loggedUser").Role == Role.User;
+        private readonly bool _isForClient = GlobalStore.ReadObject<BaseUser>("loggedUser").Role == Role.User;
 
         public CelebrationProposal CelebrationProposal { get; set; }
         public ObservableCollection<ProposalComment> ProposalComments { get; set; }

@@ -62,6 +62,14 @@ namespace Organizator_Proslava.Dialogs.Custom.Notifications
                     EventBus.FireEvent("NextToRequestDetailsForOrganizer");
                     EventBus.FireEvent("PreviewDetailFromNotificationOrganizer", newDetail.Detail);
                 }
+
+                if (n is ChangedStatusOfProposalNotification changedStatusNotification)
+                {
+                    EventBus.FireEvent("OrganizerLogin");
+                    EventBus.FireEvent("PreviewResponseForNotification", changedStatusNotification.CelebrationResponse);
+                    EventBus.FireEvent("NextToRequestDetailsForOrganizer");
+                    EventBus.FireEvent("PreviewProposalsFromNotificationOrganizer", changedStatusNotification.Proposal.CelebrationDetail);
+                }
             });
 
             Delete = new RelayCommand<Notification>(n => { Notifications.Remove(n); _notificationService.Delete(n.Id); });

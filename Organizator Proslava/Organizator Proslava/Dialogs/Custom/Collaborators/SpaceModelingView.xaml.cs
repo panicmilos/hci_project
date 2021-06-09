@@ -4,7 +4,6 @@ using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;

@@ -1,7 +1,9 @@
-﻿namespace Organizator_Proslava.Dialogs.Service
+﻿using System;
+
+namespace Organizator_Proslava.Dialogs.Service
 {
     public interface IDemoService
     {
-        void OpenDemo();
+        void OpenDemo(Type dataContextType);
     }
 }

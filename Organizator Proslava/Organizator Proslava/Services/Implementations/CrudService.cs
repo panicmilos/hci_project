@@ -27,6 +27,14 @@ namespace Organizator_Proslava.Services.Implementations
             return entity;
         }
 
+        public IEnumerable<T> CreateRange(IEnumerable<T> entities)
+        {
+            _entities.AddRange(entities);
+            _context.SaveChanges();
+
+            return entities;
+        }
+
         public virtual IEnumerable<T> Read()
         {
             return _entities.ToList();

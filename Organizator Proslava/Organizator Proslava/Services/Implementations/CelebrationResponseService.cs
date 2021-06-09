@@ -23,5 +23,17 @@ namespace Organizator_Proslava.Services.Implementations
         {
             return _entities.FirstOrDefault(celebrationResponse => celebrationResponse.CelebrationId == celebrationId);
         }
+
+        public CelebrationResponse CancelCelebrationResponse(Guid celebrationResponseId)
+        {
+            var celebrationResponse = Read(celebrationResponseId);
+
+            _context.Remove(celebrationResponse);
+            _context.Remove(celebrationResponse.Celebration);
+
+            _context.SaveChanges();
+
+            return celebrationResponse;
+        }
     }
 }

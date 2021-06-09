@@ -1,8 +1,11 @@
-﻿using Organizator_Proslava.Dialogs.Option;
+﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Custom.Notifications;
+using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
 using System.Collections.ObjectModel;
@@ -17,22 +20,30 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
         public ICommand NonAcceptedCelebrations { get; set; }
         public ICommand Collaborators { get; set; }
+        public ICommand Logout { get; set; }
+        public ICommand Notifications { get; set; }
 
         public ICommand Preview { get; set; }
         public ICommand Cancel { get; set; }
-        public ICommand Back { get; set; }
 
         private readonly ICelebrationResponseService _celebrationResponseService;
+        private readonly IDialogService _dialogService;
+        private readonly INotificationService _notificationService;
 
         private readonly CelebrationResponseFormViewModel _crfvm;
         private readonly CollaboratorsTableViewModel _ctvm;
 
         public CurrentOrganizatorCelebrationsTableViewModel(
-            ICelebrationResponseService celebrationResponseService,
             CelebrationResponseFormViewModel crfvm,
-            CollaboratorsTableViewModel ctvm)
+            CollaboratorsTableViewModel ctvm,
+            ICelebrationResponseService celebrationResponseService,
+            IDialogService dialogService,
+            INotificationService notificationService)
         {
             _celebrationResponseService = celebrationResponseService;
+            _dialogService = dialogService;
+            _notificationService = notificationService;
+
             CelebrationResponses = new ObservableCollection<CelebrationResponse>();
 
             NonAcceptedCelebrations = new RelayCommand(() => EventBus.FireEvent("NextToAcceptCelebrationRequestTable"));
@@ -55,11 +66,38 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
             EventBus.RegisterHandler("PreviewResponseForNotification", cr => Preview.Execute(cr));
 
-            Cancel = new RelayCommand(() =>
-                new DialogService().OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
-                        "Da li ste sigurni da želite da otkažete organizovanje proslave?")));
+            Cancel = new RelayCommand<CelebrationResponse>(cr =>
+            {
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                        "Da li ste sigurni da želite da otkažete organizovanje proslave?")) == DialogResults.Yes)
+                {
+                    var createdCanceledNotification = _notificationService.Create(new CanceledResponseNotification
+                    {
+                        ForUserId = cr.Celebration.ClientId.Value,
+                        Organizer = cr.Celebration.Organizer.FullName,
+                        CelebrationType = cr.Celebration.Type
+                    });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
+                    var notifications = _notificationService.ReadFrom(cr.Id);
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(
+                        new CancelCelebrationResponse(cr, createdCanceledNotification, notifications));
+
+                    CelebrationResponses.Remove(cr);
+                    _celebrationResponseService.CancelCelebrationResponse(cr.Id);
+                }
+            });
+
+            Logout = new RelayCommand(() =>
+            {
+                GlobalStore.ReadObject<IUserCommandManager>("userCommands").Clear();
+                GlobalStore.RemoveObject("loggedUser");
+                EventBus.FireEvent("BackToLogin");
+            });
+
+            Notifications = new RelayCommand(() =>
+            {
+                _dialogService.OpenDialog(new NotificationsDialogViewModel(_notificationService));
+            });
 
             EventBus.RegisterHandler("ReloadCurrentOrganizatorCelebrationsTable", () => Reload());
 

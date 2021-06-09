@@ -218,6 +218,7 @@
     <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
+    <Compile Include="Converters\NotificationRoutingVisibilityConverter.cs" />
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\ObjectReferenceToButtonConverter.cs" />
@@ -452,6 +453,26 @@
     <Compile Include="Migrations\20210608205605_NZM.cs" />
     <Compile Include="Migrations\20210608205605_NZM.designer.cs">
       <DependentUpon>20210608205605_NZM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608233334_changed statuts notificaiton.cs" />
+    <Compile Include="Migrations\20210608233334_changed statuts notificaiton.designer.cs">
+      <DependentUpon>20210608233334_changed statuts notificaiton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210608233424_changed statuts notificaiton2.cs" />
+    <Compile Include="Migrations\20210608233424_changed statuts notificaiton2.designer.cs">
+      <DependentUpon>20210608233424_changed statuts notificaiton2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210609000626_added canceled proposal notification.cs" />
+    <Compile Include="Migrations\20210609000626_added canceled proposal notification.designer.cs">
+      <DependentUpon>20210609000626_added canceled proposal notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210609000950_added canceled proposal notification2.cs" />
+    <Compile Include="Migrations\20210609000950_added canceled proposal notification2.designer.cs">
+      <DependentUpon>20210609000950_added canceled proposal notification2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210609001035_added canceled proposal notification3.cs" />
+    <Compile Include="Migrations\20210609001035_added canceled proposal notification3.designer.cs">
+      <DependentUpon>20210609001035_added canceled proposal notification3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
@@ -1046,7 +1067,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\somekidheadshot.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

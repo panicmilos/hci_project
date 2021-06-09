@@ -12,4 +12,5 @@
     <local:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter" />
     <local:IsNullOrWhiteSpaceConverter x:Key="IsNullOrWhiteSpaceConverter" />
     <local:EmptyListToVisibilityConverter x:Key="EmptyListToVisibilityConverter" />
+    <local:NotificationRoutingVisibilityConverter x:Key="NotificationRoutingVisibilityConverter" />
 </ResourceDictionary>

@@ -8,6 +8,8 @@ namespace Organizator_Proslava.Services.Contracts
     {
         IEnumerable<Notification> ReadFor(Guid forUserId);
 
+        IEnumerable<Notification> ReadFrom(Guid celebrationResponseId);
+
         Notification DeleteCommentNotification(NewCommentNotification newComment);
     }
 }

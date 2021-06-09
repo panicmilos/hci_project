@@ -57,6 +57,8 @@ namespace Organizator_Proslava.Data
         public DbSet<NewCommentNotification> NewCommentNotifications { get; set; }
         public DbSet<NewDetailNotification> NewDetailNotifications { get; set; }
         public DbSet<NewProposalNotification> NewProposalNotifications { get; set; }
+        public DbSet<ChangedStatusOfProposalNotification> ChangedStatusOfProposalNotification { get; set; }
+        public DbSet<CanceledResponseNotification> CanceledResponseNotifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

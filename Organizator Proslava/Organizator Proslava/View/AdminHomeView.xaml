@@ -5,63 +5,78 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Organizator_Proslava.View"
       mc:Ignorable="d" Height="400" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="0.2*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="0.4*"></RowDefinition>
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderBrush="{StaticResource Ming}" BorderThickness="0, 0, 0, 2">
+            <Grid Background="{StaticResource Cararra}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
 
-        <local:Background Grid.RowSpan="5" Grid.ColumnSpan="5" Opacity="0.45" />
-
-        <Border Grid.Row="1" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Korisnici" Background="{StaticResource Cararra}" />
-                <Button Background="Transparent" Command="{Binding Path=Clients}">
-                    <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
-                </Button>
-            </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0">
+                        <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/logout.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="3" BorderBrush="{StaticResource Ming}" BorderThickness="2">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Organizatori" Background="{StaticResource Cararra}" />
-                <Button Background="Transparent" Command="{Binding Path=Organizers}">
-                    <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
-                </Button>
-            </StackPanel>
-        </Border>
+        <Grid>
 
-        <Border Grid.Row="3" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Proslave" Background="{StaticResource Cararra}" />
-                <Button Background="Transparent" Command="{Binding Path=Celebrations}">
-                    <Image Source="pack://siteoforigin:,,,/Resources/celebration.png" />
-                </Button>
-            </StackPanel>
-        </Border>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Border Grid.Row="3" Grid.Column="3" BorderBrush="{StaticResource Ming}" BorderThickness="2">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Saradnici" Background="{StaticResource Cararra}" />
-                <Button Background="Transparent" Command="{Binding Path=Collaborators}">
-                    <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
-                </Button>
-            </StackPanel>
-        </Border>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-        </StackPanel>
-    </Grid>
+            <local:Background Grid.RowSpan="5" Grid.ColumnSpan="5" Opacity="0.5" />
+
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Korisnici" Background="{StaticResource Cararra}" />
+                    <Button Background="Transparent" Command="{Binding Path=Clients}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="3" BorderBrush="{StaticResource Ming}" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Organizatori" Background="{StaticResource Cararra}" />
+                    <Button Background="Transparent" Command="{Binding Path=Organizers}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="1" BorderBrush="{StaticResource Ming}" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Proslave" Background="{StaticResource Cararra}" />
+                    <Button Background="Transparent" Command="{Binding Path=Celebrations}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/celebration.png" />
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="3" BorderBrush="{StaticResource Ming}" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="16" Text="Saradnici" Background="{StaticResource Cararra}" />
+                    <Button Background="Transparent" Command="{Binding Path=Collaborators}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
 </UserControl>

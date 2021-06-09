@@ -7,8 +7,8 @@ namespace Organizator_Proslava.UserCommands
     public class AddImage : IUserCommand
     {
         private readonly string _image;
-        private Action<string> _addImage;
-        private Action<string> _deleteImage;
+        private readonly Action<string> _addImage;
+        private readonly Action<string> _deleteImage;
 
         public AddImage(string image, Action<string> addImage, Action<string> deleteImage)
         {

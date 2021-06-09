@@ -14,14 +14,18 @@
         <CommandBinding Command="ApplicationCommands.Redo" Executed="CommandBinding_Executed_Redo" />
     </Window.CommandBindings>
 
+    <Window.InputBindings>
+        <KeyBinding Key="F2" Command="{Binding Path=OpenDemo}" />
+    </Window.InputBindings>
+
     <Window.Resources>
         <ninject:ServiceLocator x:Key="ServiceLocator" />
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Path="MainViewModel.CurrentViewModel" Source="{StaticResource ServiceLocator}" />
+        <Binding Path="MainViewModel" Source="{StaticResource ServiceLocator}" />
     </Window.DataContext>
 
-    <ContentControl Content="{Binding}">
+    <ContentControl Content="{Binding Path=CurrentViewModel}">
     </ContentControl>
 </Window>

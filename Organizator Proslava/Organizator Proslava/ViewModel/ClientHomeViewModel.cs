@@ -12,6 +12,7 @@ using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.UserCommands;
+using Organizator_Proslava.Dialogs.Custom.Notifications;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -20,8 +21,9 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Cancel { get; set; }
         public ICommand Edit { get; set; }
         public ICommand Details { get; set; }
-        public ICommand Back { get; set; }
         public ICommand Add { get; set; }
+
+        public ICommand Notifications { get; set; }
         public ICommand Profile { get; set; }
         public ICommand Logout { get; set; }
 
@@ -32,30 +34,35 @@ namespace Organizator_Proslava.ViewModel
         private readonly RegisterViewModel _rvm;
 
         private readonly ICelebrationService _celebrationService;
+        private readonly IDialogService _dialogService;
+        private readonly INotificationService _notificationService;
 
         public ClientHomeViewModel(
-            ICelebrationService celebrationService,
-            ICollaboratorService collaboratorService,
             CelebrationRequestFormViewModel crfvm,
             CelebrationProposalsViewModel cpvm,
             RegisterViewModel rvm,
-            IDialogService dialogService)
+            ICelebrationService celebrationService,
+            IDialogService dialogService,
+            INotificationService notificationService)
         {
             _crfvm = crfvm;
             _cpvm = cpvm;
             _rvm = rvm;
+
             _celebrationService = celebrationService;
+            _dialogService = dialogService;
+            _notificationService = notificationService;
 
             LoadCelebrations();
 
             Details = new RelayCommand<Celebration>(celebration =>
             {
-                dialogService.OpenDialog(new CelebrationLongPreviewDialogViewModel(celebration));
+                _dialogService.OpenDialog(new CelebrationLongPreviewDialogViewModel(celebration));
             });
 
             Cancel = new RelayCommand<Celebration>(celebration =>
             {
-                if (dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
                     "Da li ste sigurni da želite da otkažete proslavu?")) == DialogResults.No) return;
                 Celebrations.Remove(Celebrations.FirstOrDefault(c => c.Id == celebration.Id));
                 _celebrationService.Delete(celebration.Id);
@@ -65,7 +72,7 @@ namespace Organizator_Proslava.ViewModel
             {
                 if (celebration.OrganizerId != null)
                 {
-                    dialogService.OpenDialog(new AlertDialogViewModel("Proslava preuzeta",
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Proslava preuzeta",
                         "Nije moguće menjati informacije o proslavi nakon što je ona preuzeta od strane organizatora."));
                     return;
                 }
@@ -73,12 +80,15 @@ namespace Organizator_Proslava.ViewModel
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
             });
 
-            Back = new RelayCommand(() => EventBus.FireEvent("BackToLogin"));
-
             Add = new RelayCommand(() =>
             {
                 EventBus.FireEvent("CelebrationRequestFormForAdd");
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
+            });
+
+            Notifications = new RelayCommand(() =>
+            {
+                _dialogService.OpenDialog(new NotificationsDialogViewModel(_notificationService));
             });
 
             Profile = new RelayCommand(() =>

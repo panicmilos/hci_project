@@ -1,7 +1,10 @@
 ﻿using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Utility;
+using Organizator_Proslava.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.Dialogs.Custom.Demo
@@ -18,13 +21,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Demo
 
         public ICommand PlayVideo { get; set; }
 
-        public DemoDialogViewModel() :
+        public DemoDialogViewModel(Type dataContextType) :
             base("Demo", 860, 660)
         {
             _videos = new Dictionary<string, string>()
             {
                 { "Funkcionalnost 1", "somecatvideo.mp4" },
-                { "Funkcionalnost 2", "Ruta 2" },
+                { "Funkcionalnost 2", "somekidheadshot.mp4" },
                 { "Funkcionalnost 3", "Ruta 3" },
                 { "Funkcionalnost 4", "Ruta 4" },
                 { "Funkcionalnost 5", "Ruta 5" },
@@ -33,15 +36,27 @@ namespace Organizator_Proslava.Dialogs.Custom.Demo
                 { "Funkcionalnost 8", "Ruta 8" },
                 { "Funkcionalnost 9", "Ruta 9" },
             };
-            SelectedVideo = "Funkcionalnost 7";
+
+            var _typeToStringDictionary = new Dictionary<Type, string>
+            {
+                { typeof(RegisterViewModel), "Funkcionalnost 2" },
+            };
+
+            var startingFunctionalityName = _typeToStringDictionary.ContainsKey(dataContextType) ? _typeToStringDictionary[dataContextType] : "Funkcionalnost 1";
+            SelectedVideo = GetPathBasedOnFunctionalityName(startingFunctionalityName);
 
             Functionalities = new ObservableCollection<string>(_videos.Keys);
 
             PlayVideo = new RelayCommand<string>(functionalityName =>
             {
-                SelectedVideo = "pack://siteoforigin:,,,/Resources/" + _videos[functionalityName];
+                SelectedVideo = GetPathBasedOnFunctionalityName(functionalityName);
                 EventBus.FireEvent("demoFunctinalityChanged");
             });
+        }
+
+        private string GetPathBasedOnFunctionalityName(string functionalityName)
+        {
+            return "pack://siteoforigin:,,,/Resources/" + _videos[functionalityName]; ;
         }
     }
 }
