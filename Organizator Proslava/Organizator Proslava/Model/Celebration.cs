@@ -76,6 +76,8 @@ namespace Organizator_Proslava.Model
                 builder.Append($"Želim da se organizuje na adresi {_address?.WholeAddress}. ");
             }
 
+            builder.Append($"Očekujem {_expectedNumberOfGuests} gostiju. ");
+
             var isFixedString = _isBudgetFixed ? "jeste" : "nije";
             builder.Append($"Budžet se kreće od {_budgetFrom} do {_budgetTo} i {isFixedString} konačan. ");
 
