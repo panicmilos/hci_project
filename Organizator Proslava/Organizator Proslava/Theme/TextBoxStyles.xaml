@@ -20,6 +20,16 @@
         <Setter Property="BorderBrush" Value="{StaticResource Ming}" />
     </Style>
 
+    <Style x:Key="registerFormPasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Height" Value="auto" />
+        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="{StaticResource Ming}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+        <Setter Property="BorderBrush" Value="{StaticResource Ming}" />
+    </Style>
+
     <Style x:Key="spaceFormTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Height" Value="auto" />
         <Setter Property="Margin" Value="10, 0, 10, 0" />
@@ -139,4 +149,15 @@
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="Foreground" Value="{StaticResource Ming}" />
     </Style>
+
+    <Style x:Key="hiddenValidateTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="auto" />
+        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+        <Setter Property="BorderBrush" Value="{StaticResource Ming}" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource OurErrorTemplate}" />
+    </Style>
+
 </ResourceDictionary>
