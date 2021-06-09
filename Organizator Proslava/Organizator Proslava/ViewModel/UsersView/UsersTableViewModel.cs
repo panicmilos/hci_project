@@ -4,6 +4,7 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
+using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ namespace Organizator_Proslava.ViewModel.UsersView
                 {
                     Clients.Remove(client);
                     _clientService.Delete(client.Id);
+
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteClientUserCommands(client, Clients));
                 }
             });
 

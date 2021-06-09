@@ -35,6 +35,7 @@ namespace Organizator_Proslava.ViewModel
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Pogrešno korisničko ime ili šifra."));
                     return;
                 }
+                LoginDTO.Password = string.Empty;
                 GlobalStore.AddObject("loggedUser", user);
                 switch (user.Role)
                 {

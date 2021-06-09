@@ -41,7 +41,7 @@
                     Text="{Binding Path=CelebrationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     ItemsSource="{Binding Path=CelebrationTypes}" FilterMode="Contains"
                     Margin="10, 0, 10, 0"
-                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=ShouldShowOrganizers, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -55,7 +55,7 @@
                 <TextBox Grid.Column="0"
                          ToolTip="Ukoliko želite, izaberite organizatora za Vašu proslavu"
                          IsReadOnly="True"
-                         Text="{Binding Path=Celebration.Organizer.FullName, Mode=OneWay}"
+                         Text="{Binding Path=Organizer.FullName, Mode=OneWay}"
                          Style="{StaticResource disabledValidateTextBox}"
                          Margin="10, 0, -20, 0" />
 
@@ -120,7 +120,7 @@
                     x:Name="DateTimeFrom"
                     DateTime="{Binding Path=DateTimeFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
-                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}" />
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
@@ -134,7 +134,7 @@
                     x:Name="DateTimeTo"
                     DateTime="{Binding Path=DateTimeTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
-                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}"/>
+                    Validation.ErrorTemplate="{StaticResource OurErrorTemplate}" />
             </Grid>
         </StackPanel>
 
@@ -168,6 +168,7 @@
                          ToolTip="Unesite najmanju svotu novca koju ste spremni da uložite u Vašu novu proslavu"/>
 
                 <Label Grid.Column="2" Grid.Row="1" Content="Do" Style="{StaticResource registerPageLabel}" />
+
                 <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}"
                          ToolTip="Unesite najveću svotu novca koju ste spremni da uložite u Vašu novu proslavu"/>
                 

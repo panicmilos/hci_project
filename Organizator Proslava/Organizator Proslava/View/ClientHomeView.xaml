@@ -14,6 +14,10 @@
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="0.3*" />
                 </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Command="{Binding Path=PastCelebrations}" Content="Prošle proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
+                </StackPanel>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -89,7 +93,7 @@
                     <DataGridTextColumn
                     Header="Datum i vreme"
                     Width="*"
-                    Binding="{Binding Path=DateTimeFrom}"
+                    Binding="{Binding Path=DateTimeFrom, Converter={StaticResource DateToStringConverter}}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                     <DataGridTemplateColumn Header="Pregled" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                         <DataGridTemplateColumn.CellTemplate>
@@ -125,7 +129,7 @@
             </DataGrid>
 
             <Grid Grid.Column="1" Grid.Row="4">
-                <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+                <Button Content="Nova proslava" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
     </DockPanel>

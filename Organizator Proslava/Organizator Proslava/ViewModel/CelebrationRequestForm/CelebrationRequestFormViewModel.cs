@@ -63,7 +63,6 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
         public void AddCelebration()
         {
             EventBus.FireEvent("BackToClientPage");
-            Console.WriteLine(Crivm.Celebration);
             Crivm.Celebration.ClientId = GlobalStore.ReadObject<BaseUser>("loggedUser").Id;
             _celebrationService.Create(Crivm.Celebration);
             EventBus.FireEvent("CelebrationAddSuccess");

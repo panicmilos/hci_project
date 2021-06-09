@@ -4,6 +4,7 @@
 
     <local:YesNoConverter x:Key="YesNoConverter" />
     <local:ObjectToStringConverter x:Key="ObjectToStringConverter" />
+    <local:DateToStringConverter x:Key="DateToStringConverter" />
     <local:NotYourCommentVisibilityConverter x:Key="NotYourCommentVisibilityConverter" />
     <local:YourCommentVisibilityConverter x:Key="YourCommentVisibilityConverter" />
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
