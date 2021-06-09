@@ -30,6 +30,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Vrsta proslave" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox x:Name="tb1"
+                    ToolTip="Unesite vrstu Vaše nove proslave"
                     Height="25"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
@@ -52,6 +53,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
+                         ToolTip="Ukoliko želite izaberite organizatora za Vašu proslavu"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Organizer.FullName, Mode=OneWay}"
                          Style="{StaticResource disabledValidateTextBox}"
@@ -76,6 +78,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
+                         ToolTip="Unesite adresu Vaše nove proslave"
                          help:HelpProvider.HelpKey="Address"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Address.WholeAddress, Mode=TwoWay}"
@@ -107,6 +110,7 @@
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Datum i vreme od" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
+                    ToolTip="Unesite datum početka Vaše nove proslave"
                     help:HelpProvider.HelpKey="DateTimePicker"
                     Grid.Column="0"
                     Grid.Row="1"
@@ -120,6 +124,7 @@
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Datum i vreme do" Style="{StaticResource registerPageLabel}" />
                 <syncfusion:DateTimeEdit
+                    ToolTip="Unesite datum završetka Vaše nove proslave"
                     help:HelpProvider.HelpKey="DateTimePicker"
                     Grid.Column="2"
                     Grid.Row="1"
@@ -135,7 +140,8 @@
 
         <StackPanel Grid.Column="1" Grid.Row="5">
             <Label Content="Očekivan broj gostiju" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb2" Text="{Binding Path=ExpectedNumberOfGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                     ToolTip="Unesite očekivan broj gostiju Vaše nove proslave"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="6">
@@ -158,15 +164,18 @@
                 <Label HorizontalContentAlignment="Center" Grid.ColumnSpan="5" Grid.Row="0" Content="Budžet" Style="{StaticResource registerPageLabel}" />
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Od" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb3" Grid.Column="1" Grid.Row="1" Text="{Binding Path=BudgetFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}"
+                         ToolTip="Unesite najmanju svotu novca koju ste spremni da uložite u Vašu novu proslavu"/>
 
                 <Label Grid.Column="2" Grid.Row="1" Content="Do" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb4" Grid.Column="3" Grid.Row="1" Text="{Binding Path=BudgetTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}"
+                         ToolTip="Unesite najveću svotu novca koju ste spremni da uložite u Vašu novu proslavu"/>
                 
                 <CheckBox 
                     Grid.Column="4" 
                     Grid.Row="1"
-                    IsChecked="{Binding Path=Celebration.IsBudgetFixed, Mode=TwoWay}">
+                    IsChecked="{Binding Path=Celebration.IsBudgetFixed, Mode=TwoWay}"
+                    ToolTip="Da li je budžet fiksan?">
                     <TextBlock Style="{StaticResource RegisterFormTextBlock}">
                         Fiksan
                     </TextBlock>

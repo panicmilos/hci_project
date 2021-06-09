@@ -25,7 +25,7 @@
         
         <Label Grid.Column="1" Grid.Row="1" Content="Naslov zahteva" Style="{StaticResource registerPageLabel}" />
         <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="2" Text="{Binding Path=DetailTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
-                 Style="{StaticResource validateTextBox}" />
+                 Style="{StaticResource validateTextBox}" ToolTip="Unesite naslov novog zahteva" />
 
         <Label Grid.Column="1"
                Grid.Row="3"
@@ -39,7 +39,8 @@
                 <TextBox x:Name="tb2" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          Style="{StaticResource validateTextBox}"
                          Background="{StaticResource Cararra}"
-                         TextWrapping="Wrap" />
+                         TextWrapping="Wrap"
+                         ToolTip="Unesite detalje novog zahteva" />
             </Grid>
         </ScrollViewer>
 

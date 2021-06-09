@@ -25,13 +25,15 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Oznaka predloga" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb1" Text="{Binding Path=ProposalTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" Background="{StaticResource Cararra}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=ProposalTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" Background="{StaticResource Cararra}"
+                     ToolTip="Unesite oznaku predloga"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Saradnik" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal" Validation.ErrorTemplate="{StaticResource OurErrorTemplate}">
                 <controls:AutoCompleteBox x:Name="tb2"
+                    ToolTip="Unesite saradnika koji će realizovati predlog"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
@@ -61,6 +63,7 @@
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
                 <ComboBox
+                    ToolTip="Unesite salu ukoliko je potrebna"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
@@ -90,6 +93,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <TextBox x:Name="tb3" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             ToolTip="Unesite detaljniji opis predloga"
                              Style="{StaticResource validateTextBox}"
                              Background="{StaticResource Cararra}"
                              TextWrapping="Wrap" />

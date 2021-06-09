@@ -15,6 +15,7 @@
         <StackPanel HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <controls:AutoCompleteBox
+                    ToolTip="Pretražite adresu"
                     x:Name="addresses"
                     Height="25"
                     Foreground="{StaticResource Ming}"

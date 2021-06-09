@@ -30,7 +30,8 @@
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="20" Text="Fizičko lice" Background="{StaticResource Cararra}" />
 
-                    <Button Background="Transparent" Command="{Binding Path=IndividualSelected}">
+                    <Button Background="Transparent" Command="{Binding Path=IndividualSelected}"
+                            ToolTip="Novi saradnik je fizičko lice">
                         <Image Source="pack://siteoforigin:,,,/Resources/individualColaborator.png" />
                     </Button>
                 </StackPanel>
@@ -40,7 +41,8 @@
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource Ming}" FontWeight="DemiBold" FontSize="20" Text="Pravno lice" Background="{StaticResource Cararra}" />
 
-                    <Button Background="Transparent" Command="{Binding Path=LegalSelected}">
+                    <Button Background="Transparent" Command="{Binding Path=LegalSelected}"
+                            ToolTip="Novi saradnik je pravno lice">
                         <Image Source="pack://siteoforigin:,,,/Resources/legalCollaborator.png" />
                     </Button>
                 </StackPanel>

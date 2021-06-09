@@ -24,6 +24,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Da li sme da se pomera" Style="{StaticResource registerPageLabel}" />
             <ComboBox ItemsSource="{Binding Path=MoveableOptions}"
+                      ToolTip="Unesite da li sto sme da se pomera unutar sale"
                       SelectedItem="{Binding Path=Entity.Movable, Mode=TwoWay, Converter={StaticResource YesNoConverter}}"
                       Foreground="{StaticResource Ming}"
                       Background="{StaticResource Cararra}"

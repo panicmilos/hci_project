@@ -42,10 +42,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="1" Grid.Row="0" Content="Naziv prostora" Style="{StaticResource spaceFormLabel}" />
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Hall.Name, Mode=TwoWay}" IsReadOnly="True" Style="{StaticResource disabledSpaceFormTextBox}" />
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Hall.Name, Mode=TwoWay}" IsReadOnly="True" Style="{StaticResource disabledSpaceFormTextBox}"
+                         ToolTip="Unesite naziv prostora"/>
 
                 <Label Grid.Column="3" Grid.Row="0" Content="Dozvoljeno osoba" Style="{StaticResource spaceFormLabel}" />
-                <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Hall.NumberOfGuests, Mode=OneWay}" IsReadOnly="True" Style="{StaticResource disabledSpaceFormTextBox}" />
+                <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Path=Hall.NumberOfGuests, Mode=OneWay}" IsReadOnly="True" Style="{StaticResource disabledSpaceFormTextBox}" 
+                         ToolTip="Unesite dozvoljen broj osoba u prostoriji"/>
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="3">

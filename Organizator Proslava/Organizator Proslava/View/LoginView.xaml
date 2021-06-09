@@ -25,9 +25,11 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
-                <TextBox h:HelpProvider.HelpKey="Login"  Text="{Binding Path=LoginDTO.UserName}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox h:HelpProvider.HelpKey="Login"  Text="{Binding Path=LoginDTO.UserName}" Style="{StaticResource loginFormTextBox}" 
+                         ToolTip="Unesite Vaše korisničko ime"/>
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
-                <TextBox h:HelpProvider.HelpKey="Login" Text="{Binding Path=LoginDTO.Password}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox h:HelpProvider.HelpKey="Login" Text="{Binding Path=LoginDTO.Password}" Style="{StaticResource loginFormTextBox}" 
+                         ToolTip="Unesite Vašu lozinku"/>
 
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button h:HelpProvider.HelpKey="Login" Command="{Binding Path=Login}" CommandParameter="{Binding LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
