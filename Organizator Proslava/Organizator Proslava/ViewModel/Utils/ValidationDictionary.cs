@@ -57,7 +57,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateFirstName(object firstName, object _)
         {
             if (string.IsNullOrWhiteSpace(firstName as string))
-                return "Morate zadati ime.";
+                return "Molimo Vas da unesete ime.";
 
             return null;
         }
@@ -65,7 +65,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateLastName(object lastName, object _)
         {
             if (string.IsNullOrWhiteSpace(lastName as string))
-                return "Morate zadati prezime.";
+                return "Molimo Vas da unesete prezime.";
 
             return null;
         }
@@ -74,9 +74,9 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var mailAddress = mailAddressObject as string;
             if (string.IsNullOrWhiteSpace(mailAddress))
-                return "Morate zadati mail adresu.";
+                return "Molimo Vas da unesete mail adresu.";
             if (!_email.IsValid(mailAddress))
-                return "Nevalidna mail adresa.";
+                return "Mail adresa nije validna.";
 
             return null;
         }
@@ -85,9 +85,9 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var phoneNumber = phoneNumberObject as string;
             if (string.IsNullOrWhiteSpace(phoneNumber))
-                return "Morate zadati broj telefona.";
+                return "Molimo Vas da unesete broj telefona.";
             if (!_phone.IsValid(phoneNumber))
-                return "Nevalidan broj telefona.";
+                return "Broj telefona nije validan.";
 
             return null;
         }
@@ -96,7 +96,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var userName = userNameObject as string;
             if (string.IsNullOrWhiteSpace(userName))
-                return "Morate zadati korisničko ime.";
+                return "Molimo Vas da unesete korisničko ime.";
             if (userName.Trim().Length < 5)
                 return "Korisničko ime je prekratko.";
             if (userName.Trim().Length > 15)
@@ -110,7 +110,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             var password = passwordObject as string;
             var repeatedPassword = repeatedPasswordObject as string;
             if (string.IsNullOrWhiteSpace(password))
-                return "Morate kreirati šifru.";
+                return "Molimo Vas da unesete šifru.";
             if (password != repeatedPassword)
                 return " ";
 
@@ -122,9 +122,9 @@ namespace Organizator_Proslava.ViewModel.Utils
             var password = passwordObject as string;
             var repeatedPassword = repeatedPasswordObject as string;
             if (string.IsNullOrWhiteSpace(repeatedPassword))
-                return "Morate ponoviti šifru.";
+                return "Molimo Vas da ponovite šifru.";
             if (repeatedPassword != password)
-                return "Nije ista kao šifra.";
+                return "Šifre se ne poklapaju.";
 
             return null;
         }
@@ -133,16 +133,16 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var PIB = PIBObject as string;
             if (string.IsNullOrWhiteSpace(PIB))
-                return "Morate zadati PIB.";
+                return "Molimo Vas da unesete PIB.";
 
             if (PIB.Any(c => !char.IsDigit(c)))
-                return "PIB morati imati samo cifre.";
+                return "PIB se isključivo sastoji od cifara.";
 
             if (PIB.Length != 9)
-                return "PIB nije ispravan.";
+                return "PIB nije validan.";
 
             if (double.Parse(PIB.Substring(0, 8)) < 10000001)
-                return "PIB nije ispravan.";
+                return "PIB nije validan.";
 
             var rest = 10;
             for (int i = 0; i < 8; i++)
@@ -154,7 +154,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 rest = rest * 2 % 11;
             }
             if ((PIB[8] - '0') != ((11 - rest) % 10))
-                return "PIB nije ispravan.";
+                return "PIB nije validan.";
 
             return null;
         }
@@ -163,13 +163,13 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var MB = MBObject as string;
             if (string.IsNullOrWhiteSpace(MB))
-                return "Morate zadati matični broj.";
+                return "Molimo Vas da unesete matični broj.";
 
             if (MB.Any(c => !char.IsDigit(c)))
-                return "Matični broj morati imati samo cifre.";
+                return "Matični broj se isključivo sastoji od cifara.";
 
             if (MB.Length != 8)
-                return "Matični broj nije ispravan.";
+                return "Matični broj nije validan.";
 
             var L = 0;
             for (int i = MB.Length - 2, mnozilac = 2; i >= 0; i--)
@@ -181,7 +181,7 @@ namespace Organizator_Proslava.ViewModel.Utils
             L = L > 9 ? 0 : L;
 
             if (MB[7] - '0' != L)
-                return "Matični broj nije ispravan.";
+                return "Matični broj nije validan.";
 
             return null;
         }
@@ -189,7 +189,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateWholeAddress(object wholeAddress, object _)
         {
             if (string.IsNullOrWhiteSpace(wholeAddress as string))
-                return "Morate zadati adresu.";
+                return "Molimo Vas da unesete adresu.";
 
             return null;
         }
@@ -198,20 +198,20 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var JMBG = JMBGObject as string;
             if (string.IsNullOrWhiteSpace(JMBG))
-                return "Morate zadati JMBG.";
+                return "Molimo Vas da unesete JMBG.";
 
             if (JMBG.Any(c => !char.IsDigit(c)))
-                return "JMBG mora imati samo cifre.";
+                return "JMBG se isključivo sastoji od cifara.";
 
             if (JMBG.Length != 13)
-                return "JMBG nije ispravan.";
+                return "JMBG nije validan.";
 
             var L = 11 - ((7 * (JMBG[0] - '0' + JMBG[6] - '0') + 6 * (JMBG[1] - '0' + JMBG[7] - '0') + 5 * (JMBG[2] - '0' + JMBG[8] - '0') +
                 4 * (JMBG[3] - '0' + JMBG[9] - '0') + 3 * (JMBG[4] - '0' + JMBG[10] - '0') + 2 * (JMBG[5] - '0' + JMBG[11] - '0')) % 11);
             L = L <= 9 ? L : 0;
 
             if (JMBG[12] - '0' != L)
-                return "JMBG nije ispravan.";
+                return "JMBG nije validan.";
 
             return null;
         }
@@ -220,13 +220,13 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var personalId = personalIdObject as string;
             if (string.IsNullOrWhiteSpace(personalId))
-                return "Morate zadati broj lične karte.";
+                return "Molimo Vas da unesete broj lične karte.";
 
             if (personalId.Any(c => !char.IsDigit(c)))
-                return "Broj lične karte morati imati samo cifre.";
+                return "Broj lične karte se isključivo sastoji od cifara.";
 
             if (personalId.Length != 9)
-                return "Broj lične karte nije ispravan.";
+                return "Broj lične karte nije validan.";
 
             return null;
         }
@@ -234,7 +234,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCSType(object type, object _)
         {
             if (string.IsNullOrWhiteSpace(type as string))
-                return "Morate zadati tip.";
+                return "Molimo Vas da unesete tip.";
 
             return null;
         }
@@ -242,7 +242,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCSDescription(object description, object _)
         {
             if (string.IsNullOrWhiteSpace(description as string))
-                return "Morate zadati opis.";
+                return "Molimo Vas da unesete opis.";
 
             return null;
         }
@@ -250,7 +250,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCSName(object name, object _)
         {
             if (string.IsNullOrWhiteSpace(name as string))
-                return "Morate zadati ime.";
+                return "Molimo Vas da unesete ime.";
 
             return null;
         }
@@ -258,10 +258,10 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCSPrice(object price, object _)
         {
             if (string.IsNullOrWhiteSpace(price as string))
-                return "Morate zadati cenu.";
+                return "Molimo Vas da unesete cenu.";
 
             if (!double.TryParse(price as string, out var _))
-                return "Cena mora biti broj.";
+                return "Cena nije validna.";
 
             return null;
         }
@@ -269,7 +269,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCSUnit(object unit, object _)
         {
             if (string.IsNullOrWhiteSpace(unit as string))
-                return "Morate zadati jedinicu.";
+                return "Molimo Vas da unesete jedinicu.";
 
             return null;
         }
@@ -277,7 +277,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCHName(object name, object _)
         {
             if (string.IsNullOrWhiteSpace(name as string))
-                return "Morate zadati ime.";
+                return "Molimo Vas da unesete ime.";
 
             return null;
         }
@@ -286,10 +286,10 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var seats = seatsObject as string;
             if (string.IsNullOrWhiteSpace(seats))
-                return "Morate zadati broj stolica.";
+                return "Molimo Vas da unesete broj stolica.";
 
             if (!int.TryParse(seats, out var seatsNum))
-                return "Broj stolica mora biti broj.";
+                return "Broj stolica nije validan.";
 
             else if (seatsNum < 1 || seatsNum > 100)
                 return "Broj stolica mora biti između 1 i 100.";
@@ -300,13 +300,13 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var budgetStr = budgetObject as string;
             if (string.IsNullOrWhiteSpace(budgetStr))
-                return "Morate zadati budžet.";
+                return "Molimo Vas da unesete budžet.";
 
             if (!float.TryParse(budgetStr, out var budget))
-                return "Budžet mora biti broj.";
+                return "Budžet nije validan.";
 
             else if (budget <= 0)
-                return "Budžet mora biti pozitivan.";
+                return "Budžet mora biti pozitivan broj.";
 
             return null;
         }
@@ -315,10 +315,10 @@ namespace Organizator_Proslava.ViewModel.Utils
         {
             var numberStr = numberObject as string;
             if (string.IsNullOrWhiteSpace(numberStr))
-                return "Morate zadati očekivani broj gostiju.";
+                return "Molimo Vas da unesete očekivani broj gostiju.";
 
             if (!int.TryParse(numberStr, out var number))
-                return "Broj gostiju mora biti ceo broj.";
+                return "Broj gostiju nije validan.";
 
             else if (number <= 0)
                 return "Broj gostiju mora biti pozitivan.";
@@ -334,14 +334,14 @@ namespace Organizator_Proslava.ViewModel.Utils
                 var dateTimeTo = Convert.ToDateTime(dateTime2Object);
 
                 if (dateTimeTo < DateTime.Now.AddDays(2))
-                    return "Mora biti najmanje za 48 sati kasnije.";
+                    return "Trebalo bi da bude najmanje 48 sati kasnije.";
 
                 else if (dateTimeTo < dateTimeFrom)
-                    return "Ne može biti ranije od početka.";
+                    return "Ne može biti pre početka.";
             }
             catch
             {
-                return "Nevalidan datum.";   // should not happen
+                return "Datum nije validan.";   // should not happen
             }
             return null;
         }
@@ -354,14 +354,14 @@ namespace Organizator_Proslava.ViewModel.Utils
                 var dateTimeTo = Convert.ToDateTime(dateTime2Object);
 
                 if (dateTimeFrom < DateTime.Now.AddDays(2))
-                    return "Mora biti najmanje za 48 sati kasnije.";
+                    return "Trebalo bi da bude najmanje 48 sati kasnije.";
 
                 else if (dateTimeTo < dateTimeFrom)
                     return "Ne može biti kasnije od završetka.";
             }
             catch
             {
-                return "Nevalidan datum.";   // should not happen
+                return "Datum nije validan.";   // should not happen
             }
             return null;
         }
@@ -369,7 +369,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateCelebrationType(object type, object _)
         {
             if(string.IsNullOrWhiteSpace(type as string))
-                return "Morate zadati tip proslave.";
+                return "Molimo Vas da unesete tip proslave.";
 
             return null;
         }
@@ -377,7 +377,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateContent(object content, object _)
         {
             if (string.IsNullOrWhiteSpace(content as string))
-                return "Morate zadati detalje.";
+                return "Molimo Vas da unesete detalje.";
 
             return null;
         }
@@ -385,7 +385,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateDetailTitle(object title, object _)
         {
             if (string.IsNullOrWhiteSpace(title as string))
-                return "Morate zadati naslov zahteva.";
+                return "Molimo Vas da unesete naslov zahteva.";
 
             return null;
         }
@@ -393,7 +393,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateProposalTitle(object title, object _)
         {
             if (string.IsNullOrWhiteSpace(title as string))
-                return "Morate zadati naslov predloga.";
+                return "Molimo Vas da unesete naslov predloga.";
 
             return null;
         }
@@ -401,7 +401,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateNOCelebrationType(object celebrationType, object _)
         {
             if (string.IsNullOrWhiteSpace(celebrationType as string))
-                return "Morate zadati specijalizaciju.";
+                return "Molimo Vas da unesete specijalizaciju.";
 
             return null;
         }

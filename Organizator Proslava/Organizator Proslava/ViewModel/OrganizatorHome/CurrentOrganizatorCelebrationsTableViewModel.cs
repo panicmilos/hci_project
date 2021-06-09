@@ -68,7 +68,7 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
 
             Cancel = new RelayCommand<CelebrationResponse>(cr =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
                         "Da li ste sigurni da želite da otkažete organizovanje proslave?")) == DialogResults.Yes)
                 {
                     var createdCanceledNotification = _notificationService.Create(new CanceledResponseNotification

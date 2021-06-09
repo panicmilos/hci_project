@@ -62,7 +62,7 @@ namespace Organizator_Proslava.ViewModel
 
             Cancel = new RelayCommand<Celebration>(celebration =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
                     "Da li ste sigurni da želite da otkažete proslavu?")) == DialogResults.No) return;
                 Celebrations.Remove(Celebrations.FirstOrDefault(c => c.Id == celebration.Id));
                 _celebrationService.Delete(celebration.Id);
@@ -72,7 +72,7 @@ namespace Organizator_Proslava.ViewModel
             {
                 if (celebration.OrganizerId != null)
                 {
-                    _dialogService.OpenDialog(new AlertDialogViewModel("Proslava preuzeta",
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje",
                         "Nije moguće menjati informacije o proslavi nakon što je ona preuzeta od strane organizatora."));
                     return;
                 }

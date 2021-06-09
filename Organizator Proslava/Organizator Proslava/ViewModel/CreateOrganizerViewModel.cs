@@ -82,7 +82,7 @@ namespace Organizator_Proslava.ViewModel
 
             Map = new RelayCommand(() =>
             {
-                var address = _dialogService.OpenDialog(new MapDialogViewModel("Odaberi lokaciju"));
+                var address = _dialogService.OpenDialog(new MapDialogViewModel("Odabir adrese"));
                 if (address != null)
                 {
                     Address = address;

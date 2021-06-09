@@ -102,7 +102,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
 
             Remove = new RelayCommand<CollaboratorService>(service =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Pitanje", "Da li ste sigurni da želite da obrišete ovu uslugu?")) == DialogResults.Yes)
+                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovu uslugu?")) == DialogResults.Yes)
                 {
                     Services.Remove(service);
                     CollaboratorServiceBook.Services.Remove(service);

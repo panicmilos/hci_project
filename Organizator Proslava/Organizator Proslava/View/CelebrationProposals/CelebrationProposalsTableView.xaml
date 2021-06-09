@@ -20,7 +20,7 @@
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Predlozi</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Ponude</Label>
 
         <DataGrid
             Grid.Column="1"
@@ -41,7 +41,7 @@
             
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Header="Oznaka"
+                    Header="Naslov"
                     Width="1.5*"
                     Binding="{Binding Path=Title}"
                     CellStyle="{StaticResource DataGridTextCell}" />

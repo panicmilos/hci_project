@@ -19,7 +19,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Predlozi detalja proslave</Label>
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Ponude detalja proslave</Label>
 
         <DataGrid
             Grid.Column="1"

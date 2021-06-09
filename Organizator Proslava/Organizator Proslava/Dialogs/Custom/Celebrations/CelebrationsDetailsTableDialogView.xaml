@@ -61,7 +61,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Predlozi" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
+                <DataGridTemplateColumn Header="Ponude" Width="0.8*" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"

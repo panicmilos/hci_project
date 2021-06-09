@@ -68,7 +68,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             _dialogService = dialogService;
 
             Proposal = new CelebrationProposal();
-            ProposalTitle = $"Predlog #{n}";
+            ProposalTitle = $"Ponuda #{n}";
             Collaborators = _collaboratorService.Read().ToList();
 
             PreviewHall = new RelayCommand(() => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(Proposal.CelebrationHall, _dialogService)), () => Proposal.CelebrationHall != null);
