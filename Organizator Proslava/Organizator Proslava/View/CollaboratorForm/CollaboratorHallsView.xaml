@@ -78,7 +78,7 @@
         </DataGrid>
 
         <Grid Grid.Column="1" Grid.Row="2">
-            <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+            <Button Content="Nova sala" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="4">
