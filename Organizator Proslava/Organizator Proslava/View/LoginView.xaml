@@ -41,25 +41,19 @@
                     <Label Grid.Row="0" Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
                     <TextBox Grid.Row="1" Visibility="Hidden" Text="{Binding Path=LoginDTO.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="pwtb" />
                     <PasswordBox Grid.Row="1" h:HelpProvider.HelpKey="Login" Style="{StaticResource loginFormPasswordBox}"
-                        PasswordChanged="PasswordBox_PasswordChanged" x:Name="pwb"   
+                        PasswordChanged="PasswordBox_PasswordChanged" x:Name="pwb"
                         ToolTip="Unesite Vašu lozinku">
                         <PasswordBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" />
                         </PasswordBox.InputBindings>
                     </PasswordBox>
                 </Grid>
-                
+
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button h:HelpProvider.HelpKey="Login" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" Width="60"/>
+                    <Button h:HelpProvider.HelpKey="Login" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" Width="60" />
                     <Button Command="{Binding Path=Register}" Content="Napravi nalog" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" Width="90" />
                 </StackPanel>
             </StackPanel>
-
-            <WrapPanel Grid.Row="2"  HorizontalAlignment="Center">
-                <Button Command="{Binding Path=Covm}" Content="AdminHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding Path=ClientHome}" Content="ClientHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-                <Button Command="{Binding Path=OrgHome}" Content="OrgHome" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            </WrapPanel>
         </Grid>
 
         <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center">
