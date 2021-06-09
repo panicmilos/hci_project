@@ -53,7 +53,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
-                         ToolTip="Ukoliko želite izaberite organizatora za Vašu proslavu"
+                         ToolTip="Ukoliko želite, izaberite organizatora za Vašu proslavu"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Organizer.FullName, Mode=OneWay}"
                          Style="{StaticResource disabledValidateTextBox}"

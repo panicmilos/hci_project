@@ -37,7 +37,7 @@
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Jedinica" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb3" Text="{Binding Path=Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
-                     ToolTip="Unesite jedinicu kojom se meri usluga koju nudi saradnik"/>
+                     ToolTip="Unesite jedinicu kojom se meri usluga koju nudi saradnik (količina, porcija, po osobi)"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1"  Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">

@@ -63,7 +63,7 @@
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
                 <ComboBox
-                    ToolTip="Unesite salu ukoliko je potrebna"
+                    ToolTip="Unesite salu"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"

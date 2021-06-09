@@ -67,7 +67,7 @@
 
                 <Label Grid.Column="2" Grid.Row="0" Content="JMBG" Style="{StaticResource registerPageLabel}" />
                 <TextBox x:Name="tb4" Grid.Column="2" Grid.Row="1" Text="{Binding Path=JMBG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}"
-                         ToolTip="Unesite jedinstveni matični broj novog saradnika"/>
+                         ToolTip="Unesite jedinstveni matični broj građanina novog saradnika"/>
             </Grid>
         </StackPanel>
 
@@ -146,7 +146,7 @@
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
                 <TextBox x:Name="tb10" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
-                         ToolTip="Ponovo unseite šifru novog saradnika"/>
+                         ToolTip="Ponovo unesite šifru novog saradnika"/>
             </Grid>
         </StackPanel>
 
