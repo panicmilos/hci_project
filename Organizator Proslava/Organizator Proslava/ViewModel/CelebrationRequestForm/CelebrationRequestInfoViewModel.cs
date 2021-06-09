@@ -13,6 +13,9 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 {
     public class CelebrationRequestInfoViewModel : ObservableEntity, IDataErrorInfo
     {
+        private Organizer _organizer;
+        public Organizer Organizer { get => _organizer; set => OnPropertyChanged(ref _organizer, value); }
+
         private Celebration _celebration;
         public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
 
@@ -72,7 +75,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             OpenOrganizersDialog = new RelayCommand(() =>
             {
-                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(_celebration.Type, organizerService, celebrationService));
+                var organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(_celebration.Type, organizerService, celebrationService));
+                if (organizer != null)
+                {
+                    Organizer = organizer;
+                    Celebration.OrganizerId = Organizer.Id;
+                }
             });
             OpenMap = new RelayCommand(() =>
             {

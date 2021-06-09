@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Organizator_Proslava.View.OrganizatorHome.AcceptCelebrationRequestTableView"
+﻿<UserControl x:Class="Organizator_Proslava.View.OrganizatorHome.OrganizersPastCelebrationsTableView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
@@ -22,7 +22,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Neprihvaćeni zahtevi za proslave</Label>
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Prošle proslave</Label>
 
         <DataGrid
             Grid.Column="1"
@@ -31,7 +31,7 @@
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=CelebrationRequests}"
+            ItemsSource="{Binding Path=PastCelebrations}"
             Style="{StaticResource DataGridStyle}"
         >
             <DataGrid.Resources>
@@ -40,7 +40,7 @@
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
             </DataGrid.Resources>
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Vrsta Proslave"
@@ -55,26 +55,15 @@
                 <DataGridTextColumn
                     Header="Datum i vreme"
                     Width="2*"
-                    Binding="{Binding Path=DateTimeFrom, Converter={StaticResource DateToStringConverter}}"
+                    Binding="{Binding Path=DateTimeFrom}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTemplateColumn Header="Pregled" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:AcceptCelebrationRequestTableView}}}"
+                                    Command="{Binding Path=DataContext.Preview, RelativeSource={RelativeSource AncestorType={x:Type local:OrganizersPastCelebrationsTableView}}}"
                                     CommandParameter="{Binding}">
                                 <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/preview.png" />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Prihvati" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Style="{StaticResource SmallPaintedButton}"
-                                    Command="{Binding Path=DataContext.Accept, RelativeSource={RelativeSource AncestorType={x:Type local:AcceptCelebrationRequestTableView}}}"
-                                    CommandParameter="{Binding}">
-                                <BitmapImage UriSource="http://proslavio-doc.bjelicaluka.com/project-resources/accept.png" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Organizator_Proslava.Dialogs.Alert;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -30,12 +31,17 @@ namespace Organizator_Proslava.ViewModel
 
         private readonly CreateOrganizerViewModel _covm;
         private readonly IOrganizerService _organizerService;
+        private readonly ICelebrationService _celebrationService;
         private readonly IDialogService _dialogService;
 
-        public OrganziersTableViewModel(CreateOrganizerViewModel covm, IOrganizerService organizerService, IDialogService dialogService)
+        public OrganziersTableViewModel(CreateOrganizerViewModel covm,
+            IOrganizerService organizerService,
+            ICelebrationService celebrationService,
+            IDialogService dialogService)
         {
             _covm = covm;
             _organizerService = organizerService;
+            _celebrationService = celebrationService;
             _dialogService = dialogService;
 
             Organizers = new ObservableCollection<Organizer>(_organizerService.Read());
@@ -55,7 +61,11 @@ namespace Organizator_Proslava.ViewModel
 
             Remove = new RelayCommand<Organizer>(organizer =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog organizatora?")) == DialogResults.Yes)
+                if (!_celebrationService.CanDeleteOrganizer(organizer.Id))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje",
+                        "Nije moguće obrisati organizatora jer učestvuje u budućim proslavama."));
+                } else if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog organizatora?")) == DialogResults.Yes)
                 {
                     Organizers.Remove(organizer);
                     _organizerService.Delete(organizer.Id);

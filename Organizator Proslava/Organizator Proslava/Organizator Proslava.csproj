@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>proslavio.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
@@ -215,6 +218,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateToStringConverter.cs" />
     <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
@@ -536,6 +540,7 @@
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="UserCommands\CelebrationHallUserCommands.cs" />
     <Compile Include="UserCommands\CelebrationProposalUserCommands.cs" />
+    <Compile Include="UserCommands\DeleteClientUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorServiceUserCommands.cs" />
     <Compile Include="UserCommands\CollaboratorUserCommands.cs" />
     <Compile Include="UserCommands\ImageUserCommands.cs" />
@@ -562,6 +567,7 @@
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\Celebrations\CelebrationsTableViewModel.cs" />
+    <Compile Include="ViewModel\ClientHome\ClientsPastCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -577,6 +583,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\CurrentOrganizatorCelebrationsTableViewModel.cs" />
+    <Compile Include="ViewModel\OrganizatorHome\OrganizersPastCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
@@ -627,6 +634,9 @@
     <Compile Include="View\Celebrations\CelebrationsTableView.xaml.cs">
       <DependentUpon>CelebrationsTableView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ClientHome\ClientsPastCelebrationsTableView.xaml.cs">
+      <DependentUpon>ClientsPastCelebrationsTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
     </Compile>
@@ -665,6 +675,9 @@
     </Compile>
     <Compile Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml.cs">
       <DependentUpon>CurrentOrganizatorCelebrationsTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrganizatorHome\OrganizersPastCelebrationsTableView.xaml.cs">
+      <DependentUpon>OrganizersPastCelebrationsTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OrganizerHomeView.xaml.cs">
       <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
@@ -880,6 +893,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ClientHome\ClientsPastCelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -929,6 +946,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizatorHome\OrganizersPastCelebrationsTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1073,6 +1094,9 @@
     <None Include="Resources\notification.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="proslavio.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

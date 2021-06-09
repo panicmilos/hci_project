@@ -1,6 +1,7 @@
 ﻿using Organizator_Proslava.Help;
 using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -29,9 +30,11 @@ namespace Organizator_Proslava
                 }
             }
 
-            var helpViewer = DataContext is NavigabileModelView navigabileModelView
+            var context = (DataContext as NavigabileModelView).Current;
+            var helpViewer = context is NavigabileModelView navigabileModelView
                 ? new HelpViewer(navigabileModelView.Current.GetType(), this)
-                : new HelpViewer(DataContext.GetType(), this);
+                : new HelpViewer(context.GetType(), this);
+
             helpViewer.Show();
         }
 

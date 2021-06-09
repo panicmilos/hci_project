@@ -25,6 +25,7 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
+
                 <TextBox h:HelpProvider.HelpKey="Login"  Text="{Binding Path=LoginDTO.UserName}" Style="{StaticResource loginFormTextBox}" 
                          ToolTip="Unesite Vaše korisničko ime"/>
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />

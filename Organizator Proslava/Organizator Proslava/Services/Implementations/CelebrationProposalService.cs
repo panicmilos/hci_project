@@ -18,5 +18,12 @@ namespace Organizator_Proslava.Services.Implementations
         {
             return _entities.Where(proposal => proposal.CelebrationDetailId == detailId).ToList();
         }
+
+        public bool CanDeleteCollaborator(Guid collaboratorId)
+        {
+            return !_entities.Any(celebrationProposal => celebrationProposal.CollaboratorId == collaboratorId &&
+                                                        celebrationProposal.CelebrationResponse.Celebration.DateTimeTo >=
+                                                        DateTime.Now);
+        }
     }
 }

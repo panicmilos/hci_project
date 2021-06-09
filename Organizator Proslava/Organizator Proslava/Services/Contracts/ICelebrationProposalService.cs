@@ -7,5 +7,6 @@ namespace Organizator_Proslava.Services.Contracts
     public interface ICelebrationProposalService : ICrudService<CelebrationProposal>
     {
         IEnumerable<CelebrationProposal> ReadFor(Guid detailId);
+        bool CanDeleteCollaborator(Guid collaboratorId);
     }
 }
