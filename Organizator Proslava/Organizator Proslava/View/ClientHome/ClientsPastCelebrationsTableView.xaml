@@ -24,7 +24,7 @@
 
         <view:Background Opacity="0.45" />
 
-        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Prošle proslave</Label>
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TableTitleLabel}">Realizovane proslave</Label>
 
         <DataGrid
             Grid.Column="1"

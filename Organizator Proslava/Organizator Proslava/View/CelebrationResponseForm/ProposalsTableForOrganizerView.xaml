@@ -76,7 +76,7 @@
         </DataGrid>
 
         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Novi predlog" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" Width="90"/>
+            <Button Content="Nova ponuda" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" Width="90"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left">
