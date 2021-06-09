@@ -71,12 +71,16 @@ namespace Organizator_Proslava.ViewModel.OrganizatorHome
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda otkazivanja proslave",
                         "Da li ste sigurni da želite da otkažete organizovanje proslave?")) == DialogResults.Yes)
                 {
-                    _notificationService.Create(new CanceledResponseNotification
+                    var createdCanceledNotification = _notificationService.Create(new CanceledResponseNotification
                     {
                         ForUserId = cr.Celebration.ClientId.Value,
                         Organizer = cr.Celebration.Organizer.FullName,
                         CelebrationType = cr.Celebration.Type
                     });
+
+                    var notifications = _notificationService.ReadFrom(cr.Id);
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(
+                        new CancelCelebrationResponse(cr, createdCanceledNotification, notifications));
 
                     CelebrationResponses.Remove(cr);
                     _celebrationResponseService.CancelCelebrationResponse(cr.Id);

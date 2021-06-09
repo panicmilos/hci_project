@@ -4,6 +4,8 @@ using Organizator_Proslava.Ninject;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Organizator_Proslava.UserCommands
 {
@@ -107,6 +109,55 @@ namespace Organizator_Proslava.UserCommands
             _proposalCommentService.Delete(_comment.Id);
             _notificationService.DeleteCommentNotification(_notification as NewCommentNotification);
             EventBus.FireEvent("PreviewCommentsFromNotificationOrganizer", _comment.CelebrationProposal);
+        }
+    }
+
+    public class CancelCelebrationResponse : IUserCommand
+    {
+        private readonly CelebrationResponse _celebrationResponse;
+        private readonly Celebration _celebration;
+        private readonly Address _address;
+
+        private readonly Notification _cancelNotification;
+        private readonly IEnumerable<Notification> _notifications;
+
+        private readonly ICelebrationResponseService _celebrationResponseService;
+        private readonly ICelebrationService _celebrationService;
+        private readonly INotificationService _notificationService;
+
+        public CancelCelebrationResponse(CelebrationResponse celebrationResponse, Notification cancelNotification, IEnumerable<Notification> notifications)
+        {
+            _celebrationResponse = celebrationResponse;
+            _celebration = _celebrationResponse.Celebration;
+            _address = _celebration.Address;
+
+            _cancelNotification = cancelNotification;
+            _notifications = notifications;
+
+            _celebrationResponseService = ServiceLocator.Get<ICelebrationResponseService>();
+            _celebrationService = ServiceLocator.Get<ICelebrationService>();
+            _notificationService = ServiceLocator.Get<INotificationService>();
+        }
+
+        public void Redo()
+        {
+            _celebrationResponseService.Delete(_celebrationResponse.Id);
+            _celebrationService.Delete(_celebrationResponse.Id);
+            _notificationService.Create(_cancelNotification);
+            EventBus.FireEvent("ReloadCurrentOrganizatorCelebrationsTable");
+        }
+
+        public void Undo()
+        {
+            _celebration.AddressId = _address.Id;
+            _celebration.Address = null;
+            _celebrationService.Create(_celebration);
+            _celebrationResponseService.Create(_celebrationResponse);
+
+            _notificationService.CreateRange(_notifications);
+            _notificationService.Delete(_cancelNotification.Id);
+
+            EventBus.FireEvent("ReloadCurrentOrganizatorCelebrationsTable");
         }
     }
 }

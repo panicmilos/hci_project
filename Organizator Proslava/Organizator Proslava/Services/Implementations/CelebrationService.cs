@@ -34,7 +34,7 @@ namespace Organizator_Proslava.Services.Implementations
 
         public IEnumerable<Celebration> ReadForClient(Guid clientId)
         {
-            return Read().Where(celebration => celebration.ClientId == clientId);
+            return _entities.Where(celebration => celebration.ClientId == clientId).ToList();
         }
     }
 }

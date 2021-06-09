@@ -51,5 +51,10 @@ namespace Organizator_Proslava.Services.Implementations
             newComment.NumOfComments -= 1;
             return base.Update(newComment);
         }
+
+        public IEnumerable<Notification> ReadFrom(Guid celebrationResponseId)
+        {
+            return _entities.Where(n => n.CelebrationResponseId.Value == celebrationResponseId).ToList();
+        }
     }
 }
