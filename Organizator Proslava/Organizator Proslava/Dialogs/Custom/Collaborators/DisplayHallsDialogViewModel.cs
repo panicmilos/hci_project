@@ -16,16 +16,16 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
         public ICommand Back { get; set; }
         public ICommand Details { get; set; }
 
-        public DisplayHallsDialogViewModel(Collaborator collaborator) :
+        public Collaborator Collaborator { get; set; }
+
+        public DisplayHallsDialogViewModel() :
             base("Pregled sala saradnika", 680, 420)
         {
             _dialogService = new DialogService();
 
-            Halls = new ObservableCollection<CelebrationHall>(collaborator.CelebrationHalls);
+            Back = new RelayCommand<IDialogWindow>(window => EventBus.FireEvent("BackToInformations"));
 
-            Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
-
-            Details = new RelayCommand<CelebrationHall>(hall => _dialogService.OpenDialog(new SpacePreviewDialogViewModel(hall, _dialogService)), (hall) => hall != null);
+            Details = new RelayCommand<CelebrationHall>(hall => EventBus.FireEvent("DisplayOneHall", hall));
         }
     }
 }

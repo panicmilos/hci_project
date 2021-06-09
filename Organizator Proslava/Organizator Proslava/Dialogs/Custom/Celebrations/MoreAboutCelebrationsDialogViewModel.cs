@@ -28,7 +28,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
         public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
 
-        public MoreAboutCelebrationsDialogViewModel(Celebration celebration,
+        public MoreAboutCelebrationsDialogViewModel(
             ICelebrationResponseService celebrationResponseService,
             IDialogService dialogService,
             CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
@@ -46,18 +46,18 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             CelebrationsProposalsTableDialogViewModel = celebrationsProposalsTableDialogViewModel;
             ProposalCommentsViewModel = proposalCommentsViewModel;
 
-            Celebration = celebration;
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
 
             Details = new RelayCommand(() =>
             {
                 CelebrationsDetailsTableDialogViewModel.Celebration = Celebration;
-                DetailsDialogViewModel ddvm = new DetailsDialogViewModel(CelebrationsDetailsTableDialogViewModel,
+                EventBus.FireEvent("CelebrationDetails");
+                /*DetailsDialogViewModel ddvm = new DetailsDialogViewModel(CelebrationsDetailsTableDialogViewModel,
                     _celebrationResponseService, CelebrationDetailDialogViewModel,
                     CelebrationsProposalsTableDialogViewModel,
                     ProposalCommentsViewModel);
                 ddvm.CurrentCelebration = Celebration;
-                _dialogService.OpenDialog(ddvm);
+                _dialogService.OpenDialog(ddvm);*/
             });
         }
     }

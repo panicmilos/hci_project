@@ -59,19 +59,25 @@
             </Grid>
         </Grid>
 
-        <StackPanel Grid.Column ="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+ 
             <Button Content="Nazad"
+                    Grid.Column="1"
+                    Grid.Row="3"
                     Command="{Binding Path=Back}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
+                    Background="{StaticResource PowderBlue}"
+                    HorizontalAlignment="Left"/>
 
             <Button Visibility="{Binding Path=ShouldShowSave, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Grid.Column="1"
+                    Grid.Row="3"
                     Content="Sačuvaj"
                     Command="{Binding Path=Save}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
-        </StackPanel>
+                    Background="{StaticResource PowderBlue}" 
+                    HorizontalAlignment="Right"/>
+
     </Grid>
 </UserControl>

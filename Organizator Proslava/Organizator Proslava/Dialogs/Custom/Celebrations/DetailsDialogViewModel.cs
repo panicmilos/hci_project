@@ -19,6 +19,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public CelebrationsDetailsTableDialogViewModel CelebrationsDetailsTableDialogViewModel { get; set; }
         public CelebrationDetailDialogViewModel CelebrationDetailDialogViewModel { get; set; }
         public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
+        public MoreAboutCelebrationsDialogViewModel MoreAboutCelebrationsDialogViewModel { get; set; }
 
         public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
 
@@ -31,8 +32,9 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             ICelebrationResponseService celebrationResponseService,
             CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
-            ProposalCommentsViewModel proposalCommentsViewModel) :
-            base("Pregled detalja proslave", 650, 490)
+            ProposalCommentsViewModel proposalCommentsViewModel,
+            MoreAboutCelebrationsDialogViewModel moreAboutCelebrationsDialogView) :
+            base("Pregled detalja proslave", 670, 490)
         {
 
             _celebrationResponseService = celebrationResponseService;
@@ -41,8 +43,9 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             CelebrationDetailDialogViewModel = celebrationDetailDialogViewModel;
             CelebrationsProposalsTableDialogViewModel = celebrationsProposalsTableDialogViewModel;
             ProposalCommentsViewModel = proposalCommentsViewModel;
+            MoreAboutCelebrationsDialogViewModel = moreAboutCelebrationsDialogView;
 
-            Switch(CelebrationsDetailsTableDialogViewModel);
+            Switch(MoreAboutCelebrationsDialogViewModel);
 
             RegisterHandlerToEventBus();
         }
@@ -50,6 +53,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
         public void RegisterHandlerToEventBus()
         {
             ProposalCommentsViewModel.ChangeBack();
+
+            EventBus.RegisterHandler("CelebrationDetails", () => Switch(CelebrationsDetailsTableDialogViewModel));
+
+            EventBus.RegisterHandler("BackToMoreInfoAboutCelebration", () => Switch(MoreAboutCelebrationsDialogViewModel));
+
             EventBus.RegisterHandler("CelebrationDetailPreview", detail =>
             {
                 CelebrationDetailDialogViewModel.IsBack = true;

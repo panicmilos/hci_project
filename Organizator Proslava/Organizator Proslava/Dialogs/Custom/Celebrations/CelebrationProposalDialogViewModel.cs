@@ -76,8 +76,17 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             PreviewCollaborator = new RelayCommand(() =>
             {
                 if (_selectedCollaborator is IndividualCollaborator)
-                    _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(_selectedCollaborator as IndividualCollaborator));
-                else _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(_selectedCollaborator as LegalCollaborator));
+                {
+                    IndividualCollaboratorDetailViewModel icdvm = new IndividualCollaboratorDetailViewModel();
+                    icdvm.Collaborator = _selectedCollaborator as IndividualCollaborator;
+                    _dialogService.OpenDialog(icdvm);
+                }
+                else
+                {
+                    LegalCollaboratorDetailViewModel lcdvm = new LegalCollaboratorDetailViewModel();
+                    lcdvm.Collaborator = _selectedCollaborator as LegalCollaborator;
+                    _dialogService.OpenDialog(lcdvm);
+                }
             }, () => SelectedCollaborator != null);
 
             Add = new RelayCommand<IDialogWindow>(w =>

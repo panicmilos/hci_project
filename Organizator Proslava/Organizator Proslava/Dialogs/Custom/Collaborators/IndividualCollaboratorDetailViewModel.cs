@@ -20,28 +20,24 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private readonly IDialogService _dialogService;
 
-        public IndividualCollaboratorDetailViewModel(IndividualCollaborator collaborator):
+        public IndividualCollaboratorDetailViewModel():
             base("Pregled saradnika", 590, 420)
         {
             _dialogService = new DialogService();
-            Collaborator = collaborator;
 
             Back = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, DialogResults.Undefined));
 
             Images = new RelayCommand<IDialogWindow>(window => {
-                CloseDialogWithResult(window, DialogResults.Undefined);
-                _dialogService.OpenDialog(new DisplayImagesViewModel(collaborator));
-                });
+                EventBus.FireEvent("DisplayImages");
+            });
 
             Services = new RelayCommand<IDialogWindow>((window) => {
-                CloseDialogWithResult(window, DialogResults.Undefined);
-                _dialogService.OpenDialog(new CollaboratorServiceTableViewModel(collaborator));
+                EventBus.FireEvent("DisplayServices");
             });
 
             Halls = new RelayCommand<IDialogWindow>((window) =>
             {
-                CloseDialogWithResult(window, DialogResults.Undefined);
-                _dialogService.OpenDialog(new DisplayHallsDialogViewModel(collaborator));
+                EventBus.FireEvent("DisplayHalls");
             });
         }
     }

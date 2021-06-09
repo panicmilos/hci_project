@@ -44,5 +44,10 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
             Back = new RelayCommand<IDialogWindow>(w => CloseDialogWithResult(w, null));
         }
+
+        public void ChangeBack()
+        {
+            Back = new RelayCommand<IDialogWindow>(w => EventBus.FireEvent("BackToHallsTable"));
+        }
     }
 }

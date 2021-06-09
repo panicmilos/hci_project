@@ -34,23 +34,24 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         //private readonly ICollaboratorService _collaboratorService;
         private readonly IDialogService _dialogService;
+        public Collaborator Collaborator { get; set; }
 
-        public DisplayImagesViewModel(Collaborator collaborator):
+        public DisplayImagesViewModel():
             base("Pregled slika", 650, 700)
         {
             _dialogService = new DialogService();
             ShowForAdd = false;
-            Images = new ObservableCollection<string>(collaborator.Images);
             ChangeMainImage = new RelayCommand<string>(file => MainImage = file);
-            MainImage = Images.Any() ? collaborator.Images[0] : ImagePlaceholderFileName;
+  
             Back = new RelayCommand<IDialogWindow>(window =>
             {
-                CloseDialogWithResult(window, DialogResults.Undefined);
+                /*CloseDialogWithResult(window, DialogResults.Undefined);
 
                 if(collaborator is IndividualCollaborator)
                     _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(collaborator as IndividualCollaborator));
                 else
-                    _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));
+                    _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));*/
+                EventBus.FireEvent("BackToInformations");
             });
         }
     }

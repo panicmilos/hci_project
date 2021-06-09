@@ -19,19 +19,21 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
 
         private readonly IDialogService _dialogService;
 
-        public CollaboratorServiceTableViewModel(Collaborator collaborator)
+        public Collaborator Collaborator { get; set; }
+
+        public CollaboratorServiceTableViewModel()
             : base("Usluge saradnika", 590, 450)
         {
             _dialogService = new DialogService();
 
-            Services = new ObservableCollection<CollaboratorService>(collaborator.CollaboratorServiceBook.Services);
             Back = new RelayCommand<IDialogWindow>(window => {
-                CloseDialogWithResult(window, DialogResults.Undefined);
+                EventBus.FireEvent("BackToInformations");
+                /*CloseDialogWithResult(window, DialogResults.Undefined);
 
                 if (collaborator is IndividualCollaborator)
                     _dialogService.OpenDialog(new IndividualCollaboratorDetailViewModel(collaborator as IndividualCollaborator));
                 else
-                    _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));
+                    _dialogService.OpenDialog(new LegalCollaboratorDetailViewModel(collaborator as LegalCollaborator));*/
             });
         }
     }

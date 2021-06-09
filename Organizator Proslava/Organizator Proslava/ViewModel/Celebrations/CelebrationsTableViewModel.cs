@@ -31,6 +31,7 @@ namespace Organizator_Proslava.ViewModel.Celebrations
         public CelebrationDetailDialogViewModel CelebrationDetailDialogViewModel { get; set; }
         public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
         public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
+        public MoreAboutCelebrationsDialogViewModel MoreAboutCelebrationsDialogViewModel { get; set; }
 
         public CelebrationsTableViewModel(ICelebrationService celebrationService,
             IDialogService dialogService,
@@ -38,7 +39,8 @@ namespace Organizator_Proslava.ViewModel.Celebrations
             CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
             CelebrationsDetailsTableDialogViewModel celebrationsDetailsTableDialogViewModel,
-            ProposalCommentsViewModel proposalCommentsViewModel)
+            ProposalCommentsViewModel proposalCommentsViewModel,
+            MoreAboutCelebrationsDialogViewModel moreAboutCelebrationsDialogViewModel)
         {
             _celebrationService = celebrationService;
             _dialogService = dialogService;
@@ -49,6 +51,7 @@ namespace Organizator_Proslava.ViewModel.Celebrations
             CelebrationDetailDialogViewModel = celebrationDetailDialogViewModel;
             CelebrationsProposalsTableDialogViewModel = celebrationsProposalsTableDialogViewModel;
             ProposalCommentsViewModel = proposalCommentsViewModel;
+            MoreAboutCelebrationsDialogViewModel = moreAboutCelebrationsDialogViewModel;
 
             Celebrations = new ObservableCollection<Celebration>(_celebrationService.Read());
 
@@ -57,9 +60,12 @@ namespace Organizator_Proslava.ViewModel.Celebrations
             Preview = new RelayCommand<Celebration>(celebration => {
                 CelebrationsDetailsTableDialogViewModel.Celebration = celebration;
                 CelebrationsDetailsTableDialogViewModel.CelebrationDetails = new ObservableCollection<CelebrationDetail>(celebration.CelebrationDetails);
-                _dialogService.OpenDialog(new MoreAboutCelebrationsDialogViewModel(celebration, _celebrationResponseService,
-                     _dialogService,
-                    celebrationDetailDialogViewModel, CelebrationsProposalsTableDialogViewModel, CelebrationsDetailsTableDialogViewModel, ProposalCommentsViewModel));
+                MoreAboutCelebrationsDialogViewModel.Celebration = celebration;
+                DetailsDialogViewModel ddvm = new DetailsDialogViewModel(CelebrationsDetailsTableDialogViewModel, _celebrationResponseService,
+                    celebrationDetailDialogViewModel, CelebrationsProposalsTableDialogViewModel, ProposalCommentsViewModel,
+                    MoreAboutCelebrationsDialogViewModel);
+                ddvm.CurrentCelebration = celebration;
+                _dialogService.OpenDialog(ddvm);
             });;
         }
     }

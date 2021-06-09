@@ -16,15 +16,16 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
-            <RowDefinition Height="3.8*" />
-            <RowDefinition Height="0.5*" />
-            <RowDefinition Height="0.5*" />
-            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource TableTitleLabel}">Saradnici:</Label>
 
         <DataGrid
             Grid.Column="1"
-            Grid.Row="1"
+            Grid.Row="2"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
@@ -32,7 +33,16 @@
             SelectionUnit="FullRow"
             IsReadOnly="True"
             SelectedItem="{Binding Path=SelectedCollaborator}"
-            ItemsSource="{Binding Path=Collaborators}">
+            ItemsSource="{Binding Path=Collaborators}"
+                        Style="{StaticResource DataGridStyle}"
+        >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Naziv/Ime"
@@ -46,14 +56,14 @@
                     Binding="{Binding Path=PhoneNumber}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
-                    Header="tip"
+                    Header="Tip"
                     Width="*"
                     Binding="{Binding Path=CollaboratorServiceBook.Type}"
                     CellStyle="{StaticResource DataGridTextCell}" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1" Grid.Row="2">
+        <Grid Grid.Column="1" Grid.Row="3">
             <Button 
                 Content="Izaberi" 
                 Command="{Binding Path=Choose}"
@@ -63,7 +73,7 @@
                 HorizontalAlignment="Left" />
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="2">
+        <Grid Grid.Column="1" Grid.Row="3">
             <Button 
                 Content="Odustani" 
                 Command="{Binding Path=Cancel}" 

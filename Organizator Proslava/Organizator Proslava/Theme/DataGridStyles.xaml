@@ -117,8 +117,8 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="True" />
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="Height" Value="40" />
-                <Setter Property="MinHeight" Value="40" />
+                <Setter Property="Height" Value="7" />
+                <Setter Property="MinHeight" Value="7" />
             </Trigger>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Width" Value="7" />
