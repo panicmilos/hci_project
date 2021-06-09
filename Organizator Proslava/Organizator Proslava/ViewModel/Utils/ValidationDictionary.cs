@@ -139,7 +139,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "PIB se isključivo sastoji od cifara.";
 
             if (PIB.Length != 9)
-                return "PIB nije ispravan.";
+                return "PIB mora imati 9 cifara.";
 
             if (double.Parse(PIB.Substring(0, 8)) < 10000001)
                 return "PIB nije ispravan.";
@@ -169,7 +169,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Matični broj se isključivo sastoji od cifara.";
 
             if (MB.Length != 8)
-                return "Matični broj nije ispravan.";
+                return "Matični broj mora imati 8 cifara.";
 
             var L = 0;
             for (int i = MB.Length - 2, mnozilac = 2; i >= 0; i--)
@@ -204,7 +204,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "JMBG se isključivo sastoji od cifara.";
 
             if (JMBG.Length != 13)
-                return "JMBG nije ispravan.";
+                return "JMBG mora imati 13 cifara.";
 
             var L = 11 - ((7 * (JMBG[0] - '0' + JMBG[6] - '0') + 6 * (JMBG[1] - '0' + JMBG[7] - '0') + 5 * (JMBG[2] - '0' + JMBG[8] - '0') +
                 4 * (JMBG[3] - '0' + JMBG[9] - '0') + 3 * (JMBG[4] - '0' + JMBG[10] - '0') + 2 * (JMBG[5] - '0' + JMBG[11] - '0')) % 11);
@@ -226,7 +226,7 @@ namespace Organizator_Proslava.ViewModel.Utils
                 return "Broj lične karte se isključivo sastoji od cifara.";
 
             if (personalId.Length != 9)
-                return "Broj lične karte nije ispravan.";
+                return "Broj lične karte mora imati 9 cifara.";
 
             return null;
         }
@@ -290,12 +290,12 @@ namespace Organizator_Proslava.ViewModel.Utils
 
             if (!int.TryParse(seats, out var seatsNum))
                 return "Broj stolica mora biti broj.";
-
             else if (seatsNum < 1 || seatsNum > 100)
                 return "Broj stolica mora biti između 1 i 100.";
 
             return null;
         }
+
         private static string ValidateBudget(object budgetObject, object _)
         {
             var budgetStr = budgetObject as string;
@@ -368,7 +368,7 @@ namespace Organizator_Proslava.ViewModel.Utils
 
         private static string ValidateCelebrationType(object type, object _)
         {
-            if(string.IsNullOrWhiteSpace(type as string))
+            if (string.IsNullOrWhiteSpace(type as string))
                 return "Molimo Vas da unesete tip proslave.";
 
             return null;
