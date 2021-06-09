@@ -59,9 +59,9 @@ namespace Organizator_Proslava.ViewModel
                 }
             });
             Register = new RelayCommand(() => EventBus.FireEvent("Register"));
-            Covm = new RelayCommand(() => EventBus.FireEvent("AdminLogin")); // Delete later
-            ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin")); // Delete later
-            OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin")); // Delete later
+            Covm = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
+            ClientHome = new RelayCommand(() => EventBus.FireEvent("ClientLogin"));
+            OrgHome = new RelayCommand(() => EventBus.FireEvent("OrganizerLogin"));
         }
     }
 }

@@ -34,15 +34,14 @@
             IsReadOnly="True"
             SelectedItem="{Binding Path=SelectedOrganizer}"
             ItemsSource="{Binding Path=Organizers}"
-            Style="{StaticResource DataGridStyle}"
-        >
+            Style="{StaticResource DataGridStyle}">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
             </DataGrid.Resources>
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Naziv"
@@ -64,23 +63,23 @@
         </DataGrid>
 
         <Grid Grid.Column="1" Grid.Row="3">
-            <Button 
-                Content="Izaberi" 
-                Command="{Binding Path=Choose}"
+            <Button
+                Content="Odustani"
+                Command="{Binding Path=Cancel}"
                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                Style="{StaticResource loginPageButton}"  
-                Background="{StaticResource PowderBlue}" 
-                HorizontalAlignment="Left" />
+                Style="{StaticResource loginPageButton}"
+                Background="{StaticResource PowderBlue}"
+                HorizontalAlignment="Right" />
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3">
-            <Button 
-                Content="Odustani" 
-                Command="{Binding Path=Cancel}" 
+            <Button
+                Content="Izaberi"
+                Command="{Binding Path=Choose}"
                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                Style="{StaticResource loginPageButton}" 
-                Background="{StaticResource PowderBlue}" 
-                HorizontalAlignment="Right" />
+                Style="{StaticResource loginPageButton}"
+                Background="{StaticResource PowderBlue}"
+                HorizontalAlignment="Left" />
         </Grid>
     </Grid>
 </UserControl>

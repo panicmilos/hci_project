@@ -15,6 +15,7 @@ namespace Organizator_Proslava.ViewModel
     {
         // Text fields:
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
         public string MailAddress { get; set; }
         public string UserName { get; set; }
@@ -26,6 +27,7 @@ namespace Organizator_Proslava.ViewModel
 
         // Commands:
         public ICommand Register { get; set; }
+
         public ICommand Back { get; set; }
 
         public bool ForEdit { get; set; } = false;
@@ -33,6 +35,7 @@ namespace Organizator_Proslava.ViewModel
 
         // Rules:
         public string Error => throw new System.NotImplementedException();
+
         public string this[string columnName]
         {
             get

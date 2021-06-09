@@ -1619,7 +1619,7 @@
                 <Ellipse Width="20" Height="20" Fill="{StaticResource Neptune}" Opacity="0.7" Canvas.Left="286" Canvas.Top="248" />
                 <Ellipse Width="20" Height="20" Fill="{StaticResource Neptune}" Opacity="1" Canvas.Left="393" Canvas.Top="340" />
                 <Ellipse Width="60" Height="60" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="-21" Canvas.Top="375" />
-                <Ellipse Width="29" Height="28" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="488" Canvas.Top="41" />
+                <Ellipse Width="29" Height="28" Fill="{StaticResource PowderBlue}" Opacity="0.2" Canvas.Left="488" Canvas.Top="41" />
                 <Ellipse Width="60" Height="60" Fill="{StaticResource PowderBlue}" Opacity="1" Canvas.Left="823" Canvas.Top="257" />
                 <Ellipse Width="40" Height="39" Fill="{StaticResource Ming}" Opacity="0.3" Canvas.Left="619" Canvas.Top="278" />
                 <Ellipse Width="19" Height="20" Fill="{StaticResource Ming}" Opacity="0.7" Canvas.Left="657" Canvas.Top="49" />
