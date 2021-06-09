@@ -135,7 +135,7 @@
 
         <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+            <Button x:Name="BTN" Content="Dalje" Command="{Binding Path=Next}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -149,6 +149,18 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb9" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Prelazak na sledeću stranu." />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste prešli na sledeći korak morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
             </Button>
         </Grid>
     </Grid>

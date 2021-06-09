@@ -102,7 +102,7 @@
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="5">
-            <Button Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" HorizontalAlignment="Right" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}">
+            <Button x:Name="BTN" Content="{Binding Path=ButtonText, Mode=TwoWay}" Command="{Binding Path=Register}" HorizontalAlignment="Right" Background="{StaticResource PowderBlue}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -114,6 +114,18 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb7" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Kreirajte nalog." />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste napravili nalog morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
             </Button>
             <Button Content="Nazad" Command="{Binding Path=Back}" HorizontalAlignment="Left" Background="{StaticResource PowderBlue}" Style="{StaticResource loginPageButton}" />
         </Grid>

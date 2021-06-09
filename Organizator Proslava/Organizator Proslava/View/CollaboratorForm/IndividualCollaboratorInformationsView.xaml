@@ -173,7 +173,7 @@
                         <Setter Property="ToolTip" Value="Prelazak na sledeću stranu." />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
-                                <Setter Property="ToolTip" Value="Ovo dugme je onemogućeno dok ne popunite atekvatno sva polja." />
+                                <Setter Property="ToolTip" Value="Da biste prešli na sledeći korak morate adekvatno popuniti sva polja" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
