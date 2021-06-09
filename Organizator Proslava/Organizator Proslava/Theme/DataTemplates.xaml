@@ -20,6 +20,8 @@
                     xmlns:cdcelebrations="clr-namespace:Organizator_Proslava.Dialogs.Custom.Celebrations"
                     xmlns:orghomevm="clr-namespace:Organizator_Proslava.ViewModel.OrganizatorHome"
                     xmlns:orghomev="clr-namespace:Organizator_Proslava.View.OrganizatorHome"
+                    xmlns:clienthomevm="clr-namespace:Organizator_Proslava.ViewModel.ClientHome"
+                    xmlns:clienthomev="clr-namespace:Organizator_Proslava.View.ClientHome"
                     xmlns:uv="clr-namespace:Organizator_Proslava.View.UsersView"
                     xmlns:uvm="clr-namespace:Organizator_Proslava.ViewModel.UsersView"
                     xmlns:dclients="clr-namespace:Organizator_Proslava.Dialogs.Custom.Clients"
@@ -265,4 +267,13 @@
     <DataTemplate DataType="{x:Type cdcollaborators:DetailsCollaboratorDialogViewModel}">
         <cdcollaborators:DetailsCollaboratorDialogView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orghomevm:OrganizersPastCelebrationsTableViewModel}">
+        <orghomev:OrganizersPastCelebrationsTableView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type clienthomevm:ClientsPastCelebrationsTableViewModel}">
+        <clienthomev:ClientsPastCelebrationsTableView />
+    </DataTemplate>
+    
 </ResourceDictionary>
