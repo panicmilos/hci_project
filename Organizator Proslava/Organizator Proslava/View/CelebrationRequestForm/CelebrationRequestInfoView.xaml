@@ -78,7 +78,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
-                         ToolTip="Unesite adresu Vaše nove proslave"
+                         ToolTip="Ukoliko želite unesite adresu Vaše nove proslave, ako ne želite organizator će Vam predložiti"
                          help:HelpProvider.HelpKey="Address"
                          IsReadOnly="True"
                          Text="{Binding Path=Celebration.Address.WholeAddress, Mode=TwoWay}"
@@ -185,7 +185,7 @@
 
         <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+            <Button x:Name="BTN" Content="Dalje" Command="{Binding Path=Next}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -196,6 +196,17 @@
                         <Binding Path="(Validation.HasError)" ElementName="DateTimeTo" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Pređite na sledeći korak" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste nastavili dalje morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </Grid>
     </Grid>

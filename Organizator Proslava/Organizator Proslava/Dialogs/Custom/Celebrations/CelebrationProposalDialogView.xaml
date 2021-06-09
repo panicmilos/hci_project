@@ -101,16 +101,20 @@
             </ScrollViewer>
         </Grid>
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Odustani"
+        <Button Content="Odustani"
+                    Grid.Column="1"
+                    Grid.Row="5"
+                    HorizontalAlignment="Left"
                     Command="{Binding Path=Back}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
 
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Sačuvaj"
+                    x:Name="BTN"
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}">
+                    Background="{StaticResource PowderBlue}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -118,6 +122,17 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb3" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Sačuvaj ponudu" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste sačuvali ponudu morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </StackPanel>
     </Grid>

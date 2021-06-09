@@ -23,13 +23,13 @@
             <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Column="1" Grid.Row="1" Content="Naslov zahteva" Style="{StaticResource registerPageLabel}" />
+        <Label Grid.Column="1" Grid.Row="1" Content="Naslov detalja" Style="{StaticResource registerPageLabel}" />
         <TextBox x:Name="tb1" Grid.Column="1" Grid.Row="2" Text="{Binding Path=DetailTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Style="{StaticResource validateTextBox}" ToolTip="Unesite naslov novog zahteva" />
 
         <Label Grid.Column="1"
                Grid.Row="3"
-               Content="Detalji zahteva" Style="{StaticResource registerPageLabel}"
+               Content="Opis" Style="{StaticResource registerPageLabel}"
                VerticalAlignment="Bottom" />
 
         <ScrollViewer Grid.Column="1"
@@ -52,9 +52,9 @@
                     Background="{StaticResource PowderBlue}" />
 
             <Button Content="Sačuvaj"
+                    x:Name="BTN"
                     Command="{Binding Path=Add}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource loginPageButton}"
                     Background="{StaticResource PowderBlue}" >
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
@@ -62,6 +62,16 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb2" />
                     </MultiBinding>
                 </Button.IsEnabled>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Sačuvaj detalj zahteva" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste dodali novi detalj proslave morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </StackPanel>
     </Grid>

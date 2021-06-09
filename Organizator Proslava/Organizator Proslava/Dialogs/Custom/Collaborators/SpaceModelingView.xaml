@@ -84,17 +84,20 @@
             </Grid>
         </Grid>
 
+        <Button Content="Nazad"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=Back}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource loginPageButton}"
+                Background="{StaticResource PowderBlue}" />
+
         <StackPanel Grid.Column ="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nazad"
-                    Command="{Binding Path=Back}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource loginPageButton}"
-                    Background="{StaticResource PowderBlue}" />
 
             <Button Content="Sačuvaj"
                     Command="{Binding Path=Save}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource loginPageButton}"
                     Background="{StaticResource PowderBlue}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
@@ -102,6 +105,16 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb2" />
                     </MultiBinding>
                 </Button.IsEnabled>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Sačuvajte salu" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste sačvali prostor potrebno je popuniti polje sa nazivom i dodati bar jedan sto" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </StackPanel>
     </Grid>
