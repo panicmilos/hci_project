@@ -12,5 +12,7 @@ namespace Organizator_Proslava.Services.Contracts
         IEnumerable<Celebration> ReadFutureForClient(Guid clientId);
         IEnumerable<Celebration> ReadPastForClient(Guid clientId);
         IEnumerable<Celebration> ReadPastForOrganizer(Guid organizerId);
+        int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId);
+        bool CanDeleteOrganizer(Guid organizerId);
     }
 }

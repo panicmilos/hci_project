@@ -26,6 +26,6 @@
         <Binding Path="MainViewModel" Source="{StaticResource ServiceLocator}" />
     </Window.DataContext>
 
-    <ContentControl Content="{Binding Path=CurrentViewModel}">
+    <ContentControl Content="{Binding Path=Current}">
     </ContentControl>
 </Window>

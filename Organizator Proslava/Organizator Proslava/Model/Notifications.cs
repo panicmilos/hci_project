@@ -101,4 +101,16 @@ namespace Organizator_Proslava.Model
             return $"{Organizer} je otkazao/la organizovanje proslave {CelebrationType}.";
         }
     }
+
+    public class CanceledCelebrationNotification : Notification
+    {
+        public string Client { get; set; }
+
+        public string CelebrationType { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Client} je otkazao/la proslavu {CelebrationType}.";
+        }
+    }
 }

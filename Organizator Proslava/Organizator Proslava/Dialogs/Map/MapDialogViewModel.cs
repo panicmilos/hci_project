@@ -93,7 +93,6 @@ namespace Organizator_Proslava.Dialogs.Map
             {
                 var jsonAddresses = JArray.Parse(responseBody);
                 fetchedAddresses = ConvertJArrayOfAddressesToList(jsonAddresses);
-                ErrorMessage = "Momilo Vas da kucate dalje.";
             }
 
             return fetchedAddresses;

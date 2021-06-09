@@ -3,14 +3,8 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 {
@@ -34,9 +28,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
             ProposalCommentsViewModel proposalCommentsViewModel,
             MoreAboutCelebrationsDialogViewModel moreAboutCelebrationsDialogView) :
-            base("Pregled detalja proslave", 670, 490)
+            base("Pregled detalja proslave", 670, 520)
         {
-
             _celebrationResponseService = celebrationResponseService;
 
             CelebrationsDetailsTableDialogViewModel = celebrationsDetailsTableDialogViewModel;
@@ -66,7 +59,8 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                 Switch(CelebrationDetailDialogViewModel);
             });
 
-            EventBus.RegisterHandler("BackToDetailsTable", () => {
+            EventBus.RegisterHandler("BackToDetailsTable", () =>
+            {
                 CelebrationsDetailsTableDialogViewModel.Celebration = CurrentCelebration;
                 CelebrationsDetailsTableDialogViewModel.CelebrationDetails = new ObservableCollection<CelebrationDetail>(CurrentCelebration.CelebrationDetails);
                 Switch(CelebrationsDetailsTableDialogViewModel);

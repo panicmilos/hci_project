@@ -4,6 +4,7 @@ using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Ninject;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
@@ -19,9 +20,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
     {
         // Text fields:
         public string ProposalTitle { get; set; }
+
         public string Content { get; set; }
 
         private Collaborator _selectedCollaborator;
+
         public Collaborator SelectedCollaborator
         {
             get => _selectedCollaborator;
@@ -32,11 +35,13 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
                 OnPropertyChanged("ShouldShowHalls");
             }
         }
+
         public CelebrationProposal Proposal { get; set; }
         public List<Collaborator> Collaborators { get; set; }
 
         // Commands:
         public ICommand PreviewHall { get; set; }
+
         public ICommand PreviewCollaborator { get; set; }
         public ICommand Add { get; set; }
         public ICommand Back { get; set; }
@@ -46,6 +51,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
         // Rules:
         public string Error => throw new NotImplementedException();
+
         public string this[string columnName]
         {
             get
@@ -75,18 +81,10 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
             PreviewCollaborator = new RelayCommand(() =>
             {
-                if (_selectedCollaborator is IndividualCollaborator)
-                {
-                    IndividualCollaboratorDetailViewModel icdvm = new IndividualCollaboratorDetailViewModel();
-                    icdvm.Collaborator = _selectedCollaborator as IndividualCollaborator;
-                    _dialogService.OpenDialog(icdvm);
-                }
-                else
-                {
-                    LegalCollaboratorDetailViewModel lcdvm = new LegalCollaboratorDetailViewModel();
-                    lcdvm.Collaborator = _selectedCollaborator as LegalCollaborator;
-                    _dialogService.OpenDialog(lcdvm);
-                }
+                var dcdvm = ServiceLocator.Get<DetailsCollaboratorDialogViewModel>();
+                dcdvm.Collaborator = _selectedCollaborator;
+                dcdvm.DisplayInfoAboutCollaborator();
+                _dialogService.OpenDialog(dcdvm);
             }, () => SelectedCollaborator != null);
 
             Add = new RelayCommand<IDialogWindow>(w =>
@@ -117,7 +115,11 @@ namespace Organizator_Proslava.Dialogs.Custom.Celebrations
 
             OpenCollaboratorsDialog = new RelayCommand(() =>
             {
-                SelectedCollaborator = _dialogService.OpenDialog(new ChooseCollaboratorViewModel(Collaborators));
+                var collaborator = _dialogService.OpenDialog(new ChooseCollaboratorViewModel(Collaborators));
+                if (collaborator != null)
+                {
+                    SelectedCollaborator = collaborator;
+                }
             });
         }
 

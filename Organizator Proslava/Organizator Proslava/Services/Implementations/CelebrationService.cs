@@ -10,11 +10,15 @@ namespace Organizator_Proslava.Services.Implementations
     public class CelebrationService : CrudService<Celebration>, ICelebrationService
     {
         private readonly IOrganizerService _organizerService;
+        private readonly ICollaboratorService _collaboratorService;
 
-        public CelebrationService(IOrganizerService organizerService, DatabaseContext context) :
+        public CelebrationService(IOrganizerService organizerService,
+            ICollaboratorService collaboratorService,
+            DatabaseContext context) :
             base(context)
         {
             _organizerService = organizerService;
+            _collaboratorService = collaboratorService;
         }
 
         public Celebration AcceptBy(Guid organizerId, Guid celebrationId)
@@ -45,6 +49,18 @@ namespace Organizator_Proslava.Services.Implementations
         public IEnumerable<Celebration> ReadPastForOrganizer(Guid organizerId)
         {
             return _entities.Where(celebration => celebration.OrganizerId == organizerId && celebration.DateTimeTo < DateTime.Now);
+        }
+
+        public int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId)
+        {
+            return _entities
+                .Count(celebration => celebration.OrganizerId == organizerId && celebration.DateTimeTo < DateTime.Now);
+        }
+
+        public bool CanDeleteOrganizer(Guid organizerId)
+        {
+            return !_entities.Any(celebration =>
+                celebration.OrganizerId == organizerId && celebration.DateTimeTo >= DateTime.Now);
         }
     }
 }

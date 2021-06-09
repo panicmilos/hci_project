@@ -58,7 +58,7 @@
                 <DataGridTextColumn
                     Header="Broj realizovanih proslava"
                     Width="1.5*"
-                    Binding="{Binding Path=Proslava}"
+                    Binding="{Binding Path=NumOfDoneCelebrations}"
                     CellStyle="{StaticResource DataGridTextCell}" />
             </DataGrid.Columns>
         </DataGrid>

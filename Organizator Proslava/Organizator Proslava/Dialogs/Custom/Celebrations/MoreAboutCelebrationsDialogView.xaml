@@ -17,7 +17,7 @@
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
-            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="2.0*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
             <RowDefinition Height="0.9*" />
@@ -57,7 +57,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="4">
-            <Label Content="{Binding Path=Celebration.Address.WholeAddress}" Style="{StaticResource registerPageLabel}" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding Path=Celebration.Address.WholeAddress}" TextWrapping="Wrap" Style="{StaticResource addressTextBlock}" HorizontalAlignment="Left" />
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="5">

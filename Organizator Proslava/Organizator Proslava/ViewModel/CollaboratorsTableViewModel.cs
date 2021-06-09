@@ -10,6 +10,7 @@ using Organizator_Proslava.ViewModel.CollaboratorForm;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Organizator_Proslava.Dialogs.Alert;
 
 namespace Organizator_Proslava.ViewModel
 {
@@ -29,6 +30,7 @@ namespace Organizator_Proslava.ViewModel
         private readonly CollaboratorFormViewModel _cfvm;
 
         private readonly ICollaboratorService _collaboratorService;
+        private readonly ICelebrationProposalService _celebrationProposalService;
         private readonly IDialogService _dialogService;
         public LegalCollaboratorDetailViewModel LegalCollaboratorDetailViewModel { get; set; }
         public IndividualCollaboratorDetailViewModel IndividualCollaboratorDetailViewModel { get; set; }
@@ -37,7 +39,10 @@ namespace Organizator_Proslava.ViewModel
         public DisplayHallsDialogViewModel DisplayHallsDialogViewModel { get; set; }
 
 
-        public CollaboratorsTableViewModel(CollaboratorFormViewModel cfvm, ICollaboratorService collaboratorService, IDialogService dialogService,
+        public CollaboratorsTableViewModel(CollaboratorFormViewModel cfvm, 
+            ICollaboratorService collaboratorService,
+            ICelebrationProposalService celebrationProposalService,
+            IDialogService dialogService,
             LegalCollaboratorDetailViewModel legalCollaboratorDetailViewModel,
             IndividualCollaboratorDetailViewModel individualCollaboratorDetailViewModel,
             DisplayImagesViewModel displayImagesViewModel,
@@ -46,6 +51,7 @@ namespace Organizator_Proslava.ViewModel
         {
             _cfvm = cfvm;
             _collaboratorService = collaboratorService;
+            _celebrationProposalService = celebrationProposalService;
             _dialogService = dialogService;
 
             LegalCollaboratorDetailViewModel = legalCollaboratorDetailViewModel;
@@ -70,11 +76,17 @@ namespace Organizator_Proslava.ViewModel
 
             Remove = new RelayCommand<Collaborator>(collaborator =>
             {
-                if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
+                if (!_celebrationProposalService.CanDeleteCollaborator(collaborator.Id))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje",
+                        "Nije moguće obrisati saradnika jer učestvuje u budućim proslavama."));
+                } else if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
+                    "Da li ste sigurni da želite da obrišete ovog saradnika?")) == DialogResults.Yes)
                 {
                     Collaborators.Remove(collaborator);
                     _collaboratorService.Delete(collaborator.Id);
-                    GlobalStore.ReadObject<IUserCommandManager>("userCommands").Add(new DeleteCollaborator(collaborator));
+                    GlobalStore.ReadObject<IUserCommandManager>("userCommands")
+                        .Add(new DeleteCollaborator(collaborator));
                 }
             });
 
