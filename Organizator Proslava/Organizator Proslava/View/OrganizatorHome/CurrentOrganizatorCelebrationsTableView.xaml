@@ -16,11 +16,11 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi za proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" 
+                    <Button Command="{Binding Path=NonAcceptedCelebrations}" Content="Neprihvaćeni zahtevi" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}"
                         ToolTip="Neprihvaćeni zahtevi za proslave" />
-                    <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}" 
+                    <Button Command="{Binding Path=Collaborators}" Content="Saradnici" Style="{StaticResource toolbarButton}"  Width="80" Background="{StaticResource PowderBlue}"
                         ToolTip="Rad sa saradnicima" />
-                    <Button Command="{Binding Path=PastCelebrations}" Content="Realizovane proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" 
+                    <Button Command="{Binding Path=PastCelebrations}" Content="Realizovane proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}"
                         ToolTip="Pregled realizovanih proslava" />
                 </StackPanel>
 

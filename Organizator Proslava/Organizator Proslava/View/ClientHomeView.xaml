@@ -129,7 +129,7 @@
             </DataGrid>
 
             <Grid Grid.Column="1" Grid.Row="4">
-                <Button Content="Nova proslava" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
+                <Button Content="Nova proslava" Width="90" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
     </DockPanel>
