@@ -1,5 +1,6 @@
 ﻿using Organizator_Proslava.Model.CelebrationHalls;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,6 +42,9 @@ namespace Organizator_Proslava.Model.CelebrationResponses
         private CelebrationHall _celebrationHall;
         public virtual CelebrationHall CelebrationHall { get => _celebrationHall; set => OnPropertyChanged(ref _celebrationHall, value); }
 
+        private ProposedService _proposedService;
+        public virtual ProposedService ProposedService { get => _proposedService; set => OnPropertyChanged(ref _proposedService, value); }
+
         private List<ProposalComment> _proposalComments;
 
         public virtual List<ProposalComment> ProposalComments
@@ -58,6 +62,9 @@ namespace Organizator_Proslava.Model.CelebrationResponses
         {
             var builder = new StringBuilder();
             builder.AppendLine(_title);
+            builder.AppendLine();
+            builder.AppendLine(ProposedService.ToString());
+            builder.AppendLine();
             builder.AppendLine("====================");
             builder.AppendLine(_content);
 

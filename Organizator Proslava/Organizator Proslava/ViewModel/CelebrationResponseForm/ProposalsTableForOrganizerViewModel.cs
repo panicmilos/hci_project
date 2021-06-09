@@ -12,6 +12,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
     public class ProposalsTableForOrganizerViewModel
     {
         public ObservableCollection<CelebrationProposal> CelebrationProposals { get; set; }
+        public CelebrationResponse CelebrationResponse { get; set; }
 
         public ICommand Preview { get; set; }
         public ICommand Comments { get; set; }
@@ -47,7 +48,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
 
             Add = new RelayCommand(() =>
             {
-                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(_collaboratorService, _dialogService, CelebrationProposals.Count+1));
+                var proposal = _dialogService.OpenDialog(new CelebrationProposalDialogViewModel(CelebrationResponse, _collaboratorService, _dialogService, CelebrationProposals.Count + 1));
                 if (proposal != null)
                 {
                     EventBus.FireEvent("CreateNewProposal", proposal);

@@ -27,7 +27,8 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Naziv pravnog lica" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                     ToolTip="Unesite naziv pravnog lica"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
@@ -44,16 +45,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Matični broj" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb2" Grid.Column="0" Grid.Row="1" Text="{Binding Path=IdentificationNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="0" Grid.Row="1" Text="{Binding Path=IdentificationNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite matični broj pravnog lica"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="PIB" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb3" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PIB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb3" Grid.Column="2" Grid.Row="1" Text="{Binding Path=PIB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite poreski identifikacioni broj pravnog lica"/>
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb4" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb4" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                     ToolTip="Unesite broj telefona pravnog lica"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="4">
@@ -65,6 +69,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="tb5"
+                         ToolTip="Unesite adresu pravnog lica"
                          help:HelpProvider.HelpKey="Address"
                          Grid.Column="0"
                          IsReadOnly="True"
@@ -96,10 +101,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb6" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite korisničko ime pravnog lica"/>
 
-                <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <Label Grid.Column="2" Grid.Row="0" Content="E-mail Adresa" Style="{StaticResource registerPageLabel}" />
+                <TextBox x:Name="tb7" Grid.Column="2" Grid.Row="1" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite e-mail adresu pravnog lica"/>
             </Grid>
         </StackPanel>
 
@@ -117,16 +124,18 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb8" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb8" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}"
+                         ToolTip="Unesite šifru pravnog lica"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb9" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb9" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Ponovo unesite šifru pravnog lica"/>
             </Grid>
         </StackPanel>
 
         <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
-            <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
+            <Button x:Name="BTN" Content="Dalje" Command="{Binding Path=Next}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -140,6 +149,18 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb9" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Prelazak na sledeću stranu." />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste prešli na sledeći korak morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
             </Button>
         </Grid>
     </Grid>

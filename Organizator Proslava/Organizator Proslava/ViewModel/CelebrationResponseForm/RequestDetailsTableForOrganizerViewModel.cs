@@ -37,7 +37,8 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
             _notificationService = notificationService;
             _dialogService = dialogService;
 
-            Preview = new RelayCommand<CelebrationDetail>(cd => {
+            Preview = new RelayCommand<CelebrationDetail>(cd =>
+            {
                 CelebrationDetailDialogViewModel cddvm = new CelebrationDetailDialogViewModel();
                 cddvm.CelebrationDetail = cd;
                 cddvm.IsBack = false;
@@ -55,6 +56,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationResponseForm
                     _ptfovm.CelebrationProposals = new ObservableCollection<CelebrationProposal>();
                 }
 
+                _ptfovm.CelebrationResponse = CelebrationResponse;
                 _ptfovm.CelebrationProposals.Clear();
                 CelebrationResponse.CelebrationProposalsDict[cd].ToList().ForEach(cp => _ptfovm.CelebrationProposals.Add(cp));
                 EventBus.FireEvent("SwitchCelebrationResponseFormViewModel", _ptfovm);

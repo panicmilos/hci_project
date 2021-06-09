@@ -16,7 +16,7 @@ namespace Organizator_Proslava.Services.Implementations
 
         public IEnumerable<CelebrationResponse> ReadOrganizingBy(Guid organizerId)
         {
-            return _entities.Where(cr => cr.OrganizerId == organizerId).ToList();
+            return _entities.Where(cr => cr.OrganizerId == organizerId && cr.Celebration.DateTimeTo >= DateTime.Now).ToList();
         }
 
         public CelebrationResponse ReadForCelebration(Guid celebrationId)

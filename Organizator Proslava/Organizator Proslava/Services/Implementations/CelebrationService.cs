@@ -1,5 +1,6 @@
 ﻿using Organizator_Proslava.Data;
 using Organizator_Proslava.Model;
+using Organizator_Proslava.Model.CelebrationResponses;
 using Organizator_Proslava.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,23 @@ namespace Organizator_Proslava.Services.Implementations
             _collaboratorService = collaboratorService;
         }
 
+        public override Celebration Create(Celebration celebration)
+        {
+            if (celebration.OrganizerId != null)
+            {
+                _context.Add(new CelebrationResponse
+                {
+                    Celebration = celebration,
+                    OrganizerId = celebration.OrganizerId.Value
+                });
+                _context.SaveChanges();
+
+                return celebration;
+            }
+
+            return base.Create(celebration);
+        }
+
         public Celebration AcceptBy(Guid organizerId, Guid celebrationId)
         {
             var organizer = _organizerService.Read(organizerId);
@@ -36,9 +54,19 @@ namespace Organizator_Proslava.Services.Implementations
             return _entities.Where(c => c.OrganizerId == null);
         }
 
-        public IEnumerable<Celebration> ReadForClient(Guid clientId)
+        public IEnumerable<Celebration> ReadFutureForClient(Guid clientId)
         {
-            return _entities.Where(celebration => celebration.ClientId == clientId).ToList();
+            return _entities.Where(celebration => celebration.ClientId == clientId && celebration.DateTimeTo >= DateTime.Now).ToList();
+        }
+
+        public IEnumerable<Celebration> ReadPastForClient(Guid clientId)
+        {
+            return _entities.Where(celebration => celebration.ClientId == clientId && celebration.DateTimeTo < DateTime.Now);
+        }
+
+        public IEnumerable<Celebration> ReadPastForOrganizer(Guid organizerId)
+        {
+            return _entities.Where(celebration => celebration.OrganizerId == organizerId && celebration.DateTimeTo < DateTime.Now);
         }
 
         public int GetNumOfDoneCelebrationsForOrganizer(Guid organizerId)

@@ -25,12 +25,23 @@
 
             <StackPanel Grid.Row="1">
                 <Label Content="Korisničko ime" Style="{StaticResource LoginPageLabel}" />
-                <TextBox h:HelpProvider.HelpKey="Login"  Text="{Binding Path=LoginDTO.UserName, Mode=TwoWay}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox h:HelpProvider.HelpKey="Login"  Text="{Binding Path=LoginDTO.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource loginFormTextBox}"
+                         ToolTip="Unesite Vaše korisničko ime">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+
                 <Label Content="Lozinka" Style="{StaticResource LoginPageLabel}" />
-                <TextBox h:HelpProvider.HelpKey="Login" Text="{Binding Path=LoginDTO.Password, Mode=TwoWay}" Style="{StaticResource loginFormTextBox}" />
+                <TextBox h:HelpProvider.HelpKey="Login" Text="{Binding Path=LoginDTO.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource loginFormTextBox}"
+                         ToolTip="Unesite Vašu lozinku">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" />
+                    </TextBox.InputBindings>
+                </TextBox>
 
                 <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button h:HelpProvider.HelpKey="Login" Command="{Binding Path=Login}" CommandParameter="{Binding LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
+                    <Button h:HelpProvider.HelpKey="Login" Command="{Binding Path=Login}" CommandParameter="{Binding Path=LoginDTO}" Content="Prijavi se" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
                     <Button Command="{Binding Path=Register}" Content="Napravi nalog" Style="{StaticResource loginPageButton}" Background="{StaticResource PowderBlue}" />
                 </StackPanel>
             </StackPanel>

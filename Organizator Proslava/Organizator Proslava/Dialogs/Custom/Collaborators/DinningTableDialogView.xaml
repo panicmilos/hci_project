@@ -24,12 +24,14 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Dozvoljen broj osoba" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb1" Text="{Binding Path=Seats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+            <TextBox x:Name="tb1" Text="{Binding Path=Seats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" 
+                     ToolTip="Unesite dozvoljen broj osoba za stolom"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Da li sme da se pomera" Style="{StaticResource registerPageLabel}" />
             <ComboBox ItemsSource="{Binding Path=MoveableOptions}"
+                      ToolTip="Odredite da li sto sme da se pomera unutar sale"
                       SelectedItem="{Binding Path=Table.Movable, Mode=TwoWay, Converter={StaticResource YesNoConverter}}"
                       Foreground="{StaticResource Ming}"
                       Background="{StaticResource Cararra}"

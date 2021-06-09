@@ -10,6 +10,7 @@ using Organizator_Proslava.UserCommands;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationRequestForm;
+using Organizator_Proslava.ViewModel.ClientHome;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -22,7 +23,7 @@ namespace Organizator_Proslava.ViewModel
         public ICommand Edit { get; set; }
         public ICommand Details { get; set; }
         public ICommand Add { get; set; }
-
+        public ICommand PastCelebrations { get; set; }
         public ICommand Notifications { get; set; }
         public ICommand Profile { get; set; }
         public ICommand Logout { get; set; }
@@ -32,6 +33,7 @@ namespace Organizator_Proslava.ViewModel
         private readonly CelebrationRequestFormViewModel _crfvm;
         private readonly CelebrationProposalsViewModel _cpvm;
         private readonly RegisterViewModel _rvm;
+        private readonly ClientsPastCelebrationsTableViewModel _cpctvm;
 
         private readonly ICelebrationService _celebrationService;
         private readonly IDialogService _dialogService;
@@ -41,6 +43,7 @@ namespace Organizator_Proslava.ViewModel
             CelebrationRequestFormViewModel crfvm,
             CelebrationProposalsViewModel cpvm,
             RegisterViewModel rvm,
+            ClientsPastCelebrationsTableViewModel cpctvm,
             ICelebrationService celebrationService,
             IDialogService dialogService,
             INotificationService notificationService)
@@ -48,6 +51,7 @@ namespace Organizator_Proslava.ViewModel
             _crfvm = crfvm;
             _cpvm = cpvm;
             _rvm = rvm;
+            _cpctvm = cpctvm;
 
             _celebrationService = celebrationService;
             _dialogService = dialogService;
@@ -97,6 +101,11 @@ namespace Organizator_Proslava.ViewModel
                 EventBus.FireEvent("SwitchMainViewModel", _crfvm);
             });
 
+            PastCelebrations = new RelayCommand(() =>
+            {
+                EventBus.FireEvent("SwitchMainViewModel", _cpctvm);
+            });
+
             Notifications = new RelayCommand(() =>
             {
                 _dialogService.OpenDialog(new NotificationsDialogViewModel(_notificationService));
@@ -126,7 +135,7 @@ namespace Organizator_Proslava.ViewModel
 
         private void LoadCelebrations()
         {
-            Celebrations = new ObservableCollection<Celebration>(_celebrationService.ReadForClient(GlobalStore.ReadObject<BaseUser>("loggedUser").Id));
+            Celebrations = new ObservableCollection<Celebration>(_celebrationService.ReadFutureForClient(GlobalStore.ReadObject<BaseUser>("loggedUser").Id));
         }
     }
 }

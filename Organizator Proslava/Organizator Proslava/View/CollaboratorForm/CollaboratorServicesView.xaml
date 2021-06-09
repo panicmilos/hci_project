@@ -17,6 +17,7 @@
             <RowDefinition Height="0.2*" />
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="1.5*" />
+            <RowDefinition Height="0.8*" />
             <RowDefinition Height="3.8*" />
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.5*" />
@@ -24,8 +25,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Vrsta usluge" Style="{StaticResource registerPageLabel}" />
+            <Label Content="Specijalizacija" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox
+                    ToolTip="Unesite vrstu proslave za koju je novi saradnik specijalizovan"
                     x:Name="tb1"
                     Height="25"
                     Foreground="{StaticResource Ming}"
@@ -42,12 +44,14 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Kratak opis" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb2" Background="{StaticResource Cararra}"  Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb2" Background="{StaticResource Cararra}"  Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                     ToolTip="Unesite kratak opis usluga koje nudi novi saradnik"/>
         </StackPanel>
 
+        <Label Content="Usluge saradnika" Style="{StaticResource registerPageLabel}" Grid.Row="3" Grid.Column="1"/>
         <DataGrid
             Grid.Column="1"
-            Grid.Row="3"
+            Grid.Row="4"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             AutoGenerateColumns="False"
@@ -73,7 +77,7 @@
                 <DataGridTextColumn
                     Header="Cena"
                     Width="*"
-                    Binding="{Binding Path=Price}"
+                    Binding="{Binding Path=Price, Converter={StaticResource PriceToStringConverter}}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                 <DataGridTextColumn
                     Header="Jedinica"
@@ -105,11 +109,11 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1" Grid.Row="4">
+        <Grid Grid.Column="1" Grid.Row="5">
             <Button Content="Dodaj" Command="{Binding Path=Add}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right" />
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="6">
+        <Grid Grid.Column="1" Grid.Row="7">
             <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Left" />
             <Button Content="Dalje" Command="{Binding Path=Next}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" HorizontalAlignment="Right">
                 <Button.IsEnabled>

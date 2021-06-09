@@ -218,6 +218,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateToStringConverter.cs" />
     <Compile Include="Converters\EmptyListToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="Converters\IsNullOrWhiteSpaceConverter.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Converters\NotYourCommentVisibilityConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\ObjectReferenceToButtonConverter.cs" />
+    <Compile Include="Converters\PriceToStringConverter.cs" />
     <Compile Include="Converters\ProposalStatusToStringConverter.cs" />
     <Compile Include="Converters\StringToImageStringConverter.cs" />
     <Compile Include="Converters\YesNoConverter.cs" />
@@ -478,6 +480,14 @@
     <Compile Include="Migrations\20210609124551_added new notification.designer.cs">
       <DependentUpon>20210609124551_added new notification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210609164304_added service to proposal.cs" />
+    <Compile Include="Migrations\20210609164304_added service to proposal.designer.cs">
+      <DependentUpon>20210609164304_added service to proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210609164650_added service to proposal...cs" />
+    <Compile Include="Migrations\20210609164650_added service to proposal...designer.cs">
+      <DependentUpon>20210609164650_added service to proposal...cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Administrator.cs" />
@@ -496,6 +506,7 @@
     <Compile Include="Model\CelebrationResponses\CelebrationResponse.cs" />
     <Compile Include="Model\CelebrationResponses\CelebrationProposalStatus.cs" />
     <Compile Include="Model\CelebrationResponses\ProposalComment.cs" />
+    <Compile Include="Model\CelebrationResponses\ProposedService.cs" />
     <Compile Include="Model\Celebrations\CellebrationType.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Collaborators\Collaborator.cs" />
@@ -566,6 +577,7 @@
     <Compile Include="ViewModel\CelebrationResponseForm\RequestDetailsTableForOrganizerViewModel.cs" />
     <Compile Include="ViewModel\CelebrationResponseForm\RequestLongPreviewViewModel.cs" />
     <Compile Include="ViewModel\Celebrations\CelebrationsTableViewModel.cs" />
+    <Compile Include="ViewModel\ClientHome\ClientsPastCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorFormViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorHallsViewModel.cs" />
     <Compile Include="ViewModel\CollaboratorForm\CollaboratorImagesViewModel.cs" />
@@ -581,6 +593,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\AcceptCelebrationRequestTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizatorHome\CurrentOrganizatorCelebrationsTableViewModel.cs" />
+    <Compile Include="ViewModel\OrganizatorHome\OrganizersPastCelebrationsTableViewModel.cs" />
     <Compile Include="ViewModel\OrganizerHomeViewModel.cs" />
     <Compile Include="ViewModel\OrganziersTableViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
@@ -631,6 +644,9 @@
     <Compile Include="View\Celebrations\CelebrationsTableView.xaml.cs">
       <DependentUpon>CelebrationsTableView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ClientHome\ClientsPastCelebrationsTableView.xaml.cs">
+      <DependentUpon>ClientsPastCelebrationsTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CollaboratorForm\CollaboratorFormView.xaml.cs">
       <DependentUpon>CollaboratorFormView.xaml</DependentUpon>
     </Compile>
@@ -669,6 +685,9 @@
     </Compile>
     <Compile Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml.cs">
       <DependentUpon>CurrentOrganizatorCelebrationsTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrganizatorHome\OrganizersPastCelebrationsTableView.xaml.cs">
+      <DependentUpon>OrganizersPastCelebrationsTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OrganizerHomeView.xaml.cs">
       <DependentUpon>OrganizerHomeView.xaml</DependentUpon>
@@ -884,6 +903,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ClientHome\ClientsPastCelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CollaboratorForm\CollaboratorFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -933,6 +956,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\OrganizatorHome\CurrentOrganizatorCelebrationsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizatorHome\OrganizersPastCelebrationsTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,39 +3,33 @@ using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
-using Organizator_Proslava.ViewModel.CelebrationProposals;
 using Organizator_Proslava.ViewModel.CelebrationResponseForm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Organizator_Proslava.ViewModel.Celebrations
+namespace Organizator_Proslava.ViewModel.OrganizatorHome
 {
-    public class CelebrationsTableViewModel
+    public class OrganizersPastCelebrationsTableViewModel
     {
-        public ObservableCollection<Celebration> Celebrations { get; set; }
+        public ObservableCollection<Celebration> PastCelebrations { get; set; }
 
         public ICommand Preview { get; set; }
-
         public ICommand Back { get; set; }
 
         private readonly ICelebrationService _celebrationService;
+        private readonly ICelebrationResponseService _celebrationResponseService;
         private readonly IDialogService _dialogService;
 
-        private readonly ICelebrationResponseService _celebrationResponseService;
         public CelebrationsDetailsTableDialogViewModel CelebrationsDetailsTableDialogViewModel { get; set; }
         public CelebrationDetailDialogViewModel CelebrationDetailDialogViewModel { get; set; }
         public CelebrationsProposalsTableDialogViewModel CelebrationsProposalsTableDialogViewModel { get; set; }
         public ProposalCommentsViewModel ProposalCommentsViewModel { get; set; }
         public MoreAboutCelebrationsDialogViewModel MoreAboutCelebrationsDialogViewModel { get; set; }
 
-        public CelebrationsTableViewModel(ICelebrationService celebrationService,
-            IDialogService dialogService,
+        public OrganizersPastCelebrationsTableViewModel(ICelebrationService celebrationService, 
             ICelebrationResponseService celebrationResponseService,
+            IDialogService dialogService,
             CelebrationDetailDialogViewModel celebrationDetailDialogViewModel,
             CelebrationsProposalsTableDialogViewModel celebrationsProposalsTableDialogViewModel,
             CelebrationsDetailsTableDialogViewModel celebrationsDetailsTableDialogViewModel,
@@ -43,9 +37,8 @@ namespace Organizator_Proslava.ViewModel.Celebrations
             MoreAboutCelebrationsDialogViewModel moreAboutCelebrationsDialogViewModel)
         {
             _celebrationService = celebrationService;
-            _dialogService = dialogService;
-
             _celebrationResponseService = celebrationResponseService;
+            _dialogService = dialogService;
 
             CelebrationsDetailsTableDialogViewModel = celebrationsDetailsTableDialogViewModel;
             CelebrationDetailDialogViewModel = celebrationDetailDialogViewModel;
@@ -53,9 +46,9 @@ namespace Organizator_Proslava.ViewModel.Celebrations
             ProposalCommentsViewModel = proposalCommentsViewModel;
             MoreAboutCelebrationsDialogViewModel = moreAboutCelebrationsDialogViewModel;
 
-            Celebrations = new ObservableCollection<Celebration>(_celebrationService.Read());
+            PastCelebrations = new ObservableCollection<Celebration>();
 
-            Back = new RelayCommand(() => EventBus.FireEvent("AdminLogin"));
+            Reload();
 
             Preview = new RelayCommand<Celebration>(celebration => {
                 CelebrationsDetailsTableDialogViewModel.Celebration = celebration;
@@ -63,10 +56,18 @@ namespace Organizator_Proslava.ViewModel.Celebrations
                 MoreAboutCelebrationsDialogViewModel.Celebration = celebration;
                 DetailsDialogViewModel ddvm = new DetailsDialogViewModel(CelebrationsDetailsTableDialogViewModel, _celebrationResponseService,
                     celebrationDetailDialogViewModel, CelebrationsProposalsTableDialogViewModel, ProposalCommentsViewModel,
-                    MoreAboutCelebrationsDialogViewModel);
-                ddvm.CurrentCelebration = celebration;
+                    MoreAboutCelebrationsDialogViewModel)
+                { CurrentCelebration = celebration };
                 _dialogService.OpenDialog(ddvm);
             });
+
+            Back = new RelayCommand(() => EventBus.FireEvent("BackToCurrentCelebrationsForOrganizer"));
+        }
+
+        public void Reload()
+        {
+            PastCelebrations.Clear();
+            _celebrationService.ReadPastForOrganizer(GlobalStore.ReadObject<BaseUser>("loggedUser").Id).ToList().ForEach(cr => PastCelebrations.Add(cr));
         }
     }
 }

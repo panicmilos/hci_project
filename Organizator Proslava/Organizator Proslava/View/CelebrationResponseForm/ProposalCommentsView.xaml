@@ -114,7 +114,8 @@
                 <ColumnDefinition Width="15*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="newcomment" Grid.Column="0" Text="{Binding Path=NewComment, Mode=OneWayToSource}" Style="{StaticResource newCommentTextBox}"/>
+            <TextBox x:Name="newcomment" Grid.Column="0" Text="{Binding Path=NewComment, Mode=OneWayToSource}" Style="{StaticResource newCommentTextBox}"
+                     ToolTip="Unesite Vaš novi komentar"/>
             <Button Grid.Column="1" Click="CommentClick" Command="{Binding Path=Comment}" Style="{StaticResource PaintedButton}" 
                     HorizontalAlignment="Right" IsEnabled="{Binding ElementName=newcomment ,Path=Text, Converter={StaticResource IsNullOrWhiteSpaceConverter}}">
                 <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/send.png"/>
