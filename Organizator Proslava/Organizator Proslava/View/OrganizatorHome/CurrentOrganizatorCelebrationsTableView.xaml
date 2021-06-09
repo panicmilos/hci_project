@@ -77,7 +77,7 @@
                     <DataGridTextColumn
                     Header="Datum i vreme"
                     Width="2*"
-                    Binding="{Binding Path=Celebration.DateTimeFrom}"
+                    Binding="{Binding Path=Celebration.DateTimeFrom, Converter={StaticResource DateToStringConverter}}"
                     CellStyle="{StaticResource DataGridTextCell}" />
                     <DataGridTemplateColumn Header="Pregled" Width="60" CellStyle="{StaticResource DataGridButtonCell}">
                         <DataGridTemplateColumn.CellTemplate>

@@ -27,10 +27,10 @@ namespace Organizator_Proslava.Model
         private Address _address;
         public virtual Address Address { get => _address; set => OnPropertyChanged(ref _address, value); }
 
-        private DateTime _dateTimeFrom = DateTime.Now;
+        private DateTime _dateTimeFrom = DateTime.Now.AddDays(2);
         public DateTime DateTimeFrom { get => _dateTimeFrom; set => OnPropertyChanged(ref _dateTimeFrom, value); }
 
-        private DateTime _dateTimeTo = DateTime.Now;
+        private DateTime _dateTimeTo = DateTime.Now.AddDays(2);
         public DateTime DateTimeTo { get => _dateTimeTo; set => OnPropertyChanged(ref _dateTimeTo, value); }
 
         private int _expectedNumberOfGuests;
