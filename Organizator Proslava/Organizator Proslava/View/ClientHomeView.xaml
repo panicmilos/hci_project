@@ -15,13 +15,13 @@
                     <ColumnDefinition Width="0.3*" />
                 </Grid.ColumnDefinitions>
                 
-                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <Button Command="{Binding Path=PastCelebrations}" Content="Prošle proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
-                </StackPanel>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Command="{Binding Path=PastCelebrations}" Content="Prošle proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
+                </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource SmallPaintedButton2}" Command="{Binding Path=Notifications}" Margin="1, 1, 20, 1"

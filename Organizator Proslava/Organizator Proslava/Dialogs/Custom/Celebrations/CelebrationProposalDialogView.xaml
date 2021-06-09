@@ -127,7 +127,6 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
 
-        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Sačuvaj"
                     x:Name="BTN"
                     Command="{Binding Path=Add}"
