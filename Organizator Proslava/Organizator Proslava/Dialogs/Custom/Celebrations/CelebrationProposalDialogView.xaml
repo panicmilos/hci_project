@@ -61,6 +61,7 @@
         <StackPanel Visibility="{Binding ShouldShowServices, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="3">
             <Label Content="Usluga" Style="{StaticResource registerPageLabel}" />
             <ComboBox
+                    ToolTip="Odaberite uslugu izabranog saradnika"
                     x:Name="tbService"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
@@ -76,14 +77,15 @@
 
         <StackPanel Grid.Column="1" Grid.Row="4" Visibility="{Binding ShouldShowServices, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label Content="Potreban broj usluga" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tbNumOfServ" Height="25" Text="{Binding Path=NumberOfService, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" />
+            <TextBox x:Name="tbNumOfServ" Height="25" Text="{Binding Path=NumberOfService, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" 
+                     ToolTip="Unesite broj jedinica usluge. Primeri jedinica usluge su: po osobi, po porciji itd."/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="5">
             <Label Content="Sala" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal">
                 <ComboBox
-                    ToolTip="Unesite salu"
+                    ToolTip="Odaberite salu"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
