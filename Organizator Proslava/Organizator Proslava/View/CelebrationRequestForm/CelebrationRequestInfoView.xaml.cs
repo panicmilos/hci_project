@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 //using System.Windows.Input;
 
 namespace Organizator_Proslava.View.CelebrationRequestForm
@@ -8,6 +9,8 @@ namespace Organizator_Proslava.View.CelebrationRequestForm
         public CelebrationRequestInfoView()
         {
             InitializeComponent();
+            DateTimeFrom.MinDateTime = DateTime.Now.AddDays(2);
+            DateTimeTo.MinDateTime = DateTime.Now.AddDays(2);
         }
         /*
         private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
