@@ -1,4 +1,5 @@
 ﻿using Organizator_Proslava.Dialogs;
+using Organizator_Proslava.Dialogs.Alert;
 using Organizator_Proslava.Dialogs.Custom.Celebrations;
 using Organizator_Proslava.Dialogs.Option;
 using Organizator_Proslava.Dialogs.Service;
@@ -6,6 +7,7 @@ using Organizator_Proslava.Model;
 using Organizator_Proslava.Utility;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
@@ -51,7 +53,15 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
             });
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToCelebrationRequestInfo"));
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToLongViewCelebration"));
+            Next = new RelayCommand(() =>
+            {
+                if (!CelebrationDetails.Any())
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Molimo Vas da unesete bar jedan detalj."));
+                    return;
+                }
+                EventBus.FireEvent("NextToLongViewCelebration");
+            });
         }
 
         public void ForAdd()

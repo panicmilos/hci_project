@@ -17,10 +17,10 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         public ObservableCollection<OrganizerWithNumOfDoneCelebrations> Organizers { get; set; }
 
-        public ChooseOrganizerViewModel(IOrganizerService organizerService, ICelebrationService celebrationService) : base("Odabir organizatora", 560, 360)
+        public ChooseOrganizerViewModel(string celebrationType, IOrganizerService organizerService, ICelebrationService celebrationService) : base("Odabir organizatora", 560, 360)
         {
             Organizers =
-                new ObservableCollection<OrganizerWithNumOfDoneCelebrations>(organizerService.Read().ToList()
+                new ObservableCollection<OrganizerWithNumOfDoneCelebrations>(organizerService.ReadSpecifiedFor(celebrationType).ToList()
                     .Select(organizer =>
                     {
                         var organizerWithNumOfDoneCelebrations = new OrganizerWithNumOfDoneCelebrations();
@@ -29,7 +29,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
                             celebrationService.GetNumOfDoneCelebrationsForOrganizer(organizer.Id);
                         return organizerWithNumOfDoneCelebrations;
                     }));
-            
+
             Choose = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, SelectedOrganizer));
             Cancel = new RelayCommand<IDialogWindow>(window => CloseDialogWithResult(window, null));
         }

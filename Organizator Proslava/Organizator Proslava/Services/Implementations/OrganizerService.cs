@@ -2,6 +2,7 @@
 using Organizator_Proslava.Data;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Services.Contracts;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Organizator_Proslava.Services.Implementations
@@ -41,6 +42,11 @@ namespace Organizator_Proslava.Services.Implementations
         public bool OrganizersExistFor(string celebrationTypeName)
         {
             return _entities.Any(organizer => organizer.CellebrationType.Name == celebrationTypeName);
+        }
+
+        public IEnumerable<Organizer> ReadSpecifiedFor(string celebrationTypeName)
+        {
+            return _entities.Where(organizer => organizer.CellebrationType.Name == celebrationTypeName).ToList();
         }
     }
 }

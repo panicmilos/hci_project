@@ -15,19 +15,22 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
     {
         private Celebration _celebration;
         public Celebration Celebration { get => _celebration; set => OnPropertyChanged(ref _celebration, value); }
+
         // Text fields:
         private string _celebrationType;
-        public string CelebrationType { get => _celebrationType; set { _celebrationType = value; OnPropertyChanged("ShouldShowOrganizers"); } }
+
+        public string CelebrationType { get => _celebrationType; set { _celebrationType = value; _celebration.Type = value; OnPropertyChanged("ShouldShowOrganizers"); } }
         public string ExpectedNumberOfGuests { get; set; }
         public string BudgetFrom { get; set; }
         public string BudgetTo { get; set; }
         public DateTime DateTimeFrom { get => _dateTimeFrom; set { OnPropertyChanged(ref _dateTimeFrom, value); OnPropertyChanged("DateTimeTo"); } }
         public DateTime DateTimeTo { get => _dateTimeTo; set { OnPropertyChanged(ref _dateTimeTo, value); OnPropertyChanged("DateTimeFrom"); } }
-        
+
         private DateTime _dateTimeFrom = DateTime.Now, _dateTimeTo = DateTime.Now;
 
         // Commands:
         public ICommand OpenOrganizersDialog { get; set; }
+
         public ICommand OpenMap { get; set; }
         public ICommand Back { get; set; }
         public ICommand Next { get; set; }
@@ -37,11 +40,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
         // Rules:
         public string Error => throw new NotImplementedException();
+
         public string this[string columnName]
         {
             get
             {
-                if (columnName == "DateTimeFrom"|| columnName == "DateTimeTo")
+                if (columnName == "DateTimeFrom" || columnName == "DateTimeTo")
                     return Err(ValidationDictionary.Validate(columnName, DateTimeFrom, DateTimeTo));
 
                 var valueOfProperty = GetType().GetProperty(columnName)?.GetValue(this);
@@ -68,7 +72,7 @@ namespace Organizator_Proslava.ViewModel.CelebrationRequestForm
 
             OpenOrganizersDialog = new RelayCommand(() =>
             {
-                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(organizerService, celebrationService));
+                Celebration.Organizer = _dialogService.OpenDialog(new ChooseOrganizerViewModel(_celebration.Type, organizerService, celebrationService));
             });
             OpenMap = new RelayCommand(() =>
             {
