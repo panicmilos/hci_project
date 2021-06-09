@@ -20,7 +20,7 @@ namespace Organizator_Proslava.ViewModel
         public string MailAddress { get; set; }
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
-        public string Password { get => _password; set { OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
+        public string Password { get => _password; set { ; OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
         public string RepeatedPassword { get => _repeatedPassword; set { OnPropertyChanged(ref _repeatedPassword, value); OnPropertyChanged("Password"); } }
 
         private string _password, _repeatedPassword;
