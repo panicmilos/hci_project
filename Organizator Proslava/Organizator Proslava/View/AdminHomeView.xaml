@@ -15,7 +15,8 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0">
+                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0"
+                            ToolTip="Odjavite se">
                         <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/logout.png" />
                     </Button>
                 </StackPanel>

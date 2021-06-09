@@ -44,10 +44,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb1" Grid.Column="0" Grid.Row="1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb1" Grid.Column="0" Grid.Row="1" Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite ime novog organizatora"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Prezime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb2" Grid.Column="2" Grid.Row="1" Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb2" Grid.Column="2" Grid.Row="1" Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite prezime novog organizatora"/>
             </Grid>
         </StackPanel>
 
@@ -65,16 +67,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Broj lične karte" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb3" Grid.Column="0" Grid.Row="1" Text="{Binding Path=PersonalId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb3" Grid.Column="0" Grid.Row="1" Text="{Binding Path=PersonalId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite broj lične karte novog organizatora"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="JMBG" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb4" Grid.Column="2" Grid.Row="1" Text="{Binding Path=JMBG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb4" Grid.Column="2" Grid.Row="1" Text="{Binding Path=JMBG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite jedinstveni matični broj građanina novog organizatora"/>
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Broj telefona" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tb5" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+            <TextBox x:Name="tb5" Text="{Binding Path=PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                     ToolTip="Unesite broj telefona novog organizatora"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="4">
@@ -91,7 +96,8 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox help:HelpProvider.HelpKey="Address" x:Name="tb6" Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=WholeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10, 0, 10, 0" Style="{StaticResource disabledValidateTextBox}" />
+                <TextBox help:HelpProvider.HelpKey="Address" x:Name="tb6" Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=WholeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="10, 0, 10, 0" Style="{StaticResource disabledValidateTextBox}" 
+                         ToolTip="Unesite adresu novog organizatora"/>
 
                 <Button Grid.Column="2" Grid.Row="1" Command="{Binding Map}" Content="Map" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
             </Grid>
@@ -111,10 +117,12 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Korisničko ime" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb7" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb7" Grid.Column="0" Grid.Row="1" Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite korisničko ime novog organizatora"/>
 
-                <Label Grid.Column="2" Grid.Row="0" Content="Mail Adresa" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb8" Grid.Column="2" Grid.Row="1" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <Label Grid.Column="2" Grid.Row="0" Content="E-mail Adresa" Style="{StaticResource registerPageLabel}" />
+                <TextBox x:Name="tb8" Grid.Column="2" Grid.Row="1" Text="{Binding Path=MailAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite e-mail adresu novog organizatora"/>
             </Grid>
         </StackPanel>
 
@@ -132,16 +140,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb9" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb9" Grid.Column="0" Grid.Row="1" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Unesite šifru novog organizatora"/>
 
                 <Label Grid.Column="2" Grid.Row="0" Content="Ponovljena Šifra" Style="{StaticResource registerPageLabel}" />
-                <TextBox x:Name="tb10" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" />
+                <TextBox x:Name="tb10" Grid.Column="2" Grid.Row="1" Text="{Binding Path=RepeatedPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" 
+                         ToolTip="Ponovo unesite šifru novog organizatora"/>
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="7">
             <Label Content="Specijalizacija" Style="{StaticResource registerPageLabel}" />
             <controls:AutoCompleteBox
+                    ToolTip="Unesite vrstu proslave za koju je novi organizator specijalizovan"
                     x:Name="tb11"
                     Height="25"
                     Foreground="{StaticResource Ming}"
@@ -156,9 +167,12 @@
             </controls:AutoCompleteBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Width="160">
-            <Button Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}" />
-            <Button Content="Sačuvaj" Command="{Binding Path=Create}" CommandParameter="{Binding Path=Organizer}" Style="{StaticResource loginPageButton}"  Background="{StaticResource PowderBlue}">
+        <Button Grid.Column="1" Grid.Row="8" Content="Nazad" Command="{Binding Path=Back}" Style="{StaticResource loginPageButton}"  
+                Background="{StaticResource PowderBlue}"  HorizontalAlignment="Left"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <Button x:Name="BTN" Content="Sačuvaj" Command="{Binding Path=Create}" CommandParameter="{Binding Path=Organizer}"  Background="{StaticResource PowderBlue}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
                         <Binding Path="(Validation.HasError)" ElementName="tb1" />
@@ -174,6 +188,18 @@
                         <Binding Path="(Validation.HasError)" ElementName="tb11" />
                     </MultiBinding>
                 </Button.IsEnabled>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource loginPageButton}">
+                        <Setter Property="ToolTip" Value="Kreirajte novog organizatora." />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BTN, Path=IsEnabled}" Value="False">
+                                <Setter Property="ToolTip" Value="Da biste kreirali novog organizatora morate adekvatno popuniti sva polja" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
             </Button>
         </StackPanel>
     </Grid>

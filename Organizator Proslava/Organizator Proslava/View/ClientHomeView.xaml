@@ -19,16 +19,23 @@
                     <Button Command="{Binding Path=PastCelebrations}" Content="Prošle proslave" Style="{StaticResource toolbarButton}"  Width="130" Background="{StaticResource PowderBlue}" />
                 </StackPanel>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Notifications}" Margin="1, 1, 20, 1">
+                    <Button Style="{StaticResource SmallPaintedButton2}" Command="{Binding Path=Notifications}" Margin="1, 1, 20, 1"
+                            ToolTip="Pogledajte obaveštenja">
                         <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/notification.png" />
                     </Button>
 
-                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Profile}" Margin="0, 0, 20, 0">
+                    <Button Style="{StaticResource SmallPaintedButton2}" Command="{Binding Path=Profile}" Margin="0, 0, 20, 0"
+                            ToolTip="Izmenite svoj profil">
                         <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/profile.png" />
                     </Button>
 
-                    <Button Style="{StaticResource SmallPaintedButton}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0">
+                    <Button Style="{StaticResource SmallPaintedButton2}" Command="{Binding Path=Logout}" Margin="0, 0, 20, 0"
+                            ToolTip="Odjavite se">
                         <BitmapImage UriSource="pack://siteoforigin:,,,/Resources/logout.png" />
                     </Button>
                 </StackPanel>

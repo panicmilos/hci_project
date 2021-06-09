@@ -121,4 +121,19 @@
         </Setter>
         <Setter Property="Cursor" Value="Hand" />
     </Style>
+
+    <Style TargetType="Button" x:Key="SmallPaintedButton2">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Image Source="{TemplateBinding Button.Content}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
