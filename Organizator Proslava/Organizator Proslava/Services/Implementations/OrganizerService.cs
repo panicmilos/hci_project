@@ -32,6 +32,9 @@ namespace Organizator_Proslava.Services.Implementations
             existingOrganizer.CellebrationType = organizer.CellebrationType;
             existingOrganizer.JMBG = organizer.JMBG;
 
+            existingOrganizer.UserName = organizer.UserName;
+            existingOrganizer.Password = organizer.Password;
+
             var updatedOrganizer = base.Update(existingOrganizer);
             _context.Entry(organizer.CellebrationType).State = EntityState.Detached;
             _context.Entry(oldCelebrationType).State = EntityState.Detached;
