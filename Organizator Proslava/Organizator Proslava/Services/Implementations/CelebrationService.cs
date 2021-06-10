@@ -39,6 +39,22 @@ namespace Organizator_Proslava.Services.Implementations
             return base.Create(celebration);
         }
 
+        public override Celebration Update(Celebration celebration)
+        {
+            if (celebration.OrganizerId != null)
+            {
+                _context.Add(new CelebrationResponse
+                {
+                    Celebration = celebration,
+                    OrganizerId = celebration.OrganizerId.Value
+                });
+                _context.SaveChanges();
+
+                return celebration;
+            }
+            return base.Update(celebration);
+        }
+
         public Celebration AcceptBy(Guid organizerId, Guid celebrationId)
         {
             var organizer = _organizerService.Read(organizerId);
