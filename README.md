@@ -11,11 +11,11 @@ Projekat za Interakcija čovek računar.
 
 ## Izvršni fajlovi
 
-Izvršni fajlovi se nalaze u `dist` direktorijumu.
+Izvršni fajlovi se nalaze u `'Organizator Proslava/bin/Debug/'` direktorijumu.
 
 ## Pokretanje projekta
 
-Projekat se pokreće otvaranjem \<ime-fajla\>.exe koji se nalazi u `dist` direktorijumu.
+Projekat se pokreće otvaranjem `'Organizator Proslava.exe'` koji se nalazi u direktorijumu sa izvršnim fajlovima.
 
 ## Online korisnička dokumentacija
 
