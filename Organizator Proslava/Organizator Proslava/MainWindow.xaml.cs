@@ -31,10 +31,18 @@ namespace Organizator_Proslava
             }
 
             var context = (DataContext as NavigabileModelView).Current;
-            var helpViewer = context is NavigabileModelView navigabileModelView
-                ? new HelpViewer(navigabileModelView.Current.GetType(), this)
-                : new HelpViewer(context.GetType(), this);
+            while (true)
 
+            {
+                if (context is NavigabileModelView navigabile)
+                {
+                    context = navigabile.Current;
+                    continue;
+                }
+
+                break;
+            }
+            var helpViewer = new HelpViewer(context.GetType(), this);
             helpViewer.Show();
         }
 

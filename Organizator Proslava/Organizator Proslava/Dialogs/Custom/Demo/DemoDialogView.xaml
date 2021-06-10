@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="LeftGridColum" Width="3*" />
-            <ColumnDefinition Width="7*" />
+            <ColumnDefinition x:Name="LeftGridColum" Width="3.5*" />
+            <ColumnDefinition Width="6.5*" />
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Background="{StaticResource SidebarGradient}" VerticalScrollBarVisibility="Auto">

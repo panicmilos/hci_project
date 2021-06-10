@@ -1,6 +1,10 @@
-﻿using Organizator_Proslava.Dialogs.Service;
+﻿using Organizator_Proslava.Dialogs.Custom.Notifications;
+using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel;
+using Organizator_Proslava.ViewModel.CelebrationResponseForm;
+using Organizator_Proslava.ViewModel.CollaboratorForm;
+using Organizator_Proslava.ViewModel.OrganizatorHome;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,23 +30,32 @@ namespace Organizator_Proslava.Dialogs.Custom.Demo
         {
             _videos = new Dictionary<string, string>()
             {
-                { "Funkcionalnost 1", "somecatvideo.mp4" },
-                { "Funkcionalnost 2", "somekidheadshot.mp4" },
-                { "Funkcionalnost 3", "Ruta 3" },
-                { "Funkcionalnost 4", "Ruta 4" },
-                { "Funkcionalnost 5", "Ruta 5" },
-                { "Funkcionalnost 6", "Ruta 6" },
-                { "Funkcionalnost 7", "Ruta 7" },
-                { "Funkcionalnost 8", "Ruta 8" },
-                { "Funkcionalnost 9", "Ruta 9" },
+                { "Funkcionalnosti organizatora", "full.wmv" },
+                { "Pravljenje naloga", "registracija.wmv" },
+                { "Prijava", "login.wmv" },
+                { "Pregled saradnika", "pregled saradnika.wmv" },
+                { "Dodavanje novog saradnika", "dodavanje saradnika.wmv" },
+                { "Izmena saradnika", "izmena saradnika.wmv" },
+                { "Brisanje saradnika", "brisanje saradnika.wmv" },
+                { "Pregled proslava", "pregled proslava.wmv" },
+                { "Prihvatanje zahteva", "prihvatanje.wmv" },
+                { "Davanje ponude", "ponuda i komentar.wmv" },
+                { "Otkazivanje proslave", "otkazivanje.wmv" },
+                { "Obaveštenja", "norf.wmv" },
+                { "Izlazak", "logout.wmv" },
             };
-
             var _typeToStringDictionary = new Dictionary<Type, string>
             {
-                { typeof(RegisterViewModel), "Funkcionalnost 2" },
+                { typeof(RegisterViewModel), "Pravljenje naloga" },
+                { typeof(CollaboratorsTableViewModel), "Pregled saradnika" },
+                { typeof(CollaboratorFormViewModel), "Dodavanje novog saradnika" },
+                { typeof(OrganizersPastCelebrationsTableViewModel), "Pregled proslava" },
+                { typeof(AcceptCelebrationRequestTableViewModel), "Prihvatanje zahteva" },
+                { typeof(NotificationsDialogViewModel), "Obaveštenja" },
+                { typeof(CelebrationResponseFormViewModel), "Davanje ponude" }
             };
 
-            var startingFunctionalityName = _typeToStringDictionary.ContainsKey(dataContextType) ? _typeToStringDictionary[dataContextType] : "Funkcionalnost 1";
+            var startingFunctionalityName = _typeToStringDictionary.ContainsKey(dataContextType) ? _typeToStringDictionary[dataContextType] : "Funkcionalnosti organizatora";
             SelectedVideo = GetPathBasedOnFunctionalityName(startingFunctionalityName);
 
             Functionalities = new ObservableCollection<string>(_videos.Keys);

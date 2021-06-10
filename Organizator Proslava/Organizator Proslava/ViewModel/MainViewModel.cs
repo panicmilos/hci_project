@@ -18,7 +18,7 @@ namespace Organizator_Proslava.ViewModel
         public MainViewModel(LoginViewModel lvm)
         {
             Lvm = lvm;
-            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(Current.GetType()));
+            OpenDemo = new RelayCommand(() => new DemoService().OpenDemo(Current is NavigabileModelView navigabileModelView ? navigabileModelView.Current.GetType() : Current.GetType()));
 
             Switch(lvm);
 
