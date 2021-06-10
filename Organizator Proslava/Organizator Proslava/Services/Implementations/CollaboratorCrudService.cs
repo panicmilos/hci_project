@@ -31,6 +31,9 @@ namespace Organizator_Proslava.Services.Implementations
             existingCollaborator.Address.Lng = collaborator.Address.Lng;
             existingCollaborator.Address.WholeAddress = collaborator.Address.WholeAddress;
 
+            existingCollaborator.UserName = collaborator.UserName;
+            existingCollaborator.Password = collaborator.Password;
+
             foreach (var hall in collaborator.CelebrationHalls)
             {
                 _context.Add(hall);

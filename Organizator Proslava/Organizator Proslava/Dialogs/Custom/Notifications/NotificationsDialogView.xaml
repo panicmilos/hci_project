@@ -49,7 +49,7 @@
                                 <Button Grid.Column="1"
                                         Visibility="{Binding Path=., Converter={StaticResource NotificationRoutingVisibilityConverter}}"
                                         Style="{StaticResource DeleteNotificationButton}"
-                                        Background="{StaticResource PowderBlue}">
+                                        Background="{StaticResource PowderBlue}" ToolTip="Prikaži obaveštenje">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction Command="{Binding Path=DataContext.Close, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationsDialogView}}}"
@@ -66,7 +66,7 @@
                                         Style="{StaticResource DeleteNotificationButton}"
                                         Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationsDialogView}}}"
                                         CommandParameter="{Binding}"
-                                        Background="{StaticResource PowderBlue}">
+                                        Background="{StaticResource PowderBlue}" ToolTip="Obriši obaveštenje">
                                     X
                                 </Button>
                             </Grid>
