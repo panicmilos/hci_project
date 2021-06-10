@@ -56,12 +56,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
                 {
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje",
-                        "Predlog koji pokušavate da prihvatite je već obrađen."));
+                        "Ponuda koju pokušavate da prihvatite je već obrađena."));
                     return;
                 }
 
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
-                    "Da li ste sigurni da želite da prihvatite predlog?")) != DialogResults.Yes)
+                    "Da li ste sigurni da želite da prihvatite ponudu?")) != DialogResults.Yes)
                     return;
 
                 cp.Status = CelebrationProposalStatus.Prihvacen;
@@ -81,12 +81,12 @@ namespace Organizator_Proslava.ViewModel.CelebrationProposals
                 if (cp.Status != CelebrationProposalStatus.Neobradjen)
                 {
                     _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje",
-                        "Predlog koji pokušavate da odbijete je već obrađen."));
+                        "Ponuda koju pokušavate da odbijete je već obrađena."));
                     return;
                 }
 
                 if (_dialogService.OpenDialog(new OptionDialogViewModel("Potvrda",
-                    "Da li ste sigurni da želite da odbijete predlog?")) != DialogResults.Yes)
+                    "Da li ste sigurni da želite da odbijete ponudu?")) != DialogResults.Yes)
                     return;
 
                 cp.Status = CelebrationProposalStatus.Odbijen;

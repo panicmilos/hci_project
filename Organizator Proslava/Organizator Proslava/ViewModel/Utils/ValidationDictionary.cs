@@ -398,7 +398,7 @@ namespace Organizator_Proslava.ViewModel.Utils
         private static string ValidateProposalTitle(object title, object _)
         {
             if (string.IsNullOrWhiteSpace(title as string))
-                return "Molimo Vas da unesete naslov predloga.";
+                return "Molimo Vas da unesete naslov ponude.";
 
             return null;
         }

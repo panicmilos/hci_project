@@ -36,11 +36,11 @@ namespace Organizator_Proslava.Model
             var loggedUserRole = GlobalStore.ReadObject<BaseUser>("loggedUser").Role;
             if (loggedUserRole == Role.User)
             {
-                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" predlogu proslave koju vam organizuje {CelebrationResponse.Celebration.Organizer.FullName}.";
+                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" ponudi proslave koju vam organizuje {CelebrationResponse.Celebration.Organizer.FullName}.";
             }
             else if (loggedUserRole == Role.Organizer)
             {
-                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" predlogu proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
+                return $"Imate {NumOfComments} nov{novSufix} komentar{commentSufix} na \"{Proposal.Title}\" ponudi proslave koju organizujete za {CelebrationResponse.Celebration.Client.FullName}.";
             }
 
             return String.Empty;
@@ -57,7 +57,7 @@ namespace Organizator_Proslava.Model
 
         public override string ToString()
         {
-            return $"Imate nov predlog(\"{Proposal.Title}\") na proslavi koju Vam organizuje {CelebrationResponse.Celebration.Organizer.FullName}.";
+            return $"Imate novu ponudu(\"{Proposal.Title}\") na proslavi koju Vam organizuje {CelebrationResponse.Celebration.Organizer.FullName}.";
         }
     }
 
@@ -72,7 +72,7 @@ namespace Organizator_Proslava.Model
         public override string ToString()
         {
             var did = Proposal.Status == CelebrationProposalStatus.Prihvacen ? "prihvation" : "odbio";
-            return $"{CelebrationResponse.Celebration.Client.FullName} je {did} predlog \"{Proposal.Title}\".";
+            return $"{CelebrationResponse.Celebration.Client.FullName} je {did} ponudu \"{Proposal.Title}\".";
         }
     }
 
