@@ -215,6 +215,7 @@ namespace Organizator_Proslava.Dialogs.Custom.Collaborators
                     {
                         dinningTable.Movable = editedDinningTable.Movable;
                         dinningTable.Seats = editedDinningTable.Seats;
+                        SpaceModelingViewModel.OnPropertyChanged("NumberOfGuests");
                     }
                 }
                 else

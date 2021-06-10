@@ -122,7 +122,7 @@ namespace Organizator_Proslava.UserCommands
         private readonly IEnumerable<Notification> _notifications;
 
         private readonly ICelebrationResponseService _celebrationResponseService;
-        private readonly ICelebrationService _celebrationService;
+        private readonly ICrudService<Celebration> _celebrationService;
         private readonly INotificationService _notificationService;
 
         public CancelCelebrationResponse(CelebrationResponse celebrationResponse, Notification cancelNotification, IEnumerable<Notification> notifications)
@@ -135,7 +135,7 @@ namespace Organizator_Proslava.UserCommands
             _notifications = notifications;
 
             _celebrationResponseService = ServiceLocator.Get<ICelebrationResponseService>();
-            _celebrationService = ServiceLocator.Get<ICelebrationService>();
+            _celebrationService = ServiceLocator.Get<ICrudService<Celebration>>();
             _notificationService = ServiceLocator.Get<INotificationService>();
         }
 
@@ -149,7 +149,7 @@ namespace Organizator_Proslava.UserCommands
 
         public void Undo()
         {
-            _celebration.AddressId = _address.Id;
+            _celebration.AddressId = _address?.Id;
             _celebration.Address = null;
             _celebrationService.Create(_celebration);
             _celebrationResponseService.Create(_celebrationResponse);
