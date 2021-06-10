@@ -15,19 +15,17 @@ namespace Organizator_Proslava.ViewModel
     {
         // Text fields:
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
         public string MailAddress { get; set; }
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
-        public string Password { get => _password; set { ; OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
+        public string Password { get => _password; set { OnPropertyChanged(ref _password, value); OnPropertyChanged("RepeatedPassword"); } }
         public string RepeatedPassword { get => _repeatedPassword; set { OnPropertyChanged(ref _repeatedPassword, value); OnPropertyChanged("Password"); } }
 
         private string _password, _repeatedPassword;
 
         // Commands:
         public ICommand Register { get; set; }
-
         public ICommand Back { get; set; }
 
         public bool ForEdit { get; set; } = false;
@@ -78,6 +76,11 @@ namespace Organizator_Proslava.ViewModel
                 _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisničko ime je već iskorišćeno."));
                 return;
             }
+            if (_clientService.IsEmailUsed(MailAddress))
+            {
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadata mail adresa je već iskorišćena."));
+                return;
+            }
             var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da napravite nalog?"));
             if (optionDialogResult == DialogResults.Yes)
             {
@@ -103,6 +106,11 @@ namespace Organizator_Proslava.ViewModel
             if (client.UserName != UserName && _clientService.AlreadyInUse(UserName))
             {
                 _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
+                return;
+            }
+            if (client.MailAddress != MailAddress && _clientService.IsEmailUsed(MailAddress))
+            {
+                _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadata mail adresa je već iskorišćena."));
                 return;
             }
             var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da promenite podatke?"));

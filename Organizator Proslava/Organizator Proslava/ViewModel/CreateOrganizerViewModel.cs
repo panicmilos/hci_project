@@ -111,6 +111,16 @@ namespace Organizator_Proslava.ViewModel
 
             Create = new RelayCommand<Organizer>(organizer =>
             {
+                if (organizer.UserName != UserName && _organizerService.AlreadyInUse(UserName))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisničko ime je već iskorišćeno."));
+                    return;
+                }
+                if (organizer.MailAddress != MailAddress && _organizerService.IsEmailUsed(MailAddress))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadata mail adresa je već iskorišćena."));
+                    return;
+                }
                 var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da izmenite organizatora?"));
                 if (optionDialogResult == Dialogs.DialogResults.Yes)
                 {
@@ -150,6 +160,16 @@ namespace Organizator_Proslava.ViewModel
 
             Create = new RelayCommand<Organizer>(o =>
             {
+                if (_organizerService.AlreadyInUse(UserName))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisničko ime je već iskorišćeno."));
+                    return;
+                }
+                if (_organizerService.IsEmailUsed(MailAddress))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadata mail adresa je već iskorišćena."));
+                    return;
+                }
                 var optionDialogResult = _dialogService.OpenDialog(new OptionDialogViewModel("Potvrda", "Da li ste sigurni da želite da kreirate novog organizatora?"));
                 if (optionDialogResult == Dialogs.DialogResults.Yes)
                 {

@@ -14,12 +14,17 @@ namespace Organizator_Proslava.Services.Implementations
 
         public bool AlreadyInUse(string username)
         {
-            return _entities.Any(u => u.UserName == username);
+            return _context.BaseUsers.Any(u => u.UserName == username);
         }
 
         public BaseUser Authenticate(string username, string password)
         {
             return _entities.FirstOrDefault(u => u.UserName == username && u.Password == password);
+        }
+
+        public bool IsEmailUsed(string email)
+        {
+            return _context.BaseUsers.Any(u => u.MailAddress == email);
         }
     }
 }

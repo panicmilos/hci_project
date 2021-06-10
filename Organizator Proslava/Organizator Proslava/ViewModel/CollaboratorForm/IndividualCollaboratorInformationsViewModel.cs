@@ -1,7 +1,9 @@
-﻿using Organizator_Proslava.Dialogs.Map;
+﻿using Organizator_Proslava.Dialogs.Alert;
+using Organizator_Proslava.Dialogs.Map;
 using Organizator_Proslava.Dialogs.Service;
 using Organizator_Proslava.Model;
 using Organizator_Proslava.Model.Collaborators;
+using Organizator_Proslava.Services.Contracts;
 using Organizator_Proslava.Utility;
 using Organizator_Proslava.ViewModel.Utils;
 using System.ComponentModel;
@@ -53,11 +55,14 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public string Error => throw new System.NotImplementedException();
 
         private readonly IDialogService _dialogService;
+        private readonly IUserService<Collaborator> _userService;
         private int _calls = 0;
+        private bool _isAdd = false;
 
-        public IndividualCollaboratorInformationsViewModel(IDialogService dialogService)
+        public IndividualCollaboratorInformationsViewModel(IDialogService dialogService, IUserService<Collaborator> userService)
         {
             _dialogService = dialogService;
+            _userService = userService;
 
             Collaborator = new IndividualCollaborator();
 
@@ -73,7 +78,20 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
                 }
             });
 
-            Next = new RelayCommand(() => EventBus.FireEvent("NextToCollaboratorServicesFromIndividual"));
+            Next = new RelayCommand(() =>
+            {
+                if ((Collaborator.UserName != UserName || _isAdd) && _userService.AlreadyInUse(UserName))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadato korisnicko ime je vec iskorisceno"));
+                    return;
+                }
+                if ((Collaborator.MailAddress != MailAddress || _isAdd) && _userService.IsEmailUsed(MailAddress))
+                {
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Obaveštenje", "Zadata mail adresa je već iskorišćena."));
+                    return;
+                }
+                EventBus.FireEvent("NextToCollaboratorServicesFromIndividual");
+            });
         }
 
         public void ForAdd()
@@ -86,6 +104,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             WholeAddress = string.Empty;
             RepeatedPassword = string.Empty;
             _calls = 0;
+            _isAdd = true;
 
             Back = new RelayCommand(() => EventBus.FireEvent("BackToSelectCollaboratorType"));
         }
@@ -100,6 +119,7 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
             WholeAddress = Collaborator.Address?.WholeAddress;
             RepeatedPassword = collaborator.Password;
             _calls = 10;
+            _isAdd = false;
 
             Back = new RelayCommand(() => EventBus.FireEvent(BackTo));
         }
@@ -107,16 +127,14 @@ namespace Organizator_Proslava.ViewModel.CollaboratorForm
         public Collaborator CollectCollaborator()
         {
             foreach (var property in GetType().GetProperties())
-            {
                 Collaborator.GetType().GetProperty(property.Name)?.SetValue(Collaborator, property.GetValue(this));
-            }
 
             return Collaborator;
         }
 
         private string Err(string message)
         {
-            return message == null ? null : (_calls++ < 10 ? "*" : message);   // there are 7 fields
+            return message == null ? null : (_calls++ < 10 ? "*" : message);
         }
     }
 }
