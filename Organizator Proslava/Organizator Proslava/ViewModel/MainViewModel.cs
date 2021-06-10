@@ -53,6 +53,7 @@ namespace Organizator_Proslava.ViewModel
             EventBus.RegisterHandler("BackToLogin", () =>
             {
                 EventBus.Clear();
+                ServiceLocator.Reset();
                 Chvm = null;
                 Ohvm = null;
                 Ahvm = null;
