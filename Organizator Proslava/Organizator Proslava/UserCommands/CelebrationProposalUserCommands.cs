@@ -142,7 +142,7 @@ namespace Organizator_Proslava.UserCommands
         public void Redo()
         {
             _celebrationResponseService.Delete(_celebrationResponse.Id);
-            _celebrationService.Delete(_celebrationResponse.Id);
+            _celebrationService.Delete(_celebration.Id);
             _notificationService.Create(_cancelNotification);
             EventBus.FireEvent("ReloadCurrentOrganizatorCelebrationsTable");
         }
