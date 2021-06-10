@@ -28,14 +28,14 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Naslov ponude" Style="{StaticResource registerPageLabel}" />
             <TextBox x:Name="tb1" Text="{Binding Path=ProposalTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateTextBox}" Background="{StaticResource Cararra}"
-                     ToolTip="Unesite naslov ponude"/>
+                     ToolTip="Unesite naslov ponude" />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Saradnik" Style="{StaticResource registerPageLabel}" />
             <StackPanel Margin="12, 0, 0, 0" Orientation="Horizontal" Validation.ErrorTemplate="{StaticResource OurErrorTemplate}">
                 <controls:AutoCompleteBox x:Name="tb2"
-                    ToolTip="Unesite saradnika koji će realizovati predlog"
+                    ToolTip="Unesite saradnika koji će realizovati ponudu"
                     Foreground="{StaticResource Ming}"
                     Background="{StaticResource Cararra}"
                     FontFamily="Helvetica"
@@ -77,8 +77,8 @@
 
         <StackPanel Grid.Column="1" Grid.Row="4" Visibility="{Binding ShouldShowServices, Converter={StaticResource BoolToVisibilityConverter}}">
             <Label Content="Potreban broj usluga" Style="{StaticResource registerPageLabel}" />
-            <TextBox x:Name="tbNumOfServ" Height="25" Text="{Binding Path=NumberOfService, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}" 
-                     ToolTip="Unesite broj jedinica usluge. Primeri jedinica usluge su: po osobi, po porciji itd."/>
+            <TextBox x:Name="tbNumOfServ" Height="25" Text="{Binding Path=NumberOfService, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource validateSpaceTextBox}"
+                     ToolTip="Unesite broj jedinica usluge. Primeri jedinica usluge su: po osobi, po porciji itd." />
         </StackPanel>
 
         <StackPanel Visibility="{Binding ShouldShowHalls, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="5">
@@ -115,7 +115,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <TextBox x:Name="tb3" Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                             ToolTip="Unesite detaljniji opis predloga"
+                             ToolTip="Unesite detaljniji opis ponude"
                              Style="{StaticResource validateTextBox}"
                              Background="{StaticResource Cararra}"
                              TextWrapping="Wrap" />
