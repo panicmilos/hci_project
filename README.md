@@ -12,8 +12,7 @@ Projekat za Interakcija čovek računar.
 ## Izvršni fajlovi
 
 Izvršni fajlovi se nalaze u `'Organizator Proslava/bin/Debug/'` direktorijumu.
-Takođe je potrebno kopirati demo fajlove sa https://www.sendspace.com/file/dx0lwu?fbclid=IwAR2aUVHhyjKwbmcJGJfWY9jsKFfsOk4Lkb8OjaOmlKAviAZYwl1Nf3GvJ5k
-u `'Organizator Proslava/bin/Debug/Resources'`.
+Takođe je potrebno kopirati demo fajlove sa https://www.sendspace.com/file/dx0lwu u `'Organizator Proslava/bin/Debug/Resources'`.
 
 ## Pokretanje projekta
 
